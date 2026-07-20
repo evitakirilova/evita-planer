@@ -1,0 +1,2989 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evita · 2026 · Plāns</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+:root {
+  --bg:     #f2f2f1;
+  --white:  #ffffff;
+  --border: #e8e4df;
+  --greige: #c6c1bb;
+  --sage:   #9a9794;
+  --slate:  #5d6169;
+  --taupe:  #706354;
+  --text:   #2c2a27;
+  --red:    #c0392b;
+  --amber:  #d4861a;
+  --green:  #2e7d4f;
+  --blue:   #2c5f8a;
+  --done:   #4a9e6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+
+/* HEADER */
+.hdr { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.hdr h1 { font-size: 16px; font-weight: 700; color: var(--slate); }
+.hdr p  { font-size: 11px; color: var(--greige); margin-top: 2px; letter-spacing: 0.3px; }
+.hdr-clock { text-align: right; font-size: 12px; color: var(--slate); line-height: 1.6; }
+.sync-bar { background: #fffbf0; border-bottom: 1px solid #f0e0b0; padding: 8px 28px; display: flex; align-items: center; gap: 12px; font-size: 12px; }
+.sync-bar.ok  { background: #f0faf4; border-color: #b8dfc8; }
+.sync-bar.err { background: #fff0f0; border-color: #f5c6c6; }
+.sync-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sync-dot.ok  { background: var(--done); }
+.sync-dot.warn{ background: var(--amber); }
+.sync-dot.err { background: var(--red); }
+.sync-msg { flex: 1; color: var(--slate); }
+.sync-msg small { color: var(--sage); margin-left: 8px; }
+.sync-btn { background: var(--taupe); color: white; border: none; border-radius: 4px; padding: 5px 12px; font-size: 11px; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.sync-btn:hover { background: var(--slate); }
+.sync-btn.secondary { background: none; border: 1px solid var(--greige); color: var(--slate); }
+.sync-btn.secondary:hover { border-color: var(--taupe); color: var(--taupe); }
+
+/* GOOGLE DRIVE JOSLA */
+#drive-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 4px 24px; display: flex; align-items: center; justify-content: flex-end; gap: 10px; font-size: 11px; color: var(--greige); }
+#drive-status { flex: 1; }
+#drive-btn { background: var(--taupe); color: #fff; border: none; border-radius: 5px; padding: 4px 14px; font-size: 10px; font-weight: 700; cursor: pointer; font-family: inherit; letter-spacing: .5px; transition: background .15s; }
+#drive-btn:hover { background: var(--slate); }
+#drive-btn.ok { background: #4caf50; cursor: default; }
+/* TABS */
+.tabs { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; overflow-x: auto; }
+.tb { padding: 11px 16px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer; border: none; border-bottom: 2px solid transparent; background: none; color: var(--greige); white-space: nowrap; font-family: inherit; transition: all .18s; }
+.tb.active { color: var(--slate); border-bottom-color: var(--taupe); }
+.tb:hover { color: var(--taupe); }
+
+/* CONTENT */
+.tab { display: none; padding: 22px 28px 48px; }
+.tab.active { display: block; }
+
+/* SECTION HEADER */
+.sh { margin-bottom: 18px; }
+.sh h2 { font-size: 17px; font-weight: 700; color: var(--slate); }
+.sh p  { font-size: 12px; color: var(--greige); margin-top: 4px; }
+
+/* ── TAB 0: DZĪVES VĪZIJA ─────────────────── */
+.vision-hero { text-align: center; padding: 32px 20px 24px; }
+.vision-hero h2 { font-size: 24px; font-weight: 300; color: var(--slate); letter-spacing: 1px; }
+.vision-hero p  { font-size: 13px; color: var(--greige); margin-top: 6px; font-style: italic; }
+.vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width:700px){ .vision-grid{grid-template-columns:1fr;} }
+.vc { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.vc.wide { grid-column: 1 / -1; }
+.vc-img { width: 100%; height: 220px; object-fit: cover; display: block; background: linear-gradient(135deg, #e8e4df 0%, #c6c1bb 100%); }
+.vc-img.placeholder { display: flex; align-items: center; justify-content: center; font-size: 40px; color: var(--greige); }
+.vc-body { padding: 20px 22px 22px; }
+.vc-num  { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--greige); margin-bottom: 4px; }
+.vc-title{ font-size: 16px; font-weight: 700; color: var(--slate); margin-bottom: 12px; }
+.vc-text { font-size: 13px; color: #4a4540; line-height: 1.75; }
+.vision-quote { background: var(--slate); color: white; text-align: center; padding: 28px 40px; border-radius: 10px; margin-bottom: 20px; }
+.vision-quote p { font-size: 15px; font-style: italic; line-height: 1.8; opacity: 0.9; }
+.vision-quote span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-top: 10px; display: block; }
+
+/* ── TAB 1: GADA MĒRĶI ────────────────────── */
+.goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:680px){ .goal-grid{grid-template-columns:1fr;} }
+.gc { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+.gc-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.gc-icon { font-size: 20px; }
+.gc-hdr h3 { font-size: 13px; font-weight: 700; color: var(--slate); }
+.gc-hdr span { font-size: 11px; color: var(--greige); display: block; margin-top: 1px; }
+.kpi { list-style: none; }
+.kpi li { font-size: 12px; padding: 5px 0; border-bottom: 1px solid var(--bg); color: #444; display: flex; gap: 8px; line-height: 1.4; }
+.kpi li:last-child { border-bottom: none; }
+.kpi li::before { content: "›"; color: var(--taupe); font-weight: 700; flex-shrink: 0; }
+.kpi .done-tag { color: var(--done); font-weight: 600; font-size: 10px; margin-left: 4px; }
+.kpi .term { color: var(--greige); font-size: 10px; margin-left: 4px; }
+
+/* ── TAB 2: MĒNEŠA MILESTONES ──────────────── */
+#months-wrap { display: flex; flex-direction: column; gap: 10px; }
+.mc { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.mc-hdr { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; user-select: none; }
+.mc-hdr:hover { background: #faf9f8; }
+.mc-left { display: flex; align-items: center; gap: 12px; }
+.mc-num { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.mc-num.past    { background: #e8f5e9; color: #2e7d32; }
+.mc-num.current { background: var(--taupe); color: white; }
+.mc-num.future  { background: var(--border); color: var(--slate); }
+.mc-name { font-size: 14px; font-weight: 700; color: var(--slate); }
+.mc-theme { font-size: 11px; color: var(--greige); margin-top: 1px; }
+.mc-stats { font-size: 11px; color: var(--sage); }
+.mc-arr { font-size: 11px; color: var(--greige); transition: transform .2s; }
+.mc-hdr.open .mc-arr { transform: rotate(180deg); }
+.mc-body { display: none; padding: 6px 16px 14px; border-top: 1px solid var(--border); }
+.mc-body.open { display: block; }
+.mi { display: flex; align-items: flex-start; gap: 9px; padding: 6px 3px; border-radius: 4px; }
+.mi:hover { background: var(--bg); }
+.mi input { width: 15px; height: 15px; accent-color: var(--taupe); cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+.mi label { font-size: 13px; cursor: pointer; line-height: 1.4; }
+.mi input:checked + label { text-decoration: line-through; color: var(--greige); }
+.gtag { font-size: 10px; padding: 1px 6px; border-radius: 8px; margin-left: 6px; font-weight: 600; }
+.gtag-b { background: #fff3e0; color: #e65100; }
+.gtag-m { background: #e3f2fd; color: #1565c0; }
+.gtag-f { background: #e8f5e9; color: #2e7d32; }
+.gtag-a { background: #f3e5f5; color: #6a1b9a; }
+.gtag-p { background: #fce4ec; color: #880e4f; }
+
+/* ── TAB 3: NEDĒĻAS PLĀNS ─────────────────── */
+.week-top { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; margin-bottom: 10px; }
+.week-top h3 { font-size: 15px; font-weight: 700; color: var(--slate); margin-bottom: 10px; }
+.prio { display: flex; align-items: flex-start; gap: 10px; padding: 5px 0; font-size: 13px; }
+.pn { width: 22px; height: 22px; background: var(--taupe); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.plink { font-size: 10px; color: var(--sage); margin-left: 4px; }
+.acc-b { background: #fef0f0; border: 1px solid #f5c6c6; border-left: 4px solid var(--red); border-radius: 6px; padding: 12px 16px; margin-bottom: 10px; }
+.acc-b h4 { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 7px; }
+.acc-b p  { font-size: 12px; color: #6b2020; padding: 2px 0; }
+
+.day-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.dh { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; cursor: pointer; user-select: none; }
+.dh:hover { background: #faf9f8; }
+.dh.today { border-left: 4px solid var(--taupe); }
+.dh.past  { opacity: .78; }
+.dl { display: flex; align-items: center; gap: 10px; }
+.dname { font-size: 15px; font-weight: 700; }
+.ddate { font-size: 12px; color: var(--taupe); font-weight: 600; }
+.dbadge { font-size: 10px; padding: 2px 9px; border-radius: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+.b-today   { background: var(--taupe); color: white; }
+.b-past    { background: var(--border); color: var(--slate); }
+.b-weekend { background: #e8f0fe; color: #1a56a3; }
+.b-travel  { background: #e8f5e9; color: #2e7d32; }
+.b-kids    { background: #f3e5f5; color: #6a1b9a; }
+.b-free    { background: var(--bg); color: var(--slate); border: 1px solid var(--border); }
+.dr { display: flex; align-items: center; gap: 8px; }
+.dcnt { font-size: 11px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1px 8px; }
+.darr { font-size: 11px; color: var(--greige); transition: transform .2s; }
+.dh.open .darr { transform: rotate(180deg); }
+.dprog { padding: 0 16px 6px; }
+.pb-w { height: 3px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+.pb-f { height: 100%; background: var(--taupe); border-radius: 2px; transition: width .3s; }
+.ppct { font-size: 10px; color: var(--taupe); text-align: right; margin-top: 2px; }
+.db { display: none; padding: 0 16px 14px; border-top: 1px solid var(--bg); }
+.db.open { display: block; }
+.slbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--greige); margin: 12px 0 6px; }
+.cev-done { opacity: 0.55; }
+.cev-done span { text-decoration: line-through; }
+.cev input[type=checkbox] { accent-color: var(--blue); cursor: pointer; flex-shrink: 0; margin: 0; }
+.cev { display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: #f0f4fa; border-left: 3px solid var(--blue); border-radius: 4px; margin-bottom: 5px; font-size: 12px; }
+.ctime { font-weight: 700; color: var(--blue); min-width: 40px; font-size: 11px; }
+.tg { margin-bottom: 10px; }
+.tgl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 4px 0; border-bottom: 1px solid var(--bg); margin-bottom: 6px; }
+.tgl-S { color: var(--red); }
+.tgl-O { color: var(--blue); }
+.tgl-Sh{ color: var(--taupe); }
+.tgl-P { color: #666; }
+.tgl-F { color: var(--green); }
+.tgl-G { color: #7b1fa2; }
+.tgl-U { color: var(--slate); }
+.ti { display: flex; align-items: flex-start; gap: 9px; padding: 5px 3px; border-radius: 4px; }
+.ti:hover { background: var(--bg); }
+.ti input { width: 15px; height: 15px; accent-color: var(--taupe); cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+.ti label { font-size: 13px; cursor: pointer; line-height: 1.4; }
+.ti input:checked + label { text-decoration: line-through; color: var(--greige); }
+.ttag { font-size: 10px; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
+.ttag-u { background: #fde8e8; color: var(--red); }
+.ttag-g { background: #e3f0ff; color: var(--blue); }
+.ttag-m { background: #e8f5e9; color: var(--green); }
+.coach-n { background: #fffbf0; border: 1px solid #f5e0a0; border-left: 3px solid var(--amber); border-radius: 4px; padding: 9px 12px; font-size: 12px; color: #7a5200; margin-top: 10px; line-height: 1.5; }
+.coach-n strong { color: var(--amber); }
+.archive-hdr { margin-top: 28px; padding: 10px 14px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--sage); user-select: none; }
+.archive-hdr:hover { color: var(--slate); }
+.archive-hdr span { font-size: 11px; }
+.archive-body { display: none; margin-top: 6px; }
+.archive-body.open { display: block; }
+.archive-week { background: var(--white); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 6px; overflow: hidden; opacity: 0.75; }
+.archive-week-hdr { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-size: 12px; color: var(--slate); }
+.archive-week-hdr:hover { background: #faf9f8; }
+.archive-week-label { font-weight: 700; }
+.archive-week-theme { color: var(--greige); font-size: 11px; margin-left: 8px; }
+.archive-week-body { display: none; padding: 8px 14px 12px; border-top: 1px solid var(--bg); }
+.archive-week-body.open { display: block; }
+.archive-week-body .cev { margin-bottom: 4px; }
+.add-toggle { margin-top: 10px; font-size: 12px; color: var(--taupe); cursor: pointer; background: none; border: 1px dashed var(--greige); border-radius: 4px; padding: 5px 12px; width: 100%; text-align: center; font-family: inherit; transition: all .18s; }
+.add-toggle:hover { border-color: var(--taupe); background: var(--bg); }
+.add-form { display: none; margin-top: 10px; }
+.add-form.open { display: flex; gap: 8px; flex-wrap: wrap; }
+.add-txt { flex: 1; min-width: 180px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; font-family: inherit; outline: none; }
+.add-txt:focus { border-color: var(--taupe); }
+.add-cat { padding: 7px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; font-family: inherit; }
+.add-ok { background: var(--taupe); color: white; border: none; border-radius: 4px; padding: 7px 14px; font-size: 12px; cursor: pointer; font-family: inherit; }
+.add-ok:hover { background: var(--slate); }
+.add-cl { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 7px 10px; font-size: 12px; cursor: pointer; font-family: inherit; color: var(--slate); }
+
+/* ── IDEJAS / INBOX ──────────────────────── */
+.ideas-toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.ideas-search { flex: 1; min-width: 160px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; background: var(--white); }
+.ideas-search:focus { border-color: var(--taupe); }
+.ideas-filter { display: flex; gap: 6px; flex-wrap: wrap; }
+.if-btn { padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--slate); font-family: inherit; transition: all .15s; }
+.if-btn.active, .if-btn:hover { background: var(--taupe); color: white; border-color: var(--taupe); }
+.new-idea-btn { background: var(--taupe); color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; transition: background .15s; }
+.new-idea-btn:hover { background: var(--slate); }
+.ideas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:680px){ .ideas-grid{grid-template-columns:1fr;} }
+.note-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; cursor: pointer; transition: box-shadow .15s, border-color .15s; position: relative; }
+.note-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); border-color: var(--greige); }
+.note-tag-chip { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; letter-spacing: 0.5px; }
+.note-title { font-size: 14px; font-weight: 700; color: var(--slate); margin-bottom: 6px; line-height: 1.3; }
+.note-preview { font-size: 12px; color: var(--sage); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.note-meta { font-size: 10px; color: var(--greige); margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+.note-del { background: none; border: none; font-size: 14px; cursor: pointer; color: var(--greige); padding: 2px 4px; border-radius: 3px; opacity: 0; transition: opacity .15s; }
+.note-card:hover .note-del { opacity: 1; }
+.note-del:hover { color: var(--red); background: #fef0f0; }
+.empty-ideas { text-align: center; padding: 60px 20px; color: var(--greige); grid-column: 1 / -1; }
+.empty-ideas p { font-size: 14px; margin-top: 10px; }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.hidden { display: none; }
+.modal-box { background: var(--white); border-radius: 10px; padding: 24px 26px; width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,.18); }
+.modal-box h3 { font-size: 16px; font-weight: 700; color: var(--slate); margin-bottom: 18px; }
+.mf-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--greige); margin-bottom: 5px; }
+.mf-input { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; font-family: inherit; outline: none; margin-bottom: 14px; }
+.mf-input:focus { border-color: var(--taupe); }
+.mf-textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; resize: vertical; min-height: 140px; line-height: 1.6; margin-bottom: 14px; }
+.mf-textarea:focus { border-color: var(--taupe); }
+.mf-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.mf-tag { padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--slate); font-family: inherit; transition: all .15s; }
+.mf-tag.sel { background: var(--taupe); color: white; border-color: var(--taupe); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.m-save { background: var(--taupe); color: white; border: none; border-radius: 6px; padding: 9px 20px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.m-save:hover { background: var(--slate); }
+.m-cancel { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 9px 16px; font-size: 13px; cursor: pointer; font-family: inherit; color: var(--slate); }
+.obsidian-info { background: #f0f4ff; border: 1px solid #c8d8f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 12px; color: #2c4a8a; line-height: 1.6; }
+.obsidian-info strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.obsidian-info code { background: #dce8ff; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+
+/* ── JAUNĀ IDENTITĀTE ────────────────────── */
+.id-section { margin-top: 28px; }
+.id-section-hdr { text-align: center; padding: 20px 0 18px; }
+.id-section-hdr h2 { font-size: 18px; font-weight: 700; color: var(--slate); letter-spacing: 0.5px; }
+.id-section-hdr p { font-size: 12px; color: var(--greige); margin-top: 4px; font-style: italic; }
+.id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:680px){ .id-grid{grid-template-columns:1fr;} }
+.id-card { background: var(--slate); color: white; border-radius: 8px; padding: 18px 20px; }
+.id-num { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-bottom: 5px; }
+.id-domain { font-size: 12px; font-weight: 700; color: var(--greige); margin-bottom: 10px; letter-spacing: 0.5px; }
+.id-text { font-size: 13px; line-height: 1.8; opacity: 0.92; font-style: italic; }
+
+/* ── TAB 4: PROGRESS ──────────────────────── */
+.stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 22px; }
+@media(max-width:580px){ .stat-row{grid-template-columns:1fr 1fr;} }
+.sc { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 16px; text-align: center; }
+.sc-num { font-size: 28px; font-weight: 300; color: var(--slate); }
+.sc-lbl { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--greige); margin-top: 4px; }
+.sc-pct { font-size: 12px; color: var(--taupe); margin-top: 2px; font-weight: 600; }
+.exp-btn { background: var(--slate); color: white; border: none; border-radius: 6px; padding: 11px 22px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 22px; transition: background .18s; }
+.exp-btn:hover { background: var(--taupe); }
+.prog-day { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin-bottom: 8px; }
+.prog-day h4 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+.prog-day h4 span { font-size: 11px; color: var(--taupe); font-weight: 600; }
+.pt { font-size: 12px; padding: 3px 0; display: flex; gap: 8px; align-items: flex-start; }
+.pt-ok  { color: var(--done); }
+.pt-no  { color: var(--greige); }
+.cat-break { margin-bottom: 18px; }
+.cat-break h3 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 10px; }
+.cat-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 12px; }
+.cat-bar-lbl { width: 160px; flex-shrink: 0; color: var(--slate); }
+.cat-bar-w { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.cat-bar-f { height: 100%; background: var(--taupe); border-radius: 3px; transition: width .4s; }
+.cat-bar-n { width: 36px; text-align: right; color: var(--taupe); font-weight: 600; }
+
+/* ── DASHBORDS — Anna Cherry precīzs izkārtojums ─────── */
+/* Kopīgi palīgelements */
+.d-empty{font-size:13px;color:var(--greige);font-style:italic;}
+.d-sub{font-size:11px;color:var(--sage);margin-top:5px;}
+.d-btn{background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:6px 13px;font-size:11px;cursor:pointer;font-family:inherit;transition:background .15s;white-space:nowrap;}
+.d-btn:hover{background:var(--slate);}
+.d-link{font-size:11px;color:var(--taupe);cursor:pointer;text-decoration:underline;background:none;border:none;padding:0;font-family:inherit;}
+.d-link:hover{color:var(--slate);}
+.d-mini-inp{width:100%;padding:7px 9px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;outline:none;background:#fff;box-sizing:border-box;}
+.d-mini-inp:focus{border-color:var(--taupe);}
+.d-mini-row{display:flex;gap:7px;}
+.d-mini-row .d-mini-inp{width:auto;flex:1;}
+/* Header */
+.ac-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;padding:20px 24px;background:#fff;border-radius:16px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
+.ac-hdr-sub{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;}
+.ac-hdr-name{font-size:30px;font-weight:300;color:var(--slate);letter-spacing:-0.5px;line-height:1.1;}
+.ac-hdr-name em{font-style:italic;color:var(--taupe);}
+.ac-hdr-right{text-align:right;}
+.ac-hdr-day{font-size:16px;font-weight:700;color:var(--slate);}
+.ac-hdr-date{font-size:11px;color:var(--greige);margin-top:3px;}
+.ac-hdr-loc{font-size:10px;color:var(--taupe);margin-top:1px;letter-spacing:.3px;}
+/* Metric josla (5 kartes — kā Anna Cherry augšā) */
+.ac-metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+@media(max-width:1100px){.ac-metric-strip{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:680px){.ac-metric-strip{grid-template-columns:repeat(2,1fr);}}
+.ac-mc{background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
+.ac-mc-left{flex:1;min-width:0;}
+.ac-mc-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ac-mc-num{font-size:30px;font-weight:300;color:var(--slate);line-height:1;letter-spacing:-0.5px;}
+.ac-mc-unit{font-size:13px;color:var(--slate);}
+.ac-mc-sub{font-size:10px;color:var(--greige);margin-top:4px;}
+.ac-mc-ring{width:50px;height:50px;flex-shrink:0;margin-left:10px;}
+.ac-rb{fill:none;stroke:#e0dbd5;stroke-width:3.5;}
+.ac-rf{fill:none;stroke:var(--taupe);stroke-width:3.5;stroke-linecap:round;transform-origin:25px 25px;transform:rotate(-90deg);transition:stroke-dasharray .7s ease;}
+.ac-rt{font-size:8.5px;font-weight:700;fill:var(--slate);text-anchor:middle;dominant-baseline:middle;}
+.ac-mc-empty .ac-mc-num{color:#ccc8c3;}
+/* 3-kolonnu galvenais režģis */
+.ac-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:start;}
+@media(max-width:960px){.ac-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:620px){.ac-grid{grid-template-columns:1fr;}}
+.ac-col{display:flex;flex-direction:column;gap:14px;}
+/* Karte */
+.ac-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
+.ac-ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(112,99,84,.1);}
+.ac-ct{font-size:14px;font-weight:700;color:var(--slate);letter-spacing:.2px;}
+.ac-ca{font-size:10px;color:var(--taupe);cursor:pointer;border:none;background:none;font-family:inherit;padding:0;font-weight:600;}
+.ac-ca:hover{color:var(--slate);}
+.ac-cm{font-size:10px;color:var(--greige);}
+/* Kalendāra cilnes */
+.ac-tabs{display:flex;gap:3px;background:var(--bg);border-radius:8px;padding:3px;margin-bottom:14px;}
+.ac-tab{flex:1;text-align:center;padding:5px;font-size:11px;font-weight:600;color:var(--greige);border-radius:6px;cursor:pointer;border:none;background:none;font-family:inherit;transition:all .15s;}
+.ac-tab.on{background:var(--taupe);color:#fff;box-shadow:0 1px 4px rgba(112,99,84,.25);}
+/* Notikums rinda */
+.ac-er{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid #f3f1ef;}
+.ac-er:last-child{border-bottom:none;}
+.ac-et{font-size:11px;font-weight:700;color:var(--taupe);min-width:42px;flex-shrink:0;padding-top:1px;}
+.ac-ev{font-size:13px;color:var(--slate);line-height:1.4;}
+.ac-es{font-size:10px;color:var(--greige);margin-top:1px;}
+/* Mērķi */
+.ac-gr{padding:11px 0;border-bottom:1px solid rgba(112,99,84,.08);cursor:pointer;}
+.ac-gr:last-child{border-bottom:none;}
+.ac-gr:hover .ac-gn{color:var(--taupe);}
+.ac-gtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;}
+.ac-gn{font-size:13px;color:var(--slate);transition:color .15s;font-weight:500;}
+.ac-gp{font-size:15px;font-weight:700;color:var(--taupe);}
+.ac-gsub{font-size:10px;color:var(--greige);margin-bottom:7px;}
+.ac-gbar{height:4px;background:#e8e2dc;border-radius:2px;overflow:hidden;}
+.ac-gbf{height:100%;background:var(--taupe);border-radius:2px;transition:width .6s;}
+/* Fokuss */
+.ac-fr{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f1ef;}
+.ac-fr:last-child{border-bottom:none;}
+.ac-fr input[type=checkbox]{width:15px;height:15px;accent-color:var(--taupe);cursor:pointer;flex-shrink:0;}
+.ac-fl{flex:1;font-size:13px;color:var(--slate);cursor:pointer;line-height:1.4;}
+.ac-fr input:checked~.ac-fl{text-decoration:line-through;color:var(--greige);}
+.ac-ftag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:20px;flex-shrink:0;}
+.tag-b{background:var(--taupe);color:#fff;}
+.tag-m{background:var(--slate);color:#fff;}
+.tag-nk{background:#8a7a6a;color:#fff;}
+/* Izdevumi (Investments stils) */
+.ac-ih{font-size:44px;font-weight:300;color:var(--slate);line-height:1;margin-bottom:12px;letter-spacing:-2px;}
+.ac-ir{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(112,99,84,.08);font-size:12px;}
+.ac-ir:last-child{border-bottom:none;}
+.ac-idot{width:6px;height:6px;border-radius:50%;background:var(--taupe);flex-shrink:0;}
+.ac-icat{flex:1;color:var(--slate);}
+.ac-iamt{font-weight:700;color:var(--taupe);}
+/* Laika apstākļi */
+.ac-wtop{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.ac-wtemp{font-size:46px;font-weight:300;color:var(--slate);line-height:1;letter-spacing:-2px;}
+.ac-wicon{font-size:38px;line-height:1;}
+.ac-wdesc{font-size:13px;color:var(--slate);font-weight:500;}
+.ac-whl{font-size:11px;color:var(--greige);margin-top:3px;}
+.ac-fc{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border-top:1px solid #f3f1ef;padding-top:12px;margin-top:4px;}
+.ac-fcd{text-align:center;}
+.ac-fcl{font-size:9px;font-weight:700;color:var(--greige);text-transform:uppercase;letter-spacing:.5px;}
+.ac-fci{font-size:16px;margin:3px 0;}
+.ac-fct{font-size:11px;color:var(--slate);font-weight:600;}
+/* Nedēļas progress */
+.ac-wr{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;}
+.ac-wrd{min-width:24px;font-size:10px;font-weight:700;color:var(--greige);text-transform:uppercase;}
+.ac-wrb{flex:1;height:5px;background:#e8e2dc;border-radius:3px;overflow:hidden;}
+.ac-wrbf{height:100%;background:var(--taupe);border-radius:3px;}
+.ac-wrp{font-size:10px;color:var(--taupe);min-width:30px;text-align:right;font-weight:600;}
+
+/* ── IZDEVUMI ──────────────────────────────────────────── */
+.iz-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+.iz-nav { display: flex; align-items: center; gap: 10px; }
+.iz-nav button { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 5px 10px; font-size: 13px; cursor: pointer; color: var(--slate); font-family: inherit; }
+.iz-nav button:hover { border-color: var(--taupe); color: var(--taupe); }
+.iz-month-lbl { font-size: 16px; font-weight: 700; color: var(--slate); min-width: 140px; text-align: center; }
+.iz-add-btn { background: var(--taupe); color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.iz-add-btn:hover { background: var(--slate); }
+.iz-sum-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 18px; }
+@media(max-width:580px){ .iz-sum-row{grid-template-columns:1fr 1fr;} }
+.iz-sc { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+.iz-sc-n { font-size: 24px; font-weight: 300; color: var(--slate); }
+.iz-sc-l { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--greige); margin-top: 4px; }
+.iz-section { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; }
+.iz-section h3 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 14px; }
+.iz-cat-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
+.iz-cat-lbl { width: 130px; flex-shrink: 0; color: var(--text); }
+.iz-cat-bar-w { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.iz-cat-bar-f { height: 100%; border-radius: 4px; transition: width .4s; }
+.iz-cat-eur { width: 65px; text-align: right; font-weight: 600; color: var(--slate); }
+.iz-tr-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--bg); font-size: 13px; }
+.iz-tr-row:last-child { border-bottom: none; }
+.iz-tr-date { font-size: 11px; color: var(--greige); min-width: 60px; flex-shrink: 0; }
+.iz-tr-desc { flex: 1; }
+.iz-tr-eur { font-weight: 700; color: var(--slate); white-space: nowrap; }
+.iz-tr-del { background: none; border: none; color: var(--greige); cursor: pointer; font-size: 14px; padding: 2px 4px; border-radius: 3px; }
+.iz-tr-del:hover { color: var(--red); }
+.iz-add-form { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 16px; }
+.iz-add-form h3 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 12px; }
+.iz-form-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.iz-finp { flex: 1; min-width: 100px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 5px; font-size: 13px; font-family: inherit; outline: none; background: var(--white); }
+.iz-finp:focus { border-color: var(--taupe); }
+.iz-fsel { padding: 8px; border: 1px solid var(--border); border-radius: 5px; font-size: 12px; font-family: inherit; background: white; }
+.iz-fsave { background: var(--taupe); color: white; border: none; border-radius: 5px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.iz-fsave:hover { background: var(--slate); }
+.iz-fcancel { background: none; border: 1px solid var(--border); color: var(--slate); border-radius: 5px; padding: 8px 14px; font-size: 13px; cursor: pointer; font-family: inherit; }
+.iz-empty { font-size: 13px; color: var(--greige); font-style: italic; padding: 8px 0; }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <h1>Evita Kirilova · 2026 · Dzīves plāns</h1>
+    <p>Stratēģiskais koučs & progress tracker</p>
+  </div>
+  <div class="hdr-clock" id="clk"></div>
+</div>
+<div id="drive-bar">
+  <span id="drive-status">☁️ Google Drive — nav savienots</span>
+  <button id="drive-btn" onclick="GDS.login()">Pieslēgties Google</button>
+</div>
+<div class="sync-bar" id="sync-bar">
+  <div class="sync-dot warn" id="sync-dot"></div>
+  <div class="sync-msg" id="sync-msg">Savienojam mapi automātiskajai saglabāšanai...</div>
+  <button class="sync-btn" id="sync-btn" onclick="connectFolder()" style="display:none">🔗 Savienot mapi</button>
+  <button class="sync-btn secondary" id="sync-save-btn" onclick="writeProgress(true)" style="display:none">💾 Saglabāt tagad</button>
+</div>
+
+<div class="tabs">
+  <button class="tb active" onclick="showTab('dashboard')">🏠 Dashbords</button>
+  <button class="tb" onclick="showTab('vision')">🌟 Dzīves vīzija</button>
+  <button class="tb" onclick="showTab('identity')">🪞 Jaunā identitāte</button>
+  <button class="tb" onclick="showTab('goals')">🎯 Gada mērķi</button>
+  <button class="tb" onclick="showTab('months')">📅 Mēneša milestones</button>
+  <button class="tb" onclick="showTab('week')">📋 Nedēļas plāns</button>
+  <button class="tb" onclick="showTab('ideas')">💡 Idejas</button>
+  <button class="tb" onclick="showTab('izdevumi')">💸 Izdevumi</button>
+  <button class="tb" onclick="showTab('progress')">📊 Progress</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DASHBORDS — Anna Cherry izkārtojums
+══════════════════════════════════════════════════════════ -->
+<div id="tab-dashboard" class="tab active">
+
+  <!-- Header: Evita — dzīves fokuss + datums/vieta -->
+  <div class="ac-hdr">
+    <div>
+      <div class="ac-hdr-sub">Dzīves plānotājs</div>
+      <div class="ac-hdr-name">Evita <em>— dzīves fokuss</em></div>
+    </div>
+    <div class="ac-hdr-right">
+      <div class="ac-hdr-day" id="ac-hdr-day">—</div>
+      <div class="ac-hdr-date" id="ac-hdr-date">—</div>
+      <div class="ac-hdr-loc">Sigulda, Latvija</div>
+    </div>
+  </div>
+
+  <!-- Metric josla: 5 kartes (Garmin + Fokuss + Izdevumi) -->
+  <div class="ac-metric-strip" id="ac-metric-strip"></div>
+
+  <!-- 3 kolonnas: Kalendārs+Mērķi | Fokuss+Izdevumi | Progress+Laiks -->
+  <div class="ac-grid">
+
+    <!-- 1. kolonna: Kalendārs + Mērķi -->
+    <div class="ac-col">
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Kalendārs</span>
+          <span class="ac-cm" id="ac-today-label"></span>
+        </div>
+        <div class="ac-tabs">
+          <button class="ac-tab on" onclick="acCalTab('today',this)">Šodien</button>
+          <button class="ac-tab" onclick="acCalTab('week',this)">Nedēļa</button>
+          <button class="ac-tab" onclick="acCalTab('month',this)">Mēnesis</button>
+        </div>
+        <div id="ac-cal"></div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Mērķi</span>
+          <span class="ac-cm">Q3 · 2026</span>
+        </div>
+        <div id="ac-goals"></div>
+      </div>
+
+    </div>
+
+    <!-- 2. kolonna: Dienas fokuss + Izdevumi -->
+    <div class="ac-col">
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Dienas fokuss</span>
+          <span class="ac-cm" id="ac-focus-meta">0 no 5 izpildīti</span>
+        </div>
+        <div id="ac-focus"></div>
+        <div style="margin-top:10px;">
+          <button class="d-link" onclick="resetDayFocus()">↺ Atjaunot uzdevumus</button>
+        </div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Izdevumi</span>
+          <button class="ac-ca" onclick="showTabById('izdevumi')">Visi →</button>
+        </div>
+        <div class="ac-ih" id="ac-exp-hero">0.00 €</div>
+        <div id="ac-exp-list"></div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
+          <div class="d-mini-row" style="margin-bottom:6px;">
+            <input class="d-mini-inp" id="exp-amount" type="number" placeholder="€ summa" step="0.01">
+            <select class="d-mini-inp" id="exp-cat" style="padding:6px 4px;">
+              <option value="pārtika">🍕 Pārtika</option>
+              <option value="māja">🏠 Māja</option>
+              <option value="transports">🚗 Transports</option>
+              <option value="bērni">👦 Bērni</option>
+              <option value="veselība">💊 Veselība</option>
+              <option value="apģērbs">👗 Apģērbs</option>
+              <option value="bizness">🎯 Bizness</option>
+              <option value="ceļojumi">✈️ Ceļojumi</option>
+              <option value="sports">🏋️ Sports</option>
+              <option value="cits">🔧 Cits</option>
+            </select>
+          </div>
+          <div class="d-mini-row">
+            <input class="d-mini-inp" id="exp-note" placeholder="Piezīme">
+            <button class="d-btn" onclick="addExpenseFromDash()">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. kolonna: Nedēļas progress + Laika apstākļi + Garmin -->
+    <div class="ac-col">
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Nedēļas progress</span>
+          <span class="ac-cm" id="ac-week-meta"></span>
+        </div>
+        <div id="ac-week-prog"></div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Laika apstākļi</span>
+          <span class="ac-cm">Sigulda</span>
+        </div>
+        <div id="ac-weather"><div class="d-empty">Ielādē...</div></div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">⌚ Garmin ievade</span>
+        </div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:7px;">😴 Miegs</div>
+        <div class="d-mini-row" style="margin-bottom:8px;">
+          <input class="d-mini-inp" id="g-sleep-h" type="number" min="0" max="12" step="0.5" placeholder="Stundas (7.5)">
+          <input class="d-mini-inp" id="g-sleep-q" type="number" min="1" max="100" placeholder="Kval./100">
+          <button class="d-btn" onclick="saveGarminSleep()">✓</button>
+        </div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:7px;">🏃 Aktivitāte</div>
+        <div class="d-mini-row" style="margin-bottom:6px;">
+          <input class="d-mini-inp" id="g-steps" type="number" placeholder="Soļi">
+          <input class="d-mini-inp" id="g-active" type="number" placeholder="Aktīvās min.">
+        </div>
+        <div class="d-mini-row">
+          <input class="d-mini-inp" id="g-activity-name" placeholder="Aktivitāte (Padel, Skrējiens...)">
+          <button class="d-btn" onclick="saveGarminActivity()">✓</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 0 · DZĪVES VĪZIJA PĒC 5 GADIEM
+══════════════════════════════════════════════════════════ -->
+<div id="tab-vision" class="tab">
+
+  <div class="vision-hero">
+    <h2>✨ Mana dzīves vīzija pēc 5 gadiem</h2>
+    <p>Tas, uz ko viss virzās — no šīs vīzijas izriet gada mērķi, mēneša milestones un ikdienas darbi</p>
+  </div>
+
+  <div class="vision-quote">
+    <p>„Es mīlu savu dzīvi un sevi tajā."</p>
+    <span>Evita Kirilova · 2031</span>
+  </div>
+
+  <div class="vision-grid">
+
+    <!-- 1. VIDE -->
+    <div class="vc wide">
+      <img class="vc-img" src="dzivesvieta_alpos.png" alt="Dzīvesvieta Alpos" onerror="this.outerHTML='<div class=\'vc-img placeholder\'>🏔</div>'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 1</div>
+        <div class="vc-title">🏡 Vide man apkārt</div>
+        <div class="vc-text">Es dzīvoju Alpu reģionā, man apkārt ir kalni, svaigs gaiss un skaista daba. Man ir māja ar skatu uz kalniem un nelielu baseiniņu. Mājas 1. stāvā ir plaša virtuve ar atpūtas zonu un ēdamzonu ar lieliem panorāmas logiem, kas vērsti uz pagalmu, baseinu un tālāk — skatu uz kalniem.<br><br>
+        Es kopā ar vīru nodarbojamies ar nekustamā īpašuma attīstīšanu, kur es vairāk nodarbojos ar dizaina pusi, ar komunikāciju ar klientiem un īpašumu sagatavošanu. Es tiešām no sirds un ar visu prieku veicu savu darbu, un man ir patiess prieks par katru cilvēku, kuram esam radījuši tieši tādu mājokli, lai tur justos ērti un mājīgi.<br><br>
+        Man apkārt ir jauki, sirsnīgi un līdzīgi domājoši un materiāli situēti cilvēki, ar kuriem regulāri tiekos, apmeklēju gan privātus, gan profesionālus pasākumus, un ar kuriem ir izveidojušās sirsnīgas un uzticības pilnas attiecības.<br><br>
+        Mājas 2. stāvā ir visas guļamistabas — arī master bedroom ar lielu balkonu, savu vannas istabu un garderobi. Es katru rītu seksīgā halātā izeju uz balkona un priecājos par saullēktu pār kalniem, ieelpodama spirgto alpu gaisu.</div>
+      </div>
+    </div>
+
+    <!-- 2. BIZNESS -->
+    <div class="vc">
+      <img class="vc-img" src="interjera%20dizainere.png" alt="Interjera dizainere" onerror="this.outerHTML='<div class=\'vc-img placeholder\'>💼</div>'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 2</div>
+        <div class="vc-title">🏢 Profesionālā izaugsme un bizness</div>
+        <div class="vc-text">Esmu veiksmīga interjera dizainere un uzņēmēja — man pieder interjera dizaina studija <strong>Made2Dream Design</strong>, kas nodarbojas ar nekustamā īpašuma attīstību un digitālo mārketingu interjera un būvniecības jomā.<br><br>
+        Man ir stabils un augošs ienākumu avots — es pelnu <strong>100 000 EUR gadā</strong>. Kopā ar vīru esmu izveidojusi veiksmīgu starptautisku uzņēmumu, kas nodarbojas ar nekustamajiem īpašumiem un piesaista investīcijas.</div>
+      </div>
+    </div>
+
+    <!-- 3. FINANSES -->
+    <div class="vc">
+      <img class="vc-img" src="vīzija%203.jpg" alt="Finanses" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 3</div>
+        <div class="vc-title">💰 Finanses un materiālais nodrošinājums</div>
+        <div class="vc-text">Man ir stabili finanšu ienākumi un aktīvi, kas nodrošina finansiālu brīvību. Es investēju ETF fondos, nekustamajos īpašumos un īstermiņa akcijās. Esmu izveidojusi uzkrājumu fondu un peļņas plānu nākotnei.</div>
+      </div>
+    </div>
+
+    <!-- 4. ATTIECĪBAS AR VĪRU -->
+    <div class="vc">
+      <img class="vc-img" src="vizija_4.jpg" alt="Attiecības ar vīru" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 4</div>
+        <div class="vc-title">❤️ Attiecības ar vīru</div>
+        <div class="vc-text">Man ir seksuālas un kaislīgas attiecības ar vīru. Attiecības ir cieņpilnas un balstītas uz savstarpējo sapratni un atbalstu. Kad es vēlos, es saņemu dāvanas no vīra.</div>
+      </div>
+    </div>
+
+    <!-- 5. ATTIECĪBAS AR BĒRNIEM -->
+    <div class="vc">
+      <img class="vc-img" src="vīzija_5.jpg" alt="Attiecības ar bērniem" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 5</div>
+        <div class="vc-title">👨‍👩‍👦 Attiecības ar bērniem</div>
+        <div class="vc-text">Man ir harmoniskas attiecības ar bērniem — es spēju iejūtīgi un efektīvi komunicēt. Mēs kopā pavadām laiku gan kopīgajos ceļojumos, gan sportā, gan atbalstu bērnus ikvienā viņu dzīves dienā. Es ļoti mīlu savus bērnus un ikvienā savā darbībā viņiem to parādu.</div>
+      </div>
+    </div>
+
+    <!-- 6. EMOCIONĀLĀ LABSAJŪTA -->
+    <div class="vc">
+      <img class="vc-img" src="vizija_6.jpg" alt="Emocionālā labsajūta" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 6</div>
+        <div class="vc-title">🧘 Emocionālā labsajūta</div>
+        <div class="vc-text">Esmu iekšēji mierīga, emocionāli stabila un harmoniska. Es runāju mierīgi bērniem un citiem cilvēkiem stresa situācijās — man ir kontrolētas emocijas un pozitīva domāšana. Es praktizēju meditāciju, pašprogrammēšanas prakses un mentālo izaugsmi.</div>
+      </div>
+    </div>
+
+    <!-- 7. BRĪVAIS LAIKS -->
+    <div class="vc">
+      <img class="vc-img" src="vizija_7.jpg" alt="Brīvais laiks un sports" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 7</div>
+        <div class="vc-title">🌴 Brīvais laiks un atpūta</div>
+        <div class="vc-text">Man ir brīvais laiks sev, kurā varu atpūsties, baudīt kultūras pasākumus un ceļot. Es ceļoju vismaz <strong>6 reizes gadā</strong>, regulāri apmeklēju spa, izstādes un muzejus.<br><br>
+        Mani hobiji ir teniss un padels, kalnu slēpošana, riteņbraukšana, garas pastaigas. Esmu iemācījusies arī klavierspēli.</div>
+      </div>
+    </div>
+
+    <!-- 8. VESELĪBA -->
+    <div class="vc">
+      <img class="vc-img" src="vīzija%208.png" alt="Veselība un izskats" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">Vīzija 8</div>
+        <div class="vc-title">💪 Veselība un ārējais izskats</div>
+        <div class="vc-text">Esmu vesela un stipra sieviete. Manas asins analīzes ir balansā, asinsvadi tīri, man ir regulārs menstruālais cikls un sievišķie hormoni balansā. Mans augums ir slaids, spēcīgs un muskuļots.<br><br>
+        Ķermeņa un sejas āda ir labi kopta, gluda un stingra. Es izskatos starojoša, enerģijas pilna un vesela. Man ir kvalitatīvs apģērbs un apakšveļa no kvalitatīviem brendiem — kapsulas garderobe, kas ir sievišķīga, seksīga un atspogulo manu būtību.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 1 · JAUNĀ IDENTITĀTE
+══════════════════════════════════════════════════════════ -->
+<div id="tab-identity" class="tab">
+  <div class="id-section-hdr" style="padding:28px 0 20px;">
+    <h2 style="font-size:22px; font-weight:300; color:var(--slate); letter-spacing:1px;">🪞 Mana jaunā identitāte</h2>
+    <p style="font-size:13px; color:var(--greige); margin-top:6px; font-style:italic;">Lasi katru dienu — šī ir tā, kura tu jau esi</p>
+  </div>
+  <div class="id-grid">
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 1</div>
+      <div class="id-domain">🏔️ Vide man apkārt</div>
+      <div class="id-text">Es esmu sieviete, kura nebaidās mainīt valsti, vidi un lomu, ja tas kalpo manai izaugsmei un ģimenes nākotnei. Es esmu veiksmīga uzņēmēja, interjera dizaina profesionāle un esmu veiksmīgi kopā ar vīru izveidojusi starptautisku uzņēmumu. Es māku veiksmīgi komunicēt ar dažādiem cilvēkiem un izveidot noturīgas un sirsnīgas attiecības. Es esmu sirsnīga mamma, seksīga sieva un brīnišķīga sarunu biedrene. Es esmu drosmīga, radoša un mērķtiecīga — eju uz saviem mērķiem un konsekventi tos realizēju. Es mācos no labākajiem profesionāļiem savā jomā un zināšanas veiksmīgi pielietoju dzīvē. Es esmu sabiedriska un komunikabla.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 2</div>
+      <div class="id-domain">🏢 Profesionālā izaugsme un bizness</div>
+      <div class="id-text">Es esmu veiksmīga un radoša interjera dizainere un uzņēmēja ar attīstītu brendu Made2DreamDesign, kura veido skaistus, estētiski pievilcīgus, praktiskus un funkcionālus mājokļus jaukiem cilvēkiem, kuri ar prieku maksā par maniem pakalpojumiem. Es brīvi pārvaldu ArchiCAD un mākslīgā intelekta rīkus, kas ļauj man strādāt ātri un kvalitatīvi. Nauda brīvi plūst pie manis, un es ar pateicību to pieņemu.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 3</div>
+      <div class="id-domain">💰 Finanses un materiālais nodrošinājums</div>
+      <div class="id-text">Es esmu sieviete, kura apzināti un sistemātiski rūpējas par savu finansiālo stabilitāti un drošību. Es ar pārliecību pieņemu finanšu lēmumus — gan par ģimenes budžetu, gan privātajām investīcijām un uzkrājumiem. Es esmu materiāli nodrošināta un finansiāli brīva sieviete.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 4</div>
+      <div class="id-domain">💑 Attiecības ar vīru</div>
+      <div class="id-text">Es esmu sieviete, kura apzināti attīsta savu seksualitāti, uztur tuvību, kaisli un sievietes–vīrieša dinamiku, veidojot dzīvas un piepildītas attiecības. Es ikdienā izvēlos seksīgu apakšveļu.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 5</div>
+      <div class="id-domain">👨‍👩‍👦 Attiecības ar bērniem</div>
+      <div class="id-text">Es esmu mīļa, mierīga un atbalstoša mamma, kas saglabā cieņpilnu komunikāciju ar saviem bērniem arī stresa situācijās.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 6</div>
+      <div class="id-domain">🧘 Emocionālā labsajūta</div>
+      <div class="id-text">Es esmu sieviete ar augstu apzinātības līmeni, kura regulāri praktizē meditāciju, apzināti strādā ar saviem uzskatiem un veido savu dzīvi no stabilas, nobriedušas identitātes.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 7</div>
+      <div class="id-domain">🌴 Brīvais laiks un atpūta</div>
+      <div class="id-text">Es esmu sieviete, kura regulāri atpūšas, ceļo un apzināti atjauno savu enerģiju, nodarbojoties ar saviem hobijiem — tenisa/padeļa spēlēšana, riteņbraukšana, pārgājieni kalnos, klavieru spēle, kalnu slēpošana. Es atpūšos skaisti.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">Identitāte 8</div>
+      <div class="id-domain">💪 Veselība un ārējais izskats</div>
+      <div class="id-text">Es esmu stipra, vesela sieviete ar muskuļotu, spēcīgu augumu un koptu sejas un ķermeņa ādu, mirdzošiem matiem un koptiem nagiem, kura ģērbjas stilīgi un seksīgi ar labas kvalitātes apģērbu, kas veidots kā kapsulas garderobe. Es esmu sieviete, kura veselīgi ēd un rūpējas par sevi un savu veselību.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 2 · GADA MĒRĶI
+══════════════════════════════════════════════════════════ -->
+<div id="tab-goals" class="tab">
+  <div class="sh">
+    <h2>🎯 Gada mērķi 2026</h2>
+    <p>8 dzīves jomas · Hierarhijas pamats — no šiem mērķiem izriet visi mēneša milestones un nedēļas uzdevumi</p>
+  </div>
+  <div class="goal-grid">
+
+    <!-- 1. VIDE MAN APKĀRT -->
+    <div class="gc" style="grid-column: 1 / -1;">
+      <div class="gc-hdr">
+        <div class="gc-icon">🏔️</div>
+        <div><h3>1. Vide man apkārt</h3><span>Alpu reģions · Starptautiskā profesionālā identitāte · Sociālā vide</span></div>
+      </div>
+      <ul class="kpi" style="column-count:2; column-gap:24px;">
+        <li><strong>M1:</strong> Izvēlēti 1–2 prioritārie Alpu reģioni (Austrija / Itālija / Bavārija)</li>
+        <li>Noskaidroti uzturēšanās un rezidences nosacījumi ģimenei</li>
+        <li>Atvērts personīgais bankas konts ārvalstīs (EU)</li>
+        <li>Izpētītas iespējas atvērt uzņēmuma kontu ārvalstīs</li>
+        <li>Konsultācija par nodokļiem un rezidenci pie profesionāļa</li>
+        <li>Skaidri saprasts — kurā valstī izdevīgāk būt rezidentei sākumā</li>
+        <li><strong>M2:</strong> Konkrēta stratēģija NK Alpu reģionā (investīcija / dzīvošana+īre / attīstīšana)</li>
+        <li>Noteikts budžets NK iegādei</li>
+        <li>1× nedēļā (30–45 min) sistemātiska tirgus izpēte</li>
+        <li>Excel fails ar objektiem un piezīmēm izveidots</li>
+        <li>Izprasti vietējie pirkšanas noteikumi ārzemniekiem</li>
+        <li>Pirmie kontakti ar mākleriem un attīstītājiem</li>
+        <li><strong>M3:</strong> Skaidri nodefinēta loma — dizains + klientu komunikācija + īpašumu sagatavošana</li>
+        <li>Uzsākti kontakti ārvalstīs (izstādes, pasākumi, profesionālie loki)</li>
+        <li>Apmeklēts vismaz 1 starptautisks interjera / NK pasākums gadā</li>
+        <li>Sakārtots profesionālais tēls (portfolio, vizuālais stils, valoda)</li>
+        <li><strong>M4:</strong> Apzināts laiks vidē, kur cilvēki domā ilgtermiņā</li>
+        <li>Kontakti ar cilvēkiem, kam ir īpašumi, bizness, investīcijas</li>
+        <li>Samazināts laiks "komforta vietējā burbulī"</li>
+        <li><strong>M5:</strong> Ar vīru izrunāta reāla kopīga stratēģija</li>
+        <li>Saprasts bērnu izglītības iespējas nākotnē</li>
+        <li>Praktiski izmēģināta dzīve izvēlētajos reģionos (ne tikai atvaļinājums)</li>
+        <li>Informācija par Apex20100 nometnēm — vasaras iespējas kalnu reģionā</li>
+      </ul>
+    </div>
+
+    <!-- 2. PROFESIONĀLĀ IZAUGSME UN BIZNESS -->
+    <div class="gc" style="grid-column: 1 / -1;">
+      <div class="gc-hdr">
+        <div class="gc-icon">🏢</div>
+        <div><h3>2. Profesionālā izaugsme un bizness</h3><span>Made2DreamDesign · Klienti · Brends · Mērogošana</span></div>
+      </div>
+      <ul class="kpi" style="column-count:2; column-gap:24px;">
+        <li><strong>M1:</strong> Definēts un piedāvāts dizaina konsultāciju pakalpojums (IG, FB, GetaPro)</li>
+        <li>Definēti pakalpojumu veidi — pilnais projekts, koncepcija, komplektācija, vizualizācijas</li>
+        <li>1 maksājošs klients februārī · 3 maksājošie klienti jūnijā</li>
+        <li>Nostiprināti sakari ar mēbēļu ražotājiem un piegādātājiem (IKEA, K Senukai)</li>
+        <li><strong>M2:</strong> ArchiCAD kurss pabeigts</li>
+        <li>Nano Banana un citi AI rīki apgūti detalizēti</li>
+        <li>Izveidots savs AI asistents dizaina koncepcijām un izmaksu aprēķiniem</li>
+        <li>Automatizēti prompti NanoBanano</li>
+        <li>Automatizēta satura veidošana</li>
+        <li><strong>M6:</strong> Piedāvāt pakalpojumu "Izstaigā savu dzīvokli" — vizualizācijas ar iespēju izstaigāt dzīvokli (BIMx no ArchiCAD, AI challenge kursa biedrenu piedāvātie rīki)</li>
+        <li><strong>M3:</strong> Darbi publicēti IG un Pinterest</li>
+        <li>Portfolio izveidots — Mākoņu iela, Televīzijas iela, Dzilnuciems (fotografēts)</li>
+        <li>Mākoņu ielas projekts iesniegts dizaina žurnālam</li>
+        <li><strong>M4:</strong> Dzilnuciems pārdots virs tirgus cenas</li>
+        <li>Televīzijas iela pārdota virs tirgus cenas</li>
+        <li>Pampāļu dzīvoklis pārdots virs tirgus cenas</li>
+        <li>Zeme Daugmalē pārdota virs tirgus cenas</li>
+        <li>Esošā nauda sadalīta un ieguldīta — daļa ārpus Latvijas</li>
+        <li><strong>M5:</strong> 1× nedēļā darāmo darbu saraksts</li>
+        <li>1× mēnesī refleksija par mērķiem</li>
+        <li>1× mēnesī plāns nākamajam mēnesim</li>
+      </ul>
+    </div>
+
+    <!-- 3. FINANSES -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">💰</div>
+        <div><h3>3. Finanses un materiālais nodrošinājums</h3><span>Ienākumi · Investīcijas · Uzkrājumi</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Regulāra personīgā un ģimenes budžeta pārvaldība</li>
+        <li>Ieguldījumu konts atvērts · ETF fondi un īstermiņa akciju tirgus</li>
+        <li>Ilgtermiņa finanšu plāns un papildu peļņas stratēģijas izveidotas</li>
+      </ul>
+    </div>
+
+    <!-- 4. ATTIECĪBAS AR VĪRU -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">💑</div>
+        <div><h3>4. Attiecības ar vīru</h3><span>Intimitāte · Komunikācija · Kopīgā vīzija</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Jauni paņēmieni intīmajā dzīvē</li>
+        <li>Regulāra, kvalitatīva intīmā dzīve</li>
+        <li>Ceļojums divi uz Parīzi</li>
+        <li>Ieklausīšanās un komunikācijas attīstīšana</li>
+      </ul>
+    </div>
+
+    <!-- 5. ATTIECĪBAS AR BĒRNIEM -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">👨‍👩‍👦</div>
+        <div><h3>5. Attiecības ar bērniem</h3><span>Komunikācija · Ceļojumi · Kopīgais laiks</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Stresa situācijās — 5 min elpošana pirms atgriešanās pie situācijas</li>
+        <li>Ceļojums ar bērniem vasarā</li>
+        <li>Ceļojums ar bērniem uz El Clásico oktobrī</li>
+        <li>Ceļojums uz Harry Potter World</li>
+      </ul>
+    </div>
+
+    <!-- 6. EMOCIONĀLĀ LABSAJŪTA -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">🧘</div>
+        <div><h3>6. Emocionālā labsajūta</h3><span>Meditācija · Identitāte · Pašprogrammēšana</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Meditācija 3× nedēļā</li>
+        <li>Katru rītu — vīzijas un mērķu attēlu pārlasīšana</li>
+        <li>Katru dienu — identitātes pārskatīšana</li>
+        <li>Vakara refleksija — vecā vs jaunā identitāte · ko rīt darīšu citādi?</li>
+        <li>Katru dienu 1 maza darbība: bez apstiprinājuma · ar nelielu diskomfortu · atbilst jaunajai identitātei</li>
+      </ul>
+    </div>
+
+    <!-- 7. BRĪVAIS LAIKS -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">🌴</div>
+        <div><h3>7. Brīvais laiks un atpūta</h3><span>Ceļojumi · Sports · Nometnes</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Ceļojums martā uz Itāliju — nometne</li>
+        <li>Slēpošanas nometne vasarā Itālijā <em>vai</em> 1 mēnesis Alpu reģionā</li>
+        <li>Oktobrī — Austrijas nometne</li>
+        <li>Ziemassvētkos — Alpu reģions savā īpašumā</li>
+        <li>Maijā vai septembrī — ceļojums uz Parīzi ar Ramūnu</li>
+      </ul>
+    </div>
+
+    <!-- 8. VESELĪBA UN ĀRĒJAIS IZSKATS -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">💪</div>
+        <div><h3>8. Veselība un ārējais izskats</h3><span>Treniņi · Kopšana · Garderobe</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Spēka treniņi ar hantelēm 2× nedēļā</li>
+        <li>Pastaigas 2–3× nedēļā ar podkāstu</li>
+        <li>Regulāra analīžu nodošana (ik pa 4–6 mēnešiem)</li>
+        <li>Uztura bagātinātāju lietošana pēc shēmas</li>
+        <li>Ķermeņa krēmu lietošana · masāža 1× nedēļā · endosfēra</li>
+        <li>Sejas kopšanas rutīna (masāža, maskas)</li>
+        <li>Mājās veikts manikīrs</li>
+        <li>Glikozes līmeņa mērīšana 1× 3 mēnešos</li>
+        <li>Kapsulas garderobes izveide · 1× mēnesī kvalitatīvs apģērbs</li>
+        <li>Jauns Mercedes-Benz EQC 400 4MATIC AMG Line</li>
+      </ul>
+    </div>
+
+  </div>
+
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 2 · MĒNEŠA MILESTONES
+══════════════════════════════════════════════════════════ -->
+<div id="tab-months" class="tab">
+  <div class="sh">
+    <h2>📅 Mēneša milestones</h2>
+    <p>Katrs mēnesis ir solis ceļā uz gada mērķiem — Claude atjaunina katru mēnesi koučinga sarunā</p>
+  </div>
+  <div id="months-wrap"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 3 · NEDĒĻAS PLĀNS
+══════════════════════════════════════════════════════════ -->
+<div id="tab-week" class="tab">
+  <div class="sh">
+    <h2>📋 Nedēļas plāns</h2>
+    <p>Claude atjaunina katru svētdienu · Tu ķeksē uzdevumus dienas laikā · Progress tiek saglabāts</p>
+  </div>
+  <div id="week-wrap"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB · IDEJAS / INBOX
+══════════════════════════════════════════════════════════ -->
+<div id="tab-ideas" class="tab">
+  <div class="sh">
+    <h2>💡 Idejas & Inbox</h2>
+    <p>Pieraksti jebko — idejas, iedvesmu, nākotnes plānus · Claude tās redz un var iekļaut nedēļas plānā</p>
+  </div>
+
+  <div class="obsidian-info">
+    <strong>🔗 Obsidian sinhronizācija</strong>
+    Katra šeit saglabātā ideja tiek ierakstīta kā <code>.md</code> fails mapē <code>Nedēļas plāni/idejas/</code>.
+    Lai redzētu šīs idejas Obsidian: <strong>Settings → Files & Links → Detect all file extensions</strong>, tad pievieno <code>Nedēļas plāni</code> mapi savam Vault.
+    Nākamais līmenis — <strong>abpusēja sinhronizācija</strong>: instalē Obsidian spraudni <em>"Local REST API"</em>, un šis planneris varēs nolasīt arī tavus Obsidian pierakstus šeit.
+  </div>
+
+  <div class="ideas-toolbar">
+    <input class="ideas-search" id="ideas-search" type="text" placeholder="🔍  Meklēt idejas..." oninput="renderIdeas()">
+    <div class="ideas-filter" id="ideas-filter">
+      <button class="if-btn active" data-tag="visi" onclick="setIdeaFilter('visi',this)">Visas</button>
+      <button class="if-btn" data-tag="bizness" onclick="setIdeaFilter('bizness',this)">Bizness</button>
+      <button class="if-btn" data-tag="māja" onclick="setIdeaFilter('māja',this)">Māja</button>
+      <button class="if-btn" data-tag="personīgi" onclick="setIdeaFilter('personīgi',this)">Personīgi</button>
+      <button class="if-btn" data-tag="investīcijas" onclick="setIdeaFilter('investīcijas',this)">Investīcijas</button>
+      <button class="if-btn" data-tag="mārketings" onclick="setIdeaFilter('mārketings',this)">Mārketings</button>
+      <button class="if-btn" data-tag="ceļojumi" onclick="setIdeaFilter('ceļojumi',this)">Ceļojumi</button>
+    </div>
+    <button class="new-idea-btn" onclick="openNoteModal()">+ Jauna ideja</button>
+  </div>
+
+  <div class="ideas-grid" id="ideas-grid"></div>
+</div>
+
+<!-- NOTE MODAL -->
+<div class="modal-overlay hidden" id="note-modal">
+  <div class="modal-box">
+    <h3 id="modal-title-lbl">✏️ Jauna ideja</h3>
+    <div class="mf-label">Nosaukums</div>
+    <input class="mf-input" id="mf-title" type="text" placeholder="Īss, skaidrs nosaukums...">
+    <div class="mf-label">Ideja / Piezīme</div>
+    <textarea class="mf-textarea" id="mf-body" placeholder="Pieraksti ideju, iedvesmu, nākotnes plānu vai jebko citu..."></textarea>
+    <div class="mf-label">Kategorija</div>
+    <div class="mf-tags">
+      <button class="mf-tag" data-t="bizness" onclick="toggleNoteTag(this)">Bizness</button>
+      <button class="mf-tag" data-t="māja" onclick="toggleNoteTag(this)">Māja</button>
+      <button class="mf-tag" data-t="personīgi" onclick="toggleNoteTag(this)">Personīgi</button>
+      <button class="mf-tag" data-t="investīcijas" onclick="toggleNoteTag(this)">Investīcijas</button>
+      <button class="mf-tag" data-t="mārketings" onclick="toggleNoteTag(this)">Mārketings</button>
+      <button class="mf-tag" data-t="ceļojumi" onclick="toggleNoteTag(this)">Ceļojumi</button>
+    </div>
+    <div class="modal-actions">
+      <button class="m-cancel" onclick="closeNoteModal()">Atcelt</button>
+      <button class="m-save" onclick="saveNote()">💾 Saglabāt</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     IZDEVUMI
+══════════════════════════════════════════════════════════ -->
+<div id="tab-izdevumi" class="tab">
+  <div class="iz-hdr">
+    <div>
+      <h2 style="font-size:17px;font-weight:700;color:var(--slate);">💸 Izdevumi</h2>
+      <p style="font-size:12px;color:var(--greige);margin-top:3px;">Mēneša pārskats pa kategorijām</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div class="iz-nav">
+        <button onclick="izNavMonth(-1)">‹</button>
+        <span class="iz-month-lbl" id="iz-month-lbl">—</span>
+        <button onclick="izNavMonth(1)">›</button>
+      </div>
+      <button class="iz-add-btn" onclick="document.getElementById('iz-add-form').style.display='block';document.getElementById('exp-amount2').focus();">+ Pievienot</button>
+    </div>
+  </div>
+
+  <div class="iz-add-form" id="iz-add-form" style="display:none;">
+    <h3>Jauns izdevums</h3>
+    <div class="iz-form-row">
+      <input class="iz-finp" id="exp-amount2" type="number" placeholder="€ summa" step="0.01" style="max-width:110px;">
+      <select class="iz-fsel" id="exp-cat2">
+        <option value="pārtika">🍕 Pārtika</option>
+        <option value="māja">🏠 Māja</option>
+        <option value="transports">🚗 Transports</option>
+        <option value="bērni">👦 Bērni</option>
+        <option value="veselība">💊 Veselība</option>
+        <option value="apģērbs">👗 Apģērbs</option>
+        <option value="bizness">🎯 Bizness</option>
+        <option value="ceļojumi">✈️ Ceļojumi</option>
+        <option value="sports">🏋️ Sports</option>
+        <option value="cits">🔧 Cits</option>
+      </select>
+      <input class="iz-finp" id="exp-note2" placeholder="Piezīme">
+      <input class="iz-finp" id="exp-date2" type="date" style="max-width:150px;">
+      <button class="iz-fsave" onclick="addExpenseFromIzdevumi()">Saglabāt</button>
+      <button class="iz-fcancel" onclick="document.getElementById('iz-add-form').style.display='none'">Atcelt</button>
+    </div>
+  </div>
+
+  <div class="iz-sum-row">
+    <div class="iz-sc"><div class="iz-sc-n" id="iz-total">0.00 €</div><div class="iz-sc-l">Mēneša kopā</div></div>
+    <div class="iz-sc"><div class="iz-sc-n" id="iz-today-total">0.00 €</div><div class="iz-sc-l">Šodien</div></div>
+    <div class="iz-sc"><div class="iz-sc-n" id="iz-count">0</div><div class="iz-sc-l">Darījumi</div></div>
+  </div>
+
+  <div class="iz-section">
+    <h3>Pa kategorijām</h3>
+    <div id="iz-cats"><div class="iz-empty">Nav izdevumu.</div></div>
+  </div>
+
+  <div class="iz-section">
+    <h3>Visi darījumi</h3>
+    <div id="iz-list"><div class="iz-empty">Nav darījumu.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 4 · PROGRESS
+══════════════════════════════════════════════════════════ -->
+<div id="tab-progress" class="tab">
+  <div class="sh">
+    <h2>📊 Progresa pārskats</h2>
+    <p>Šīs nedēļas statistika un eksports koučam</p>
+  </div>
+  <div id="progress-wrap"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   CLAUDE EDITS: MONTHLY MILESTONES
+   Atjaunina: reizi mēnesī koučinga sarunā
+   Formāts: { id, text, goal: b|m|f|a|p, done: false }
+   goal: b=bizness, m=mārketings, f=finanses, a=attiecības, p=pašprogrammēšana
+══════════════════════════════════════════════════════════ */
+const MILESTONES = {
+  "2026-01": {
+    label: "Janvāris", status: "past",
+    theme: "Pamatu likšana",
+    items: [
+      { id: "m01-1", text: "Biznesa plāna izstrāde un dokumentēšana", goal: "b" },
+      { id: "m01-2", text: "Pašnodarbinātā statusa izpēte un lēmums", goal: "b" },
+      { id: "m01-3", text: "Vēdiskās astroloģijas 12 mēnešu enerģiju analīze", goal: "p" },
+      { id: "m01-4", text: "Instagram un Pinterest biznesa kontu izveide", goal: "m" }
+    ]
+  },
+  "2026-02": {
+    label: "Februāris", status: "past",
+    theme: "Brenda identitāte & rutīnas",
+    items: [
+      { id: "m02-1", text: "Pašnodarbinātā statusa reģistrācija VID", goal: "b" },
+      { id: "m02-2", text: "Logo, nosaukums, vizuālā identitāte pabeigta", goal: "b" },
+      { id: "m02-3", text: "Pakalpojumu klāsts un cenu lapa publicēta", goal: "b" },
+      { id: "m02-4", text: "Meditācijas ikdienas prakse uzsākta (15-30 min)", goal: "p" },
+      { id: "m02-5", text: "Cilvēkdizaina tipa izpēte pabeigta", goal: "p" }
+    ]
+  },
+  "2026-03": {
+    label: "Marts", status: "past",
+    theme: "Mārketinga stratēģija",
+    items: [
+      { id: "m03-1", text: "6 mēnešu satura stratēģija Instagram un blogam", goal: "m" },
+      { id: "m03-2", text: "ETF investīcijas uzsāktas (50 EUR/mēn)", goal: "f" },
+      { id: "m03-3", text: "Attiecību uzlabošanas plāns ar dzīvesbiedru", goal: "a" },
+      { id: "m03-4", text: "Vēdiskās astroloģijas karte un ieteikumi", goal: "p" },
+      { id: "m03-5", text: "Pirmie 3 maksājošie klienti", goal: "b" }
+    ]
+  },
+  "2026-04": {
+    label: "Aprīlis", status: "past",
+    theme: "Izaugsme & monetizācija",
+    items: [
+      { id: "m04-1", text: "Finanšu kurss 'Gudri ar naudu' pabeigts", goal: "f" },
+      { id: "m04-2", text: "Affiliate mārketinga konti atvērti (3+ programmas)", goal: "m" },
+      { id: "m04-3", text: "Pinterest — 50+ raksti un 15+ boardi", goal: "m" },
+      { id: "m04-4", text: "Digitālā mārketinga niša izvēlēta", goal: "m" },
+      { id: "m04-5", text: "Dr. Joe Dispenza prakse ikdienā uzsākta", goal: "p" },
+      { id: "m04-6", text: "Ierobežojošie uzskati par naudu — darbs pabeigts", goal: "p" }
+    ]
+  },
+  "2026-05": {
+    label: "Maijs", status: "past",
+    theme: "Klientu skaits & emocionālā harmonija",
+    items: [
+      { id: "m05-1", text: "5+ aktīvi klienti mēnesī", goal: "b" },
+      { id: "m05-2", text: "Instagram 2000+ sekotāji", goal: "m" },
+      { id: "m05-3", text: "ETF investīcijas 100 EUR/mēn", goal: "f" },
+      { id: "m05-4", text: "Emocionālo bloku darbs — aizvainojums uz mammu", goal: "p" },
+      { id: "m05-5", text: "Reakciju kontrole — stresa situācijas", goal: "p" }
+    ]
+  },
+  "2026-06": {
+    label: "Jūnijs", status: "past",
+    theme: "Sistēmas & paplašināšanās",
+    items: [
+      { id: "m06-1", text: "CRM sistēma izveidota un aktīva", goal: "b" },
+      { id: "m06-2", text: "Blogu mājaslapa publicēta ar 50 rakstiem", goal: "m" },
+      { id: "m06-3", text: "Affiliate programmas nes pirmās komisijas", goal: "m" },
+      { id: "m06-4", text: "Ģimenes budžeta pārvaldības sistēma", goal: "f" },
+      { id: "m06-5", text: "Sadarbības partneru datubāze (20+ kontakti)", goal: "b" },
+      { id: "m06-6", text: "Aizvainojuma atlaišanas prakse — 3 mēneši pabeigti", goal: "a" }
+    ]
+  },
+  "2026-07": {
+    label: "Jūlijs", status: "current",
+    theme: "Mājaslapa, digitālā klātbūtne & AI challenge",
+    items: [
+      { id: "m07-1", text: "Mājaslapa — vizualizācijas iekļautas, lapa pārcelta uz servera", goal: "b" },
+      { id: "m07-2", text: "Instagram — komunikācijas plāns + 5–6 ieraksti", goal: "m" },
+      { id: "m07-3", text: "Pampāļu sludinājums atjaunots ✓", goal: "f", done: true },
+      { id: "m07-4", text: "GetaPro profils — izveidots un aktīvs", goal: "b" },
+      { id: "m07-5", text: "30 dienu AI challenge uzsākts (13.07.)", goal: "b" }
+    ]
+  },
+  "2026-08": {
+    label: "Augusts", status: "future",
+    theme: "Portfolio & klātbūtne",
+    items: [
+      { id: "m08-1", text: "Portfolio mājaslapa pilnībā publicēta", goal: "b" },
+      { id: "m08-2", text: "Instagram 3000+ sekotāji", goal: "m" },
+      { id: "m08-3", text: "2+ jauni interjera dizaina klienti ar līgumu", goal: "b" },
+      { id: "m08-4", text: "Latvijas Dizaineru savienībā iestāšanās", goal: "b" },
+      { id: "m08-5", text: "3+ video sociālajiem tīkliem publicēti", goal: "m" }
+    ]
+  },
+  "2026-09": {
+    label: "Septembris", status: "future",
+    theme: "Ienākumi & AI rīki",
+    items: [
+      { id: "m09-1", text: "Stabili 5 klienti mēnesī", goal: "b" },
+      { id: "m09-2", text: "CustomGPT rīks klientiem pabeigts", goal: "b" },
+      { id: "m09-3", text: "ETF investīcijas 200 EUR/mēn uzsāktas", goal: "f" },
+      { id: "m09-4", text: "Instagram 3500+ sekotāji", goal: "m" },
+      { id: "m09-5", text: "Agresijas kontroles prakse — 6 mēneši", goal: "p" }
+    ]
+  },
+  "2026-10": {
+    label: "Oktobris", status: "future",
+    theme: "Digitālie ieņēmumi",
+    items: [
+      { id: "m10-1", text: "1000+ EUR/mēn no digitālā mārketinga", goal: "m" },
+      { id: "m10-2", text: "Instagram 4000+ sekotāji", goal: "m" },
+      { id: "m10-3", text: "Dzilnuciems vai Čiekurkalns — aktīva pārdošana", goal: "f" },
+      { id: "m10-4", text: "ETF portfelis: 600+ EUR ieguldīti", goal: "f" }
+    ]
+  },
+  "2026-11": {
+    label: "Novembris", status: "future",
+    theme: "YouTube & digitālie produkti",
+    items: [
+      { id: "m11-1", text: "YouTube kanāls — 10 video publicēti", goal: "m" },
+      { id: "m11-2", text: "3–5 digitālie produkti pārdošanā", goal: "m" },
+      { id: "m11-3", text: "Instagram 4500+ sekotāji", goal: "m" },
+      { id: "m11-4", text: "2 nekustamie īpašumi pārdoti", goal: "f" }
+    ]
+  },
+  "2026-12": {
+    label: "Decembris", status: "future",
+    theme: "Gada noslēgums & izvērtējums",
+    items: [
+      { id: "m12-1", text: "Instagram 5000+ sekotāji", goal: "m" },
+      { id: "m12-2", text: "Pinterest 1 miljons skatījumu", goal: "m" },
+      { id: "m12-3", text: "Ienākumi 2000–3000 EUR/mēn (stabili 6 mēn.)", goal: "f" },
+      { id: "m12-4", text: "ETF portfelis: 950+ EUR ieguldīti", goal: "f" },
+      { id: "m12-5", text: "1342 EUR uzkrājums pabeigts", goal: "f" },
+      { id: "m12-6", text: "Emocionālā labsajūta 9/10", goal: "p" },
+      { id: "m12-7", text: "2026 gada izvērtējums un 2027 vīzija", goal: "b" }
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════════════════════
+   CLAUDE EDITS: WEEKLY TASKS
+   Atjaunina: katru svētdienu pirms jaunās nedēļas
+   cat: S=Stratēģiskie, O=Online/pasūtīšana, Sh=Iepirkšanās,
+        P=Fiziskie darbi, F=Finanses, G=Ģimene, U=Uzturēšana
+   tag: "u"=steidzami, "g"=gada mērķis, "m"=milestone
+   milestone: ID no MILESTONES (piesaista uzdevumu pie mēneša mērķa)
+══════════════════════════════════════════════════════════ */
+const WEEKS = {
+  "2026-W28": {
+    label: "7.–13. jūlijs 2026",
+    priorities: [
+      { text: "Pampāļu sludinājums — labot tekstu, foto, cenu", ms: "m07-3" },
+      { text: "Instagram — 1 ieraksts + jūlija satura plāna uzmetums", ms: "m07-2" },
+      { text: "Mākoņu iela — pabeigt iepirkšanos un pasūtījumus", ms: "m07-1" }
+    ],
+    accountability: [
+      "🔴 Pampāļu sludinājums — 500 skatījumi, 0 zvani. Nekas nav mainīts kopš 4. jūlija.",
+      "🔴 Instagram (#1 gada mērķis) — nav satura plāna, nav grafika. Jūlijs iet garām.",
+      "🟡 GetaPro — nav sākts. Bez tā klientu piesaiste platformā nestrādā.",
+      "🟡 Archicad kurss — nepabeigts jau ilgstoši. Vai šis ir reāls mērķis šobrīd?"
+    ],
+    days: [
+      {
+        key: "2026-07-07", name: "Otrdiena", date: "7. jūlijs", status: "past", badge: "past",
+        events: [
+          { time: "visu d.", text: "🏕 Puišiem nometne (beidzas piektd. 15:00)" },
+          { time: "17:00", text: "Hugo frizieris (līdz 18:00)" }
+        ],
+        tasks: [
+          { id: "t-0707-01", text: "Pampāļu sludinājums — labot tekstu, foto, cenu", cat: "S", tag: "u", ms: "m07-3" },
+          { id: "t-0707-02", text: "Instagram — 1 ieraksts VAI jūlija satura plāna uzmetums", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0707-03", text: "Pasūtīt dekoru — Mākoņu iela", cat: "O", ms: "m07-1" },
+          { id: "t-0707-04", text: "Pasūtīt uzlīmes uz pudelēm", cat: "O" },
+          { id: "t-0707-05", text: "Sameklēt halogēna uzrakstu Hugo istabai (online)", cat: "O" },
+          { id: "t-0707-06", text: "iHerb pasūtījums", cat: "O" },
+          { id: "t-0707-07", text: "Tējkanna + kafijas automāts — Mākoņu iela", cat: "Sh" },
+          { id: "t-0707-08", text: "Tualetes tīrīšanas līdzekļi ×2", cat: "Sh" },
+          { id: "t-0707-09", text: "Tualetes papīra turētāji + plauktiņš puišu istabai", cat: "Sh" },
+          { id: "t-0707-10", text: "Ūdens attīrītājs", cat: "Sh" },
+          { id: "t-0707-11", text: "Durvju aizsargi (atdures durvīm)", cat: "Sh" },
+          { id: "t-0707-12", text: "Slotas ūdens saslaucīšanai vannas istabās", cat: "Sh" },
+          { id: "t-0707-13", text: "Aizvest aizkarus atšūt", cat: "P" }
+        ],
+        coach: "Pilna diena bez kalendāra notikumiem. Sāc ar Pampāļu sludinājumu — tas stagnē jau nedēļu. Stratēģiskais darbs viegli nobīdās aiz iepirkšanās uzdevumiem."
+      },
+      {
+        key: "2026-07-08", name: "Trešdiena", date: "8. jūlijs", status: "past", badge: "past",
+        events: [
+          { time: "18:30", text: "Padel (līdz 19:30)" },
+          { time: "18:45", text: "Henrijs — angļu valoda (līdz 19:45)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
+        tasks: [
+          { id: "t-0708-01", text: "Instagram — jūlija satura plāns (ja nav izdarīts otrdien)", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0708-02", text: "Pampāļu sludinājums — sekot un atjaunot", cat: "S", tag: "u", ms: "m07-3" },
+          { id: "t-0708-03", text: "GetaPro — profila izveide (sākt)", cat: "S", ms: "m07-4" },
+          { id: "t-0708-04", text: "Mākoņu iela — pārbaudīt pasūtījumu statusus", cat: "O" }
+        ],
+        coach: "Stratēģiskas dienas. Fokuss uz digitālo klātbūtni — Instagram un GetaPro."
+      },
+      {
+        key: "2026-07-09", name: "Ceturtdiena", date: "9. jūlijs", status: "today", badge: "today",
+        events: [
+          { time: "13:00", text: "Podologs (līdz 14:00)" },
+          { time: "14:15", text: "Frizieris (līdz 15:15)" }
+        ],
+        tasks: [
+          { id: "t-0709-01", text: "Instagram — 1 ieraksts publicēts", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0709-02", text: "GetaPro — profils pabeigts un publicēts", cat: "S", ms: "m07-4" },
+          { id: "t-0709-03", text: "Pampāļu — pārbaudīt zvanus, atjaunot sludinājumu", cat: "S", tag: "u", ms: "m07-3" },
+          { id: "t-0709-04", text: "Mākoņu iela — pārbaudīt atlikušos darbus (saraksts)", cat: "O", ms: "m07-1" },
+          { id: "t-0709-05", text: "Meditācija (15–30 min)", cat: "G", tag: "m" }
+        ],
+        coach: "⚠ Uzmanību: šodien brīvs laiks tikai līdz 13:00 — tad podologs un frizieris aizņem pēcpusdienu. Stratēģiskajam darbam ir ~3 stundas rītā. Prioritāte: Pampāļu sludinājums un GetaPro profils PIRMS 13:00. Instagram var vakarā."
+      },
+      {
+        key: "2026-07-10", name: "Piektdiena", date: "10. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "15:00", text: "🏕 Puiši atgriežas no nometnes" },
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
+        tasks: [
+          { id: "t-0710-01", text: "Instagram — otrais jūlija ieraksts", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0710-02", text: "Mākoņu iela — visi atlikušie pasūtījumi pabeigti", cat: "O", ms: "m07-1" },
+          { id: "t-0710-03", text: "Fotosesijas plānošana — datums, vietas, fotogrāfs", cat: "S", ms: "m07-1" },
+          { id: "t-0710-04", text: "Meditācija (15–30 min)", cat: "G", tag: "m" },
+          { id: "t-0710-05", text: "Nedēļas finanšu uzskaite", cat: "F" }
+        ],
+        coach: "Piektdienas pēcpusdienā puiši atgriežas — plāno darba bloku līdz 14:00. Fotosesijas datuma apstiprināšana ir SVARĪGA — jūlija termiņš tuvojas."
+      },
+      {
+        key: "2026-07-11", name: "Sestdiena", date: "11. jūlijs", status: "future", badge: "kids",
+        events: [],
+        tasks: [],
+        coach: "Sestdiena — ģimenes diena. Kvalitatīvs laiks ar bērniem ir gada mērķis. Neplāno pārāk daudz."
+      },
+      {
+        key: "2026-07-12", name: "Svētdiena", date: "12. jūlijs", status: "future", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai — Čiurlionis Apartment (līdz 19. jūl.)" },
+          { time: "08:00", text: "Nolikt veļas mašīnu Rotas ielā (līdz 09:00)" }
+        ],
+        tasks: [],
+        coach: "Ceļojuma diena — vienkāršots plāns. Prioritāte: nākamās nedēļas plānošana pirms aiziešanas."
+      }
+    ]
+  },
+  "2026-W29": {
+    label: "13.–19. jūlijs 2026",
+    priorities: [
+      { text: "Mājaslapa — vizualizāciju apstrāde un ievietošana lovable.app + serveris", ms: "m07-1" },
+      { text: "GetaPro profils — pabeigts", ms: "m07-4" },
+      { text: "Instagram — komunikācijas plāns + 2 ieraksti", ms: "m07-2" }
+    ],
+    accountability: [
+      "✅ AI Challenge — katru dienu 11:00–18:00 Druskininkai.",
+      "🔴 GetaPro — statuss nezināms, jāpārbauda.",
+      "🟡 Mājaslapa uz servera — statuss jānoskaidro pēc atgriešanās."
+    ],
+    days: [
+      {
+        key: "2026-07-13", name: "Pirmdiena", date: "13. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai" },
+          { time: "09:00", text: "🏋 30 min treniņš (līdz 10:00)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-14", name: "Otrdiena", date: "14. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "15:00", text: "Henrijs — fizioterapija (līdz 16:30)" },
+          { time: "15:00", text: "Hugo — fizioterapija (līdz 16:30)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-15", name: "Trešdiena", date: "15. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai" },
+          { time: "09:00", text: "🏋 30 min treniņš (līdz 10:00)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-16", name: "Ceturtdiena", date: "16. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-17", name: "Piektdiena", date: "17. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai" },
+          { time: "09:00", text: "🏋 30 min treniņš (līdz 10:00)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-18", name: "Sestdiena", date: "18. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "🏨 Druskininkai" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-19", name: "Svētdiena", date: "19. jūlijs", status: "past", badge: "travel",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "visu d.", text: "🚗 Atgriešanās no Druskininkām" }
+        ],
+        tasks: []
+      }
+    ]
+  },
+
+  "2026-W30": {
+    label: "20.–27. jūlijs 2026",
+    priorities: [
+      { text: "Instagram — 2 ieraksti + augustа satura plāna uzmetums", ms: "m07-2" },
+      { text: "GetaPro profils — pilnībā aktīvs un publicēts", ms: "m07-4" },
+      { text: "Pampāļu pārdošana — jauns mākleris / sludinājums / aktivitāte", ms: "m07-3" }
+    ],
+    accountability: [
+      "⚠ AI Challenge aizņem 11:00–18:00 katru dienu. Darba laiks ir TIKAI rīts 9:00–11:00.",
+      "🔴 Jūlija milestones termiņš tuvojas — Mākoņu ielas fotosesija vēl nav apstiprināta.",
+      "🟡 Pirmdiena: apkopēja + Pozza rezervācija + grāmatvedība = pārblīvēta rīta darba kārta."
+    ],
+    days: [
+      {
+        key: "2026-07-20", name: "Pirmdiena", date: "20. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "09:00", text: "Apkopēja nāk (līdz 17:00)" },
+          { time: "10:00", text: "Norezervēt Pozza martam (līdz 11:00)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "11:00", text: "Grāmatvedības uzskaite — telefona čeki, programmu kvītis, degviela (līdz 12:00)" },
+          { time: "19:00", text: "Hannai VFS (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-21", name: "Otrdiena", date: "21. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-22", name: "Trešdiena", date: "22. jūlijs", status: "future", badge: "kids",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-23", name: "Ceturtdiena", date: "23. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-24", name: "Piektdiena", date: "24. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-25", name: "Sestdiena", date: "25. jūlijs", status: "future", badge: "kids",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-26", name: "Svētdiena", date: "26. jūlijs", status: "future", badge: "weekend",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-27", name: "Pirmdiena", date: "27. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai VFS (līdz 20:00)" }
+        ],
+        tasks: []
+      }
+    ]
+  },
+  "2026-W31": {
+    label: "28.–31. jūlijs 2026",
+    priorities: [
+      { text: "Mākoņu ielas fotosesija (ja datums apstiprināts)", ms: "m07-1" },
+      { text: "Mēneša izvērtējums + augusta plānošana", ms: "m07-5" },
+      { text: "AI challenge — dienas 16–19", ms: "m07-5" }
+    ],
+    accountability: [],
+    days: [
+      {
+        key: "2026-07-28", name: "Otrdiena", date: "28. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: [],
+        coach: null
+      },
+      {
+        key: "2026-07-29", name: "Trešdiena", date: "29. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
+        tasks: [],
+        coach: null
+      },
+      {
+        key: "2026-07-30", name: "Ceturtdiena", date: "30. jūlijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: [],
+        coach: null
+      },
+      {
+        key: "2026-07-31", name: "Piektdiena", date: "31. jūlijs", status: "future", badge: "free",
+        events: [],
+        tasks: [],
+        coach: "Jūlija pēdējā diena. Izvērtē: kas no milestones ir izdarīts? Kas pārceļas uz augustu?"
+      }
+    ]
+  }
+};
+
+const CURRENT_WEEK = "2026-W30";
+
+/* ═══════════════════════════════════════════════════════
+   GOAL TAG CONFIG
+══════════════════════════════════════════════════════════ */
+const CAT_CONFIG = {
+  B:  { label: "💼 Bizness",              cls: "tgl-B" },
+  NI: { label: "🏠 Nekustamie īpašumi",  cls: "tgl-NI" },
+  C:  { label: "✈️ Ceļojums",             cls: "tgl-C" },
+  MU: { label: "🧹 Mājas uzturēšana",    cls: "tgl-MU" },
+  BE: { label: "👦 Bērni",               cls: "tgl-BE" },
+  F:  { label: "💰 Finanses",            cls: "tgl-F" },
+  ID: { label: "✨ Ideālā dzīve",        cls: "tgl-ID" }
+};
+const GOAL_TAG_NAMES = { b: "Bizness", m: "Mārketings", f: "Finanses", a: "Attiecības", p: "Pašprogramm." };
+const GOAL_TAG_CLS   = { b: "gtag-b", m: "gtag-m",     f: "gtag-f",   a: "gtag-a",     p: "gtag-p" };
+
+/* ═══════════════════════════════════════════════════════
+   LOCALSTORAGE HELPERS
+══════════════════════════════════════════════════════════ */
+function LS(key, val) {
+  if (val === undefined) { try { return JSON.parse(localStorage.getItem(key)); } catch(e) { return null; } }
+  try {
+    localStorage.setItem(key, JSON.stringify(val));
+    if (typeof GDS !== 'undefined' && GDS.ready) GDS.scheduleSave();
+  } catch(e) {}
+}
+function getChecked(id)       { return LS('ec_' + id) === true; }
+function setChecked(id, val)  { LS('ec_' + id, val); }
+function getUserTasks(dayKey) { return LS('eu_' + dayKey) || []; }
+function setUserTasks(dayKey, tasks) { LS('eu_' + dayKey, tasks); }
+
+/* ═══════════════════════════════════════════════════════
+   IDEJAS / NOTES
+══════════════════════════════════════════════════════════ */
+const TAG_COLORS = {
+  'bizness':     { bg:'#fff3e0', color:'#e65100' },
+  'māja':        { bg:'#e8f5e9', color:'#2e7d32' },
+  'personīgi':   { bg:'#f3e5f5', color:'#6a1b9a' },
+  'investīcijas':{ bg:'#e3f2fd', color:'#1565c0' },
+  'mārketings':  { bg:'#fce4ec', color:'#880e4f' },
+  'ceļojumi':    { bg:'#e0f7fa', color:'#006064' },
+};
+let currentIdeaFilter = 'visi';
+let editingNoteId = null;
+
+function getNotes() { return LS('ev_notes') || []; }
+function saveNotes(arr) { LS('ev_notes', arr); }
+
+function openNoteModal(id) {
+  editingNoteId = id || null;
+  const modal = document.getElementById('note-modal');
+  document.querySelectorAll('.mf-tag').forEach(t => t.classList.remove('sel'));
+  if (id) {
+    const note = getNotes().find(n => n.id === id);
+    if (!note) return;
+    document.getElementById('modal-title-lbl').textContent = '✏️ Labot ideju';
+    document.getElementById('mf-title').value = note.title;
+    document.getElementById('mf-body').value = note.body;
+    if (note.tag) {
+      document.querySelectorAll('.mf-tag').forEach(t => { if (t.dataset.t === note.tag) t.classList.add('sel'); });
+    }
+  } else {
+    document.getElementById('modal-title-lbl').textContent = '✏️ Jauna ideja';
+    document.getElementById('mf-title').value = '';
+    document.getElementById('mf-body').value = '';
+  }
+  modal.classList.remove('hidden');
+  setTimeout(() => document.getElementById('mf-title').focus(), 50);
+}
+
+function closeNoteModal() {
+  document.getElementById('note-modal').classList.add('hidden');
+  editingNoteId = null;
+}
+
+function toggleNoteTag(btn) {
+  document.querySelectorAll('.mf-tag').forEach(t => t.classList.remove('sel'));
+  btn.classList.toggle('sel');
+}
+
+async function saveNote() {
+  const title = document.getElementById('mf-title').value.trim();
+  const body  = document.getElementById('mf-body').value.trim();
+  if (!title) { document.getElementById('mf-title').focus(); return; }
+  const selTag = document.querySelector('.mf-tag.sel');
+  const tag = selTag ? selTag.dataset.t : '';
+  const notes = getNotes();
+  if (editingNoteId) {
+    const i = notes.findIndex(n => n.id === editingNoteId);
+    if (i > -1) { notes[i].title = title; notes[i].body = body; notes[i].tag = tag; notes[i].updated = new Date().toISOString(); }
+  } else {
+    notes.unshift({ id: 'n-' + Date.now(), title, body, tag, created: new Date().toISOString() });
+  }
+  saveNotes(notes);
+  await writeNoteFile(title, body, tag);
+  closeNoteModal();
+  renderIdeas();
+}
+
+async function writeNoteFile(title, body, tag) {
+  if (!dirHandle) return;
+  try {
+    let subDir;
+    try { subDir = await dirHandle.getDirectoryHandle('idejas', { create: true }); }
+    catch(e) { return; }
+    const safe = title.replace(/[\\/:*?"<>|]/g, '-').substring(0, 60);
+    const fh = await subDir.getFileHandle(safe + '.md', { create: true });
+    const wr = await fh.createWritable();
+    const md = `---\ntitle: "${title}"\nkategorija: "${tag}"\ncreated: "${new Date().toISOString()}"\n---\n\n${body}\n`;
+    await wr.write(md); await wr.close();
+  } catch(e) { console.warn('noteFile write:', e); }
+}
+
+function deleteNote(id, ev) {
+  ev.stopPropagation();
+  if (!confirm('Dzēst šo ideju?')) return;
+  const notes = getNotes().filter(n => n.id !== id);
+  saveNotes(notes);
+  renderIdeas();
+}
+
+function setIdeaFilter(tag, btn) {
+  currentIdeaFilter = tag;
+  document.querySelectorAll('.if-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderIdeas();
+}
+
+function renderIdeas() {
+  const grid = document.getElementById('ideas-grid');
+  if (!grid) return;
+  const q = (document.getElementById('ideas-search')?.value || '').toLowerCase();
+  let notes = getNotes();
+  if (currentIdeaFilter !== 'visi') notes = notes.filter(n => n.tag === currentIdeaFilter);
+  if (q) notes = notes.filter(n => n.title.toLowerCase().includes(q) || n.body.toLowerCase().includes(q));
+  if (!notes.length) {
+    grid.innerHTML = '<div class="empty-ideas"><div style="font-size:36px">💡</div><p>Nav ideju. Nospied "+ Jauna ideja" un pieraksti!</p></div>';
+    return;
+  }
+  grid.innerHTML = notes.map(n => {
+    const tc = TAG_COLORS[n.tag] || { bg: '#f0f0f0', color: '#555' };
+    const chip = n.tag ? `<span class="note-tag-chip" style="background:${tc.bg};color:${tc.color}">${n.tag}</span>` : '';
+    const d = new Date(n.created).toLocaleDateString('lv-LV', { day:'numeric', month:'short', year:'numeric' });
+    return `<div class="note-card" onclick="openNoteModal('${n.id}')">
+      ${chip}
+      <div class="note-title">${n.title}</div>
+      <div class="note-preview">${n.body.replace(/</g,'&lt;')}</div>
+      <div class="note-meta"><span>${d}</span><button class="note-del" onclick="deleteNote('${n.id}',event)" title="Dzēst">✕</button></div>
+    </div>`;
+  }).join('');
+}
+
+// close modal on overlay click
+document.addEventListener('click', e => {
+  if (e.target.id === 'note-modal') closeNoteModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeNoteModal();
+});
+
+/* ═══════════════════════════════════════════════════════
+   TAB SWITCHING
+══════════════════════════════════════════════════════════ */
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'months')    renderMonths();
+  if (id === 'week')      renderWeek();
+  if (id === 'ideas')     renderIdeas();
+  if (id === 'izdevumi')  renderIzdevumi();
+  if (id === 'progress')  renderProgress();
+}
+
+function showTabById(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tb');
+  btns.forEach(b => { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'months')    renderMonths();
+  if (id === 'week')      renderWeek();
+  if (id === 'ideas')     renderIdeas();
+  if (id === 'izdevumi')  renderIzdevumi();
+  if (id === 'progress')  renderProgress();
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER: MONTHS
+══════════════════════════════════════════════════════════ */
+function renderMonths() {
+  const wrap = document.getElementById('months-wrap');
+  wrap.innerHTML = '';
+  Object.entries(MILESTONES).forEach(([mkey, month]) => {
+    const total  = month.items.length;
+    const done   = month.items.filter(i => getChecked(i.id)).length;
+    const pct    = total ? Math.round(done/total*100) : 0;
+    const isOpen = month.status === 'current';
+    const div = document.createElement('div');
+    div.className = 'mc';
+    div.innerHTML = `
+      <div class="mc-hdr${isOpen?' open':''}" onclick="toggleMonth(this,'mb-${mkey}')">
+        <div class="mc-left">
+          <div class="mc-num ${month.status}">${mkey.slice(5)}</div>
+          <div>
+            <div class="mc-name">${month.label}</div>
+            <div class="mc-theme">${month.theme}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span class="mc-stats">${done}/${total} · ${pct}%</span>
+          <span class="mc-arr">▼</span>
+        </div>
+      </div>
+      <div class="mc-body${isOpen?' open':''}" id="mb-${mkey}">
+        ${month.items.map(item => `
+          <div class="mi">
+            <input type="checkbox" id="${item.id}" ${getChecked(item.id)?'checked':''} onchange="onMilestone('${item.id}','${mkey}')">
+            <label for="${item.id}">${item.text}<span class="gtag ${GOAL_TAG_CLS[item.goal]}">${GOAL_TAG_NAMES[item.goal]}</span></label>
+          </div>
+        `).join('')}
+      </div>`;
+    wrap.appendChild(div);
+  });
+}
+
+function toggleMonth(hdr, bodyId) {
+  hdr.classList.toggle('open');
+  document.getElementById(bodyId).classList.toggle('open');
+}
+
+function onMilestone(id, mkey) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  renderMonths();
+  writeProgress(false); // automātiski saglabā
+}
+
+function onEvent(id) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  const row = document.getElementById(id).closest('.cev');
+  if (row) row.classList.toggle('cev-done', val);
+  writeProgress(false);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER: WEEK
+══════════════════════════════════════════════════════════ */
+function renderWeek() {
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) return;
+  const wrap = document.getElementById('week-wrap');
+  wrap.innerHTML = '';
+
+  // accountability
+  if (week.accountability && week.accountability.length) {
+    const acc = document.createElement('div');
+    acc.className = 'acc-b';
+    acc.innerHTML = `<h4>⚠ Atskaitīšanās — stagnē</h4>` + week.accountability.map(a=>`<p>${a}</p>`).join('');
+    wrap.appendChild(acc);
+  }
+
+  // priorities
+  const top = document.createElement('div');
+  top.className = 'week-top';
+  top.innerHTML = `<h3>📅 ${week.label} · 3 galvenās prioritātes</h3>` +
+    week.priorities.map((p,i) => {
+      const msName = p.ms && MILESTONES[CURRENT_WEEK.replace('W28','07')]?.items?.find(x=>x.id===p.ms)?.text;
+      return `<div class="prio"><span class="pn">${i+1}</span><span>${p.text}</span></div>`;
+    }).join('');
+  wrap.appendChild(top);
+
+  // days
+  week.days.forEach(day => {
+    const allTasks = [...day.tasks, ...getUserTasks(day.key)];
+    const done  = allTasks.filter(t => getChecked(t.id)).length;
+    const total = allTasks.length;
+    const pct   = total ? Math.round(done/total*100) : 0;
+    const isToday = day.status === 'today';
+    const isPast  = day.status === 'past';
+
+    const card = document.createElement('div');
+    card.className = 'day-card';
+
+    // group tasks by category
+    const cats = {};
+    allTasks.forEach(t => { (cats[t.cat] = cats[t.cat]||[]).push(t); });
+    const taskHtml = Object.entries(cats).map(([cat, tasks]) => `
+      <div class="tg">
+        <div class="tgl ${CAT_CONFIG[cat]?.cls||'tgl-U'}">${CAT_CONFIG[cat]?.label||cat}</div>
+        ${tasks.map(t => {
+          const tagHtml = t.tag==='u' ? `<span class="ttag ttag-u">STEIDZAMI</span>` :
+                          t.tag==='g' ? `<span class="ttag ttag-g">MĒRĶIS</span>` :
+                          t.tag==='m' ? `<span class="ttag ttag-m">PRAKSE</span>` : '';
+          return `<div class="ti">
+            <input type="checkbox" id="${t.id}" ${getChecked(t.id)?'checked':''} onchange="onTask('${t.id}','${day.key}')">
+            <label for="${t.id}">${t.text}${tagHtml}</label>
+          </div>`;
+        }).join('')}
+      </div>`).join('');
+
+    const evHtml = day.events.length ? `
+      <div class="slbl">📆 Kalendārs</div>
+      ${day.events.map((e,i)=>{ const evId='ev_'+day.key+'_'+i; const evDone=getChecked(evId); return `<div class="cev ${evDone?'cev-done':''}"><input type="checkbox" id="${evId}" ${evDone?'checked':''} onchange="onEvent('${evId}')"><span class="ctime">${e.time}</span><span>${e.text}</span></div>`; }).join('')}
+      <div class="slbl">📋 Uzdevumi</div>` : `<div class="slbl">📋 Uzdevumi</div>`;
+
+    const coachHtml = '';
+
+    card.innerHTML = `
+      <div class="dh ${isToday?'today':''}${isPast?' past':''} ${isToday?'open':''}" onclick="toggleDay(this,'db-${day.key}')">
+        <div class="dl">
+          <span class="dname">${day.name}</span>
+          <span class="ddate">${day.date}</span>
+          ${isToday?'<span class="dbadge b-today">ŠODIEN</span>':''}
+        </div>
+        <div class="dr">
+          <span class="dcnt" id="cnt-${day.key}">${done}/${total}</span>
+          <span class="darr ${isToday?'open':''}" id="arr-${day.key}">▼</span>
+        </div>
+      </div>
+      <div class="dprog">
+        <div class="pb-w"><div class="pb-f" id="pb-${day.key}" style="width:${pct}%"></div></div>
+        <div class="ppct" id="pct-${day.key}">${pct}%</div>
+      </div>
+      <div class="db${isToday?' open':''}" id="db-${day.key}">
+        ${evHtml}
+        ${taskHtml}
+        ${coachHtml}
+        <button class="add-toggle" onclick="toggleAddForm('af-${day.key}',this)">＋ Pievienot uzdevumu</button>
+        <div class="add-form" id="af-${day.key}">
+          <input class="add-txt" id="at-${day.key}" placeholder="Uzdevuma teksts..." onkeydown="if(event.key==='Enter')addTask('${day.key}')">
+          <select class="add-cat" id="ac-${day.key}">
+            <option value="B">Bizness</option>
+            <option value="NI">Nekustamie īpašumi</option>
+            <option value="C">Ceļojums</option>
+            <option value="MU">Mājas uzturēšana</option>
+            <option value="BE">Bērni</option>
+            <option value="F">Finanses</option>
+            <option value="ID">Ideālā dzīve</option>
+          </select>
+          <button class="add-ok" onclick="addTask('${day.key}')">Pievienot</button>
+          <button class="add-cl" onclick="toggleAddForm('af-${day.key}',null)">Atcelt</button>
+        </div>
+      </div>`;
+    wrap.appendChild(card);
+  });
+
+  // ARCHIVE — past weeks
+  const pastWeeks = Object.entries(WEEKS).filter(([key]) => key < CURRENT_WEEK).reverse();
+  if (pastWeeks.length) {
+    const archHdr = document.createElement('div');
+    archHdr.className = 'archive-hdr open';
+    archHdr.id = 'archive-hdr';
+    archHdr.innerHTML = `<span style="font-weight:600">📁 Arhīvs — iepriekšējās nedēļas (${pastWeeks.length})</span><span>▼</span>`;
+    archHdr.onclick = () => {
+      archHdr.classList.toggle('open');
+      document.getElementById('archive-body').classList.toggle('open');
+    };
+    wrap.appendChild(archHdr);
+
+    const archBody = document.createElement('div');
+    archBody.className = 'archive-body open';
+    archBody.id = 'archive-body';
+
+    pastWeeks.forEach(([wkey, wdata]) => {
+      const aw = document.createElement('div');
+      aw.className = 'archive-week';
+      const awId = 'aw-' + wkey;
+
+      // Collect all tasks from all days with their done state from localStorage
+      const allTasks = [];
+      wdata.days.forEach(d => {
+        (d.tasks || []).forEach(t => {
+          const done = localStorage.getItem('ec_' + t.id) === 'true';
+          allTasks.push({ text: t.text, done });
+        });
+        // User-added tasks stored in localStorage as array at key eu_dayKey
+        getUserTasks(d.key).forEach(t => {
+          const done = getChecked(t.id);
+          allTasks.push({ text: t.text, done });
+        });
+      });
+
+      const done = allTasks.filter(t => t.done).length;
+      const total = allTasks.length;
+      const statsLabel = total ? ` <span style="font-size:10px;color:var(--greige);font-weight:400">${done}/${total} izpildīts</span>` : '';
+
+      const tasksHtml = total
+        ? allTasks.map(t =>
+            `<div style="display:flex;align-items:flex-start;gap:8px;padding:3px 0;font-size:12px;${t.done ? 'opacity:0.55' : ''}">
+              <span style="color:${t.done ? 'var(--sage)' : 'var(--greige)'};flex-shrink:0;margin-top:1px;font-size:11px">${t.done ? '✓' : '○'}</span>
+              <span style="${t.done ? 'text-decoration:line-through' : ''}">${t.text}</span>
+            </div>`
+          ).join('')
+        : `<div style="font-size:12px;color:var(--greige);padding:4px 0">Nav ierakstītu uzdevumu</div>`;
+
+      aw.innerHTML = `
+        <div class="archive-week-hdr" onclick="this.nextElementSibling.classList.toggle('open')">
+          <div><span class="archive-week-label">${wdata.label}</span>${statsLabel}</div>
+          <span style="color:var(--greige);font-size:11px">▼</span>
+        </div>
+        <div class="archive-week-body open" id="${awId}">
+          <div class="slbl" style="margin-top:0">Uzdevumi</div>
+          ${tasksHtml}
+        </div>`;
+      archBody.appendChild(aw);
+    });
+
+    wrap.appendChild(archBody);
+  }
+}
+
+function toggleDay(hdr, bodyId) {
+  hdr.classList.toggle('open');
+  const body = document.getElementById(bodyId);
+  body.classList.toggle('open');
+}
+
+function onTask(id, dayKey) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  updateDayStats(dayKey);
+  updateProgressTab();
+  writeProgress(false); // automātiski saglabā
+}
+
+function updateDayStats(dayKey) {
+  const day = WEEKS[CURRENT_WEEK].days.find(d => d.key === dayKey);
+  if (!day) return;
+  const allTasks = [...day.tasks, ...getUserTasks(dayKey)];
+  const done  = allTasks.filter(t => getChecked(t.id)).length;
+  const total = allTasks.length;
+  const pct   = total ? Math.round(done/total*100) : 0;
+  const cntEl = document.getElementById('cnt-'+dayKey);
+  const pbEl  = document.getElementById('pb-'+dayKey);
+  const pctEl = document.getElementById('pct-'+dayKey);
+  if (cntEl) cntEl.textContent = `${done}/${total}`;
+  if (pbEl)  pbEl.style.width  = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+}
+
+function toggleAddForm(id, btn) {
+  const form = document.getElementById(id);
+  form.classList.toggle('open');
+  if (btn) btn.style.display = form.classList.contains('open') ? 'none' : '';
+}
+
+function addTask(dayKey) {
+  const txt = document.getElementById('at-'+dayKey).value.trim();
+  if (!txt) return;
+  const cat  = document.getElementById('ac-'+dayKey).value;
+  const tasks = getUserTasks(dayKey);
+  const newId = 'u-' + dayKey.replace(/-/g,'') + '-' + Date.now();
+  tasks.push({ id: newId, text: txt, cat, userAdded: true });
+  setUserTasks(dayKey, tasks);
+  document.getElementById('at-'+dayKey).value = '';
+  renderWeek();
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER: PROGRESS
+══════════════════════════════════════════════════════════ */
+function renderProgress() {
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) return;
+  const wrap = document.getElementById('progress-wrap');
+
+  let totalAll=0, doneAll=0;
+  const catStats = {};
+  const dayData = [];
+
+  week.days.forEach(day => {
+    const allTasks = [...day.tasks, ...getUserTasks(day.key)];
+    const doneTasks = allTasks.filter(t => getChecked(t.id));
+    totalAll += allTasks.length;
+    doneAll  += doneTasks.length;
+    allTasks.forEach(t => {
+      if (!catStats[t.cat]) catStats[t.cat] = {done:0, total:0};
+      catStats[t.cat].total++;
+      if (getChecked(t.id)) catStats[t.cat].done++;
+    });
+    dayData.push({ day, allTasks, doneTasks });
+  });
+
+  // milestone stats
+  const mJul = MILESTONES["2026-07"];
+  const mDone  = mJul.items.filter(i => getChecked(i.id)).length;
+  const mTotal = mJul.items.length;
+
+  const pct = totalAll ? Math.round(doneAll/totalAll*100) : 0;
+
+  wrap.innerHTML = `
+    <div class="stat-row">
+      <div class="sc"><div class="sc-num">${doneAll}</div><div class="sc-lbl">Pabeigti</div><div class="sc-pct">${pct}%</div></div>
+      <div class="sc"><div class="sc-num">${totalAll-doneAll}</div><div class="sc-lbl">Atlikusī</div><div class="sc-pct">&nbsp;</div></div>
+      <div class="sc"><div class="sc-num">${totalAll}</div><div class="sc-lbl">Kopā uzdevumi</div><div class="sc-pct">&nbsp;</div></div>
+      <div class="sc"><div class="sc-num">${mDone}/${mTotal}</div><div class="sc-lbl">Jūlija milestones</div><div class="sc-pct">${mTotal?Math.round(mDone/mTotal*100):0}%</div></div>
+    </div>
+    <button class="exp-btn" onclick="writeProgress(true)">💾 Saglabāt progress.json koučam</button>
+    <div class="cat-break">
+      <h3>Progress pa kategorijām</h3>
+      ${Object.entries(catStats).map(([cat,s]) => {
+        const p = s.total ? Math.round(s.done/s.total*100) : 0;
+        return `<div class="cat-bar-row">
+          <span class="cat-bar-lbl">${CAT_CONFIG[cat]?.label.replace(/^[^ ]+ /,'')||cat}</span>
+          <div class="cat-bar-w"><div class="cat-bar-f" style="width:${p}%"></div></div>
+          <span class="cat-bar-n">${p}%</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="history-section">
+      <h3>Dienu sadalījums</h3>
+      ${dayData.map(({day, allTasks, doneTasks}) => {
+        const p = allTasks.length ? Math.round(doneTasks.length/allTasks.length*100) : 0;
+        return `<div class="prog-day">
+          <h4>${day.name}, ${day.date} <span>${doneTasks.length}/${allTasks.length} · ${p}%</span></h4>
+          ${allTasks.map(t => {
+            const done = getChecked(t.id);
+            return `<div class="pt ${done?'pt-ok':'pt-no'}">${done?'✅':'☐'} ${t.text}</div>`;
+          }).join('')}
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function updateProgressTab() {
+  if (document.getElementById('tab-progress').classList.contains('active')) {
+    renderProgress();
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   FILE SYSTEM ACCESS API — automātiskā saglabāšana
+   Darbojas: Chrome, Edge, Cowork WebView
+   Pirmajā reizē: piespiež "Savienot mapi" → izvēlies Nedēļas plāni mapi
+   Pēc tam: katrs ķeksis automātiski ieraksta progress.json
+══════════════════════════════════════════════════════════ */
+
+const IDB_NAME  = 'evita_planer_v1';
+const IDB_STORE = 'fs_handles';
+let dirHandle   = null;
+let lastSaved   = null;
+
+/* — IndexedDB helpers (glabā dirHandle starp sesijām) — */
+function openIDB() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open(IDB_NAME, 1);
+    r.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+    r.onsuccess = e => res(e.target.result);
+    r.onerror   = e => rej(e);
+  });
+}
+async function idbPut(key, val) {
+  const db = await openIDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).put(val, key);
+    tx.oncomplete = res; tx.onerror = rej;
+  });
+}
+async function idbGet(key) {
+  const db = await openIDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readonly');
+    const r  = tx.objectStore(IDB_STORE).get(key);
+    r.onsuccess = e => res(e.target.result);
+    r.onerror   = rej;
+  });
+}
+
+/* — Sync bar UI — */
+function setSyncStatus(state, msg, time) {
+  const bar  = document.getElementById('sync-bar');
+  const dot  = document.getElementById('sync-dot');
+  const msgEl= document.getElementById('sync-msg');
+  const btn  = document.getElementById('sync-btn');
+  const sBtn = document.getElementById('sync-save-btn');
+  bar.className  = 'sync-bar' + (state==='ok'?' ok': state==='err'?' err':'');
+  dot.className  = 'sync-dot ' + (state==='ok'?'ok': state==='err'?'err':'warn');
+  msgEl.innerHTML= msg + (time ? `<small>${time}</small>` : '');
+  btn.style.display  = (state==='setup') ? '' : 'none';
+  sBtn.style.display = (state==='ok')    ? '' : 'none';
+}
+
+/* — Pirmā reize: lietotājs izvēlas mapi — */
+async function connectFolder() {
+  if (!window.showDirectoryPicker) {
+    setSyncStatus('err', '⚠ Šis pārlūks neatbalsta automātisko saglabāšanu. Izmanto Chrome vai Edge.');
+    return;
+  }
+  try {
+    const handle = await window.showDirectoryPicker({ mode: 'readwrite', id: 'evita-planer', startIn: 'documents' });
+    dirHandle = handle;
+    await idbPut('dir', handle);
+    setSyncStatus('ok', '✅ Mape savienota — progress tiek saglabāts automātiski');
+    await writeProgress(false);
+  } catch (e) {
+    if (e.name !== 'AbortError') setSyncStatus('err', '⚠ Kļūda: ' + e.message);
+  }
+}
+
+/* — Ielādē saglabāto mapi pie katras lapas atvēršanas — */
+async function initFolderAccess() {
+  if (!window.showDirectoryPicker) {
+    setSyncStatus('setup', '🔗 Automātiskā saglabāšana nav pieejama šajā pārlūkā (vajag Chrome/Edge)');
+    document.getElementById('sync-btn').style.display = 'none';
+    return;
+  }
+  try {
+    const handle = await idbGet('dir');
+    if (!handle) {
+      setSyncStatus('setup', '📁 Savienojiet mapi, lai Claude automātiski redzētu progresu');
+      document.getElementById('sync-btn').style.display = '';
+      return;
+    }
+    // Pārbauda atļauju
+    const perm = await handle.queryPermission({ mode: 'readwrite' });
+    if (perm === 'granted') {
+      dirHandle = handle;
+      setSyncStatus('ok', '✅ Automātiskā saglabāšana aktīva');
+      await writeProgress(false);
+    } else {
+      // Vajag atļauju — rāda pogu (nevar auto-pieprasīt bez user gesture)
+      setSyncStatus('setup', '🔑 Nepieciešama atļauja mapei — nospied pogu lai turpinātu');
+      document.getElementById('sync-btn').textContent = '🔑 Atļaut piekļuvi';
+      document.getElementById('sync-btn').onclick = async () => {
+        const p = await handle.requestPermission({ mode: 'readwrite' });
+        if (p === 'granted') {
+          dirHandle = handle;
+          setSyncStatus('ok', '✅ Automātiskā saglabāšana aktīva');
+          document.getElementById('sync-btn').style.display = 'none';
+          await writeProgress(false);
+        }
+      };
+      document.getElementById('sync-btn').style.display = '';
+    }
+  } catch (e) {
+    setSyncStatus('setup', '📁 Savienojiet mapi, lai Claude automātiski redzētu progresu');
+    document.getElementById('sync-btn').style.display = '';
+  }
+}
+
+/* — Izveido progress.json saturu — */
+function buildProgressData() {
+  const week = WEEKS[CURRENT_WEEK];
+  const now  = new Date();
+  let totalAll = 0, doneAll = 0;
+  const days = {};
+  week.days.forEach(day => {
+    const allTasks = [...day.tasks, ...getUserTasks(day.key)];
+    const doneTasks = allTasks.filter(t => getChecked(t.id));
+    totalAll += allTasks.length;
+    doneAll  += doneTasks.length;
+    days[day.key] = {
+      name: day.name, date: day.date,
+      done: doneTasks.length, total: allTasks.length,
+      pct: allTasks.length ? Math.round(doneTasks.length/allTasks.length*100) : 0,
+      tasks: allTasks.map(t => ({ id: t.id, text: t.text, done: getChecked(t.id) }))
+    };
+  });
+  return {
+    week: CURRENT_WEEK,
+    label: week.label,
+    generated: now.toISOString(),
+    totalTasks: totalAll,
+    doneTasks: doneAll,
+    pct: totalAll ? Math.round(doneAll/totalAll*100) : 0,
+    days
+  };
+}
+
+/* — Ieraksta progress.json mapē — */
+async function writeProgress(manual) {
+  if (!dirHandle) {
+    if (manual) setSyncStatus('err', '⚠ Vispirms savienojiet mapi');
+    return;
+  }
+  try {
+    const data = buildProgressData();
+    const fileHandle = await dirHandle.getFileHandle('progress.json', { create: true });
+    const writable   = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(data, null, 2));
+    await writable.close();
+    const t = new Date().toLocaleTimeString('lv', { hour:'2-digit', minute:'2-digit' });
+    setSyncStatus('ok', '✅ Saglabāts', ' · ' + t);
+    lastSaved = new Date();
+  } catch(e) {
+    setSyncStatus('err', '⚠ Kļūda saglabājot: ' + e.message);
+  }
+}
+
+/* — Automātiskā saglabāšana — */
+async function initSync() {
+  try {
+    const handle = await idbGet('dir');
+    if (!handle) { initFolderAccess(); return; }
+    const perm = await handle.queryPermission({ mode: 'readwrite' });
+    if (perm === 'granted') { dirHandle = handle; await writeProgress(false); }
+    else { initFolderAccess(); }
+  } catch(e) { initFolderAccess(); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   IZDEVUMI — DATU STRUKTŪRA UN FUNKCIJAS
+══════════════════════════════════════════════════════════ */
+const EXP_CATS = {
+  'pārtika':    { label: '🍕 Pārtika',     color: '#66bb6a' },
+  'māja':       { label: '🏠 Māja',         color: '#42a5f5' },
+  'transports': { label: '🚗 Transports',   color: '#ffa726' },
+  'bērni':      { label: '👦 Bērni',        color: '#ab47bc' },
+  'veselība':   { label: '💊 Veselība',     color: '#ef5350' },
+  'apģērbs':    { label: '👗 Apģērbs',      color: '#ec407a' },
+  'bizness':    { label: '🎯 Bizness',      color: '#26a69a' },
+  'ceļojumi':   { label: '✈️ Ceļojumi',    color: '#26c6da' },
+  'sports':     { label: '🏋️ Sports',      color: '#d4e157' },
+  'cits':       { label: '🔧 Cits',         color: '#bdbdbd' },
+};
+
+function getExpenses() { return LS('ev_expenses') || []; }
+function saveExpenses(arr) { LS('ev_expenses', arr); }
+
+let izCurrentYear  = new Date().getFullYear();
+let izCurrentMonth = new Date().getMonth();
+
+function izNavMonth(dir) {
+  izCurrentMonth += dir;
+  if (izCurrentMonth < 0)  { izCurrentMonth = 11; izCurrentYear--; }
+  if (izCurrentMonth > 11) { izCurrentMonth = 0;  izCurrentYear++; }
+  renderIzdevumi();
+}
+
+function addExpenseFromDash() {
+  const amount = parseFloat(document.getElementById('exp-amount').value);
+  const cat    = document.getElementById('exp-cat').value;
+  const note   = document.getElementById('exp-note').value.trim();
+  if (!amount || amount <= 0) { document.getElementById('exp-amount').focus(); return; }
+  const today = new Date().toISOString().slice(0,10);
+  const exps  = getExpenses();
+  exps.unshift({ id: 'e-' + Date.now(), date: today, amount, cat, note });
+  saveExpenses(exps);
+  document.getElementById('exp-amount').value = '';
+  document.getElementById('exp-note').value   = '';
+  renderDashboard();
+  writeProgress(false);
+}
+
+function addExpenseFromIzdevumi() {
+  const amount  = parseFloat(document.getElementById('exp-amount2').value);
+  const cat     = document.getElementById('exp-cat2').value;
+  const note    = document.getElementById('exp-note2').value.trim();
+  const dateVal = document.getElementById('exp-date2').value || new Date().toISOString().slice(0,10);
+  if (!amount || amount <= 0) { document.getElementById('exp-amount2').focus(); return; }
+  const exps = getExpenses();
+  exps.unshift({ id: 'e-' + Date.now(), date: dateVal, amount, cat, note });
+  exps.sort((a,b) => b.date.localeCompare(a.date));
+  saveExpenses(exps);
+  document.getElementById('exp-amount2').value = '';
+  document.getElementById('exp-note2').value   = '';
+  document.getElementById('exp-date2').value   = '';
+  document.getElementById('iz-add-form').style.display = 'none';
+  renderIzdevumi();
+  renderDashboard();
+  writeProgress(false);
+}
+
+function deleteExpense(id) {
+  if (!confirm('Dzēst šo izdevumu?')) return;
+  saveExpenses(getExpenses().filter(e => e.id !== id));
+  renderIzdevumi();
+  renderDashboard();
+  writeProgress(false);
+}
+
+function renderIzdevumi() {
+  const LV_MONTHS = ['Janvāris','Februāris','Marts','Aprīlis','Maijs','Jūnijs',
+                     'Jūlijs','Augusts','Septembris','Oktobris','Novembris','Decembris'];
+  const lbl = document.getElementById('iz-month-lbl');
+  if (lbl) lbl.textContent = LV_MONTHS[izCurrentMonth] + ' ' + izCurrentYear;
+
+  const prefix  = `${izCurrentYear}-${String(izCurrentMonth+1).padStart(2,'0')}`;
+  const today   = new Date().toISOString().slice(0,10);
+  const all     = getExpenses();
+  const month   = all.filter(e => e.date && e.date.startsWith(prefix));
+
+  const total    = month.reduce((s,e) => s + e.amount, 0);
+  const todayAmt = all.filter(e => e.date === today).reduce((s,e) => s + e.amount, 0);
+
+  const tEl = document.getElementById('iz-total');
+  const yEl = document.getElementById('iz-today-total');
+  const cEl = document.getElementById('iz-count');
+  if (tEl) tEl.textContent = total.toFixed(2) + ' €';
+  if (yEl) yEl.textContent = todayAmt.toFixed(2) + ' €';
+  if (cEl) cEl.textContent = month.length;
+
+  // Pa kategorijām
+  const catTotals = {};
+  month.forEach(e => { catTotals[e.cat] = (catTotals[e.cat] || 0) + e.amount; });
+  const maxCat = Math.max(...Object.values(catTotals), 1);
+  const catsEl = document.getElementById('iz-cats');
+  if (catsEl) {
+    const sorted = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
+    if (!sorted.length) {
+      catsEl.innerHTML = '<div class="iz-empty">Nav izdevumu šajā mēnesī.</div>';
+    } else {
+      catsEl.innerHTML = sorted.map(([cat, amt]) => {
+        const cfg = EXP_CATS[cat] || { label: cat, color: '#bbb' };
+        const pct = Math.round(amt / maxCat * 100);
+        return `<div class="iz-cat-row">
+          <span class="iz-cat-lbl">${cfg.label}</span>
+          <div class="iz-cat-bar-w"><div class="iz-cat-bar-f" style="width:${pct}%;background:${cfg.color}"></div></div>
+          <span class="iz-cat-eur">${amt.toFixed(2)} €</span>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  // Darījumu saraksts
+  const listEl = document.getElementById('iz-list');
+  if (listEl) {
+    if (!month.length) {
+      listEl.innerHTML = '<div class="iz-empty">Nav darījumu.</div>';
+    } else {
+      listEl.innerHTML = month.map(e => {
+        const cfg = EXP_CATS[e.cat] || { label: e.cat, color: '#bbb' };
+        const d   = new Date(e.date + 'T12:00').toLocaleDateString('lv-LV', { day:'numeric', month:'short' });
+        return `<div class="iz-tr-row">
+          <span class="iz-tr-date">${d}</span>
+          <span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:${cfg.color}22;color:${cfg.color};flex-shrink:0;">${cfg.label.split(' ')[0]}</span>
+          <span class="iz-tr-desc">${e.note || cfg.label.replace(/^[^\s]+\s/,'')}</span>
+          <span class="iz-tr-eur">${e.amount.toFixed(2)} €</span>
+          <button class="iz-tr-del" onclick="deleteExpense('${e.id}')" title="Dzēst">✕</button>
+        </div>`;
+      }).join('');
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   GARMIN — MANUĀLA IEVADE (Fāze 1)
+   Fāze 2: Google Drive + Apps Script automatizācija
+══════════════════════════════════════════════════════════ */
+function getTodayKey() { return new Date().toISOString().slice(0,10); }
+function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
+function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
+
+function saveGarminSleep() {
+  const h = parseFloat(document.getElementById('g-sleep-h').value);
+  const q = parseInt(document.getElementById('g-sleep-q').value) || 0;
+  if (!h || h <= 0) { document.getElementById('g-sleep-h').focus(); return; }
+  const dk = getTodayKey();
+  const d  = getGarminData(dk);
+  d.sleepH = h; d.sleepQ = q;
+  setGarminData(dk, d);
+  renderDashboard();
+}
+
+function saveGarminActivity() {
+  const steps = parseInt(document.getElementById('g-steps').value) || 0;
+  const active= parseInt(document.getElementById('g-active').value) || 0;
+  const name  = document.getElementById('g-activity-name').value.trim();
+  const dk = getTodayKey();
+  const d  = getGarminData(dk);
+  d.steps = steps; d.activeMin = active; d.activityName = name;
+  setGarminData(dk, d);
+  renderDashboard();
+}
+
+/* ═══════════════════════════════════════════════════════
+   DIENAS FOKUSS
+══════════════════════════════════════════════════════════ */
+function getFocusItems()      { return LS('focus_' + getTodayKey()) || []; }
+function setFocusItems(arr)   { LS('focus_' + getTodayKey(), arr); }
+
+function buildDefaultFocusItems() {
+  const today = getTodayKey();
+  // Velk TIKAI manuāli pievienotos uzdevumus no Nedēļas cilnes (+ Pievienot poga)
+  const userTasks = getUserTasks(today);
+  return userTasks.slice(0, 5).map(t => ({
+    id: 'fu' + t.id,
+    text: t.text,
+    done: getChecked(t.id)
+  }));
+}
+
+function resetDayFocus() {
+  setFocusItems(buildDefaultFocusItems());
+  renderDashboard();
+}
+
+function toggleFocusItem(id) {
+  const items = getFocusItems();
+  const item  = items.find(i => i.id === id);
+  if (item) { item.done = !item.done; setFocusItems(items); }
+  renderDashboard();
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER: DASHBORDS — Anna Cherry precīzs izkārtojums
+══════════════════════════════════════════════════════════ */
+
+const WMO_ICON = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
+const WMO_DESC = {0:'Skaidrs',1:'Gandrīz skaidrs',2:'Daļēji mākoņains',3:'Mākoņains',45:'Migla',48:'Ledaina migla',51:'Neliels lietus',53:'Mērens lietus',55:'Stiprs lietus',61:'Neliels lietus',63:'Lietus',65:'Stiprs lietus',71:'Viegls sniegs',73:'Sniegs',75:'Stiprs sniegs',80:'Lietusgāzes',81:'Stipras lietusgāzes',82:'Ļoti stipras lietusgāzes',95:'Pērkona negaiss',96:'Negaiss ar krusu',99:'Stiprs negaiss'};
+const LV_DAYS = ['Svētdiena','Pirmdiena','Otrdiena','Trešdiena','Ceturtdiena','Piektdiena','Sestdiena'];
+const LV_MONTHS = ['janvāris','februāris','marts','aprīlis','maijs','jūnijs','jūlijs','augusts','septembris','oktobris','novembris','decembris'];
+const LV_DS = ['Sv','P','O','T','C','Pk','S'];
+
+// ── SVG gredzena ģenerators (Anna Cherry: lielais cipars pa kreisi, gredzens pa labi) ──
+function acRing(pct, txt) {
+  const R=21, C=2*Math.PI*R, f=Math.min(Math.max(pct,0),100)/100*C;
+  return `<svg class="ac-mc-ring" viewBox="0 0 50 50">
+    <circle class="ac-rb" cx="25" cy="25" r="${R}"/>
+    <circle class="ac-rf" cx="25" cy="25" r="${R}" stroke-dasharray="${f.toFixed(1)} ${C.toFixed(1)}"/>
+    <text class="ac-rt" x="25" y="25">${txt}</text>
+  </svg>`;
+}
+
+// ── Metric josla (5 kartes augšā — kā Anna Cherry) ──
+function renderMetricStrip(gd, focusItems) {
+  const el = document.getElementById('ac-metric-strip');
+  if (!el) return;
+  const today = getTodayKey();
+  const exps = getExpenses().filter(e => e.date === today);
+  const expTotal = exps.reduce((s,e) => s + e.amount, 0);
+  const fDone = focusItems.filter(i => i.done).length;
+  const fTotal = focusItems.length;
+
+  const cards = [
+    {
+      lbl:'Miegs · Garmin',
+      num: gd.sleepH ? gd.sleepH+'h' : '—',
+      sub: gd.sleepQ ? 'Kval. '+gd.sleepQ+'/100' : (gd.sleepH ? 'ievadīts' : 'ievadi datus'),
+      pct: gd.sleepH ? Math.round(gd.sleepH/8*100) : 0,
+      rtxt: gd.sleepQ ? String(gd.sleepQ) : (gd.sleepH ? Math.round(gd.sleepH/8*100)+'%' : ''),
+      empty: !gd.sleepH
+    },
+    {
+      lbl:'Soļi · Garmin',
+      num: gd.steps ? (gd.steps>=1000?(gd.steps/1000).toFixed(1)+'k':String(gd.steps)) : '—',
+      sub: gd.steps ? 'Mērķis 10k · '+Math.round(gd.steps/10000*100)+'%' : 'ievadi datus',
+      pct: gd.steps ? Math.round(gd.steps/10000*100) : 0,
+      rtxt: gd.steps ? Math.round(gd.steps/10000*100)+'%' : '',
+      empty: !gd.steps
+    },
+    {
+      lbl:'Aktīvais · Garmin',
+      num: gd.activeMin ? gd.activeMin+' min' : '—',
+      sub: gd.activityName || (gd.activeMin ? 'ievadīts' : 'ievadi datus'),
+      pct: gd.activeMin ? Math.round(gd.activeMin/30*100) : 0,
+      rtxt: gd.activeMin ? Math.round(gd.activeMin/30*100)+'%' : '',
+      empty: !gd.activeMin
+    },
+    {
+      lbl:'Fokuss · Šodien',
+      num: fDone+'/'+fTotal,
+      sub: fDone===fTotal && fTotal>0 ? '✓ visi izpildīti' : fDone+' pabeigti',
+      pct: fTotal ? Math.round(fDone/fTotal*100) : 0,
+      rtxt: fTotal ? Math.round(fDone/fTotal*100)+'%' : '0%',
+      empty: false
+    },
+    {
+      lbl:'Izdevumi · Šodien',
+      num: expTotal.toFixed(2),
+      unit:'€',
+      sub: exps.length ? exps.length+' darījumi' : 'nav izdevumu',
+      pct: null,
+      empty: expTotal===0
+    }
+  ];
+
+  el.innerHTML = cards.map(c => {
+    const ec = c.empty ? ' ac-mc-empty' : '';
+    const ring = c.pct!==null ? acRing(c.pct, c.rtxt||'') : '<div style="width:50px;"></div>';
+    return `<div class="ac-mc${ec}">
+      <div class="ac-mc-left">
+        <div class="ac-mc-lbl">${c.lbl}</div>
+        <div><span class="ac-mc-num">${c.num}</span>${c.unit?`<span class="ac-mc-unit"> ${c.unit}</span>`:''}</div>
+        <div class="ac-mc-sub">${c.sub}</div>
+      </div>
+      ${ring}
+    </div>`;
+  }).join('');
+}
+
+// ── Header ──
+function renderAcHeader() {
+  const now = new Date();
+  const dayEl = document.getElementById('ac-hdr-day');
+  const dateEl = document.getElementById('ac-hdr-date');
+  const lblEl = document.getElementById('ac-today-label');
+  if (dayEl) dayEl.textContent = LV_DAYS[now.getDay()];
+  if (dateEl) dateEl.textContent = now.getDate()+'. '+LV_MONTHS[now.getMonth()]+' '+now.getFullYear();
+  if (lblEl) lblEl.textContent = now.toLocaleDateString('lv',{day:'numeric',month:'long'});
+}
+
+// ── Kalendārs ──
+let _acCM = 'today';
+function acCalTab(mode, btn) {
+  _acCM = mode;
+  document.querySelectorAll('.ac-tab').forEach(t => t.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  renderAcCal();
+}
+function renderAcCal() {
+  const el = document.getElementById('ac-cal');
+  if (!el) return;
+  const today = getTodayKey();
+  const week = WEEKS[CURRENT_WEEK];
+  const day = week?.days.find(d => d.key === today);
+
+  if (_acCM === 'today') {
+    const evts = day?.events || [];
+    el.innerHTML = evts.length
+      ? evts.map(e=>`<div class="ac-er"><div class="ac-et">${e.time||''}</div><div><div class="ac-ev">${e.text}</div></div></div>`).join('')
+      : '<div class="d-empty">Nav notikumu šodien</div>';
+
+  } else if (_acCM === 'week') {
+    const days = week?.days || [];
+    el.innerHTML = days.map(d => {
+      const dt = new Date(d.key);
+      const isT = d.key===today;
+      const evts = (d.events||[]).slice(0,2);
+      return `<div class="ac-er" style="${isT?'background:#faf8f6;border-radius:7px;margin:0 -6px;padding:4px 6px;':''}">
+        <div class="ac-et" style="min-width:48px;${isT?'color:var(--taupe);':''}">${LV_DS[dt.getDay()]} ${dt.getDate()}.</div>
+        <div>${evts.length?evts.map(e=>`<div class="ac-ev" style="font-size:11px;">${e.time?e.time+' ':''} ${e.text}</div>`).join(''):'<div class="ac-es">Brīvs</div>'}</div>
+      </div>`;
+    }).join('');
+
+  } else {
+    const mk = new Date().getFullYear()+'-'+String(new Date().getMonth()+1).padStart(2,'0');
+    const items = MILESTONES[mk]?.items || [];
+    el.innerHTML = items.length
+      ? items.map(m=>{
+          const done = getChecked(m.id)||m.done;
+          return `<div class="ac-er">
+            <div style="width:8px;height:8px;border-radius:50%;background:${done?'var(--taupe)':'#ddd'};flex-shrink:0;margin-top:5px;"></div>
+            <div class="ac-ev" style="${done?'text-decoration:line-through;color:var(--greige);':''}">${m.text}</div>
+          </div>`;
+        }).join('')
+      : '<div class="d-empty">Nav milestone šim mēnesim</div>';
+  }
+}
+
+// ── Mērķi ──
+function renderAcGoals() {
+  const el = document.getElementById('ac-goals');
+  if (!el) return;
+  const goals = [
+    {icon:'💼', name:'Made2Dream brends', sub:'mājaslapa · Instagram · GetaPro', ids:['m07-1','m07-2','m07-4']},
+    {icon:'🏠', name:'NK īpašumi', sub:'remonts un pārdošana', ids:['m07-3']},
+    {icon:'💻', name:'Digitālie risinājumi', sub:'AI Challenge · tehnoloģijas', ids:['m07-5','m07-1']}
+  ];
+  el.innerHTML = goals.map(g => {
+    const done = g.ids.filter(id=>getChecked(id)).length;
+    const total = g.ids.length;
+    const pct = total ? Math.round(done/total*100) : 0;
+    return `<div class="ac-gr" onclick="showTabById('months')">
+      <div class="ac-gtop">
+        <span class="ac-gn">${g.icon} ${g.name} <span style="color:var(--greige);font-size:11px;">→</span></span>
+        <span class="ac-gp">${pct}%</span>
+      </div>
+      <div class="ac-gsub">${g.sub} · ${done}/${total} milestone</div>
+      <div class="ac-gbar"><div class="ac-gbf" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+// ── Fokuss ──
+function renderAcFocus(items) {
+  const el = document.getElementById('ac-focus');
+  const meta = document.getElementById('ac-focus-meta');
+  if (!el) return;
+  const done = items.filter(i=>i.done).length;
+  if (meta) meta.textContent = done+' no '+items.length+' izpildīti';
+  function tag(text) {
+    const t = text.toLowerCase();
+    if (t.includes('made2dream')||t.includes('mājaslapa')||t.includes('klients')||t.includes('dizain')) return {c:'tag-b',l:'BIZNESS'};
+    if (t.includes('instagram')||t.includes('saturs')||t.includes('post')) return {c:'tag-m',l:'MĀRK'};
+    if (t.includes('pampāļ')||t.includes('īpašum')||t.includes('remonts')) return {c:'tag-nk',l:'NK'};
+    if (t.includes(' ai ')||t.includes('challenge')||t.includes('digit')) return {c:'tag-b',l:'AI'};
+    return null;
+  }
+  el.innerHTML = items.length
+    ? items.map(item=>{
+        const tg = tag(item.text);
+        return `<div class="ac-fr">
+          <input type="checkbox" id="${item.id}" ${item.done?'checked':''} onchange="toggleFocusItem('${item.id}')">
+          <label class="ac-fl" for="${item.id}">${item.text}</label>
+          ${tg?`<span class="ac-ftag ${tg.c}">${tg.l}</span>`:''}
+        </div>`;
+      }).join('')
+    : '<div class="d-empty">Nav uzdevumu šodien. Pievienoji tos Nedēļas cilnē (+ Pievienot), tad nospied ↺.</div>';
+}
+
+// ── Izdevumi ──
+function renderAcExpenses() {
+  const today = getTodayKey();
+  const exps = getExpenses().filter(e=>e.date===today);
+  const total = exps.reduce((s,e)=>s+e.amount,0);
+  const heroEl = document.getElementById('ac-exp-hero');
+  const listEl = document.getElementById('ac-exp-list');
+  if (heroEl) heroEl.textContent = total.toFixed(2)+' €';
+  if (listEl) {
+    listEl.innerHTML = exps.length
+      ? exps.slice(0,5).map(e=>{
+          const cfg = EXP_CATS[e.cat]||{label:e.cat};
+          const emoji = cfg.label.split(' ')[0];
+          return `<div class="ac-ir">
+            <div class="ac-idot"></div>
+            <div class="ac-icat">${emoji} ${e.note||cfg.label.split(' ').slice(1).join(' ')}</div>
+            <div class="ac-iamt">${e.amount.toFixed(2)} €</div>
+          </div>`;
+        }).join('')
+      : '<div class="d-empty" style="padding:4px 0;">Nav izdevumu šodien</div>';
+  }
+}
+
+// ── Nedēļas progress ──
+function renderAcWeekProg() {
+  const el = document.getElementById('ac-week-prog');
+  const meta = document.getElementById('ac-week-meta');
+  if (!el) return;
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) { el.innerHTML = '<div class="d-empty">Nav nedēļas datu</div>'; return; }
+  const today = getTodayKey();
+  let tDone=0, tAll=0;
+  el.innerHTML = week.days.map(d=>{
+    const all = [...(d.tasks||[]),...getUserTasks(d.key)];
+    const done = all.filter(t=>getChecked(t.id)).length;
+    tDone+=done; tAll+=all.length;
+    const pct = all.length ? Math.round(done/all.length*100) : 0;
+    const dt = new Date(d.key);
+    const isT = d.key===today;
+    return `<div class="ac-wr" style="opacity:${d.key>today?'0.45':'1'}">
+      <div class="ac-wrd" style="${isT?'color:var(--taupe);font-weight:700;':''}">${LV_DS[dt.getDay()]}</div>
+      <div class="ac-wrb"><div class="ac-wrbf" style="width:${pct}%"></div></div>
+      <div class="ac-wrp">${all.length?pct+'%':'—'}</div>
+    </div>`;
+  }).join('');
+  if (meta) {
+    const wp = tAll ? Math.round(tDone/tAll*100) : 0;
+    meta.textContent = tDone+'/'+tAll+' · '+wp+'%';
+  }
+}
+
+// ── Laika apstākļi (Open-Meteo, Sigulda) ──
+async function fetchWeather() {
+  const K='weather_cache2';
+  const cached = JSON.parse(localStorage.getItem(K)||'null');
+  if (cached && Date.now()-cached.ts < 3600000) { renderAcWeather(cached); return; }
+  try {
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=57.15&longitude=24.87&current=temperature_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max&timezone=Europe%2FRiga&forecast_days=4');
+    const j = await r.json();
+    const c = j.current, d = j.daily;
+    const data = {
+      ts:Date.now(), temp:Math.round(c.temperature_2m), code:c.weather_code,
+      wind:Math.round(c.wind_speed_10m),
+      fc:(d.time||[]).slice(0,4).map((t,i)=>({date:t,code:d.weather_code[i],max:Math.round(d.temperature_2m_max[i])}))
+    };
+    localStorage.setItem(K, JSON.stringify(data));
+    renderAcWeather(data);
+  } catch(e) {
+    const el=document.getElementById('ac-weather');
+    if(el) el.innerHTML='<div class="d-empty">Nav savienojuma</div>';
+  }
+}
+function renderAcWeather(d) {
+  const el = document.getElementById('ac-weather');
+  if (!el) return;
+  const icon = WMO_ICON[d.code]||'🌡';
+  const desc = WMO_DESC[d.code]||'';
+  const fc = (d.fc||[]).map(f=>{
+    const dt=new Date(f.date);
+    return `<div class="ac-fcd"><div class="ac-fcl">${LV_DS[dt.getDay()]}</div><div class="ac-fci">${WMO_ICON[f.code]||'🌡'}</div><div class="ac-fct">${f.max}°</div></div>`;
+  }).join('');
+  el.innerHTML = `
+    <div class="ac-wtop">
+      <div class="ac-wicon">${icon}</div>
+      <div>
+        <div class="ac-wtemp">${d.temp}°</div>
+        <div class="ac-wdesc">${desc}</div>
+        <div class="ac-whl">${d.wind?d.wind+' km/h':''}</div>
+      </div>
+    </div>
+    ${fc?`<div class="ac-fc">${fc}</div>`:''}
+  `;
+}
+
+// ── Galvenā renderēšana ──
+function calcPct(msIds) {
+  const done = msIds.filter(id=>getChecked(id)).length;
+  return {done, total:msIds.length, pct:msIds.length?Math.round(done/msIds.length*100):0};
+}
+
+function renderDashboard() {
+  const today = getTodayKey();
+  const gd = getGarminData(today);
+  let items = getFocusItems();
+  if (!items.length) { items = buildDefaultFocusItems(); setFocusItems(items); }
+
+  renderAcHeader();
+  renderMetricStrip(gd, items);
+  renderAcCal();
+  renderAcFocus(items);
+  renderAcExpenses();
+  renderAcGoals();
+  renderAcWeekProg();
+  fetchWeather();
+
+  // Aizpilda Garmin formu ar šodienas datiem
+  const gsh=document.getElementById('g-sleep-h'), gsq=document.getElementById('g-sleep-q');
+  const gst=document.getElementById('g-steps'), ga=document.getElementById('g-active');
+  const gan=document.getElementById('g-activity-name');
+  if(gsh&&gd.sleepH) gsh.value=gd.sleepH;
+  if(gsq&&gd.sleepQ) gsq.value=gd.sleepQ;
+  if(gst&&gd.steps) gst.value=gd.steps;
+  if(ga&&gd.activeMin) ga.value=gd.activeMin;
+  if(gan&&gd.activityName) gan.value=gd.activityName;
+}
+
+/* ═══════════════════════════════════════════════════════
+   GOOGLE DRIVE SYNC — GDS MODULIS
+   Glabā VISUS plānotāja datus Google Drive failā
+   evita_planner_2026.json — pieejams no jebkuras ierīces
+══════════════════════════════════════════════════════════ */
+const GDS = {
+  CLIENT_ID:  'GOOGLE_CLIENT_ID_ŠEIT',   // ← aizpildīsi pēc instrukcijām
+  SCOPE:      'https://www.googleapis.com/auth/drive.file',
+  FILE_NAME:  'evita_planner_2026.json',
+  SKIP_KEYS:  ['weather_cache2'],         // šos neglabā Drive
+  token:      null,
+  fileId:     null,
+  syncTimer:  null,
+  ready:      false,
+
+  /* Inicializē: mēģina atjaunot esošo token no localStorage */
+  init() {
+    const saved = localStorage.getItem('_gds_token');
+    if (saved) {
+      try {
+        const t = JSON.parse(saved);
+        if (t.expires_at > Date.now() + 60000) {
+          GDS.token = t.access_token;
+          GDS.ready = true;
+          GDS.setStatus('⏳ Ielādē datus...', 'loading');
+          GDS.loadOrCreate().then(() => {
+            GDS.setStatus('☁️ Google Drive — sinhronizēts', 'ok');
+          }).catch(e => {
+            GDS.setStatus('⚠ Neizdevās ielādēt: ' + e.message, 'err');
+          });
+          return;
+        }
+      } catch(e) {}
+    }
+    GDS.setStatus('☁️ Google Drive — nav savienots', 'idle');
+  },
+
+  /* Pierakstīšanās — parādās Google logina loga */
+  login() {
+    if (!window.google) {
+      GDS.setStatus('⚠ Google skripts vēl ielādējas — mēģini vēlreiz', 'err');
+      return;
+    }
+    const client = google.accounts.oauth2.initTokenClient({
+      client_id:  GDS.CLIENT_ID,
+      scope:      GDS.SCOPE,
+      callback:   (resp) => {
+        if (resp.error) { GDS.setStatus('⚠ Pierakstīšanās kļūda: ' + resp.error, 'err'); return; }
+        GDS.token = resp.access_token;
+        GDS.ready = true;
+        // Saglabā token ar derīguma laiku (1h)
+        localStorage.setItem('_gds_token', JSON.stringify({
+          access_token: resp.access_token,
+          expires_at: Date.now() + (resp.expires_in || 3600) * 1000
+        }));
+        GDS.setStatus('⏳ Savienojas ar Google Drive...', 'loading');
+        GDS.loadOrCreate().then(() => {
+          GDS.setStatus('☁️ Google Drive — sinhronizēts ✓', 'ok');
+        }).catch(e => {
+          GDS.setStatus('⚠ Drive kļūda: ' + e.message, 'err');
+        });
+      }
+    });
+    client.requestAccessToken({ prompt: 'consent' });
+  },
+
+  /* Meklē esošo failu vai izveido jaunu */
+  async loadOrCreate() {
+    // Meklē failu pēc nosaukuma
+    const q = encodeURIComponent(`name='${GDS.FILE_NAME}' and trashed=false`);
+    const r = await fetch(
+      `https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name,modifiedTime)`,
+      { headers: { Authorization: 'Bearer ' + GDS.token } }
+    );
+    if (!r.ok) throw new Error('Drive meklēšana neizdevās: ' + r.status);
+    const data = await r.json();
+    if (data.files && data.files.length > 0) {
+      GDS.fileId = data.files[0].id;
+      await GDS.download();
+    } else {
+      await GDS.create();
+    }
+  },
+
+  /* Lejupielādē datus no Drive → ieraksta localStorage */
+  async download() {
+    const r = await fetch(
+      `https://www.googleapis.com/drive/v3/files/${GDS.fileId}?alt=media`,
+      { headers: { Authorization: 'Bearer ' + GDS.token } }
+    );
+    if (!r.ok) throw new Error('Lejupielāde neizdevās: ' + r.status);
+    const data = await r.json();
+    // Ieraksta atpakaļ localStorage (izņemot versiju konfliktu)
+    const driveTs = data._saved_at || 0;
+    const localTs = parseInt(localStorage.getItem('_gds_local_ts') || '0');
+    if (driveTs > localTs) {
+      // Drive dati ir jaunāki — pārraksta lokālos
+      Object.keys(data).forEach(k => {
+        if (k === '_saved_at') return;
+        localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
+      });
+      localStorage.setItem('_gds_local_ts', String(driveTs));
+      // Pārzīmē UI ar jaunajiem datiem
+      renderDashboard();
+      renderWeek();
+    }
+  },
+
+  /* Izveido jaunu failu Drive */
+  async create() {
+    const content = GDS.collectData();
+    const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+    const meta = { name: GDS.FILE_NAME, mimeType: 'application/json' };
+    const form = new FormData();
+    form.append('metadata', new Blob([JSON.stringify(meta)], { type: 'application/json' }));
+    form.append('file', blob);
+    const r = await fetch(
+      'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',
+      { method: 'POST', headers: { Authorization: 'Bearer ' + GDS.token }, body: form }
+    );
+    if (!r.ok) throw new Error('Izveide neizdevās: ' + r.status);
+    const d = await r.json();
+    GDS.fileId = d.id;
+  },
+
+  /* Savāc VISUS plānotāja datus no localStorage */
+  collectData() {
+    const data = { _saved_at: Date.now() };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k || GDS.SKIP_KEYS.some(s => k.startsWith(s)) || k === '_gds_token' || k === '_gds_local_ts') continue;
+      try { data[k] = JSON.parse(localStorage.getItem(k)); }
+      catch(e) { data[k] = localStorage.getItem(k); }
+    }
+    return data;
+  },
+
+  /* Atliktā saglabāšana — izsauc 2.5s pēc pēdējās izmaiņas */
+  scheduleSave() {
+    if (!GDS.ready || !GDS.fileId) return;
+    clearTimeout(GDS.syncTimer);
+    GDS.syncTimer = setTimeout(() => GDS.save(), 2500);
+  },
+
+  /* Saglabā datus Drive failā (PATCH) */
+  async save() {
+    if (!GDS.ready || !GDS.fileId || !GDS.token) return;
+    try {
+      GDS.setStatus('⏳ Saglabā...', 'loading');
+      const content = GDS.collectData();
+      const ts = Date.now();
+      content._saved_at = ts;
+      const r = await fetch(
+        `https://www.googleapis.com/upload/drive/v3/files/${GDS.fileId}?uploadType=media`,
+        {
+          method: 'PATCH',
+          headers: { Authorization: 'Bearer ' + GDS.token, 'Content-Type': 'application/json' },
+          body: JSON.stringify(content)
+        }
+      );
+      if (!r.ok) {
+        if (r.status === 401) {
+          GDS.ready = false;
+          GDS.setStatus('🔑 Sesija beigusies — pierakstīties atkal', 'idle');
+          document.getElementById('drive-btn').textContent = 'Pieslēgties Google';
+          return;
+        }
+        throw new Error('Saglabāšana neizdevās: ' + r.status);
+      }
+      localStorage.setItem('_gds_local_ts', String(ts));
+      const t = new Date().toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' });
+      GDS.setStatus('☁️ Saglabāts ' + t, 'ok');
+    } catch(e) {
+      GDS.setStatus('⚠ ' + e.message, 'err');
+    }
+  },
+
+  /* Atjaunina Drive joslas UI */
+  setStatus(msg, state) {
+    const el = document.getElementById('drive-status');
+    const btn = document.getElementById('drive-btn');
+    if (el) el.textContent = msg;
+    if (btn) {
+      if (state === 'ok') {
+        btn.textContent = '✓ Drive';
+        btn.className = 'ok';
+      } else if (state === 'loading') {
+        btn.textContent = '⏳';
+        btn.className = '';
+      } else {
+        btn.textContent = 'Pieslēgties Google';
+        btn.className = '';
+      }
+    }
+  }
+};
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Iestata šodienas datumu izdevumu formā
+  const todayVal = new Date().toISOString().slice(0,10);
+  const d2 = document.getElementById('exp-date2');
+  if (d2) d2.value = todayVal;
+
+  renderDashboard();
+  renderWeek();
+  GDS.init();
+  initFolderAccess();
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    const days = ['Svētdiena','Pirmdiena','Otrdiena','Trešdiena','Ceturtdiena','Piektdiena','Sestdiena'];
+    const months = ['janvāris','februāris','marts','aprīlis','maijs','jūnijs','jūlijs','augusts','septembris','oktobris','novembris','decembris'];
+    const el = document.getElementById('hdr-clock');
+    if (el) el.innerHTML = days[now.getDay()] + ', ' + now.getDate() + '. ' + months[now.getMonth()] + ' ' + now.getFullYear() + '<br>' + now.toLocaleTimeString('lv',{hour:'2-digit',minute:'2-digit'});
+  }
+  updateClock();
+  setInterval(updateClock, 60000);
+});
+</script></body></html>
