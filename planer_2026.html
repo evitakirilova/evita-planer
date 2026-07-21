@@ -3020,7 +3020,7 @@ function renderDashboard() {
     const newItems  = userTasks
       .filter(t => !cachedIds.has('fu' + t.id))
       .map(t => ({ id: 'fu' + t.id, text: t.text, done: getChecked(t.id) }));
-    items = [...cached, ...newItems].slice(0, 5);
+    items = [...cached, ...newItems]; // bez slice — visi uzdevumi redzami
     if (newItems.length) setFocusItems(items);
   }
 
@@ -3308,5 +3308,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   updateClock();
   setInterval(updateClock, 60000);
+
+  // Periodiski sinhronizē ar Drive (katras 3 minūtes) —
+  // tā mobilā pievienotie uzdevumi parādās uz datora bez lapas atkārtotas ielādes.
+  setInterval(() => {
+    if (GDS.ready && GDS.fileId) GDS.download().catch(() => {});
+  }, 3 * 60 * 1000);
 });
 </script></body></html>
