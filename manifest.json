@@ -1,0 +1,30 @@
+{
+  "name": "Evita · Dzīves plānotājs",
+  "short_name": "Evita",
+  "description": "Personīgais dzīves plānotājs",
+  "start_url": "/evita-planer/planer_2026.html",
+  "scope": "/evita-planer/",
+  "display": "standalone",
+  "background_color": "#f2f2f1",
+  "theme_color": "#706354",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
