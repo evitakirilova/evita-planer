@@ -307,6 +307,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 .d-mini-inp:focus{border-color:var(--taupe);}
 .d-mini-row{display:flex;gap:7px;}
 .d-mini-row .d-mini-inp{width:auto;flex:1;}
+.garmin-stat-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:7px 6px;text-align:center;font-size:11px;color:var(--slate);line-height:1.4;}
+.garmin-stat-box b{font-size:14px;color:var(--taupe);display:block;}
 /* Header */
 .ac-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;padding:20px 24px;background:#fff;border-radius:16px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
 .ac-hdr-sub{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;}
@@ -593,22 +595,21 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
       <div class="ac-card">
         <div class="ac-ch">
           <span class="ac-ct">⌚ Garmin</span>
-          <button id="fit-sync-btn" class="ac-ca" onclick="fetchFitData()" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Ielādēt</button>
+          <button class="ac-ca" onclick="fetchGarminJson(true)" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Atjaunināt</button>
         </div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:7px;">😴 Miegs</div>
-        <div class="d-mini-row" style="margin-bottom:8px;">
-          <input class="d-mini-inp" id="g-sleep-h" type="number" min="0" max="12" step="0.5" placeholder="Stundas (7.5)">
-          <input class="d-mini-inp" id="g-sleep-q" type="number" min="1" max="100" placeholder="Kval./100">
-          <button class="d-btn" onclick="saveGarminSleep()">✓</button>
+        <div id="garmin-auto-status" style="font-size:10px;color:var(--sage);margin-bottom:8px;">⏳ Meklē Garmin datus...</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">😴 Miegs · 💪 Soļi · 🧘 Stress</div>
+        <div id="garmin-auto-display" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+          <div class="garmin-stat-box" id="gbox-sleep">—</div>
+          <div class="garmin-stat-box" id="gbox-steps">—</div>
+          <div class="garmin-stat-box" id="gbox-stress">—</div>
         </div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:7px;">🏃 Aktivitāte</div>
-        <div class="d-mini-row" style="margin-bottom:6px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">✏️ Manuāla korekcija</div>
+        <div class="d-mini-row" style="margin-bottom:5px;">
+          <input class="d-mini-inp" id="g-sleep-h" type="number" min="0" max="12" step="0.5" placeholder="Miegs (h)">
           <input class="d-mini-inp" id="g-steps" type="number" placeholder="Soļi">
-          <input class="d-mini-inp" id="g-active" type="number" placeholder="Aktīvās min.">
-        </div>
-        <div class="d-mini-row">
-          <input class="d-mini-inp" id="g-activity-name" placeholder="Aktivitāte (Padel, Skrējiens...)">
-          <button class="d-btn" onclick="saveGarminActivity()">✓</button>
+          <input class="d-mini-inp" id="g-stress" type="number" min="0" max="100" placeholder="Stress/100">
+          <button class="d-btn" onclick="saveGarminManual()">✓</button>
         </div>
       </div>
 
@@ -2404,12 +2405,96 @@ function renderIzdevumi() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   GARMIN — MANUĀLA IEVADE (Fāze 1)
-   Fāze 2: Google Drive + Apps Script automatizācija
+   GARMIN — AUTOMĀTISKA IELĀDE NO garmin_data.json
+   GitHub Actions atjaunina failu katru rītu
 ══════════════════════════════════════════════════════════ */
 function getTodayKey() { return new Date().toISOString().slice(0,10); }
 function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
 function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
+
+let garminLastFetch = 0;
+
+async function fetchGarminJson(manual = false) {
+  // Nav vērts mēģināt lokāli (file://) — tikai GitHub Pages
+  if (!location.hostname) return;
+
+  const now = Date.now();
+  // Auto-ielāde ne biežāk kā reizi 30 min; manuāli — vienmēr
+  if (!manual && now - garminLastFetch < 30 * 60 * 1000) return;
+
+  const statusEl = document.getElementById('garmin-auto-status');
+  if (statusEl) statusEl.textContent = '⏳ Ielādē Garmin datus...';
+
+  try {
+    const base = location.href.replace(/\/[^/]*(\?.*)?$/, '/');
+    const url  = base + 'garmin_data.json?t=' + now;
+    const r    = await fetch(url, { cache: 'no-store' });
+
+    if (!r.ok) {
+      if (statusEl) statusEl.textContent = '⚠ garmin_data.json nav pieejams vēl';
+      return;
+    }
+
+    const data = await r.json();
+    garminLastFetch = now;
+
+    const today     = getTodayKey();
+    const yesterday = new Date(now - 86400000).toISOString().slice(0, 10);
+    const isRecent  = data.date === today || data.date === yesterday;
+
+    if (!isRecent) {
+      if (statusEl) statusEl.textContent = '⚠ Dati no ' + data.date + ' — nav šodienas';
+      return;
+    }
+
+    const gd = getGarminData(today);
+    let changed = false;
+
+    if (data.steps   > 0) { gd.steps       = data.steps;        changed = true; }
+    if (data.sleep_hours > 0) { gd.sleepH  = data.sleep_hours;  changed = true; }
+    if (data.stress_avg  > 0) {
+      gd.stress      = data.stress_avg;
+      gd.stressLevel = data.stress_level || 'vidējs';
+      changed = true;
+    }
+
+    if (changed) {
+      setGarminData(today, gd);
+      renderDashboard();
+    }
+
+    const upd = data.updated
+      ? new Date(data.updated).toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' })
+      : data.date;
+    if (statusEl) statusEl.textContent = '✓ Automātiski ielādēts · ' + upd;
+
+  } catch(e) {
+    if (statusEl) statusEl.textContent = '— Garmin dati nav pieejami';
+    console.log('Garmin JSON:', e.message);
+  }
+}
+
+function updateGarminBoxes(gd) {
+  const sleep  = document.getElementById('gbox-sleep');
+  const steps  = document.getElementById('gbox-steps');
+  const stress = document.getElementById('gbox-stress');
+  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${gd.sleepH}h</b><br><small>miegs</small>` : '😴<br><small>nav</small>';
+  if (steps)  steps.innerHTML  = gd.steps   ? `<b>${gd.steps >= 1000 ? (gd.steps/1000).toFixed(1)+'k' : gd.steps}</b><br><small>soļi</small>` : '👣<br><small>nav</small>';
+  if (stress) stress.innerHTML = gd.stress  ? `<b>${gd.stress}</b><br><small>${gd.stressLevel||'stress'}</small>` : '🧘<br><small>nav</small>';
+}
+
+function saveGarminManual() {
+  const h  = parseFloat(document.getElementById('g-sleep-h')?.value) || 0;
+  const st = parseInt(document.getElementById('g-steps')?.value) || 0;
+  const sr = parseInt(document.getElementById('g-stress')?.value) || 0;
+  const dk = getTodayKey();
+  const gd = getGarminData(dk);
+  if (h  > 0) { gd.sleepH = h; }
+  if (st > 0) { gd.steps  = st; }
+  if (sr > 0) { gd.stress = sr; gd.stressLevel = sr < 26 ? 'zems' : sr < 51 ? 'vidējs' : sr < 76 ? 'augsts' : 'ļoti augsts'; }
+  setGarminData(dk, gd);
+  renderDashboard();
+}
 
 /* — Google Fit automātiskā ielāde — */
 async function fetchFitData() {
@@ -2599,12 +2684,12 @@ function renderMetricStrip(gd, focusItems) {
       empty: !gd.steps
     },
     {
-      lbl:'Aktīvais · Garmin',
-      num: gd.activeMin ? gd.activeMin+' min' : '—',
-      sub: gd.activityName || (gd.activeMin ? 'ievadīts' : 'ievadi datus'),
-      pct: gd.activeMin ? Math.round(gd.activeMin/30*100) : 0,
-      rtxt: gd.activeMin ? Math.round(gd.activeMin/30*100)+'%' : '',
-      empty: !gd.activeMin
+      lbl:'Stress · Garmin',
+      num: gd.stress ? String(gd.stress) : '—',
+      sub: gd.stressLevel ? gd.stressLevel + ' līmenis' : (gd.stress ? 'vidējs' : 'nav datu'),
+      pct: gd.stress ? gd.stress : 0,
+      rtxt: gd.stress ? String(gd.stress) : '',
+      empty: !gd.stress
     },
     {
       lbl:'Fokuss · Šodien',
@@ -2933,15 +3018,14 @@ function renderDashboard() {
   renderAcWeekProg();
   fetchWeather();
 
-  // Aizpilda Garmin formu ar šodienas datiem
-  const gsh=document.getElementById('g-sleep-h'), gsq=document.getElementById('g-sleep-q');
-  const gst=document.getElementById('g-steps'), ga=document.getElementById('g-active');
-  const gan=document.getElementById('g-activity-name');
-  if(gsh&&gd.sleepH) gsh.value=gd.sleepH;
-  if(gsq&&gd.sleepQ) gsq.value=gd.sleepQ;
-  if(gst&&gd.steps) gst.value=gd.steps;
-  if(ga&&gd.activeMin) ga.value=gd.activeMin;
-  if(gan&&gd.activityName) gan.value=gd.activityName;
+  // Garmin datu attēlošana
+  updateGarminBoxes(gd);
+  const gsh = document.getElementById('g-sleep-h');
+  const gst = document.getElementById('g-steps');
+  const gsr = document.getElementById('g-stress');
+  if (gsh && gd.sleepH) gsh.value = gd.sleepH;
+  if (gst && gd.steps)  gst.value = gd.steps;
+  if (gsr && gd.stress) gsr.value = gd.stress;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -3186,6 +3270,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDashboard();
   renderWeek();
   GDS.init();
+  fetchGarminJson(); // Automātiski ielādē Garmin datus no garmin_data.json
   initFolderAccess();
   // Clock
   function updateClock() {
