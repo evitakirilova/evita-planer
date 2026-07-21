@@ -3110,19 +3110,11 @@ const GDS = {
     const data = await r.json();
     if (data.files && data.files.length > 0) {
       GDS.fileId = data.files[0].id;
-      // sessionStorage pastāv tikai šajā cilnē/sesijā.
-      // Pirmā ielāde (jauna sesija / jauna ierīce) → lejupielādē no Drive.
-      // Reload tajā pašā sesijā → tikai augšupielādē, dati netiek pārrakstīti.
-      const isFirstLoad = !sessionStorage.getItem('gds_session_active');
-      sessionStorage.setItem('gds_session_active', '1');
-      if (isFirstLoad) {
-        await GDS.download(); // Sapludina Drive datus ar lokāliem
-      } else {
-        await GDS.save();     // Tikai augšupielādē — lokālie dati paliek neskarti
-      }
+      // Vienmēr lejupielādē no Drive un sapludina.
+      // download() pats izlemj: ja Drive ir jaunāks — pārņem; ja lokālie jaunāki — augšupielādē.
+      await GDS.download();
     } else {
       // Fails Drive nav — izveido jaunu no lokāliem datiem
-      sessionStorage.setItem('gds_session_active', '1');
       await GDS.create();
     }
   },
