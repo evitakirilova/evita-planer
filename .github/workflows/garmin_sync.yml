@@ -1,0 +1,40 @@
+name: Garmin datu sinhronizācija
+
+on:
+  schedule:
+    # Katru rītu 06:00 Latvijas laiks (UTC+3) = 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    # Atļauj manuālu palaišanu no GitHub UI
+
+jobs:
+  sync-garmin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Ielādē repozitoriju
+        uses: actions/checkout@v4
+
+      - name: Uzstāda Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalē garminconnect
+        run: pip install garminconnect --quiet
+
+      - name: Ielādē Garmin datus
+        env:
+          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+        run: python fetch_garmin.py
+
+      - name: Saglabā garmin_data.json repozitorijā
+        run: |
+          git config user.name "garmin-bot"
+          git config user.email "actions@github.com"
+          git add garmin_data.json
+          git diff --staged --quiet || git commit -m "Garmin dati $(date -u +%Y-%m-%d)"
+          git push
