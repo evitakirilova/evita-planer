@@ -3006,8 +3006,23 @@ function calcPct(msIds) {
 function renderDashboard() {
   const today = getTodayKey();
   const gd = getGarminData(today);
-  let items = getFocusItems();
-  if (!items.length) { items = buildDefaultFocusItems(); setFocusItems(items); }
+
+  // Vienmēr sapludina kešoto fokusa sarakstu ar jaunākajiem lietotāja uzdevumiem.
+  // Tā jaunpievienoti uzdevumi (arī no mobilā) uzreiz parādās dashboardā.
+  const cached    = getFocusItems();
+  const userTasks = getUserTasks(today);
+  let items;
+  if (!cached.length) {
+    items = buildDefaultFocusItems();
+    setFocusItems(items);
+  } else {
+    const cachedIds = new Set(cached.map(i => i.id));
+    const newItems  = userTasks
+      .filter(t => !cachedIds.has('fu' + t.id))
+      .map(t => ({ id: 'fu' + t.id, text: t.text, done: getChecked(t.id) }));
+    items = [...cached, ...newItems].slice(0, 5);
+    if (newItems.length) setFocusItems(items);
+  }
 
   renderAcHeader();
   renderMetricStrip(gd, items);
