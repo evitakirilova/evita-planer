@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evita · 2026 · Plāns</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="theme-color" content="#706354">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Evita">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 :root {
@@ -329,7 +334,13 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 /* 3-kolonnu galvenais režģis */
 .ac-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:start;}
 @media(max-width:960px){.ac-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:620px){.ac-grid{grid-template-columns:1fr;}}
+@media(max-width:620px){
+  .ac-grid{display:flex;flex-direction:column;}
+  .ac-col{display:contents;}
+  #ac-card-cal{order:1;}
+  #ac-card-focus{order:2;}
+  #ac-card-goals{order:3;}
+}
 .ac-col{display:flex;flex-direction:column;gap:14px;}
 /* Karte */
 .ac-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
@@ -491,10 +502,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     <!-- 1. kolonna: Kalendārs + Mērķi -->
     <div class="ac-col">
 
-      <div class="ac-card">
+      <div class="ac-card" id="ac-card-cal">
         <div class="ac-ch">
           <span class="ac-ct">Kalendārs</span>
-          <span class="ac-cm" id="ac-today-label"></span>
+          <button id="cal-sync-btn" class="ac-ca" onclick="fetchGoogleCalendar()" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Sinhronizēt</button>
         </div>
         <div class="ac-tabs">
           <button class="ac-tab on" onclick="acCalTab('today',this)">Šodien</button>
@@ -504,7 +515,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         <div id="ac-cal"></div>
       </div>
 
-      <div class="ac-card">
+      <div class="ac-card" id="ac-card-goals">
         <div class="ac-ch">
           <span class="ac-ct">Mērķi</span>
           <span class="ac-cm">Q3 · 2026</span>
@@ -517,7 +528,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     <!-- 2. kolonna: Dienas fokuss + Izdevumi -->
     <div class="ac-col">
 
-      <div class="ac-card">
+      <div class="ac-card" id="ac-card-focus">
         <div class="ac-ch">
           <span class="ac-ct">Dienas fokuss</span>
           <span class="ac-cm" id="ac-focus-meta">0 no 5 izpildīti</span>
@@ -581,7 +592,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 
       <div class="ac-card">
         <div class="ac-ch">
-          <span class="ac-ct">⌚ Garmin ievade</span>
+          <span class="ac-ct">⌚ Garmin</span>
+          <button id="fit-sync-btn" class="ac-ca" onclick="fetchFitData()" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Ielādēt</button>
         </div>
         <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:7px;">😴 Miegs</div>
         <div class="d-mini-row" style="margin-bottom:8px;">
@@ -1444,9 +1456,11 @@ const WEEKS = {
         tasks: []
       },
       {
-        key: "2026-07-21", name: "Otrdiena", date: "21. jūlijs", status: "future", badge: "free",
+        key: "2026-07-21", name: "Otrdiena", date: "21. jūlijs", status: "today", badge: "free",
         events: [
-          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+          { time: "09:00", text: "Lana (līdz 11:00)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:45", text: "Hugo stadionā ar somām (līdz 20:45)" }
         ],
         tasks: []
       },
@@ -1509,6 +1523,7 @@ const WEEKS = {
       {
         key: "2026-07-28", name: "Otrdiena", date: "28. jūlijs", status: "future", badge: "free",
         events: [
+          { time: "09:00", text: "Lana puišiem (līdz 11:00)" },
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
         ],
         tasks: [],
@@ -1533,7 +1548,10 @@ const WEEKS = {
       },
       {
         key: "2026-07-31", name: "Piektdiena", date: "31. jūlijs", status: "future", badge: "free",
-        events: [],
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
         tasks: [],
         coach: "Jūlija pēdējā diena. Izvērtē: kas no milestones ir izdarīts? Kas pārceļas uz augustu?"
       }
@@ -1553,6 +1571,7 @@ const CAT_CONFIG = {
   MU: { label: "🧹 Mājas uzturēšana",    cls: "tgl-MU" },
   BE: { label: "👦 Bērni",               cls: "tgl-BE" },
   F:  { label: "💰 Finanses",            cls: "tgl-F" },
+  SV: { label: "💪 Sports / Veselība",  cls: "tgl-SV" },
   ID: { label: "✨ Ideālā dzīve",        cls: "tgl-ID" }
 };
 const GOAL_TAG_NAMES = { b: "Bizness", m: "Mārketings", f: "Finanses", a: "Attiecības", p: "Pašprogramm." };
@@ -1884,6 +1903,7 @@ function renderWeek() {
             <option value="MU">Mājas uzturēšana</option>
             <option value="BE">Bērni</option>
             <option value="F">Finanses</option>
+            <option value="SV">Sports / Veselība</option>
             <option value="ID">Ideālā dzīve</option>
           </select>
           <button class="add-ok" onclick="addTask('${day.key}')">Pievienot</button>
@@ -2391,6 +2411,95 @@ function getTodayKey() { return new Date().toISOString().slice(0,10); }
 function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
 function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
 
+/* — Google Fit automātiskā ielāde — */
+async function fetchFitData() {
+  if (!GDS.token) { alert('Vispirms piesakies Google!'); return; }
+  const btn = document.getElementById('fit-sync-btn');
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+
+  try {
+    const now   = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const tmrw  = new Date(today.getTime() + 86400000);
+    const yest  = new Date(today.getTime() - 86400000);
+
+    /* Soļi šodien */
+    const sR = await fetch(
+      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          aggregateBy:[{ dataTypeName:'com.google.step_count.delta' }],
+          bucketByTime:{ durationMillis:86400000 },
+          startTimeMillis: today.getTime(),
+          endTimeMillis:   tmrw.getTime()
+        })
+      }
+    );
+    if (sR.ok) {
+      const sd = await sR.json();
+      const steps = (sd.bucket?.[0]?.dataset?.[0]?.point || [])
+        .reduce((s,p) => s + (p.value?.[0]?.intVal||0), 0);
+      if (steps > 0) document.getElementById('g-steps').value = steps;
+    }
+
+    /* Miegs — vakardienas 12:00 → šodien 12:00 */
+    const slR = await fetch(
+      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          aggregateBy:[{ dataTypeName:'com.google.sleep.segment' }],
+          bucketByTime:{ durationMillis:86400000 },
+          startTimeMillis: yest.getTime() + 43200000,
+          endTimeMillis:   today.getTime() + 43200000
+        })
+      }
+    );
+    if (slR.ok) {
+      const sld = await slR.json();
+      let ms = 0;
+      (sld.bucket || []).forEach(b => {
+        (b.dataset?.[0]?.point || []).forEach(p => {
+          const t = p.value?.[0]?.intVal;
+          if (t !== 1 && t !== 3) { // izņem "Nomodā" un "Ārpus gultas"
+            ms += (Number(p.endTimeNanos) - Number(p.startTimeNanos)) / 1e6;
+          }
+        });
+      });
+      const h = Math.round(ms / 3600000 * 10) / 10;
+      if (h > 0) document.getElementById('g-sleep-h').value = h;
+    }
+
+    /* Aktīvās minūtes */
+    const aR = await fetch(
+      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          aggregateBy:[{ dataTypeName:'com.google.active_minutes' }],
+          bucketByTime:{ durationMillis:86400000 },
+          startTimeMillis: today.getTime(),
+          endTimeMillis:   tmrw.getTime()
+        })
+      }
+    );
+    if (aR.ok) {
+      const ad = await aR.json();
+      const am = (ad.bucket?.[0]?.dataset?.[0]?.point || [])
+        .reduce((s,p) => s + (p.value?.[0]?.intVal||0), 0);
+      if (am > 0) document.getElementById('g-active').value = am;
+    }
+
+    if (btn) { btn.textContent = '✓ Ielādēts'; btn.disabled = false; }
+    // Automātiski saglabā
+    saveGarminSleep();
+    saveGarminActivity();
+    renderDashboard();
+
+  } catch(e) {
+    if (btn) { btn.textContent = '⚠ Kļūda'; btn.disabled = false; }
+    console.error('Fit kļūda:', e);
+  }
+}
+
 function saveGarminSleep() {
   const h = parseFloat(document.getElementById('g-sleep-h').value);
   const q = parseInt(document.getElementById('g-sleep-q').value) || 0;
@@ -2548,28 +2657,98 @@ function acCalTab(mode, btn) {
   if (btn) btn.classList.add('on');
   renderAcCal();
 }
+/* — Google Calendar ielāde — */
+async function fetchGoogleCalendar() {
+  if (!GDS.token) { alert('Vispirms piesakies Google!'); return; }
+  const btn = document.getElementById('cal-sync-btn');
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+
+  try {
+    const now   = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const weekEnd    = new Date(todayStart.getTime() + 7 * 86400000);
+
+    const url = 'https://www.googleapis.com/calendar/v3/calendars/primary/events?' +
+      'singleEvents=true&orderBy=startTime&maxResults=50' +
+      '&timeMin=' + encodeURIComponent(todayStart.toISOString()) +
+      '&timeMax=' + encodeURIComponent(weekEnd.toISOString());
+
+    const r = await fetch(url, { headers: { Authorization: 'Bearer ' + GDS.token } });
+    if (!r.ok) throw new Error('Calendar API: ' + r.status);
+    const data = await r.json();
+
+    // Grupē pa dienām
+    const byDay = {};
+    (data.items || []).forEach(ev => {
+      const start = ev.start?.dateTime || ev.start?.date;
+      if (!start) return;
+      const dk = start.slice(0, 10);
+      if (!byDay[dk]) byDay[dk] = [];
+      const time = ev.start?.dateTime
+        ? new Date(ev.start.dateTime).toLocaleTimeString('lv', { hour:'2-digit', minute:'2-digit' })
+        : '';
+      const endTime = ev.end?.dateTime
+        ? new Date(ev.end.dateTime).toLocaleTimeString('lv', { hour:'2-digit', minute:'2-digit' })
+        : '';
+      byDay[dk].push({
+        time,
+        endTime,
+        text: ev.summary || '(bez nosaukuma)',
+        color: ev.colorId ? '#'+['','7f7f7f','a4bdfc','dbadff','ff887c','ffc1c1','51b749','39d353','2d7dd2','e1e4e8','5da423'][ev.colorId] : null
+      });
+    });
+
+    // Saglabā cache
+    localStorage.setItem('gcal_cache', JSON.stringify({ ts: Date.now(), byDay }));
+    if (btn) { btn.textContent = '✓'; btn.disabled = false; }
+    renderAcCal();
+
+  } catch(e) {
+    if (btn) { btn.textContent = '⚠'; btn.disabled = false; }
+    console.error('Calendar kļūda:', e);
+  }
+}
+
+function getCalCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem('gcal_cache'));
+    if (c && Date.now() - c.ts < 30 * 60000) return c.byDay; // 30 min cache
+  } catch(e) {}
+  return null;
+}
+
 function renderAcCal() {
   const el = document.getElementById('ac-cal');
   if (!el) return;
   const today = getTodayKey();
-  const week = WEEKS[CURRENT_WEEK];
-  const day = week?.days.find(d => d.key === today);
+  const gcal  = getCalCache();
+  const week  = WEEKS[CURRENT_WEEK];
+  const day   = week?.days.find(d => d.key === today);
+
+  const evtRow = (e) => {
+    const timeStr = e.time ? `<div class="ac-et">${e.time}${e.endTime?' – '+e.endTime:''}</div>` : '';
+    const dot = e.color ? `<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${e.color};margin-right:4px;flex-shrink:0;"></span>` : '';
+    return `<div class="ac-er">${timeStr}<div><div class="ac-ev">${dot}${e.text}</div></div></div>`;
+  };
 
   if (_acCM === 'today') {
-    const evts = day?.events || [];
+    const evts = gcal ? (gcal[today] || []) : (day?.events || []);
     el.innerHTML = evts.length
-      ? evts.map(e=>`<div class="ac-er"><div class="ac-et">${e.time||''}</div><div><div class="ac-ev">${e.text}</div></div></div>`).join('')
+      ? evts.map(evtRow).join('')
       : '<div class="d-empty">Nav notikumu šodien</div>';
 
   } else if (_acCM === 'week') {
-    const days = week?.days || [];
-    el.innerHTML = days.map(d => {
-      const dt = new Date(d.key);
-      const isT = d.key===today;
-      const evts = (d.events||[]).slice(0,2);
+    // Ģenerē 7 dienu sarakstu
+    const days7 = Array.from({length:7}, (_,i) => {
+      const d = new Date(new Date().setHours(0,0,0,0) + i*86400000);
+      return { key: d.toISOString().slice(0,10), dt: d };
+    });
+    el.innerHTML = days7.map(({key, dt}) => {
+      const isT = key === today;
+      const evts = gcal ? (gcal[key]||[]).slice(0,2) : (week?.days.find(d=>d.key===key)?.events||[]).slice(0,2);
       return `<div class="ac-er" style="${isT?'background:#faf8f6;border-radius:7px;margin:0 -6px;padding:4px 6px;':''}">
-        <div class="ac-et" style="min-width:48px;${isT?'color:var(--taupe);':''}">${LV_DS[dt.getDay()]} ${dt.getDate()}.</div>
-        <div>${evts.length?evts.map(e=>`<div class="ac-ev" style="font-size:11px;">${e.time?e.time+' ':''} ${e.text}</div>`).join(''):'<div class="ac-es">Brīvs</div>'}</div>
+        <div class="ac-et" style="min-width:46px;${isT?'color:var(--taupe);font-weight:600;':''}">${LV_DS[dt.getDay()]} ${dt.getDate()}.</div>
+        <div>${evts.length ? evts.map(e=>`<div class="ac-ev" style="font-size:11px;">${e.time?e.time+' ':''} ${e.text}</div>`).join('') : '<div class="ac-es" style="color:#ccc;font-size:11px;">Brīvs</div>'}</div>
       </div>`;
     }).join('');
 
@@ -2772,7 +2951,9 @@ function renderDashboard() {
 ══════════════════════════════════════════════════════════ */
 const GDS = {
   CLIENT_ID:  '457566382983-0tsi1v5b6300nca77udoviiuv8jgaklb.apps.googleusercontent.com',   // ← aizpildīsi pēc instrukcijām
-  SCOPE:      'https://www.googleapis.com/auth/drive.file',
+  SCOPE:      'https://www.googleapis.com/auth/drive',
+  SCOPE_FIT:  'https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.sleep.read',
+  SCOPE_CAL:  'https://www.googleapis.com/auth/calendar.readonly',
   FILE_NAME:  'evita_planner_2026.json',
   SKIP_KEYS:  ['weather_cache2'],         // šos neglabā Drive
   token:      null,
@@ -2823,6 +3004,8 @@ const GDS = {
         GDS.setStatus('⏳ Savienojas ar Google Drive...', 'loading');
         GDS.loadOrCreate().then(() => {
           GDS.setStatus('☁️ Google Drive — sinhronizēts ✓', 'ok');
+          // Auto-ielādē kalendāru pēc pieslēgšanās
+          fetchGoogleCalendar();
         }).catch(e => {
           GDS.setStatus('⚠ Drive kļūda: ' + e.message, 'err');
         });
@@ -2843,13 +3026,25 @@ const GDS = {
     const data = await r.json();
     if (data.files && data.files.length > 0) {
       GDS.fileId = data.files[0].id;
-      await GDS.download();
+      // sessionStorage pastāv tikai šajā cilnē/sesijā.
+      // Pirmā ielāde (jauna sesija / jauna ierīce) → lejupielādē no Drive.
+      // Reload tajā pašā sesijā → tikai augšupielādē, dati netiek pārrakstīti.
+      const isFirstLoad = !sessionStorage.getItem('gds_session_active');
+      sessionStorage.setItem('gds_session_active', '1');
+      if (isFirstLoad) {
+        await GDS.download(); // Sapludina Drive datus ar lokāliem
+      } else {
+        await GDS.save();     // Tikai augšupielādē — lokālie dati paliek neskarti
+      }
     } else {
+      // Fails Drive nav — izveido jaunu no lokāliem datiem
+      sessionStorage.setItem('gds_session_active', '1');
       await GDS.create();
     }
   },
 
-  /* Lejupielādē datus no Drive → ieraksta localStorage */
+  /* Lejupielādē datus no Drive un sapludina ar lokāliem datiem.
+     Tiek izsaukts TIKAI pirmajā ielādē jaunā sesijā (sessionStorage kontrolē). */
   async download() {
     const r = await fetch(
       `https://www.googleapis.com/drive/v3/files/${GDS.fileId}?alt=media`,
@@ -2857,11 +3052,24 @@ const GDS = {
     );
     if (!r.ok) throw new Error('Lejupielāde neizdevās: ' + r.status);
     const data = await r.json();
-    // Ieraksta atpakaļ localStorage (izņemot versiju konfliktu)
     const driveTs = data._saved_at || 0;
     const localTs = parseInt(localStorage.getItem('_gds_local_ts') || '0');
-    if (driveTs > localTs) {
-      // Drive dati ir jaunāki — pārraksta lokālos
+
+    if (localTs === 0) {
+      // ── Jauna ierīce / tīrs localStorage ──────────────────────────────────
+      // Aizpilda tikai tukšās lokālās vietas ar Drive datiem.
+      // Ja lokāli kaut kas IR — paliek neskarti.
+      Object.keys(data).forEach(k => {
+        if (k === '_saved_at') return;
+        if (localStorage.getItem(k) === null) {
+          localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
+        }
+      });
+      localStorage.setItem('_gds_local_ts', String(Date.now()));
+      await GDS.save(); // Augšupielādē sapludinātos datus
+    } else if (driveTs > localTs) {
+      // ── Drive ir jaunāks nekā šī ierīce ───────────────────────────────────
+      // (Cita ierīce saglabāja vēlāk) — pārņem Drive datus.
       Object.keys(data).forEach(k => {
         if (k === '_saved_at') return;
         localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
@@ -2870,6 +3078,10 @@ const GDS = {
       // Pārzīmē UI ar jaunajiem datiem
       renderDashboard();
       renderWeek();
+    } else {
+      // ── Lokālie dati ir tikpat jauni vai jaunāki ──────────────────────────
+      // Vienkārši augšupielādē lokālos datus uz Drive
+      await GDS.save();
     }
   },
 
