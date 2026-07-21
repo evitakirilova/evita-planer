@@ -3171,7 +3171,26 @@ const GDS = {
       renderWeek();
     } else {
       // ── Lokālie dati ir tikpat jauni vai jaunāki ──────────────────────────
-      // Vienkārši augšupielādē lokālos datus uz Drive
+      // Tomēr pārbauda eu_* (uzdevumi) — ja Drive ir jauni uzdevumi, sapludina.
+      // Tas risina situāciju: uzdevums pievienots mobilajā, bet datora ts ir jaunāks.
+      let mergedTasks = false;
+      Object.keys(data).forEach(k => {
+        if (!k.startsWith('eu_')) return;
+        try {
+          const localRaw = localStorage.getItem(k);
+          const localArr = localRaw ? JSON.parse(localRaw) : [];
+          const driveVal = data[k];
+          const driveArr = typeof driveVal === 'string' ? JSON.parse(driveVal) : (driveVal || []);
+          if (!Array.isArray(driveArr) || !driveArr.length) return;
+          const localIds = new Set(localArr.map(t => t.id));
+          const newTasks = driveArr.filter(t => !localIds.has(t.id));
+          if (newTasks.length) {
+            localStorage.setItem(k, JSON.stringify([...localArr, ...newTasks]));
+            mergedTasks = true;
+          }
+        } catch(e) {}
+      });
+      if (mergedTasks) { renderDashboard(); renderWeek(); }
       await GDS.save();
     }
   },
