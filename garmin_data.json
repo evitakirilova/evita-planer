@@ -1,0 +1,11 @@
+{
+  "date": "2026-07-21",
+  "updated": "2026-07-21T10:42:37.498073Z",
+  "steps": null,
+  "steps_goal": 10000,
+  "sleep_hours": null,
+  "sleep_score": null,
+  "stress_avg": null,
+  "stress_level": null,
+  "error": "Login failed: All login strategies exhausted: Portal login failed (non-JSON): HTTP 403"
+}
