@@ -5,7 +5,6 @@ on:
     # Katru rītu 06:00 Latvijas laiks (UTC+3) = 03:00 UTC
     - cron: '0 3 * * *'
   workflow_dispatch:
-    # Atļauj manuālu palaišanu no GitHub UI
 
 jobs:
   sync-garmin:
@@ -22,13 +21,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Instalē garminconnect
-        run: pip install garminconnect --quiet
+      - name: Instalē bibliotēkas
+        run: pip install garminconnect garth --quiet
 
       - name: Ielādē Garmin datus
         env:
-          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_EMAIL:    ${{ secrets.GARMIN_EMAIL }}
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+          GARMIN_TOKENS:   ${{ secrets.GARMIN_TOKENS }}
         run: python fetch_garmin.py
 
       - name: Saglabā garmin_data.json repozitorijā
