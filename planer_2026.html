@@ -598,11 +598,12 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
           <button class="ac-ca" onclick="fetchGarminJson(true)" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Atjaunināt</button>
         </div>
         <div id="garmin-auto-status" style="font-size:10px;color:var(--sage);margin-bottom:8px;">⏳ Meklē Garmin datus...</div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">😴 Miegs · 💪 Soļi · 🧘 Stress</div>
-        <div id="garmin-auto-display" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">😴 Miegs · 👣 Soļi · 🧘 Stress · 🏃 Nedēļa</div>
+        <div id="garmin-auto-display" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
           <div class="garmin-stat-box" id="gbox-sleep">—</div>
           <div class="garmin-stat-box" id="gbox-steps">—</div>
           <div class="garmin-stat-box" id="gbox-stress">—</div>
+          <div class="garmin-stat-box" id="gbox-weekly">—</div>
         </div>
         <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">✏️ Manuāla korekcija</div>
         <div class="d-mini-row" style="margin-bottom:5px;">
@@ -2450,11 +2451,20 @@ async function fetchGarminJson(manual = false) {
     const gd = getGarminData(today);
     let changed = false;
 
-    if (data.steps   > 0) { gd.steps       = data.steps;        changed = true; }
-    if (data.sleep_hours > 0) { gd.sleepH  = data.sleep_hours;  changed = true; }
-    if (data.stress_avg  > 0) {
+    if (data.yesterday_steps > 0) { gd.steps = data.yesterday_steps; changed = true; }
+    if (data.sleep_hours > 0)  { gd.sleepH = data.sleep_hours;  changed = true; }
+    if (data.sleep_score > 0)  { gd.sleepScore = data.sleep_score; changed = true; }
+    if (data.body_battery > 0) { gd.bodyBattery = data.body_battery; changed = true; }
+    if (data.stress_avg  > 0)  {
       gd.stress      = data.stress_avg;
       gd.stressLevel = data.stress_level || 'vidējs';
+      changed = true;
+    }
+    if (data.weekly_total_km >= 0) {
+      gd.weeklyKm   = data.weekly_total_km;
+      gd.weeklyWalk = data.weekly_walk_km || 0;
+      gd.weeklyBike = data.weekly_bike_km || 0;
+      gd.weekStart  = data.week_start || '';
       changed = true;
     }
 
@@ -2478,9 +2488,11 @@ function updateGarminBoxes(gd) {
   const sleep  = document.getElementById('gbox-sleep');
   const steps  = document.getElementById('gbox-steps');
   const stress = document.getElementById('gbox-stress');
-  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${gd.sleepH}h</b><br><small>miegs</small>` : '😴<br><small>nav</small>';
-  if (steps)  steps.innerHTML  = gd.steps   ? `<b>${gd.steps >= 1000 ? (gd.steps/1000).toFixed(1)+'k' : gd.steps}</b><br><small>soļi</small>` : '👣<br><small>nav</small>';
+  const weekly = document.getElementById('gbox-weekly');
+  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${gd.sleepH}h</b><br><small>miegs${gd.sleepScore ? ' · '+gd.sleepScore : ''}</small>` : '😴<br><small>nav</small>';
+  if (steps)  steps.innerHTML  = gd.steps   ? `<b>${gd.steps >= 1000 ? (gd.steps/1000).toFixed(1)+'k' : gd.steps}</b><br><small>vakar soļi</small>` : '👣<br><small>nav</small>';
   if (stress) stress.innerHTML = gd.stress  ? `<b>${gd.stress}</b><br><small>${gd.stressLevel||'stress'}</small>` : '🧘<br><small>nav</small>';
+  if (weekly) weekly.innerHTML = gd.weeklyKm != null ? `<b>${gd.weeklyKm}km</b><br><small>🚶${gd.weeklyWalk||0}+🚴${gd.weeklyBike||0}</small>` : '🏃<br><small>nav</small>';
 }
 
 function saveGarminManual() {
@@ -2670,18 +2682,18 @@ function renderMetricStrip(gd, focusItems) {
     {
       lbl:'Miegs · Garmin',
       num: gd.sleepH ? gd.sleepH+'h' : '—',
-      sub: gd.sleepQ ? 'Kval. '+gd.sleepQ+'/100' : (gd.sleepH ? 'ievadīts' : 'ievadi datus'),
+      sub: gd.sleepScore ? 'Skors '+gd.sleepScore+'/100' : (gd.sleepH ? 'vakarnakts' : 'nav datu'),
       pct: gd.sleepH ? Math.round(gd.sleepH/8*100) : 0,
-      rtxt: gd.sleepQ ? String(gd.sleepQ) : (gd.sleepH ? Math.round(gd.sleepH/8*100)+'%' : ''),
+      rtxt: gd.sleepScore ? String(gd.sleepScore) : (gd.sleepH ? Math.round(gd.sleepH/8*100)+'%' : ''),
       empty: !gd.sleepH
     },
     {
-      lbl:'Soļi · Garmin',
-      num: gd.steps ? (gd.steps>=1000?(gd.steps/1000).toFixed(1)+'k':String(gd.steps)) : '—',
-      sub: gd.steps ? 'Mērķis 10k · '+Math.round(gd.steps/10000*100)+'%' : 'ievadi datus',
-      pct: gd.steps ? Math.round(gd.steps/10000*100) : 0,
-      rtxt: gd.steps ? Math.round(gd.steps/10000*100)+'%' : '',
-      empty: !gd.steps
+      lbl:'Nedēļas km · Garmin',
+      num: gd.weeklyKm != null ? gd.weeklyKm+'km' : '—',
+      sub: gd.weeklyKm != null ? `🚶${gd.weeklyWalk||0} + 🚴${gd.weeklyBike||0}` : 'nav datu',
+      pct: gd.weeklyKm != null ? Math.min(100, Math.round(gd.weeklyKm/50*100)) : 0,
+      rtxt: gd.weeklyKm != null ? gd.weeklyKm+'km' : '',
+      empty: gd.weeklyKm == null
     },
     {
       lbl:'Stress · Garmin',
