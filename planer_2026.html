@@ -3,6 +3,3360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evita Â· 2026 Â· PlÄns</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="theme-color" content="#706354">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Evita">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+:root {
+  --bg:     #f2f2f1;
+  --white:  #ffffff;
+  --border: #e8e4df;
+  --greige: #c6c1bb;
+  --sage:   #9a9794;
+  --slate:  #5d6169;
+  --taupe:  #706354;
+  --text:   #2c2a27;
+  --red:    #c0392b;
+  --amber:  #d4861a;
+  --green:  #2e7d4f;
+  --blue:   #2c5f8a;
+  --done:   #4a9e6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+
+/* HEADER */
+.hdr { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.hdr h1 { font-size: 16px; font-weight: 700; color: var(--slate); }
+.hdr p  { font-size: 11px; color: var(--greige); margin-top: 2px; letter-spacing: 0.3px; }
+.hdr-clock { text-align: right; font-size: 12px; color: var(--slate); line-height: 1.6; }
+.sync-bar { background: #fffbf0; border-bottom: 1px solid #f0e0b0; padding: 8px 28px; display: flex; align-items: center; gap: 12px; font-size: 12px; }
+.sync-bar.ok  { background: #f0faf4; border-color: #b8dfc8; }
+.sync-bar.err { background: #fff0f0; border-color: #f5c6c6; }
+.sync-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sync-dot.ok  { background: var(--done); }
+.sync-dot.warn{ background: var(--amber); }
+.sync-dot.err { background: var(--red); }
+.sync-msg { flex: 1; color: var(--slate); }
+.sync-msg small { color: var(--sage); margin-left: 8px; }
+.sync-btn { background: var(--taupe); color: white; border: none; border-radius: 4px; padding: 5px 12px; font-size: 11px; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.sync-btn:hover { background: var(--slate); }
+.sync-btn.secondary { background: none; border: 1px solid var(--greige); color: var(--slate); }
+.sync-btn.secondary:hover { border-color: var(--taupe); color: var(--taupe); }
+
+/* GOOGLE DRIVE JOSLA */
+#drive-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 4px 24px; display: flex; align-items: center; justify-content: flex-end; gap: 10px; font-size: 11px; color: var(--greige); }
+#drive-status { flex: 1; }
+#drive-btn { background: var(--taupe); color: #fff; border: none; border-radius: 5px; padding: 4px 14px; font-size: 10px; font-weight: 700; cursor: pointer; font-family: inherit; letter-spacing: .5px; transition: background .15s; }
+#drive-btn:hover { background: var(--slate); }
+#drive-btn.ok { background: #4caf50; cursor: default; }
+/* TABS */
+.tabs { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; overflow-x: auto; }
+.tb { padding: 11px 16px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer; border: none; border-bottom: 2px solid transparent; background: none; color: var(--greige); white-space: nowrap; font-family: inherit; transition: all .18s; }
+.tb.active { color: var(--slate); border-bottom-color: var(--taupe); }
+.tb:hover { color: var(--taupe); }
+
+/* CONTENT */
+.tab { display: none; padding: 22px 28px 48px; }
+.tab.active { display: block; }
+
+/* SECTION HEADER */
+.sh { margin-bottom: 18px; }
+.sh h2 { font-size: 17px; font-weight: 700; color: var(--slate); }
+.sh p  { font-size: 12px; color: var(--greige); margin-top: 4px; }
+
+/* ââ TAB 0: DZÄªVES VÄªZIJA âââââââââââââââââââ */
+.vision-hero { text-align: center; padding: 32px 20px 24px; }
+.vision-hero h2 { font-size: 24px; font-weight: 300; color: var(--slate); letter-spacing: 1px; }
+.vision-hero p  { font-size: 13px; color: var(--greige); margin-top: 6px; font-style: italic; }
+.vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width:700px){ .vision-grid{grid-template-columns:1fr;} }
+.vc { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.vc.wide { grid-column: 1 / -1; }
+.vc-img { width: 100%; height: 220px; object-fit: cover; display: block; background: linear-gradient(135deg, #e8e4df 0%, #c6c1bb 100%); }
+.vc-img.placeholder { display: flex; align-items: center; justify-content: center; font-size: 40px; color: var(--greige); }
+.vc-body { padding: 20px 22px 22px; }
+.vc-num  { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--greige); margin-bottom: 4px; }
+.vc-title{ font-size: 16px; font-weight: 700; color: var(--slate); margin-bottom: 12px; }
+.vc-text { font-size: 13px; color: #4a4540; line-height: 1.75; }
+.vision-quote { background: var(--slate); color: white; text-align: center; padding: 28px 40px; border-radius: 10px; margin-bottom: 20px; }
+.vision-quote p { font-size: 15px; font-style: italic; line-height: 1.8; opacity: 0.9; }
+.vision-quote span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-top: 10px; display: block; }
+
+/* ââ TAB 1: GADA MÄRÄ¶I ââââââââââââââââââââââ */
+.goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:680px){ .goal-grid{grid-template-columns:1fr;} }
+.gc { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+.gc-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.gc-icon { font-size: 20px; }
+.gc-hdr h3 { font-size: 13px; font-weight: 700; color: var(--slate); }
+.gc-hdr span { font-size: 11px; color: var(--greige); display: block; margin-top: 1px; }
+.kpi { list-style: none; }
+.kpi li { font-size: 12px; padding: 5px 0; border-bottom: 1px solid var(--bg); color: #444; display: flex; gap: 8px; line-height: 1.4; }
+.kpi li:last-child { border-bottom: none; }
+.kpi li::before { content: "âº"; color: var(--taupe); font-weight: 700; flex-shrink: 0; }
+.kpi .done-tag { color: var(--done); font-weight: 600; font-size: 10px; margin-left: 4px; }
+.kpi .term { color: var(--greige); font-size: 10px; margin-left: 4px; }
+
+/* ââ TAB 2: MÄNEÅ A MILESTONES ââââââââââââââââ */
+#months-wrap { display: flex; flex-direction: column; gap: 10px; }
+.mc { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.mc-hdr { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; user-select: none; }
+.mc-hdr:hover { background: #faf9f8; }
+.mc-left { display: flex; align-items: center; gap: 12px; }
+.mc-num { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.mc-num.past    { background: #e8f5e9; color: #2e7d32; }
+.mc-num.current { background: var(--taupe); color: white; }
+.mc-num.future  { background: var(--border); color: var(--slate); }
+.mc-name { font-size: 14px; font-weight: 700; color: var(--slate); }
+.mc-theme { font-size: 11px; color: var(--greige); margin-top: 1px; }
+.mc-stats { font-size: 11px; color: var(--sage); }
+.mc-arr { font-size: 11px; color: var(--greige); transition: transform .2s; }
+.mc-hdr.open .mc-arr { transform: rotate(180deg); }
+.mc-body { display: none; padding: 6px 16px 14px; border-top: 1px solid var(--border); }
+.mc-body.open { display: block; }
+.mi { display: flex; align-items: flex-start; gap: 9px; padding: 6px 3px; border-radius: 4px; }
+.mi:hover { background: var(--bg); }
+.mi input { width: 15px; height: 15px; accent-color: var(--taupe); cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+.mi label { font-size: 13px; cursor: pointer; line-height: 1.4; }
+.mi input:checked + label { text-decoration: line-through; color: var(--greige); }
+.gtag { font-size: 10px; padding: 1px 6px; border-radius: 8px; margin-left: 6px; font-weight: 600; }
+.gtag-b { background: #fff3e0; color: #e65100; }
+.gtag-m { background: #e3f2fd; color: #1565c0; }
+.gtag-f { background: #e8f5e9; color: #2e7d32; }
+.gtag-a { background: #f3e5f5; color: #6a1b9a; }
+.gtag-p { background: #fce4ec; color: #880e4f; }
+
+/* ââ TAB 3: NEDÄÄ»AS PLÄNS âââââââââââââââââââ */
+.week-top { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; margin-bottom: 10px; }
+.week-top h3 { font-size: 15px; font-weight: 700; color: var(--slate); margin-bottom: 10px; }
+.prio { display: flex; align-items: flex-start; gap: 10px; padding: 5px 0; font-size: 13px; }
+.pn { width: 22px; height: 22px; background: var(--taupe); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.plink { font-size: 10px; color: var(--sage); margin-left: 4px; }
+.acc-b { background: #fef0f0; border: 1px solid #f5c6c6; border-left: 4px solid var(--red); border-radius: 6px; padding: 12px 16px; margin-bottom: 10px; }
+.acc-b h4 { font-size: 10px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 7px; }
+.acc-b p  { font-size: 12px; color: #6b2020; padding: 2px 0; }
+
+.day-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.dh { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; cursor: pointer; user-select: none; }
+.dh:hover { background: #faf9f8; }
+.dh.today { border-left: 4px solid var(--taupe); }
+.dh.past  { opacity: .78; }
+.dl { display: flex; align-items: center; gap: 10px; }
+.dname { font-size: 15px; font-weight: 700; }
+.ddate { font-size: 12px; color: var(--taupe); font-weight: 600; }
+.dbadge { font-size: 10px; padding: 2px 9px; border-radius: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+.b-today   { background: var(--taupe); color: white; }
+.b-past    { background: var(--border); color: var(--slate); }
+.b-weekend { background: #e8f0fe; color: #1a56a3; }
+.b-travel  { background: #e8f5e9; color: #2e7d32; }
+.b-kids    { background: #f3e5f5; color: #6a1b9a; }
+.b-free    { background: var(--bg); color: var(--slate); border: 1px solid var(--border); }
+.dr { display: flex; align-items: center; gap: 8px; }
+.dcnt { font-size: 11px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1px 8px; }
+.darr { font-size: 11px; color: var(--greige); transition: transform .2s; }
+.dh.open .darr { transform: rotate(180deg); }
+.dprog { padding: 0 16px 6px; }
+.pb-w { height: 3px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+.pb-f { height: 100%; background: var(--taupe); border-radius: 2px; transition: width .3s; }
+.ppct { font-size: 10px; color: var(--taupe); text-align: right; margin-top: 2px; }
+.db { display: none; padding: 0 16px 14px; border-top: 1px solid var(--bg); }
+.db.open { display: block; }
+.slbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--greige); margin: 12px 0 6px; }
+.cev-done { opacity: 0.55; }
+.cev-done span { text-decoration: line-through; }
+.cev input[type=checkbox] { accent-color: var(--blue); cursor: pointer; flex-shrink: 0; margin: 0; }
+.cev { display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: #f0f4fa; border-left: 3px solid var(--blue); border-radius: 4px; margin-bottom: 5px; font-size: 12px; }
+.ctime { font-weight: 700; color: var(--blue); min-width: 40px; font-size: 11px; }
+.tg { margin-bottom: 10px; }
+.tgl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 4px 0; border-bottom: 1px solid var(--bg); margin-bottom: 6px; }
+.tgl-S { color: var(--red); }
+.tgl-O { color: var(--blue); }
+.tgl-Sh{ color: var(--taupe); }
+.tgl-P { color: #666; }
+.tgl-F { color: var(--green); }
+.tgl-G { color: #7b1fa2; }
+.tgl-U { color: var(--slate); }
+.ti { display: flex; align-items: flex-start; gap: 9px; padding: 5px 3px; border-radius: 4px; }
+.ti:hover { background: var(--bg); }
+.ti input { width: 15px; height: 15px; accent-color: var(--taupe); cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+.ti label { font-size: 13px; cursor: pointer; line-height: 1.4; }
+.ti input:checked + label { text-decoration: line-through; color: var(--greige); }
+.ttag { font-size: 10px; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
+.ttag-u { background: #fde8e8; color: var(--red); }
+.ttag-g { background: #e3f0ff; color: var(--blue); }
+.ttag-m { background: #e8f5e9; color: var(--green); }
+.coach-n { background: #fffbf0; border: 1px solid #f5e0a0; border-left: 3px solid var(--amber); border-radius: 4px; padding: 9px 12px; font-size: 12px; color: #7a5200; margin-top: 10px; line-height: 1.5; }
+.coach-n strong { color: var(--amber); }
+.archive-hdr { margin-top: 28px; padding: 10px 14px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--sage); user-select: none; }
+.archive-hdr:hover { color: var(--slate); }
+.archive-hdr span { font-size: 11px; }
+.archive-body { display: none; margin-top: 6px; }
+.archive-body.open { display: block; }
+.archive-week { background: var(--white); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 6px; overflow: hidden; opacity: 0.75; }
+.archive-week-hdr { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-size: 12px; color: var(--slate); }
+.archive-week-hdr:hover { background: #faf9f8; }
+.archive-week-label { font-weight: 700; }
+.archive-week-theme { color: var(--greige); font-size: 11px; margin-left: 8px; }
+.archive-week-body { display: none; padding: 8px 14px 12px; border-top: 1px solid var(--bg); }
+.archive-week-body.open { display: block; }
+.archive-week-body .cev { margin-bottom: 4px; }
+.add-toggle { margin-top: 10px; font-size: 12px; color: var(--taupe); cursor: pointer; background: none; border: 1px dashed var(--greige); border-radius: 4px; padding: 5px 12px; width: 100%; text-align: center; font-family: inherit; transition: all .18s; }
+.add-toggle:hover { border-color: var(--taupe); background: var(--bg); }
+.add-form { display: none; margin-top: 10px; }
+.add-form.open { display: flex; gap: 8px; flex-wrap: wrap; }
+.add-txt { flex: 1; min-width: 180px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; font-family: inherit; outline: none; }
+.add-txt:focus { border-color: var(--taupe); }
+.add-cat { padding: 7px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; font-family: inherit; }
+.add-ok { background: var(--taupe); color: white; border: none; border-radius: 4px; padding: 7px 14px; font-size: 12px; cursor: pointer; font-family: inherit; }
+.add-ok:hover { background: var(--slate); }
+.add-cl { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 7px 10px; font-size: 12px; cursor: pointer; font-family: inherit; color: var(--slate); }
+
+/* ââ IDEJAS / INBOX ââââââââââââââââââââââââ */
+.ideas-toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.ideas-search { flex: 1; min-width: 160px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; background: var(--white); }
+.ideas-search:focus { border-color: var(--taupe); }
+.ideas-filter { display: flex; gap: 6px; flex-wrap: wrap; }
+.if-btn { padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--slate); font-family: inherit; transition: all .15s; }
+.if-btn.active, .if-btn:hover { background: var(--taupe); color: white; border-color: var(--taupe); }
+.new-idea-btn { background: var(--taupe); color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; transition: background .15s; }
+.new-idea-btn:hover { background: var(--slate); }
+.ideas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:680px){ .ideas-grid{grid-template-columns:1fr;} }
+.note-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; cursor: pointer; transition: box-shadow .15s, border-color .15s; position: relative; }
+.note-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); border-color: var(--greige); }
+.note-tag-chip { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; letter-spacing: 0.5px; }
+.note-title { font-size: 14px; font-weight: 700; color: var(--slate); margin-bottom: 6px; line-height: 1.3; }
+.note-preview { font-size: 12px; color: var(--sage); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.note-meta { font-size: 10px; color: var(--greige); margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+.note-del { background: none; border: none; font-size: 14px; cursor: pointer; color: var(--greige); padding: 2px 4px; border-radius: 3px; opacity: 0; transition: opacity .15s; }
+.note-card:hover .note-del { opacity: 1; }
+.note-del:hover { color: var(--red); background: #fef0f0; }
+.empty-ideas { text-align: center; padding: 60px 20px; color: var(--greige); grid-column: 1 / -1; }
+.empty-ideas p { font-size: 14px; margin-top: 10px; }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.hidden { display: none; }
+.modal-box { background: var(--white); border-radius: 10px; padding: 24px 26px; width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,.18); }
+.modal-box h3 { font-size: 16px; font-weight: 700; color: var(--slate); margin-bottom: 18px; }
+.mf-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--greige); margin-bottom: 5px; }
+.mf-input { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; font-family: inherit; outline: none; margin-bottom: 14px; }
+.mf-input:focus { border-color: var(--taupe); }
+.mf-textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; resize: vertical; min-height: 140px; line-height: 1.6; margin-bottom: 14px; }
+.mf-textarea:focus { border-color: var(--taupe); }
+.mf-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.mf-tag { padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--slate); font-family: inherit; transition: all .15s; }
+.mf-tag.sel { background: var(--taupe); color: white; border-color: var(--taupe); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.m-save { background: var(--taupe); color: white; border: none; border-radius: 6px; padding: 9px 20px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.m-save:hover { background: var(--slate); }
+.m-cancel { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 9px 16px; font-size: 13px; cursor: pointer; font-family: inherit; color: var(--slate); }
+.obsidian-info { background: #f0f4ff; border: 1px solid #c8d8f8; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 12px; color: #2c4a8a; line-height: 1.6; }
+.obsidian-info strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.obsidian-info code { background: #dce8ff; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+
+/* ââ JAUNÄ IDENTITÄTE ââââââââââââââââââââââ */
+.id-section { margin-top: 28px; }
+.id-section-hdr { text-align: center; padding: 20px 0 18px; }
+.id-section-hdr h2 { font-size: 18px; font-weight: 700; color: var(--slate); letter-spacing: 0.5px; }
+.id-section-hdr p { font-size: 12px; color: var(--greige); margin-top: 4px; font-style: italic; }
+.id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:680px){ .id-grid{grid-template-columns:1fr;} }
+.id-card { background: var(--slate); color: white; border-radius: 8px; padding: 18px 20px; }
+.id-num { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-bottom: 5px; }
+.id-domain { font-size: 12px; font-weight: 700; color: var(--greige); margin-bottom: 10px; letter-spacing: 0.5px; }
+.id-text { font-size: 13px; line-height: 1.8; opacity: 0.92; font-style: italic; }
+
+/* ââ TAB 4: PROGRESS ââââââââââââââââââââââââ */
+.stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 22px; }
+@media(max-width:580px){ .stat-row{grid-template-columns:1fr 1fr;} }
+.sc { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 16px; text-align: center; }
+.sc-num { font-size: 28px; font-weight: 300; color: var(--slate); }
+.sc-lbl { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--greige); margin-top: 4px; }
+.sc-pct { font-size: 12px; color: var(--taupe); margin-top: 2px; font-weight: 600; }
+.exp-btn { background: var(--slate); color: white; border: none; border-radius: 6px; padding: 11px 22px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 22px; transition: background .18s; }
+.exp-btn:hover { background: var(--taupe); }
+.prog-day { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin-bottom: 8px; }
+.prog-day h4 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+.prog-day h4 span { font-size: 11px; color: var(--taupe); font-weight: 600; }
+.pt { font-size: 12px; padding: 3px 0; display: flex; gap: 8px; align-items: flex-start; }
+.pt-ok  { color: var(--done); }
+.pt-no  { color: var(--greige); }
+.cat-break { margin-bottom: 18px; }
+.cat-break h3 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 10px; }
+.cat-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 12px; }
+.cat-bar-lbl { width: 160px; flex-shrink: 0; color: var(--slate); }
+.cat-bar-w { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.cat-bar-f { height: 100%; background: var(--taupe); border-radius: 3px; transition: width .4s; }
+.cat-bar-n { width: 36px; text-align: right; color: var(--taupe); font-weight: 600; }
+
+/* ââ DASHBORDS â Anna Cherry precÄ«zs izkÄrtojums âââââââ */
+/* KopÄ«gi palÄ«gelements */
+.d-empty{font-size:13px;color:var(--greige);font-style:italic;}
+.d-sub{font-size:11px;color:var(--sage);margin-top:5px;}
+.d-btn{background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:6px 13px;font-size:11px;cursor:pointer;font-family:inherit;transition:background .15s;white-space:nowrap;}
+.d-btn:hover{background:var(--slate);}
+.d-link{font-size:11px;color:var(--taupe);cursor:pointer;text-decoration:underline;background:none;border:none;padding:0;font-family:inherit;}
+.d-link:hover{color:var(--slate);}
+.d-mini-inp{width:100%;padding:7px 9px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;outline:none;background:#fff;box-sizing:border-box;}
+.d-mini-inp:focus{border-color:var(--taupe);}
+.d-mini-row{display:flex;gap:7px;}
+.d-mini-row .d-mini-inp{width:auto;flex:1;}
+.garmin-stat-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:7px 6px;text-align:center;font-size:11px;color:var(--slate);line-height:1.4;}
+.garmin-stat-box b{font-size:14px;color:var(--taupe);display:block;}
+/* Header */
+.ac-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;padding:20px 24px;background:#fff;border-radius:16px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
+.ac-hdr-sub{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;}
+.ac-hdr-name{font-size:30px;font-weight:300;color:var(--slate);letter-spacing:-0.5px;line-height:1.1;}
+.ac-hdr-name em{font-style:italic;color:var(--taupe);}
+.ac-hdr-right{text-align:right;}
+.ac-hdr-day{font-size:16px;font-weight:700;color:var(--slate);}
+.ac-hdr-date{font-size:11px;color:var(--greige);margin-top:3px;}
+.ac-hdr-loc{font-size:10px;color:var(--taupe);margin-top:1px;letter-spacing:.3px;}
+/* Metric josla (5 kartes â kÄ Anna Cherry augÅ¡Ä) */
+.ac-metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+@media(max-width:1100px){.ac-metric-strip{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:680px){.ac-metric-strip{grid-template-columns:repeat(2,1fr);}}
+.ac-mc{background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
+.ac-mc-left{flex:1;min-width:0;}
+.ac-mc-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ac-mc-num{font-size:30px;font-weight:300;color:var(--slate);line-height:1;letter-spacing:-0.5px;}
+.ac-mc-unit{font-size:13px;color:var(--slate);}
+.ac-mc-sub{font-size:10px;color:var(--greige);margin-top:4px;}
+.ac-mc-ring{width:50px;height:50px;flex-shrink:0;margin-left:10px;}
+.ac-rb{fill:none;stroke:#e0dbd5;stroke-width:3.5;}
+.ac-rf{fill:none;stroke:var(--taupe);stroke-width:3.5;stroke-linecap:round;transform-origin:25px 25px;transform:rotate(-90deg);transition:stroke-dasharray .7s ease;}
+.ac-rt{font-size:8.5px;font-weight:700;fill:var(--slate);text-anchor:middle;dominant-baseline:middle;}
+.ac-mc-empty .ac-mc-num{color:#ccc8c3;}
+/* 3-kolonnu galvenais reÅ¾Ä£is */
+.ac-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:start;}
+@media(max-width:960px){.ac-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:620px){
+  .ac-grid{display:flex;flex-direction:column;}
+  .ac-col{display:contents;}
+  #ac-card-cal{order:1;}
+  #ac-card-focus{order:2;}
+  #ac-card-goals{order:3;}
+}
+.ac-col{display:flex;flex-direction:column;gap:14px;}
+/* Karte */
+.ac-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
+.ac-ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(112,99,84,.1);}
+.ac-ct{font-size:14px;font-weight:700;color:var(--slate);letter-spacing:.2px;}
+.ac-ca{font-size:10px;color:var(--taupe);cursor:pointer;border:none;background:none;font-family:inherit;padding:0;font-weight:600;}
+.ac-ca:hover{color:var(--slate);}
+.ac-cm{font-size:10px;color:var(--greige);}
+/* KalendÄra cilnes */
+.ac-tabs{display:flex;gap:3px;background:var(--bg);border-radius:8px;padding:3px;margin-bottom:14px;}
+.ac-tab{flex:1;text-align:center;padding:5px;font-size:11px;font-weight:600;color:var(--greige);border-radius:6px;cursor:pointer;border:none;background:none;font-family:inherit;transition:all .15s;}
+.ac-tab.on{background:var(--taupe);color:#fff;box-shadow:0 1px 4px rgba(112,99,84,.25);}
+/* Notikums rinda */
+.ac-er{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid #f3f1ef;}
+.ac-er:last-child{border-bottom:none;}
+.ac-et{font-size:11px;font-weight:700;color:var(--taupe);min-width:42px;flex-shrink:0;padding-top:1px;}
+.ac-ev{font-size:13px;color:var(--slate);line-height:1.4;}
+.ac-es{font-size:10px;color:var(--greige);margin-top:1px;}
+/* MÄrÄ·i */
+.ac-gr{padding:11px 0;border-bottom:1px solid rgba(112,99,84,.08);cursor:pointer;}
+.ac-gr:last-child{border-bottom:none;}
+.ac-gr:hover .ac-gn{color:var(--taupe);}
+.ac-gtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;}
+.ac-gn{font-size:13px;color:var(--slate);transition:color .15s;font-weight:500;}
+.ac-gp{font-size:15px;font-weight:700;color:var(--taupe);}
+.ac-gsub{font-size:10px;color:var(--greige);margin-bottom:7px;}
+.ac-gbar{height:4px;background:#e8e2dc;border-radius:2px;overflow:hidden;}
+.ac-gbf{height:100%;background:var(--taupe);border-radius:2px;transition:width .6s;}
+/* Fokuss */
+.ac-fr{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f1ef;}
+.ac-fr:last-child{border-bottom:none;}
+.ac-fr input[type=checkbox]{width:15px;height:15px;accent-color:var(--taupe);cursor:pointer;flex-shrink:0;}
+.ac-fl{flex:1;font-size:13px;color:var(--slate);cursor:pointer;line-height:1.4;}
+.ac-fr input:checked~.ac-fl{text-decoration:line-through;color:var(--greige);}
+.ac-ftag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:20px;flex-shrink:0;}
+.tag-b{background:var(--taupe);color:#fff;}
+.tag-m{background:var(--slate);color:#fff;}
+.tag-nk{background:#8a7a6a;color:#fff;}
+/* Izdevumi (Investments stils) */
+.ac-ih{font-size:44px;font-weight:300;color:var(--slate);line-height:1;margin-bottom:12px;letter-spacing:-2px;}
+.ac-ir{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(112,99,84,.08);font-size:12px;}
+.ac-ir:last-child{border-bottom:none;}
+.ac-idot{width:6px;height:6px;border-radius:50%;background:var(--taupe);flex-shrink:0;}
+.ac-icat{flex:1;color:var(--slate);}
+.ac-iamt{font-weight:700;color:var(--taupe);}
+/* Laika apstÄkÄ¼i */
+.ac-wtop{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.ac-wtemp{font-size:46px;font-weight:300;color:var(--slate);line-height:1;letter-spacing:-2px;}
+.ac-wicon{font-size:38px;line-height:1;}
+.ac-wdesc{font-size:13px;color:var(--slate);font-weight:500;}
+.ac-whl{font-size:11px;color:var(--greige);margin-top:3px;}
+.ac-fc{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border-top:1px solid #f3f1ef;padding-top:12px;margin-top:4px;}
+.ac-fcd{text-align:center;}
+.ac-fcl{font-size:9px;font-weight:700;color:var(--greige);text-transform:uppercase;letter-spacing:.5px;}
+.ac-fci{font-size:16px;margin:3px 0;}
+.ac-fct{font-size:11px;color:var(--slate);font-weight:600;}
+/* NedÄÄ¼as progress */
+.ac-wr{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;}
+.ac-wrd{min-width:24px;font-size:10px;font-weight:700;color:var(--greige);text-transform:uppercase;}
+.ac-wrb{flex:1;height:5px;background:#e8e2dc;border-radius:3px;overflow:hidden;}
+.ac-wrbf{height:100%;background:var(--taupe);border-radius:3px;}
+.ac-wrp{font-size:10px;color:var(--taupe);min-width:30px;text-align:right;font-weight:600;}
+
+/* ââ IZDEVUMI ââââââââââââââââââââââââââââââââââââââââââââ */
+.iz-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+.iz-nav { display: flex; align-items: center; gap: 10px; }
+.iz-nav button { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 5px 10px; font-size: 13px; cursor: pointer; color: var(--slate); font-family: inherit; }
+.iz-nav button:hover { border-color: var(--taupe); color: var(--taupe); }
+.iz-month-lbl { font-size: 16px; font-weight: 700; color: var(--slate); min-width: 140px; text-align: center; }
+.iz-add-btn { background: var(--taupe); color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.iz-add-btn:hover { background: var(--slate); }
+.iz-sum-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 18px; }
+@media(max-width:580px){ .iz-sum-row{grid-template-columns:1fr 1fr;} }
+.iz-sc { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+.iz-sc-n { font-size: 24px; font-weight: 300; color: var(--slate); }
+.iz-sc-l { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--greige); margin-top: 4px; }
+.iz-section { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; }
+.iz-section h3 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 14px; }
+.iz-cat-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
+.iz-cat-lbl { width: 130px; flex-shrink: 0; color: var(--text); }
+.iz-cat-bar-w { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.iz-cat-bar-f { height: 100%; border-radius: 4px; transition: width .4s; }
+.iz-cat-eur { width: 65px; text-align: right; font-weight: 600; color: var(--slate); }
+.iz-tr-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--bg); font-size: 13px; }
+.iz-tr-row:last-child { border-bottom: none; }
+.iz-tr-date { font-size: 11px; color: var(--greige); min-width: 60px; flex-shrink: 0; }
+.iz-tr-desc { flex: 1; }
+.iz-tr-eur { font-weight: 700; color: var(--slate); white-space: nowrap; }
+.iz-tr-del { background: none; border: none; color: var(--greige); cursor: pointer; font-size: 14px; padding: 2px 4px; border-radius: 3px; }
+.iz-tr-del:hover { color: var(--red); }
+.iz-add-form { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 16px; }
+.iz-add-form h3 { font-size: 13px; font-weight: 700; color: var(--slate); margin-bottom: 12px; }
+.iz-form-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.iz-finp { flex: 1; min-width: 100px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 5px; font-size: 13px; font-family: inherit; outline: none; background: var(--white); }
+.iz-finp:focus { border-color: var(--taupe); }
+.iz-fsel { padding: 8px; border: 1px solid var(--border); border-radius: 5px; font-size: 12px; font-family: inherit; background: white; }
+.iz-fsave { background: var(--taupe); color: white; border: none; border-radius: 5px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.iz-fsave:hover { background: var(--slate); }
+.iz-fcancel { background: none; border: 1px solid var(--border); color: var(--slate); border-radius: 5px; padding: 8px 14px; font-size: 13px; cursor: pointer; font-family: inherit; }
+.iz-empty { font-size: 13px; color: var(--greige); font-style: italic; padding: 8px 0; }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <h1>Evita Kirilova Â· 2026 Â· DzÄ«ves plÄns</h1>
+    <p>StratÄÄ£iskais kouÄs & progress tracker</p>
+  </div>
+  <div class="hdr-clock" id="clk"></div>
+</div>
+<div id="drive-bar">
+  <span id="drive-status">âï¸ Google Drive â nav savienots</span>
+  <button id="drive-btn" onclick="GDS.login()">PieslÄgties Google</button>
+</div>
+<div class="sync-bar" id="sync-bar">
+  <div class="sync-dot warn" id="sync-dot"></div>
+  <div class="sync-msg" id="sync-msg">Savienojam mapi automÄtiskajai saglabÄÅ¡anai...</div>
+  <button class="sync-btn" id="sync-btn" onclick="connectFolder()" style="display:none">ð Savienot mapi</button>
+  <button class="sync-btn secondary" id="sync-save-btn" onclick="writeProgress(true)" style="display:none">ð¾ SaglabÄt tagad</button>
+</div>
+
+<div class="tabs">
+  <button class="tb active" onclick="showTab('dashboard')">ð  Dashbords</button>
+  <button class="tb" onclick="showTab('vision')">ð DzÄ«ves vÄ«zija</button>
+  <button class="tb" onclick="showTab('identity')">ðª JaunÄ identitÄte</button>
+  <button class="tb" onclick="showTab('goals')">ð¯ Gada mÄrÄ·i</button>
+  <button class="tb" onclick="showTab('months')">ð MÄneÅ¡a milestones</button>
+  <button class="tb" onclick="showTab('week')">ð NedÄÄ¼as plÄns</button>
+  <button class="tb" onclick="showTab('ideas')">ð¡ Idejas</button>
+  <button class="tb" onclick="showTab('izdevumi')">ð¸ Izdevumi</button>
+  <button class="tb" onclick="showTab('progress')">ð Progress</button>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     DASHBORDS â Anna Cherry izkÄrtojums
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-dashboard" class="tab active">
+
+  <!-- Header: Evita â dzÄ«ves fokuss + datums/vieta -->
+  <div class="ac-hdr">
+    <div>
+      <div class="ac-hdr-sub">DzÄ«ves plÄnotÄjs</div>
+      <div class="ac-hdr-name">Evita <em>â dzÄ«ves fokuss</em></div>
+    </div>
+    <div class="ac-hdr-right">
+      <div class="ac-hdr-day" id="ac-hdr-day">â</div>
+      <div class="ac-hdr-date" id="ac-hdr-date">â</div>
+      <div class="ac-hdr-loc">Sigulda, Latvija</div>
+    </div>
+  </div>
+
+  <!-- Metric josla: 5 kartes (Garmin + Fokuss + Izdevumi) -->
+  <div class="ac-metric-strip" id="ac-metric-strip"></div>
+
+  <!-- 3 kolonnas: KalendÄrs+MÄrÄ·i | Fokuss+Izdevumi | Progress+Laiks -->
+  <div class="ac-grid">
+
+    <!-- 1. kolonna: KalendÄrs + MÄrÄ·i -->
+    <div class="ac-col">
+
+      <div class="ac-card" id="ac-card-cal">
+        <div class="ac-ch">
+          <span class="ac-ct">KalendÄrs</span>
+          <button id="cal-sync-btn" class="ac-ca" onclick="fetchGoogleCalendar()" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">â» SinhronizÄt</button>
+        </div>
+        <div class="ac-tabs">
+          <button class="ac-tab on" onclick="acCalTab('today',this)">Å odien</button>
+          <button class="ac-tab" onclick="acCalTab('week',this)">NedÄÄ¼a</button>
+          <button class="ac-tab" onclick="acCalTab('month',this)">MÄnesis</button>
+        </div>
+        <div id="ac-cal"></div>
+      </div>
+
+      <div class="ac-card" id="ac-card-goals">
+        <div class="ac-ch">
+          <span class="ac-ct">MÄrÄ·i</span>
+          <span class="ac-cm">Q3 Â· 2026</span>
+        </div>
+        <div id="ac-goals"></div>
+      </div>
+
+    </div>
+
+    <!-- 2. kolonna: Dienas fokuss + Izdevumi -->
+    <div class="ac-col">
+
+      <div class="ac-card" id="ac-card-focus">
+        <div class="ac-ch">
+          <span class="ac-ct">Dienas fokuss</span>
+          <span class="ac-cm" id="ac-focus-meta">0 no 5 izpildÄ«ti</span>
+        </div>
+        <div id="ac-focus"></div>
+        <div style="margin-top:10px;">
+          <button class="d-link" onclick="resetDayFocus()">âº Atjaunot uzdevumus</button>
+        </div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Izdevumi</span>
+          <button class="ac-ca" onclick="showTabById('izdevumi')">Visi â</button>
+        </div>
+        <div class="ac-ih" id="ac-exp-hero">0.00 â¬</div>
+        <div id="ac-exp-list"></div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
+          <div class="d-mini-row" style="margin-bottom:6px;">
+            <input class="d-mini-inp" id="exp-amount" type="number" placeholder="â¬ summa" step="0.01">
+            <select class="d-mini-inp" id="exp-cat" style="padding:6px 4px;">
+              <option value="pÄrtika">ð PÄrtika</option>
+              <option value="mÄja">ð  MÄja</option>
+              <option value="transports">ð Transports</option>
+              <option value="bÄrni">ð¦ BÄrni</option>
+              <option value="veselÄ«ba">ð VeselÄ«ba</option>
+              <option value="apÄ£Ärbs">ð ApÄ£Ärbs</option>
+              <option value="bizness">ð¯ Bizness</option>
+              <option value="ceÄ¼ojumi">âï¸ CeÄ¼ojumi</option>
+              <option value="sports">ðï¸ Sports</option>
+              <option value="cits">ð§ Cits</option>
+            </select>
+          </div>
+          <div class="d-mini-row">
+            <input class="d-mini-inp" id="exp-note" placeholder="PiezÄ«me">
+            <button class="d-btn" onclick="addExpenseFromDash()">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. kolonna: NedÄÄ¼as progress + Laika apstÄkÄ¼i + Garmin -->
+    <div class="ac-col">
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">NedÄÄ¼as progress</span>
+          <span class="ac-cm" id="ac-week-meta"></span>
+        </div>
+        <div id="ac-week-prog"></div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">Laika apstÄkÄ¼i</span>
+          <span class="ac-cm">Sigulda</span>
+        </div>
+        <div id="ac-weather"><div class="d-empty">IelÄdÄ...</div></div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">â Garmin</span>
+          <button class="ac-ca" onclick="fetchGarminJson(true)" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">â» AtjauninÄt</button>
+        </div>
+        <div id="garmin-auto-status" style="font-size:10px;color:var(--sage);margin-bottom:8px;">â³ MeklÄ Garmin datus...</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">ð´ Miegs Â· ð£ SoÄ¼i Â· ð§ Stress Â· ð NedÄÄ¼a</div>
+        <div id="garmin-auto-display" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+          <div class="garmin-stat-box" id="gbox-sleep">â</div>
+          <div class="garmin-stat-box" id="gbox-steps">â</div>
+          <div class="garmin-stat-box" id="gbox-stress">â</div>
+          <div class="garmin-stat-box" id="gbox-weekly">â</div>
+        </div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">âï¸ ManuÄla korekcija</div>
+        <div class="d-mini-row" style="margin-bottom:5px;">
+          <input class="d-mini-inp" id="g-sleep-h" type="number" min="0" max="12" step="0.5" placeholder="Miegs (h)">
+          <input class="d-mini-inp" id="g-steps" type="number" placeholder="SoÄ¼i">
+          <input class="d-mini-inp" id="g-stress" type="number" min="0" max="100" placeholder="Stress/100">
+          <button class="d-btn" onclick="saveGarminManual()">â</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB 0 Â· DZÄªVES VÄªZIJA PÄC 5 GADIEM
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-vision" class="tab">
+
+  <div class="vision-hero">
+    <h2>â¨ Mana dzÄ«ves vÄ«zija pÄc 5 gadiem</h2>
+    <p>Tas, uz ko viss virzÄs â no Å¡Ä«s vÄ«zijas izriet gada mÄrÄ·i, mÄneÅ¡a milestones un ikdienas darbi</p>
+  </div>
+
+  <div class="vision-quote">
+    <p>âEs mÄ«lu savu dzÄ«vi un sevi tajÄ."</p>
+    <span>Evita Kirilova Â· 2031</span>
+  </div>
+
+  <div class="vision-grid">
+
+    <!-- 1. VIDE -->
+    <div class="vc wide">
+      <img class="vc-img" src="dzivesvieta_alpos.png" alt="DzÄ«vesvieta Alpos" onerror="this.outerHTML='<div class=\'vc-img placeholder\'>ð</div>'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 1</div>
+        <div class="vc-title">ð¡ Vide man apkÄrt</div>
+        <div class="vc-text">Es dzÄ«voju Alpu reÄ£ionÄ, man apkÄrt ir kalni, svaigs gaiss un skaista daba. Man ir mÄja ar skatu uz kalniem un nelielu baseiniÅu. MÄjas 1. stÄvÄ ir plaÅ¡a virtuve ar atpÅ«tas zonu un Ädamzonu ar lieliem panorÄmas logiem, kas vÄrsti uz pagalmu, baseinu un tÄlÄk â skatu uz kalniem.<br><br>
+        Es kopÄ ar vÄ«ru nodarbojamies ar nekustamÄ Ä«paÅ¡uma attÄ«stÄ«Å¡anu, kur es vairÄk nodarbojos ar dizaina pusi, ar komunikÄciju ar klientiem un Ä«paÅ¡umu sagatavoÅ¡anu. Es tieÅ¡Äm no sirds un ar visu prieku veicu savu darbu, un man ir patiess prieks par katru cilvÄku, kuram esam radÄ«juÅ¡i tieÅ¡i tÄdu mÄjokli, lai tur justos Ärti un mÄjÄ«gi.<br><br>
+        Man apkÄrt ir jauki, sirsnÄ«gi un lÄ«dzÄ«gi domÄjoÅ¡i un materiÄli situÄti cilvÄki, ar kuriem regulÄri tiekos, apmeklÄju gan privÄtus, gan profesionÄlus pasÄkumus, un ar kuriem ir izveidojuÅ¡Äs sirsnÄ«gas un uzticÄ«bas pilnas attiecÄ«bas.<br><br>
+        MÄjas 2. stÄvÄ ir visas guÄ¼amistabas â arÄ« master bedroom ar lielu balkonu, savu vannas istabu un garderobi. Es katru rÄ«tu seksÄ«gÄ halÄtÄ izeju uz balkona un priecÄjos par saullÄktu pÄr kalniem, ieelpodama spirgto alpu gaisu.</div>
+      </div>
+    </div>
+
+    <!-- 2. BIZNESS -->
+    <div class="vc">
+      <img class="vc-img" src="interjera%20dizainere.png" alt="Interjera dizainere" onerror="this.outerHTML='<div class=\'vc-img placeholder\'>ð¼</div>'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 2</div>
+        <div class="vc-title">ð¢ ProfesionÄlÄ izaugsme un bizness</div>
+        <div class="vc-text">Esmu veiksmÄ«ga interjera dizainere un uzÅÄmÄja â man pieder interjera dizaina studija <strong>Made2Dream Design</strong>, kas nodarbojas ar nekustamÄ Ä«paÅ¡uma attÄ«stÄ«bu un digitÄlo mÄrketingu interjera un bÅ«vniecÄ«bas jomÄ.<br><br>
+        Man ir stabils un augoÅ¡s ienÄkumu avots â es pelnu <strong>100 000 EUR gadÄ</strong>. KopÄ ar vÄ«ru esmu izveidojusi veiksmÄ«gu starptautisku uzÅÄmumu, kas nodarbojas ar nekustamajiem Ä«paÅ¡umiem un piesaista investÄ«cijas.</div>
+      </div>
+    </div>
+
+    <!-- 3. FINANSES -->
+    <div class="vc">
+      <img class="vc-img" src="vÄ«zija%203.jpg" alt="Finanses" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 3</div>
+        <div class="vc-title">ð° Finanses un materiÄlais nodroÅ¡inÄjums</div>
+        <div class="vc-text">Man ir stabili finanÅ¡u ienÄkumi un aktÄ«vi, kas nodroÅ¡ina finansiÄlu brÄ«vÄ«bu. Es investÄju ETF fondos, nekustamajos Ä«paÅ¡umos un Ä«stermiÅa akcijÄs. Esmu izveidojusi uzkrÄjumu fondu un peÄ¼Åas plÄnu nÄkotnei.</div>
+      </div>
+    </div>
+
+    <!-- 4. ATTIECÄªBAS AR VÄªRU -->
+    <div class="vc">
+      <img class="vc-img" src="vizija_4.jpg" alt="AttiecÄ«bas ar vÄ«ru" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 4</div>
+        <div class="vc-title">â¤ï¸ AttiecÄ«bas ar vÄ«ru</div>
+        <div class="vc-text">Man ir seksuÄlas un kaislÄ«gas attiecÄ«bas ar vÄ«ru. AttiecÄ«bas ir cieÅpilnas un balstÄ«tas uz savstarpÄjo sapratni un atbalstu. Kad es vÄlos, es saÅemu dÄvanas no vÄ«ra.</div>
+      </div>
+    </div>
+
+    <!-- 5. ATTIECÄªBAS AR BÄRNIEM -->
+    <div class="vc">
+      <img class="vc-img" src="vÄ«zija_5.jpg" alt="AttiecÄ«bas ar bÄrniem" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 5</div>
+        <div class="vc-title">ð¨âð©âð¦ AttiecÄ«bas ar bÄrniem</div>
+        <div class="vc-text">Man ir harmoniskas attiecÄ«bas ar bÄrniem â es spÄju iejÅ«tÄ«gi un efektÄ«vi komunicÄt. MÄs kopÄ pavadÄm laiku gan kopÄ«gajos ceÄ¼ojumos, gan sportÄ, gan atbalstu bÄrnus ikvienÄ viÅu dzÄ«ves dienÄ. Es Ä¼oti mÄ«lu savus bÄrnus un ikvienÄ savÄ darbÄ«bÄ viÅiem to parÄdu.</div>
+      </div>
+    </div>
+
+    <!-- 6. EMOCIONÄLÄ LABSAJÅªTA -->
+    <div class="vc">
+      <img class="vc-img" src="vizija_6.jpg" alt="EmocionÄlÄ labsajÅ«ta" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 6</div>
+        <div class="vc-title">ð§ EmocionÄlÄ labsajÅ«ta</div>
+        <div class="vc-text">Esmu iekÅ¡Äji mierÄ«ga, emocionÄli stabila un harmoniska. Es runÄju mierÄ«gi bÄrniem un citiem cilvÄkiem stresa situÄcijÄs â man ir kontrolÄtas emocijas un pozitÄ«va domÄÅ¡ana. Es praktizÄju meditÄciju, paÅ¡programmÄÅ¡anas prakses un mentÄlo izaugsmi.</div>
+      </div>
+    </div>
+
+    <!-- 7. BRÄªVAIS LAIKS -->
+    <div class="vc">
+      <img class="vc-img" src="vizija_7.jpg" alt="BrÄ«vais laiks un sports" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 7</div>
+        <div class="vc-title">ð´ BrÄ«vais laiks un atpÅ«ta</div>
+        <div class="vc-text">Man ir brÄ«vais laiks sev, kurÄ varu atpÅ«sties, baudÄ«t kultÅ«ras pasÄkumus un ceÄ¼ot. Es ceÄ¼oju vismaz <strong>6 reizes gadÄ</strong>, regulÄri apmeklÄju spa, izstÄdes un muzejus.<br><br>
+        Mani hobiji ir teniss un padels, kalnu slÄpoÅ¡ana, riteÅbraukÅ¡ana, garas pastaigas. Esmu iemÄcÄ«jusies arÄ« klavierspÄli.</div>
+      </div>
+    </div>
+
+    <!-- 8. VESELÄªBA -->
+    <div class="vc">
+      <img class="vc-img" src="vÄ«zija%208.png" alt="VeselÄ«ba un izskats" onerror="this.style.display='none'">
+      <div class="vc-body">
+        <div class="vc-num">VÄ«zija 8</div>
+        <div class="vc-title">ðª VeselÄ«ba un ÄrÄjais izskats</div>
+        <div class="vc-text">Esmu vesela un stipra sieviete. Manas asins analÄ«zes ir balansÄ, asinsvadi tÄ«ri, man ir regulÄrs menstruÄlais cikls un sieviÅ¡Ä·ie hormoni balansÄ. Mans augums ir slaids, spÄcÄ«gs un muskuÄ¼ots.<br><br>
+        Ä¶ermeÅa un sejas Äda ir labi kopta, gluda un stingra. Es izskatos starojoÅ¡a, enerÄ£ijas pilna un vesela. Man ir kvalitatÄ«vs apÄ£Ärbs un apakÅ¡veÄ¼a no kvalitatÄ«viem brendiem â kapsulas garderobe, kas ir sieviÅ¡Ä·Ä«ga, seksÄ«ga un atspogulo manu bÅ«tÄ«bu.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB 1 Â· JAUNÄ IDENTITÄTE
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-identity" class="tab">
+  <div class="id-section-hdr" style="padding:28px 0 20px;">
+    <h2 style="font-size:22px; font-weight:300; color:var(--slate); letter-spacing:1px;">ðª Mana jaunÄ identitÄte</h2>
+    <p style="font-size:13px; color:var(--greige); margin-top:6px; font-style:italic;">Lasi katru dienu â Å¡Ä« ir tÄ, kura tu jau esi</p>
+  </div>
+  <div class="id-grid">
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 1</div>
+      <div class="id-domain">ðï¸ Vide man apkÄrt</div>
+      <div class="id-text">Es esmu sieviete, kura nebaidÄs mainÄ«t valsti, vidi un lomu, ja tas kalpo manai izaugsmei un Ä£imenes nÄkotnei. Es esmu veiksmÄ«ga uzÅÄmÄja, interjera dizaina profesionÄle un esmu veiksmÄ«gi kopÄ ar vÄ«ru izveidojusi starptautisku uzÅÄmumu. Es mÄku veiksmÄ«gi komunicÄt ar daÅ¾Ädiem cilvÄkiem un izveidot noturÄ«gas un sirsnÄ«gas attiecÄ«bas. Es esmu sirsnÄ«ga mamma, seksÄ«ga sieva un brÄ«niÅ¡Ä·Ä«ga sarunu biedrene. Es esmu drosmÄ«ga, radoÅ¡a un mÄrÄ·tiecÄ«ga â eju uz saviem mÄrÄ·iem un konsekventi tos realizÄju. Es mÄcos no labÄkajiem profesionÄÄ¼iem savÄ jomÄ un zinÄÅ¡anas veiksmÄ«gi pielietoju dzÄ«vÄ. Es esmu sabiedriska un komunikabla.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 2</div>
+      <div class="id-domain">ð¢ ProfesionÄlÄ izaugsme un bizness</div>
+      <div class="id-text">Es esmu veiksmÄ«ga un radoÅ¡a interjera dizainere un uzÅÄmÄja ar attÄ«stÄ«tu brendu Made2DreamDesign, kura veido skaistus, estÄtiski pievilcÄ«gus, praktiskus un funkcionÄlus mÄjokÄ¼us jaukiem cilvÄkiem, kuri ar prieku maksÄ par maniem pakalpojumiem. Es brÄ«vi pÄrvaldu ArchiCAD un mÄkslÄ«gÄ intelekta rÄ«kus, kas Ä¼auj man strÄdÄt Ätri un kvalitatÄ«vi. Nauda brÄ«vi plÅ«st pie manis, un es ar pateicÄ«bu to pieÅemu.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 3</div>
+      <div class="id-domain">ð° Finanses un materiÄlais nodroÅ¡inÄjums</div>
+      <div class="id-text">Es esmu sieviete, kura apzinÄti un sistemÄtiski rÅ«pÄjas par savu finansiÄlo stabilitÄti un droÅ¡Ä«bu. Es ar pÄrliecÄ«bu pieÅemu finanÅ¡u lÄmumus â gan par Ä£imenes budÅ¾etu, gan privÄtajÄm investÄ«cijÄm un uzkrÄjumiem. Es esmu materiÄli nodroÅ¡inÄta un finansiÄli brÄ«va sieviete.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 4</div>
+      <div class="id-domain">ð AttiecÄ«bas ar vÄ«ru</div>
+      <div class="id-text">Es esmu sieviete, kura apzinÄti attÄ«sta savu seksualitÄti, uztur tuvÄ«bu, kaisli un sievietesâvÄ«rieÅ¡a dinamiku, veidojot dzÄ«vas un piepildÄ«tas attiecÄ«bas. Es ikdienÄ izvÄlos seksÄ«gu apakÅ¡veÄ¼u.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 5</div>
+      <div class="id-domain">ð¨âð©âð¦ AttiecÄ«bas ar bÄrniem</div>
+      <div class="id-text">Es esmu mÄ«Ä¼a, mierÄ«ga un atbalstoÅ¡a mamma, kas saglabÄ cieÅpilnu komunikÄciju ar saviem bÄrniem arÄ« stresa situÄcijÄs.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 6</div>
+      <div class="id-domain">ð§ EmocionÄlÄ labsajÅ«ta</div>
+      <div class="id-text">Es esmu sieviete ar augstu apzinÄtÄ«bas lÄ«meni, kura regulÄri praktizÄ meditÄciju, apzinÄti strÄdÄ ar saviem uzskatiem un veido savu dzÄ«vi no stabilas, nobrieduÅ¡as identitÄtes.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 7</div>
+      <div class="id-domain">ð´ BrÄ«vais laiks un atpÅ«ta</div>
+      <div class="id-text">Es esmu sieviete, kura regulÄri atpÅ«Å¡as, ceÄ¼o un apzinÄti atjauno savu enerÄ£iju, nodarbojoties ar saviem hobijiem â tenisa/padeÄ¼a spÄlÄÅ¡ana, riteÅbraukÅ¡ana, pÄrgÄjieni kalnos, klavieru spÄle, kalnu slÄpoÅ¡ana. Es atpÅ«Å¡os skaisti.</div>
+    </div>
+
+    <div class="id-card">
+      <div class="id-num">IdentitÄte 8</div>
+      <div class="id-domain">ðª VeselÄ«ba un ÄrÄjais izskats</div>
+      <div class="id-text">Es esmu stipra, vesela sieviete ar muskuÄ¼otu, spÄcÄ«gu augumu un koptu sejas un Ä·ermeÅa Ädu, mirdzoÅ¡iem matiem un koptiem nagiem, kura Ä£Ärbjas stilÄ«gi un seksÄ«gi ar labas kvalitÄtes apÄ£Ärbu, kas veidots kÄ kapsulas garderobe. Es esmu sieviete, kura veselÄ«gi Äd un rÅ«pÄjas par sevi un savu veselÄ«bu.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB 2 Â· GADA MÄRÄ¶I
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-goals" class="tab">
+  <div class="sh">
+    <h2>ð¯ Gada mÄrÄ·i 2026</h2>
+    <p>8 dzÄ«ves jomas Â· Hierarhijas pamats â no Å¡iem mÄrÄ·iem izriet visi mÄneÅ¡a milestones un nedÄÄ¼as uzdevumi</p>
+  </div>
+  <div class="goal-grid">
+
+    <!-- 1. VIDE MAN APKÄRT -->
+    <div class="gc" style="grid-column: 1 / -1;">
+      <div class="gc-hdr">
+        <div class="gc-icon">ðï¸</div>
+        <div><h3>1. Vide man apkÄrt</h3><span>Alpu reÄ£ions Â· StarptautiskÄ profesionÄlÄ identitÄte Â· SociÄlÄ vide</span></div>
+      </div>
+      <ul class="kpi" style="column-count:2; column-gap:24px;">
+        <li><strong>M1:</strong> IzvÄlÄti 1â2 prioritÄrie Alpu reÄ£ioni (Austrija / ItÄlija / BavÄrija)</li>
+        <li>Noskaidroti uzturÄÅ¡anÄs un rezidences nosacÄ«jumi Ä£imenei</li>
+        <li>AtvÄrts personÄ«gais bankas konts ÄrvalstÄ«s (EU)</li>
+        <li>IzpÄtÄ«tas iespÄjas atvÄrt uzÅÄmuma kontu ÄrvalstÄ«s</li>
+        <li>KonsultÄcija par nodokÄ¼iem un rezidenci pie profesionÄÄ¼a</li>
+        <li>Skaidri saprasts â kurÄ valstÄ« izdevÄ«gÄk bÅ«t rezidentei sÄkumÄ</li>
+        <li><strong>M2:</strong> KonkrÄta stratÄÄ£ija NK Alpu reÄ£ionÄ (investÄ«cija / dzÄ«voÅ¡ana+Ä«re / attÄ«stÄ«Å¡ana)</li>
+        <li>Noteikts budÅ¾ets NK iegÄdei</li>
+        <li>1Ã nedÄÄ¼Ä (30â45 min) sistemÄtiska tirgus izpÄte</li>
+        <li>Excel fails ar objektiem un piezÄ«mÄm izveidots</li>
+        <li>Izprasti vietÄjie pirkÅ¡anas noteikumi Ärzemniekiem</li>
+        <li>Pirmie kontakti ar mÄkleriem un attÄ«stÄ«tÄjiem</li>
+        <li><strong>M3:</strong> Skaidri nodefinÄta loma â dizains + klientu komunikÄcija + Ä«paÅ¡umu sagatavoÅ¡ana</li>
+        <li>UzsÄkti kontakti ÄrvalstÄ«s (izstÄdes, pasÄkumi, profesionÄlie loki)</li>
+        <li>ApmeklÄts vismaz 1 starptautisks interjera / NK pasÄkums gadÄ</li>
+        <li>SakÄrtots profesionÄlais tÄls (portfolio, vizuÄlais stils, valoda)</li>
+        <li><strong>M4:</strong> ApzinÄts laiks vidÄ, kur cilvÄki domÄ ilgtermiÅÄ</li>
+        <li>Kontakti ar cilvÄkiem, kam ir Ä«paÅ¡umi, bizness, investÄ«cijas</li>
+        <li>SamazinÄts laiks "komforta vietÄjÄ burbulÄ«"</li>
+        <li><strong>M5:</strong> Ar vÄ«ru izrunÄta reÄla kopÄ«ga stratÄÄ£ija</li>
+        <li>Saprasts bÄrnu izglÄ«tÄ«bas iespÄjas nÄkotnÄ</li>
+        <li>Praktiski izmÄÄ£inÄta dzÄ«ve izvÄlÄtajos reÄ£ionos (ne tikai atvaÄ¼inÄjums)</li>
+        <li>InformÄcija par Apex20100 nometnÄm â vasaras iespÄjas kalnu reÄ£ionÄ</li>
+      </ul>
+    </div>
+
+    <!-- 2. PROFESIONÄLÄ IZAUGSME UN BIZNESS -->
+    <div class="gc" style="grid-column: 1 / -1;">
+      <div class="gc-hdr">
+        <div class="gc-icon">ð¢</div>
+        <div><h3>2. ProfesionÄlÄ izaugsme un bizness</h3><span>Made2DreamDesign Â· Klienti Â· Brends Â· MÄrogoÅ¡ana</span></div>
+      </div>
+      <ul class="kpi" style="column-count:2; column-gap:24px;">
+        <li><strong>M1:</strong> DefinÄts un piedÄvÄts dizaina konsultÄciju pakalpojums (IG, FB, GetaPro)</li>
+        <li>DefinÄti pakalpojumu veidi â pilnais projekts, koncepcija, komplektÄcija, vizualizÄcijas</li>
+        <li>1 maksÄjoÅ¡s klients februÄrÄ« Â· 3 maksÄjoÅ¡ie klienti jÅ«nijÄ</li>
+        <li>NostiprinÄti sakari ar mÄbÄÄ¼u raÅ¾otÄjiem un piegÄdÄtÄjiem (IKEA, K Senukai)</li>
+        <li><strong>M2:</strong> ArchiCAD kurss pabeigts</li>
+        <li>Nano Banana un citi AI rÄ«ki apgÅ«ti detalizÄti</li>
+        <li>Izveidots savs AI asistents dizaina koncepcijÄm un izmaksu aprÄÄ·iniem</li>
+        <li>AutomatizÄti prompti NanoBanano</li>
+        <li>AutomatizÄta satura veidoÅ¡ana</li>
+        <li><strong>M6:</strong> PiedÄvÄt pakalpojumu "IzstaigÄ savu dzÄ«vokli" â vizualizÄcijas ar iespÄju izstaigÄt dzÄ«vokli (BIMx no ArchiCAD, AI challenge kursa biedrenu piedÄvÄtie rÄ«ki)</li>
+        <li><strong>M3:</strong> Darbi publicÄti IG un Pinterest</li>
+        <li>Portfolio izveidots â MÄkoÅu iela, TelevÄ«zijas iela, Dzilnuciems (fotografÄts)</li>
+        <li>MÄkoÅu ielas projekts iesniegts dizaina Å¾urnÄlam</li>
+        <li><strong>M4:</strong> Dzilnuciems pÄrdots virs tirgus cenas</li>
+        <li>TelevÄ«zijas iela pÄrdota virs tirgus cenas</li>
+        <li>PampÄÄ¼u dzÄ«voklis pÄrdots virs tirgus cenas</li>
+        <li>Zeme DaugmalÄ pÄrdota virs tirgus cenas</li>
+        <li>EsoÅ¡Ä nauda sadalÄ«ta un ieguldÄ«ta â daÄ¼a Ärpus Latvijas</li>
+        <li><strong>M5:</strong> 1Ã nedÄÄ¼Ä darÄmo darbu saraksts</li>
+        <li>1Ã mÄnesÄ« refleksija par mÄrÄ·iem</li>
+        <li>1Ã mÄnesÄ« plÄns nÄkamajam mÄnesim</li>
+      </ul>
+    </div>
+
+    <!-- 3. FINANSES -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">ð°</div>
+        <div><h3>3. Finanses un materiÄlais nodroÅ¡inÄjums</h3><span>IenÄkumi Â· InvestÄ«cijas Â· UzkrÄjumi</span></div>
+      </div>
+      <ul class="kpi">
+        <li>RegulÄra personÄ«gÄ un Ä£imenes budÅ¾eta pÄrvaldÄ«ba</li>
+        <li>IeguldÄ«jumu konts atvÄrts Â· ETF fondi un Ä«stermiÅa akciju tirgus</li>
+        <li>IlgtermiÅa finanÅ¡u plÄns un papildu peÄ¼Åas stratÄÄ£ijas izveidotas</li>
+      </ul>
+    </div>
+
+    <!-- 4. ATTIECÄªBAS AR VÄªRU -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">ð</div>
+        <div><h3>4. AttiecÄ«bas ar vÄ«ru</h3><span>IntimitÄte Â· KomunikÄcija Â· KopÄ«gÄ vÄ«zija</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Jauni paÅÄmieni intÄ«majÄ dzÄ«vÄ</li>
+        <li>RegulÄra, kvalitatÄ«va intÄ«mÄ dzÄ«ve</li>
+        <li>CeÄ¼ojums divi uz ParÄ«zi</li>
+        <li>IeklausÄ«Å¡anÄs un komunikÄcijas attÄ«stÄ«Å¡ana</li>
+      </ul>
+    </div>
+
+    <!-- 5. ATTIECÄªBAS AR BÄRNIEM -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">ð¨âð©âð¦</div>
+        <div><h3>5. AttiecÄ«bas ar bÄrniem</h3><span>KomunikÄcija Â· CeÄ¼ojumi Â· KopÄ«gais laiks</span></div>
+      </div>
+      <ul class="kpi">
+        <li>Stresa situÄcijÄs â 5 min elpoÅ¡ana pirms atgrieÅ¡anÄs pie situÄcijas</li>
+        <li>CeÄ¼ojums ar bÄrniem vasarÄ</li>
+        <li>CeÄ¼ojums ar bÄrniem uz El ClÃ¡sico oktobrÄ«</li>
+        <li>CeÄ¼ojums uz Harry Potter World</li>
+      </ul>
+    </div>
+
+    <!-- 6. EMOCIONÄLÄ LABSAJÅªTA -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">ð§</div>
+        <div><h3>6. EmocionÄlÄ labsajÅ«ta</h3><span>MeditÄcija Â· IdentitÄte Â· PaÅ¡programmÄÅ¡ana</span></div>
+      </div>
+      <ul class="kpi">
+        <li>MeditÄcija 3Ã nedÄÄ¼Ä</li>
+        <li>Katru rÄ«tu â vÄ«zijas un mÄrÄ·u attÄlu pÄrlasÄ«Å¡ana</li>
+        <li>Katru dienu â identitÄtes pÄrskatÄ«Å¡ana</li>
+        <li>Vakara refleksija â vecÄ vs jaunÄ identitÄte Â· ko rÄ«t darÄ«Å¡u citÄdi?</li>
+        <li>Katru dienu 1 maza darbÄ«ba: bez apstiprinÄjuma Â· ar nelielu diskomfortu Â· atbilst jaunajai identitÄtei</li>
+      </ul>
+    </div>
+
+    <!-- 7. BRÄªVAIS LAIKS -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">ð´</div>
+        <div><h3>7. BrÄ«vais laiks un atpÅ«ta</h3><span>CeÄ¼ojumi Â· Sports Â· Nometnes</span></div>
+      </div>
+      <ul class="kpi">
+        <li>CeÄ¼ojums martÄ uz ItÄliju â nometne</li>
+        <li>SlÄpoÅ¡anas nometne vasarÄ ItÄlijÄ <em>vai</em> 1 mÄnesis Alpu reÄ£ionÄ</li>
+        <li>OktobrÄ« â Austrijas nometne</li>
+        <li>ZiemassvÄtkos â Alpu reÄ£ions savÄ Ä«paÅ¡umÄ</li>
+        <li>MaijÄ vai septembrÄ« â ceÄ¼ojums uz ParÄ«zi ar RamÅ«nu</li>
+      </ul>
+    </div>
+
+    <!-- 8. VESELÄªBA UN ÄRÄJAIS IZSKATS -->
+    <div class="gc">
+      <div class="gc-hdr">
+        <div class="gc-icon">ðª</div>
+        <div><h3>8. VeselÄ«ba un ÄrÄjais izskats</h3><span>TreniÅi Â· KopÅ¡ana Â· Garderobe</span></div>
+      </div>
+      <ul class="kpi">
+        <li>SpÄka treniÅi ar hantelÄm 2Ã nedÄÄ¼Ä</li>
+        <li>Pastaigas 2â3Ã nedÄÄ¼Ä ar podkÄstu</li>
+        <li>RegulÄra analÄ«Å¾u nodoÅ¡ana (ik pa 4â6 mÄneÅ¡iem)</li>
+        <li>Uztura bagÄtinÄtÄju lietoÅ¡ana pÄc shÄmas</li>
+        <li>Ä¶ermeÅa krÄmu lietoÅ¡ana Â· masÄÅ¾a 1Ã nedÄÄ¼Ä Â· endosfÄra</li>
+        <li>Sejas kopÅ¡anas rutÄ«na (masÄÅ¾a, maskas)</li>
+        <li>MÄjÄs veikts manikÄ«rs</li>
+        <li>Glikozes lÄ«meÅa mÄrÄ«Å¡ana 1Ã 3 mÄneÅ¡os</li>
+        <li>Kapsulas garderobes izveide Â· 1Ã mÄnesÄ« kvalitatÄ«vs apÄ£Ärbs</li>
+        <li>Jauns Mercedes-Benz EQC 400 4MATIC AMG Line</li>
+      </ul>
+    </div>
+
+  </div>
+
+
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB 2 Â· MÄNEÅ A MILESTONES
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-months" class="tab">
+  <div class="sh">
+    <h2>ð MÄneÅ¡a milestones</h2>
+    <p>Katrs mÄnesis ir solis ceÄ¼Ä uz gada mÄrÄ·iem â Claude atjaunina katru mÄnesi kouÄinga sarunÄ</p>
+  </div>
+  <div id="months-wrap"></div>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB 3 Â· NEDÄÄ»AS PLÄNS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-week" class="tab">
+  <div class="sh">
+    <h2>ð NedÄÄ¼as plÄns</h2>
+    <p>Claude atjaunina katru svÄtdienu Â· Tu Ä·eksÄ uzdevumus dienas laikÄ Â· Progress tiek saglabÄts</p>
+  </div>
+  <div id="week-wrap"></div>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB Â· IDEJAS / INBOX
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-ideas" class="tab">
+  <div class="sh">
+    <h2>ð¡ Idejas & Inbox</h2>
+    <p>Pieraksti jebko â idejas, iedvesmu, nÄkotnes plÄnus Â· Claude tÄs redz un var iekÄ¼aut nedÄÄ¼as plÄnÄ</p>
+  </div>
+
+  <div class="obsidian-info">
+    <strong>ð Obsidian sinhronizÄcija</strong>
+    Katra Å¡eit saglabÄtÄ ideja tiek ierakstÄ«ta kÄ <code>.md</code> fails mapÄ <code>NedÄÄ¼as plÄni/idejas/</code>.
+    Lai redzÄtu Å¡Ä«s idejas Obsidian: <strong>Settings â Files & Links â Detect all file extensions</strong>, tad pievieno <code>NedÄÄ¼as plÄni</code> mapi savam Vault.
+    NÄkamais lÄ«menis â <strong>abpusÄja sinhronizÄcija</strong>: instalÄ Obsidian spraudni <em>"Local REST API"</em>, un Å¡is planneris varÄs nolasÄ«t arÄ« tavus Obsidian pierakstus Å¡eit.
+  </div>
+
+  <div class="ideas-toolbar">
+    <input class="ideas-search" id="ideas-search" type="text" placeholder="ð  MeklÄt idejas..." oninput="renderIdeas()">
+    <div class="ideas-filter" id="ideas-filter">
+      <button class="if-btn active" data-tag="visi" onclick="setIdeaFilter('visi',this)">Visas</button>
+      <button class="if-btn" data-tag="bizness" onclick="setIdeaFilter('bizness',this)">Bizness</button>
+      <button class="if-btn" data-tag="mÄja" onclick="setIdeaFilter('mÄja',this)">MÄja</button>
+      <button class="if-btn" data-tag="personÄ«gi" onclick="setIdeaFilter('personÄ«gi',this)">PersonÄ«gi</button>
+      <button class="if-btn" data-tag="investÄ«cijas" onclick="setIdeaFilter('investÄ«cijas',this)">InvestÄ«cijas</button>
+      <button class="if-btn" data-tag="mÄrketings" onclick="setIdeaFilter('mÄrketings',this)">MÄrketings</button>
+      <button class="if-btn" data-tag="ceÄ¼ojumi" onclick="setIdeaFilter('ceÄ¼ojumi',this)">CeÄ¼ojumi</button>
+    </div>
+    <button class="new-idea-btn" onclick="openNoteModal()">+ Jauna ideja</button>
+  </div>
+
+  <div class="ideas-grid" id="ideas-grid"></div>
+</div>
+
+<!-- NOTE MODAL -->
+<div class="modal-overlay hidden" id="note-modal">
+  <div class="modal-box">
+    <h3 id="modal-title-lbl">âï¸ Jauna ideja</h3>
+    <div class="mf-label">Nosaukums</div>
+    <input class="mf-input" id="mf-title" type="text" placeholder="Äªss, skaidrs nosaukums...">
+    <div class="mf-label">Ideja / PiezÄ«me</div>
+    <textarea class="mf-textarea" id="mf-body" placeholder="Pieraksti ideju, iedvesmu, nÄkotnes plÄnu vai jebko citu..."></textarea>
+    <div class="mf-label">Kategorija</div>
+    <div class="mf-tags">
+      <button class="mf-tag" data-t="bizness" onclick="toggleNoteTag(this)">Bizness</button>
+      <button class="mf-tag" data-t="mÄja" onclick="toggleNoteTag(this)">MÄja</button>
+      <button class="mf-tag" data-t="personÄ«gi" onclick="toggleNoteTag(this)">PersonÄ«gi</button>
+      <button class="mf-tag" data-t="investÄ«cijas" onclick="toggleNoteTag(this)">InvestÄ«cijas</button>
+      <button class="mf-tag" data-t="mÄrketings" onclick="toggleNoteTag(this)">MÄrketings</button>
+      <button class="mf-tag" data-t="ceÄ¼ojumi" onclick="toggleNoteTag(this)">CeÄ¼ojumi</button>
+    </div>
+    <div class="modal-actions">
+      <button class="m-cancel" onclick="closeNoteModal()">Atcelt</button>
+      <button class="m-save" onclick="saveNote()">ð¾ SaglabÄt</button>
+    </div>
+  </div>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     IZDEVUMI
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-izdevumi" class="tab">
+  <div class="iz-hdr">
+    <div>
+      <h2 style="font-size:17px;font-weight:700;color:var(--slate);">ð¸ Izdevumi</h2>
+      <p style="font-size:12px;color:var(--greige);margin-top:3px;">MÄneÅ¡a pÄrskats pa kategorijÄm</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div class="iz-nav">
+        <button onclick="izNavMonth(-1)">â¹</button>
+        <span class="iz-month-lbl" id="iz-month-lbl">â</span>
+        <button onclick="izNavMonth(1)">âº</button>
+      </div>
+      <button class="iz-add-btn" onclick="document.getElementById('iz-add-form').style.display='block';document.getElementById('exp-amount2').focus();">+ Pievienot</button>
+    </div>
+  </div>
+
+  <div class="iz-add-form" id="iz-add-form" style="display:none;">
+    <h3>Jauns izdevums</h3>
+    <div class="iz-form-row">
+      <input class="iz-finp" id="exp-amount2" type="number" placeholder="â¬ summa" step="0.01" style="max-width:110px;">
+      <select class="iz-fsel" id="exp-cat2">
+        <option value="pÄrtika">ð PÄrtika</option>
+        <option value="mÄja">ð  MÄja</option>
+        <option value="transports">ð Transports</option>
+        <option value="bÄrni">ð¦ BÄrni</option>
+        <option value="veselÄ«ba">ð VeselÄ«ba</option>
+        <option value="apÄ£Ärbs">ð ApÄ£Ärbs</option>
+        <option value="bizness">ð¯ Bizness</option>
+        <option value="ceÄ¼ojumi">âï¸ CeÄ¼ojumi</option>
+        <option value="sports">ðï¸ Sports</option>
+        <option value="cits">ð§ Cits</option>
+      </select>
+      <input class="iz-finp" id="exp-note2" placeholder="PiezÄ«me">
+      <input class="iz-finp" id="exp-date2" type="date" style="max-width:150px;">
+      <button class="iz-fsave" onclick="addExpenseFromIzdevumi()">SaglabÄt</button>
+      <button class="iz-fcancel" onclick="document.getElementById('iz-add-form').style.display='none'">Atcelt</button>
+    </div>
+  </div>
+
+  <div class="iz-sum-row">
+    <div class="iz-sc"><div class="iz-sc-n" id="iz-total">0.00 â¬</div><div class="iz-sc-l">MÄneÅ¡a kopÄ</div></div>
+    <div class="iz-sc"><div class="iz-sc-n" id="iz-today-total">0.00 â¬</div><div class="iz-sc-l">Å odien</div></div>
+    <div class="iz-sc"><div class="iz-sc-n" id="iz-count">0</div><div class="iz-sc-l">DarÄ«jumi</div></div>
+  </div>
+
+  <div class="iz-section">
+    <h3>Pa kategorijÄm</h3>
+    <div id="iz-cats"><div class="iz-empty">Nav izdevumu.</div></div>
+  </div>
+
+  <div class="iz-section">
+    <h3>Visi darÄ«jumi</h3>
+    <div id="iz-list"><div class="iz-empty">Nav darÄ«jumu.</div></div>
+  </div>
+</div>
+
+<!-- âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     TAB 4 Â· PROGRESS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<div id="tab-progress" class="tab">
+  <div class="sh">
+    <h2>ð Progresa pÄrskats</h2>
+    <p>Å Ä«s nedÄÄ¼as statistika un eksports kouÄam</p>
+  </div>
+  <div id="progress-wrap"></div>
+</div>
+
+<script>
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   CLAUDE EDITS: MONTHLY MILESTONES
+   Atjaunina: reizi mÄnesÄ« kouÄinga sarunÄ
+   FormÄts: { id, text, goal: b|m|f|a|p, done: false }
+   goal: b=bizness, m=mÄrketings, f=finanses, a=attiecÄ«bas, p=paÅ¡programmÄÅ¡ana
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+const MILESTONES = {
+  "2026-01": {
+    label: "JanvÄris", status: "past",
+    theme: "Pamatu likÅ¡ana",
+    items: [
+      { id: "m01-1", text: "Biznesa plÄna izstrÄde un dokumentÄÅ¡ana", goal: "b" },
+      { id: "m01-2", text: "PaÅ¡nodarbinÄtÄ statusa izpÄte un lÄmums", goal: "b" },
+      { id: "m01-3", text: "VÄdiskÄs astroloÄ£ijas 12 mÄneÅ¡u enerÄ£iju analÄ«ze", goal: "p" },
+      { id: "m01-4", text: "Instagram un Pinterest biznesa kontu izveide", goal: "m" }
+    ]
+  },
+  "2026-02": {
+    label: "FebruÄris", status: "past",
+    theme: "Brenda identitÄte & rutÄ«nas",
+    items: [
+      { id: "m02-1", text: "PaÅ¡nodarbinÄtÄ statusa reÄ£istrÄcija VID", goal: "b" },
+      { id: "m02-2", text: "Logo, nosaukums, vizuÄlÄ identitÄte pabeigta", goal: "b" },
+      { id: "m02-3", text: "Pakalpojumu klÄsts un cenu lapa publicÄta", goal: "b" },
+      { id: "m02-4", text: "MeditÄcijas ikdienas prakse uzsÄkta (15-30 min)", goal: "p" },
+      { id: "m02-5", text: "CilvÄkdizaina tipa izpÄte pabeigta", goal: "p" }
+    ]
+  },
+  "2026-03": {
+    label: "Marts", status: "past",
+    theme: "MÄrketinga stratÄÄ£ija",
+    items: [
+      { id: "m03-1", text: "6 mÄneÅ¡u satura stratÄÄ£ija Instagram un blogam", goal: "m" },
+      { id: "m03-2", text: "ETF investÄ«cijas uzsÄktas (50 EUR/mÄn)", goal: "f" },
+      { id: "m03-3", text: "AttiecÄ«bu uzlaboÅ¡anas plÄns ar dzÄ«vesbiedru", goal: "a" },
+      { id: "m03-4", text: "VÄdiskÄs astroloÄ£ijas karte un ieteikumi", goal: "p" },
+      { id: "m03-5", text: "Pirmie 3 maksÄjoÅ¡ie klienti", goal: "b" }
+    ]
+  },
+  "2026-04": {
+    label: "AprÄ«lis", status: "past",
+    theme: "Izaugsme & monetizÄcija",
+    items: [
+      { id: "m04-1", text: "FinanÅ¡u kurss 'Gudri ar naudu' pabeigts", goal: "f" },
+      { id: "m04-2", text: "Affiliate mÄrketinga konti atvÄrti (3+ programmas)", goal: "m" },
+      { id: "m04-3", text: "Pinterest â 50+ raksti un 15+ boardi", goal: "m" },
+      { id: "m04-4", text: "DigitÄlÄ mÄrketinga niÅ¡a izvÄlÄta", goal: "m" },
+      { id: "m04-5", text: "Dr. Joe Dispenza prakse ikdienÄ uzsÄkta", goal: "p" },
+      { id: "m04-6", text: "IerobeÅ¾ojoÅ¡ie uzskati par naudu â darbs pabeigts", goal: "p" }
+    ]
+  },
+  "2026-05": {
+    label: "Maijs", status: "past",
+    theme: "Klientu skaits & emocionÄlÄ harmonija",
+    items: [
+      { id: "m05-1", text: "5+ aktÄ«vi klienti mÄnesÄ«", goal: "b" },
+      { id: "m05-2", text: "Instagram 2000+ sekotÄji", goal: "m" },
+      { id: "m05-3", text: "ETF investÄ«cijas 100 EUR/mÄn", goal: "f" },
+      { id: "m05-4", text: "EmocionÄlo bloku darbs â aizvainojums uz mammu", goal: "p" },
+      { id: "m05-5", text: "Reakciju kontrole â stresa situÄcijas", goal: "p" }
+    ]
+  },
+  "2026-06": {
+    label: "JÅ«nijs", status: "past",
+    theme: "SistÄmas & paplaÅ¡inÄÅ¡anÄs",
+    items: [
+      { id: "m06-1", text: "CRM sistÄma izveidota un aktÄ«va", goal: "b" },
+      { id: "m06-2", text: "Blogu mÄjaslapa publicÄta ar 50 rakstiem", goal: "m" },
+      { id: "m06-3", text: "Affiliate programmas nes pirmÄs komisijas", goal: "m" },
+      { id: "m06-4", text: "Ä¢imenes budÅ¾eta pÄrvaldÄ«bas sistÄma", goal: "f" },
+      { id: "m06-5", text: "SadarbÄ«bas partneru datubÄze (20+ kontakti)", goal: "b" },
+      { id: "m06-6", text: "Aizvainojuma atlaiÅ¡anas prakse â 3 mÄneÅ¡i pabeigti", goal: "a" }
+    ]
+  },
+  "2026-07": {
+    label: "JÅ«lijs", status: "current",
+    theme: "MÄjaslapa, digitÄlÄ klÄtbÅ«tne & AI challenge",
+    items: [
+      { id: "m07-1", text: "MÄjaslapa â vizualizÄcijas iekÄ¼autas, lapa pÄrcelta uz servera", goal: "b" },
+      { id: "m07-2", text: "Instagram â komunikÄcijas plÄns + 5â6 ieraksti", goal: "m" },
+      { id: "m07-3", text: "PampÄÄ¼u sludinÄjums atjaunots â", goal: "f", done: true },
+      { id: "m07-4", text: "GetaPro profils â izveidots un aktÄ«vs", goal: "b" },
+      { id: "m07-5", text: "30 dienu AI challenge uzsÄkts (13.07.)", goal: "b" }
+    ]
+  },
+  "2026-08": {
+    label: "Augusts", status: "future",
+    theme: "Portfolio & klÄtbÅ«tne",
+    items: [
+      { id: "m08-1", text: "Portfolio mÄjaslapa pilnÄ«bÄ publicÄta", goal: "b" },
+      { id: "m08-2", text: "Instagram 3000+ sekotÄji", goal: "m" },
+      { id: "m08-3", text: "2+ jauni interjera dizaina klienti ar lÄ«gumu", goal: "b" },
+      { id: "m08-4", text: "Latvijas Dizaineru savienÄ«bÄ iestÄÅ¡anÄs", goal: "b" },
+      { id: "m08-5", text: "3+ video sociÄlajiem tÄ«kliem publicÄti", goal: "m" }
+    ]
+  },
+  "2026-09": {
+    label: "Septembris", status: "future",
+    theme: "IenÄkumi & AI rÄ«ki",
+    items: [
+      { id: "m09-1", text: "Stabili 5 klienti mÄnesÄ«", goal: "b" },
+      { id: "m09-2", text: "CustomGPT rÄ«ks klientiem pabeigts", goal: "b" },
+      { id: "m09-3", text: "ETF investÄ«cijas 200 EUR/mÄn uzsÄktas", goal: "f" },
+      { id: "m09-4", text: "Instagram 3500+ sekotÄji", goal: "m" },
+      { id: "m09-5", text: "Agresijas kontroles prakse â 6 mÄneÅ¡i", goal: "p" }
+    ]
+  },
+  "2026-10": {
+    label: "Oktobris", status: "future",
+    theme: "DigitÄlie ieÅÄmumi",
+    items: [
+      { id: "m10-1", text: "1000+ EUR/mÄn no digitÄlÄ mÄrketinga", goal: "m" },
+      { id: "m10-2", text: "Instagram 4000+ sekotÄji", goal: "m" },
+      { id: "m10-3", text: "Dzilnuciems vai Äiekurkalns â aktÄ«va pÄrdoÅ¡ana", goal: "f" },
+      { id: "m10-4", text: "ETF portfelis: 600+ EUR ieguldÄ«ti", goal: "f" }
+    ]
+  },
+  "2026-11": {
+    label: "Novembris", status: "future",
+    theme: "YouTube & digitÄlie produkti",
+    items: [
+      { id: "m11-1", text: "YouTube kanÄls â 10 video publicÄti", goal: "m" },
+      { id: "m11-2", text: "3â5 digitÄlie produkti pÄrdoÅ¡anÄ", goal: "m" },
+      { id: "m11-3", text: "Instagram 4500+ sekotÄji", goal: "m" },
+      { id: "m11-4", text: "2 nekustamie Ä«paÅ¡umi pÄrdoti", goal: "f" }
+    ]
+  },
+  "2026-12": {
+    label: "Decembris", status: "future",
+    theme: "Gada noslÄgums & izvÄrtÄjums",
+    items: [
+      { id: "m12-1", text: "Instagram 5000+ sekotÄji", goal: "m" },
+      { id: "m12-2", text: "Pinterest 1 miljons skatÄ«jumu", goal: "m" },
+      { id: "m12-3", text: "IenÄkumi 2000â3000 EUR/mÄn (stabili 6 mÄn.)", goal: "f" },
+      { id: "m12-4", text: "ETF portfelis: 950+ EUR ieguldÄ«ti", goal: "f" },
+      { id: "m12-5", text: "1342 EUR uzkrÄjums pabeigts", goal: "f" },
+      { id: "m12-6", text: "EmocionÄlÄ labsajÅ«ta 9/10", goal: "p" },
+      { id: "m12-7", text: "2026 gada izvÄrtÄjums un 2027 vÄ«zija", goal: "b" }
+    ]
+  }
+};
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   CLAUDE EDITS: WEEKLY TASKS
+   Atjaunina: katru svÄtdienu pirms jaunÄs nedÄÄ¼as
+   cat: S=StratÄÄ£iskie, O=Online/pasÅ«tÄ«Å¡ana, Sh=IepirkÅ¡anÄs,
+        P=Fiziskie darbi, F=Finanses, G=Ä¢imene, U=UzturÄÅ¡ana
+   tag: "u"=steidzami, "g"=gada mÄrÄ·is, "m"=milestone
+   milestone: ID no MILESTONES (piesaista uzdevumu pie mÄneÅ¡a mÄrÄ·a)
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+const WEEKS = {
+  "2026-W28": {
+    label: "7.â13. jÅ«lijs 2026",
+    priorities: [
+      { text: "PampÄÄ¼u sludinÄjums â labot tekstu, foto, cenu", ms: "m07-3" },
+      { text: "Instagram â 1 ieraksts + jÅ«lija satura plÄna uzmetums", ms: "m07-2" },
+      { text: "MÄkoÅu iela â pabeigt iepirkÅ¡anos un pasÅ«tÄ«jumus", ms: "m07-1" }
+    ],
+    accountability: [
+      "ð´ PampÄÄ¼u sludinÄjums â 500 skatÄ«jumi, 0 zvani. Nekas nav mainÄ«ts kopÅ¡ 4. jÅ«lija.",
+      "ð´ Instagram (#1 gada mÄrÄ·is) â nav satura plÄna, nav grafika. JÅ«lijs iet garÄm.",
+      "ð¡ GetaPro â nav sÄkts. Bez tÄ klientu piesaiste platformÄ nestrÄdÄ.",
+      "ð¡ Archicad kurss â nepabeigts jau ilgstoÅ¡i. Vai Å¡is ir reÄls mÄrÄ·is Å¡obrÄ«d?"
+    ],
+    days: [
+      {
+        key: "2026-07-07", name: "Otrdiena", date: "7. jÅ«lijs", status: "past", badge: "past",
+        events: [
+          { time: "visu d.", text: "ð PuiÅ¡iem nometne (beidzas piektd. 15:00)" },
+          { time: "17:00", text: "Hugo frizieris (lÄ«dz 18:00)" }
+        ],
+        tasks: [
+          { id: "t-0707-01", text: "PampÄÄ¼u sludinÄjums â labot tekstu, foto, cenu", cat: "S", tag: "u", ms: "m07-3" },
+          { id: "t-0707-02", text: "Instagram â 1 ieraksts VAI jÅ«lija satura plÄna uzmetums", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0707-03", text: "PasÅ«tÄ«t dekoru â MÄkoÅu iela", cat: "O", ms: "m07-1" },
+          { id: "t-0707-04", text: "PasÅ«tÄ«t uzlÄ«mes uz pudelÄm", cat: "O" },
+          { id: "t-0707-05", text: "SameklÄt halogÄna uzrakstu Hugo istabai (online)", cat: "O" },
+          { id: "t-0707-06", text: "iHerb pasÅ«tÄ«jums", cat: "O" },
+          { id: "t-0707-07", text: "TÄjkanna + kafijas automÄts â MÄkoÅu iela", cat: "Sh" },
+          { id: "t-0707-08", text: "Tualetes tÄ«rÄ«Å¡anas lÄ«dzekÄ¼i Ã2", cat: "Sh" },
+          { id: "t-0707-09", text: "Tualetes papÄ«ra turÄtÄji + plauktiÅÅ¡ puiÅ¡u istabai", cat: "Sh" },
+          { id: "t-0707-10", text: "Åªdens attÄ«rÄ«tÄjs", cat: "Sh" },
+          { id: "t-0707-11", text: "Durvju aizsargi (atdures durvÄ«m)", cat: "Sh" },
+          { id: "t-0707-12", text: "Slotas Å«dens saslaucÄ«Å¡anai vannas istabÄs", cat: "Sh" },
+          { id: "t-0707-13", text: "Aizvest aizkarus atÅ¡Å«t", cat: "P" }
+        ],
+        coach: "Pilna diena bez kalendÄra notikumiem. SÄc ar PampÄÄ¼u sludinÄjumu â tas stagnÄ jau nedÄÄ¼u. StratÄÄ£iskais darbs viegli nobÄ«dÄs aiz iepirkÅ¡anÄs uzdevumiem."
+      },
+      {
+        key: "2026-07-08", name: "TreÅ¡diena", date: "8. jÅ«lijs", status: "past", badge: "past",
+        events: [
+          { time: "18:30", text: "Padel (lÄ«dz 19:30)" },
+          { time: "18:45", text: "Henrijs â angÄ¼u valoda (lÄ«dz 19:45)" },
+          { time: "19:00", text: "Hannai skrituÄ¼i (lÄ«dz 20:00)" }
+        ],
+        tasks: [
+          { id: "t-0708-01", text: "Instagram â jÅ«lija satura plÄns (ja nav izdarÄ«ts otrdien)", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0708-02", text: "PampÄÄ¼u sludinÄjums â sekot un atjaunot", cat: "S", tag: "u", ms: "m07-3" },
+          { id: "t-0708-03", text: "GetaPro â profila izveide (sÄkt)", cat: "S", ms: "m07-4" },
+          { id: "t-0708-04", text: "MÄkoÅu iela â pÄrbaudÄ«t pasÅ«tÄ«jumu statusus", cat: "O" }
+        ],
+        coach: "StratÄÄ£iskas dienas. Fokuss uz digitÄlo klÄtbÅ«tni â Instagram un GetaPro."
+      },
+      {
+        key: "2026-07-09", name: "Ceturtdiena", date: "9. jÅ«lijs", status: "today", badge: "today",
+        events: [
+          { time: "13:00", text: "Podologs (lÄ«dz 14:00)" },
+          { time: "14:15", text: "Frizieris (lÄ«dz 15:15)" }
+        ],
+        tasks: [
+          { id: "t-0709-01", text: "Instagram â 1 ieraksts publicÄts", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0709-02", text: "GetaPro â profils pabeigts un publicÄts", cat: "S", ms: "m07-4" },
+          { id: "t-0709-03", text: "PampÄÄ¼u â pÄrbaudÄ«t zvanus, atjaunot sludinÄjumu", cat: "S", tag: "u", ms: "m07-3" },
+          { id: "t-0709-04", text: "MÄkoÅu iela â pÄrbaudÄ«t atlikuÅ¡os darbus (saraksts)", cat: "O", ms: "m07-1" },
+          { id: "t-0709-05", text: "MeditÄcija (15â30 min)", cat: "G", tag: "m" }
+        ],
+        coach: "â  UzmanÄ«bu: Å¡odien brÄ«vs laiks tikai lÄ«dz 13:00 â tad podologs un frizieris aizÅem pÄcpusdienu. StratÄÄ£iskajam darbam ir ~3 stundas rÄ«tÄ. PrioritÄte: PampÄÄ¼u sludinÄjums un GetaPro profils PIRMS 13:00. Instagram var vakarÄ."
+      },
+      {
+        key: "2026-07-10", name: "Piektdiena", date: "10. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "15:00", text: "ð PuiÅ¡i atgrieÅ¾as no nometnes" },
+          { time: "19:00", text: "Hannai riteÅi (lÄ«dz 20:00)" }
+        ],
+        tasks: [
+          { id: "t-0710-01", text: "Instagram â otrais jÅ«lija ieraksts", cat: "S", tag: "g", ms: "m07-2" },
+          { id: "t-0710-02", text: "MÄkoÅu iela â visi atlikuÅ¡ie pasÅ«tÄ«jumi pabeigti", cat: "O", ms: "m07-1" },
+          { id: "t-0710-03", text: "Fotosesijas plÄnoÅ¡ana â datums, vietas, fotogrÄfs", cat: "S", ms: "m07-1" },
+          { id: "t-0710-04", text: "MeditÄcija (15â30 min)", cat: "G", tag: "m" },
+          { id: "t-0710-05", text: "NedÄÄ¼as finanÅ¡u uzskaite", cat: "F" }
+        ],
+        coach: "Piektdienas pÄcpusdienÄ puiÅ¡i atgrieÅ¾as â plÄno darba bloku lÄ«dz 14:00. Fotosesijas datuma apstiprinÄÅ¡ana ir SVARÄªGA â jÅ«lija termiÅÅ¡ tuvojas."
+      },
+      {
+        key: "2026-07-11", name: "Sestdiena", date: "11. jÅ«lijs", status: "future", badge: "kids",
+        events: [],
+        tasks: [],
+        coach: "Sestdiena â Ä£imenes diena. KvalitatÄ«vs laiks ar bÄrniem ir gada mÄrÄ·is. NeplÄno pÄrÄk daudz."
+      },
+      {
+        key: "2026-07-12", name: "SvÄtdiena", date: "12. jÅ«lijs", status: "future", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai â Äiurlionis Apartment (lÄ«dz 19. jÅ«l.)" },
+          { time: "08:00", text: "Nolikt veÄ¼as maÅ¡Ä«nu Rotas ielÄ (lÄ«dz 09:00)" }
+        ],
+        tasks: [],
+        coach: "CeÄ¼ojuma diena â vienkÄrÅ¡ots plÄns. PrioritÄte: nÄkamÄs nedÄÄ¼as plÄnoÅ¡ana pirms aizieÅ¡anas."
+      }
+    ]
+  },
+  "2026-W29": {
+    label: "13.â19. jÅ«lijs 2026",
+    priorities: [
+      { text: "MÄjaslapa â vizualizÄciju apstrÄde un ievietoÅ¡ana lovable.app + serveris", ms: "m07-1" },
+      { text: "GetaPro profils â pabeigts", ms: "m07-4" },
+      { text: "Instagram â komunikÄcijas plÄns + 2 ieraksti", ms: "m07-2" }
+    ],
+    accountability: [
+      "â AI Challenge â katru dienu 11:00â18:00 Druskininkai.",
+      "ð´ GetaPro â statuss nezinÄms, jÄpÄrbauda.",
+      "ð¡ MÄjaslapa uz servera â statuss jÄnoskaidro pÄc atgrieÅ¡anÄs."
+    ],
+    days: [
+      {
+        key: "2026-07-13", name: "Pirmdiena", date: "13. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai" },
+          { time: "09:00", text: "ð 30 min treniÅÅ¡ (lÄ«dz 10:00)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-14", name: "Otrdiena", date: "14. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "15:00", text: "Henrijs â fizioterapija (lÄ«dz 16:30)" },
+          { time: "15:00", text: "Hugo â fizioterapija (lÄ«dz 16:30)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-15", name: "TreÅ¡diena", date: "15. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai" },
+          { time: "09:00", text: "ð 30 min treniÅÅ¡ (lÄ«dz 10:00)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-16", name: "Ceturtdiena", date: "16. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-17", name: "Piektdiena", date: "17. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai" },
+          { time: "09:00", text: "ð 30 min treniÅÅ¡ (lÄ«dz 10:00)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-18", name: "Sestdiena", date: "18. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "visu d.", text: "ð¨ Druskininkai" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-19", name: "SvÄtdiena", date: "19. jÅ«lijs", status: "past", badge: "travel",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "visu d.", text: "ð AtgrieÅ¡anÄs no DruskininkÄm" }
+        ],
+        tasks: []
+      }
+    ]
+  },
+
+  "2026-W30": {
+    label: "20.â27. jÅ«lijs 2026",
+    priorities: [
+      { text: "Instagram â 2 ieraksti + augustÐ° satura plÄna uzmetums", ms: "m07-2" },
+      { text: "GetaPro profils â pilnÄ«bÄ aktÄ«vs un publicÄts", ms: "m07-4" },
+      { text: "PampÄÄ¼u pÄrdoÅ¡ana â jauns mÄkleris / sludinÄjums / aktivitÄte", ms: "m07-3" }
+    ],
+    accountability: [
+      "â  AI Challenge aizÅem 11:00â18:00 katru dienu. Darba laiks ir TIKAI rÄ«ts 9:00â11:00.",
+      "ð´ JÅ«lija milestones termiÅÅ¡ tuvojas â MÄkoÅu ielas fotosesija vÄl nav apstiprinÄta.",
+      "ð¡ Pirmdiena: apkopÄja + Pozza rezervÄcija + grÄmatvedÄ«ba = pÄrblÄ«vÄta rÄ«ta darba kÄrta."
+    ],
+    days: [
+      {
+        key: "2026-07-20", name: "Pirmdiena", date: "20. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "09:00", text: "ApkopÄja nÄk (lÄ«dz 17:00)" },
+          { time: "10:00", text: "NorezervÄt Pozza martam (lÄ«dz 11:00)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "11:00", text: "GrÄmatvedÄ«bas uzskaite â telefona Äeki, programmu kvÄ«tis, degviela (lÄ«dz 12:00)" },
+          { time: "19:00", text: "Hannai VFS (lÄ«dz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-21", name: "Otrdiena", date: "21. jÅ«lijs", status: "today", badge: "free",
+        events: [
+          { time: "09:00", text: "Lana (lÄ«dz 11:00)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "19:45", text: "Hugo stadionÄ ar somÄm (lÄ«dz 20:45)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-22", name: "TreÅ¡diena", date: "22. jÅ«lijs", status: "future", badge: "kids",
+        events: [
+          { time: "10:30", text: "Henr angÄ¼u valoda (lÄ«dz 11:30)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "16:00", text: "Henr treniÅÅ¡ (lÄ«dz 17:00)" },
+          { time: "19:00", text: "Hannai skrituÄ¼i (lÄ«dz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-23", name: "Ceturtdiena", date: "23. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-24", name: "Piektdiena", date: "24. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "19:00", text: "Hannai riteÅi (lÄ«dz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-25", name: "Sestdiena", date: "25. jÅ«lijs", status: "future", badge: "kids",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-26", name: "SvÄtdiena", date: "26. jÅ«lijs", status: "future", badge: "weekend",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-07-27", name: "Pirmdiena", date: "27. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "19:00", text: "Hannai VFS (lÄ«dz 20:00)" }
+        ],
+        tasks: []
+      }
+    ]
+  },
+  "2026-W31": {
+    label: "28.â31. jÅ«lijs 2026",
+    priorities: [
+      { text: "MÄkoÅu ielas fotosesija (ja datums apstiprinÄts)", ms: "m07-1" },
+      { text: "MÄneÅ¡a izvÄrtÄjums + augusta plÄnoÅ¡ana", ms: "m07-5" },
+      { text: "AI challenge â dienas 16â19", ms: "m07-5" }
+    ],
+    accountability: [],
+    days: [
+      {
+        key: "2026-07-28", name: "Otrdiena", date: "28. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "09:00", text: "Lana puiÅ¡iem (lÄ«dz 11:00)" },
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: [],
+        coach: null
+      },
+      {
+        key: "2026-07-29", name: "TreÅ¡diena", date: "29. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "19:00", text: "Hannai skrituÄ¼i (lÄ«dz 20:00)" }
+        ],
+        tasks: [],
+        coach: null
+      },
+      {
+        key: "2026-07-30", name: "Ceturtdiena", date: "30. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" }
+        ],
+        tasks: [],
+        coach: null
+      },
+      {
+        key: "2026-07-31", name: "Piektdiena", date: "31. jÅ«lijs", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "ð¤ AI Challenge (lÄ«dz 18:00)" },
+          { time: "19:00", text: "Hannai riteÅi (lÄ«dz 20:00)" }
+        ],
+        tasks: [],
+        coach: "JÅ«lija pÄdÄjÄ diena. IzvÄrtÄ: kas no milestones ir izdarÄ«ts? Kas pÄrceÄ¼as uz augustu?"
+      }
+    ]
+  }
+};
+
+const CURRENT_WEEK = "2026-W30";
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   GOAL TAG CONFIG
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+const CAT_CONFIG = {
+  B:  { label: "ð¼ Bizness",              cls: "tgl-B" },
+  NI: { label: "ð  Nekustamie Ä«paÅ¡umi",  cls: "tgl-NI" },
+  C:  { label: "âï¸ CeÄ¼ojums",             cls: "tgl-C" },
+  MU: { label: "ð§¹ MÄjas uzturÄÅ¡ana",    cls: "tgl-MU" },
+  BE: { label: "ð¦ BÄrni",               cls: "tgl-BE" },
+  F:  { label: "ð° Finanses",            cls: "tgl-F" },
+  SV: { label: "ðª Sports / VeselÄ«ba",  cls: "tgl-SV" },
+  ID: { label: "â¨ IdeÄlÄ dzÄ«ve",        cls: "tgl-ID" }
+};
+const GOAL_TAG_NAMES = { b: "Bizness", m: "MÄrketings", f: "Finanses", a: "AttiecÄ«bas", p: "PaÅ¡programm." };
+const GOAL_TAG_CLS   = { b: "gtag-b", m: "gtag-m",     f: "gtag-f",   a: "gtag-a",     p: "gtag-p" };
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   LOCALSTORAGE HELPERS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function LS(key, val) {
+  if (val === undefined) { try { return JSON.parse(localStorage.getItem(key)); } catch(e) { return null; } }
+  try {
+    localStorage.setItem(key, JSON.stringify(val));
+    if (typeof GDS !== 'undefined' && GDS.ready) GDS.scheduleSave();
+  } catch(e) {}
+}
+function getChecked(id)       { return LS('ec_' + id) === true; }
+function setChecked(id, val)  { LS('ec_' + id, val); }
+function getUserTasks(dayKey) { return LS('eu_' + dayKey) || []; }
+function setUserTasks(dayKey, tasks) { LS('eu_' + dayKey, tasks); }
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   IDEJAS / NOTES
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+const TAG_COLORS = {
+  'bizness':     { bg:'#fff3e0', color:'#e65100' },
+  'mÄja':        { bg:'#e8f5e9', color:'#2e7d32' },
+  'personÄ«gi':   { bg:'#f3e5f5', color:'#6a1b9a' },
+  'investÄ«cijas':{ bg:'#e3f2fd', color:'#1565c0' },
+  'mÄrketings':  { bg:'#fce4ec', color:'#880e4f' },
+  'ceÄ¼ojumi':    { bg:'#e0f7fa', color:'#006064' },
+};
+let currentIdeaFilter = 'visi';
+let editingNoteId = null;
+
+function getNotes() { return LS('ev_notes') || []; }
+function saveNotes(arr) { LS('ev_notes', arr); }
+
+function openNoteModal(id) {
+  editingNoteId = id || null;
+  const modal = document.getElementById('note-modal');
+  document.querySelectorAll('.mf-tag').forEach(t => t.classList.remove('sel'));
+  if (id) {
+    const note = getNotes().find(n => n.id === id);
+    if (!note) return;
+    document.getElementById('modal-title-lbl').textContent = 'âï¸ Labot ideju';
+    document.getElementById('mf-title').value = note.title;
+    document.getElementById('mf-body').value = note.body;
+    if (note.tag) {
+      document.querySelectorAll('.mf-tag').forEach(t => { if (t.dataset.t === note.tag) t.classList.add('sel'); });
+    }
+  } else {
+    document.getElementById('modal-title-lbl').textContent = 'âï¸ Jauna ideja';
+    document.getElementById('mf-title').value = '';
+    document.getElementById('mf-body').value = '';
+  }
+  modal.classList.remove('hidden');
+  setTimeout(() => document.getElementById('mf-title').focus(), 50);
+}
+
+function closeNoteModal() {
+  document.getElementById('note-modal').classList.add('hidden');
+  editingNoteId = null;
+}
+
+function toggleNoteTag(btn) {
+  document.querySelectorAll('.mf-tag').forEach(t => t.classList.remove('sel'));
+  btn.classList.toggle('sel');
+}
+
+async function saveNote() {
+  const title = document.getElementById('mf-title').value.trim();
+  const body  = document.getElementById('mf-body').value.trim();
+  if (!title) { document.getElementById('mf-title').focus(); return; }
+  const selTag = document.querySelector('.mf-tag.sel');
+  const tag = selTag ? selTag.dataset.t : '';
+  const notes = getNotes();
+  if (editingNoteId) {
+    const i = notes.findIndex(n => n.id === editingNoteId);
+    if (i > -1) { notes[i].title = title; notes[i].body = body; notes[i].tag = tag; notes[i].updated = new Date().toISOString(); }
+  } else {
+    notes.unshift({ id: 'n-' + Date.now(), title, body, tag, created: new Date().toISOString() });
+  }
+  saveNotes(notes);
+  await writeNoteFile(title, body, tag);
+  closeNoteModal();
+  renderIdeas();
+}
+
+async function writeNoteFile(title, body, tag) {
+  if (!dirHandle) return;
+  try {
+    let subDir;
+    try { subDir = await dirHandle.getDirectoryHandle('idejas', { create: true }); }
+    catch(e) { return; }
+    const safe = title.replace(/[\\/:*?"<>|]/g, '-').substring(0, 60);
+    const fh = await subDir.getFileHandle(safe + '.md', { create: true });
+    const wr = await fh.createWritable();
+    const md = `---\ntitle: "${title}"\nkategorija: "${tag}"\ncreated: "${new Date().toISOString()}"\n---\n\n${body}\n`;
+    await wr.write(md); await wr.close();
+  } catch(e) { console.warn('noteFile write:', e); }
+}
+
+function deleteNote(id, ev) {
+  ev.stopPropagation();
+  if (!confirm('DzÄst Å¡o ideju?')) return;
+  const notes = getNotes().filter(n => n.id !== id);
+  saveNotes(notes);
+  renderIdeas();
+}
+
+function setIdeaFilter(tag, btn) {
+  currentIdeaFilter = tag;
+  document.querySelectorAll('.if-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderIdeas();
+}
+
+function renderIdeas() {
+  const grid = document.getElementById('ideas-grid');
+  if (!grid) return;
+  const q = (document.getElementById('ideas-search')?.value || '').toLowerCase();
+  let notes = getNotes();
+  if (currentIdeaFilter !== 'visi') notes = notes.filter(n => n.tag === currentIdeaFilter);
+  if (q) notes = notes.filter(n => n.title.toLowerCase().includes(q) || n.body.toLowerCase().includes(q));
+  if (!notes.length) {
+    grid.innerHTML = '<div class="empty-ideas"><div style="font-size:36px">ð¡</div><p>Nav ideju. Nospied "+ Jauna ideja" un pieraksti!</p></div>';
+    return;
+  }
+  grid.innerHTML = notes.map(n => {
+    const tc = TAG_COLORS[n.tag] || { bg: '#f0f0f0', color: '#555' };
+    const chip = n.tag ? `<span class="note-tag-chip" style="background:${tc.bg};color:${tc.color}">${n.tag}</span>` : '';
+    const d = new Date(n.created).toLocaleDateString('lv-LV', { day:'numeric', month:'short', year:'numeric' });
+    return `<div class="note-card" onclick="openNoteModal('${n.id}')">
+      ${chip}
+      <div class="note-title">${n.title}</div>
+      <div class="note-preview">${n.body.replace(/</g,'&lt;')}</div>
+      <div class="note-meta"><span>${d}</span><button class="note-del" onclick="deleteNote('${n.id}',event)" title="DzÄst">â</button></div>
+    </div>`;
+  }).join('');
+}
+
+// close modal on overlay click
+document.addEventListener('click', e => {
+  if (e.target.id === 'note-modal') closeNoteModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeNoteModal();
+});
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   TAB SWITCHING
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'months')    renderMonths();
+  if (id === 'week')      renderWeek();
+  if (id === 'ideas')     renderIdeas();
+  if (id === 'izdevumi')  renderIzdevumi();
+  if (id === 'progress')  renderProgress();
+}
+
+function showTabById(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tb');
+  btns.forEach(b => { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'months')    renderMonths();
+  if (id === 'week')      renderWeek();
+  if (id === 'ideas')     renderIdeas();
+  if (id === 'izdevumi')  renderIzdevumi();
+  if (id === 'progress')  renderProgress();
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   RENDER: MONTHS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function renderMonths() {
+  const wrap = document.getElementById('months-wrap');
+  wrap.innerHTML = '';
+  Object.entries(MILESTONES).forEach(([mkey, month]) => {
+    const total  = month.items.length;
+    const done   = month.items.filter(i => getChecked(i.id)).length;
+    const pct    = total ? Math.round(done/total*100) : 0;
+    const isOpen = month.status === 'current';
+    const div = document.createElement('div');
+    div.className = 'mc';
+    div.innerHTML = `
+      <div class="mc-hdr${isOpen?' open':''}" onclick="toggleMonth(this,'mb-${mkey}')">
+        <div class="mc-left">
+          <div class="mc-num ${month.status}">${mkey.slice(5)}</div>
+          <div>
+            <div class="mc-name">${month.label}</div>
+            <div class="mc-theme">${month.theme}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span class="mc-stats">${done}/${total} Â· ${pct}%</span>
+          <span class="mc-arr">â¼</span>
+        </div>
+      </div>
+      <div class="mc-body${isOpen?' open':''}" id="mb-${mkey}">
+        ${month.items.map(item => `
+          <div class="mi">
+            <input type="checkbox" id="${item.id}" ${getChecked(item.id)?'checked':''} onchange="onMilestone('${item.id}','${mkey}')">
+            <label for="${item.id}">${item.text}<span class="gtag ${GOAL_TAG_CLS[item.goal]}">${GOAL_TAG_NAMES[item.goal]}</span></label>
+          </div>
+        `).join('')}
+      </div>`;
+    wrap.appendChild(div);
+  });
+}
+
+function toggleMonth(hdr, bodyId) {
+  hdr.classList.toggle('open');
+  document.getElementById(bodyId).classList.toggle('open');
+}
+
+function onMilestone(id, mkey) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  renderMonths();
+  writeProgress(false); // automÄtiski saglabÄ
+}
+
+function onEvent(id) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  const row = document.getElementById(id).closest('.cev');
+  if (row) row.classList.toggle('cev-done', val);
+  writeProgress(false);
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   RENDER: WEEK
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function syncFocusDoneToChecked() {
+  const items = getFocusItems();
+  items.forEach(item => {
+    if (item.id.startsWith('fu')) {
+      const origId = item.id.slice(2);
+      if (item.done) setChecked(origId, true);
+    }
+  });
+}
+
+function renderWeek() {
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) return;
+  syncFocusDoneToChecked();
+  const wrap = document.getElementById('week-wrap');
+  wrap.innerHTML = '';
+
+  // accountability
+  if (week.accountability && week.accountability.length) {
+    const acc = document.createElement('div');
+    acc.className = 'acc-b';
+    acc.innerHTML = `<h4>â  AtskaitÄ«Å¡anÄs â stagnÄ</h4>` + week.accountability.map(a=>`<p>${a}</p>`).join('');
+    wrap.appendChild(acc);
+  }
+
+  // priorities
+  const top = document.createElement('div');
+  top.className = 'week-top';
+  top.innerHTML = `<h3>ð ${week.label} Â· 3 galvenÄs prioritÄtes</h3>` +
+    week.priorities.map((p,i) => {
+      const msName = p.ms && MILESTONES[CURRENT_WEEK.replace('W28','07')]?.items?.find(x=>x.id===p.ms)?.text;
+      return `<div class="prio"><span class="pn">${i+1}</span><span>${p.text}</span></div>`;
+    }).join('');
+  wrap.appendChild(top);
+
+  // days
+  week.days.forEach(day => {
+    const allTasks = [...day.tasks, ...getUserTasks(day.key)];
+    const done  = allTasks.filter(t => getChecked(t.id)).length;
+    const total = allTasks.length;
+    const pct   = total ? Math.round(done/total*100) : 0;
+    const isToday = day.key === getTodayKey();
+    const isPast  = !isToday && day.key < getTodayKey();
+
+    const card = document.createElement('div');
+    card.className = 'day-card';
+
+    // group tasks by category
+    const cats = {};
+    allTasks.forEach(t => { (cats[t.cat] = cats[t.cat]||[]).push(t); });
+    const taskHtml = Object.entries(cats).map(([cat, tasks]) => `
+      <div class="tg">
+        <div class="tgl ${CAT_CONFIG[cat]?.cls||'tgl-U'}">${CAT_CONFIG[cat]?.label||cat}</div>
+        ${tasks.map(t => {
+          const tagHtml = t.tag==='u' ? `<span class="ttag ttag-u">STEIDZAMI</span>` :
+                          t.tag==='g' ? `<span class="ttag ttag-g">MÄRÄ¶IS</span>` :
+                          t.tag==='m' ? `<span class="ttag ttag-m">PRAKSE</span>` : '';
+          return `<div class="ti">
+            <input type="checkbox" id="${t.id}" ${getChecked(t.id)?'checked':''} onchange="onTask('${t.id}','${day.key}')">
+            <label for="${t.id}">${t.text}${tagHtml}</label>
+          </div>`;
+        }).join('')}
+      </div>`).join('');
+
+    const evHtml = day.events.length ? `
+      <div class="slbl">ð KalendÄrs</div>
+      ${day.events.map((e,i)=>{ const evId='ev_'+day.key+'_'+i; const evDone=getChecked(evId); return `<div class="cev ${evDone?'cev-done':''}"><input type="checkbox" id="${evId}" ${evDone?'checked':''} onchange="onEvent('${evId}')"><span class="ctime">${e.time}</span><span>${e.text}</span></div>`; }).join('')}
+      <div class="slbl">ð Uzdevumi</div>` : `<div class="slbl">ð Uzdevumi</div>`;
+
+    const coachHtml = '';
+
+    card.innerHTML = `
+      <div class="dh ${isToday?'today':''}${isPast?' past':''} ${isToday?'open':''}" onclick="toggleDay(this,'db-${day.key}')">
+        <div class="dl">
+          <span class="dname">${day.name}</span>
+          <span class="ddate">${day.date}</span>
+          ${isToday?'<span class="dbadge b-today">Å ODIEN</span>':''}
+        </div>
+        <div class="dr">
+          <span class="dcnt" id="cnt-${day.key}">${done}/${total}</span>
+          <span class="darr ${isToday?'open':''}" id="arr-${day.key}">â¼</span>
+        </div>
+      </div>
+      <div class="dprog">
+        <div class="pb-w"><div class="pb-f" id="pb-${day.key}" style="width:${pct}%"></div></div>
+        <div class="ppct" id="pct-${day.key}">${pct}%</div>
+      </div>
+      <div class="db${isToday?' open':''}" id="db-${day.key}">
+        ${evHtml}
+        ${taskHtml}
+        ${coachHtml}
+        <button class="add-toggle" onclick="toggleAddForm('af-${day.key}',this)">ï¼ Pievienot uzdevumu</button>
+        <div class="add-form" id="af-${day.key}">
+          <input class="add-txt" id="at-${day.key}" placeholder="Uzdevuma teksts..." onkeydown="if(event.key==='Enter')addTask('${day.key}')">
+          <select class="add-cat" id="ac-${day.key}">
+            <option value="B">Bizness</option>
+            <option value="NI">Nekustamie Ä«paÅ¡umi</option>
+            <option value="C">CeÄ¼ojums</option>
+            <option value="MU">MÄjas uzturÄÅ¡ana</option>
+            <option value="BE">BÄrni</option>
+            <option value="F">Finanses</option>
+            <option value="SV">Sports / VeselÄ«ba</option>
+            <option value="ID">IdeÄlÄ dzÄ«ve</option>
+          </select>
+          <button class="add-ok" onclick="addTask('${day.key}')">Pievienot</button>
+          <button class="add-cl" onclick="toggleAddForm('af-${day.key}',null)">Atcelt</button>
+        </div>
+      </div>`;
+    wrap.appendChild(card);
+  });
+
+  // ARCHIVE â past weeks
+  const pastWeeks = Object.entries(WEEKS).filter(([key]) => key < CURRENT_WEEK).reverse();
+  if (pastWeeks.length) {
+    const archHdr = document.createElement('div');
+    archHdr.className = 'archive-hdr open';
+    archHdr.id = 'archive-hdr';
+    archHdr.innerHTML = `<span style="font-weight:600">ð ArhÄ«vs â iepriekÅ¡ÄjÄs nedÄÄ¼as (${pastWeeks.length})</span><span>â¼</span>`;
+    archHdr.onclick = () => {
+      archHdr.classList.toggle('open');
+      document.getElementById('archive-body').classList.toggle('open');
+    };
+    wrap.appendChild(archHdr);
+
+    const archBody = document.createElement('div');
+    archBody.className = 'archive-body open';
+    archBody.id = 'archive-body';
+
+    pastWeeks.forEach(([wkey, wdata]) => {
+      const aw = document.createElement('div');
+      aw.className = 'archive-week';
+      const awId = 'aw-' + wkey;
+
+      // Collect all tasks from all days with their done state from localStorage
+      const allTasks = [];
+      wdata.days.forEach(d => {
+        (d.tasks || []).forEach(t => {
+          const done = localStorage.getItem('ec_' + t.id) === 'true';
+          allTasks.push({ text: t.text, done });
+        });
+        // User-added tasks stored in localStorage as array at key eu_dayKey
+        getUserTasks(d.key).forEach(t => {
+          const done = getChecked(t.id);
+          allTasks.push({ text: t.text, done });
+        });
+      });
+
+      const done = allTasks.filter(t => t.done).length;
+      const total = allTasks.length;
+      const statsLabel = total ? ` <span style="font-size:10px;color:var(--greige);font-weight:400">${done}/${total} izpildÄ«ts</span>` : '';
+
+      const tasksHtml = total
+        ? allTasks.map(t =>
+            `<div style="display:flex;align-items:flex-start;gap:8px;padding:3px 0;font-size:12px;${t.done ? 'opacity:0.55' : ''}">
+              <span style="color:${t.done ? 'var(--sage)' : 'var(--greige)'};flex-shrink:0;margin-top:1px;font-size:11px">${t.done ? 'â' : 'â'}</span>
+              <span style="${t.done ? 'text-decoration:line-through' : ''}">${t.text}</span>
+            </div>`
+          ).join('')
+        : `<div style="font-size:12px;color:var(--greige);padding:4px 0">Nav ierakstÄ«tu uzdevumu</div>`;
+
+      aw.innerHTML = `
+        <div class="archive-week-hdr" onclick="this.nextElementSibling.classList.toggle('open')">
+          <div><span class="archive-week-label">${wdata.label}</span>${statsLabel}</div>
+          <span style="color:var(--greige);font-size:11px">â¼</span>
+        </div>
+        <div class="archive-week-body open" id="${awId}">
+          <div class="slbl" style="margin-top:0">Uzdevumi</div>
+          ${tasksHtml}
+        </div>`;
+      archBody.appendChild(aw);
+    });
+
+    wrap.appendChild(archBody);
+  }
+}
+
+function toggleDay(hdr, bodyId) {
+  hdr.classList.toggle('open');
+  const body = document.getElementById(bodyId);
+  body.classList.toggle('open');
+}
+
+function onTask(id, dayKey) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  updateDayStats(dayKey);
+  updateProgressTab();
+  writeProgress(false); // automÄtiski saglabÄ
+}
+
+function updateDayStats(dayKey) {
+  const day = WEEKS[CURRENT_WEEK].days.find(d => d.key === dayKey);
+  if (!day) return;
+  const allTasks = [...day.tasks, ...getUserTasks(dayKey)];
+  const done  = allTasks.filter(t => getChecked(t.id)).length;
+  const total = allTasks.length;
+  const pct   = total ? Math.round(done/total*100) : 0;
+  const cntEl = document.getElementById('cnt-'+dayKey);
+  const pbEl  = document.getElementById('pb-'+dayKey);
+  const pctEl = document.getElementById('pct-'+dayKey);
+  if (cntEl) cntEl.textContent = `${done}/${total}`;
+  if (pbEl)  pbEl.style.width  = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+}
+
+function toggleAddForm(id, btn) {
+  const form = document.getElementById(id);
+  form.classList.toggle('open');
+  if (btn) btn.style.display = form.classList.contains('open') ? 'none' : '';
+}
+
+function addTask(dayKey) {
+  const txt = document.getElementById('at-'+dayKey).value.trim();
+  if (!txt) return;
+  const cat  = document.getElementById('ac-'+dayKey).value;
+  const tasks = getUserTasks(dayKey);
+  const newId = 'u-' + dayKey.replace(/-/g,'') + '-' + Date.now();
+  tasks.push({ id: newId, text: txt, cat, userAdded: true });
+  setUserTasks(dayKey, tasks);
+  document.getElementById('at-'+dayKey).value = '';
+  renderWeek();
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   RENDER: PROGRESS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function renderProgress() {
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) return;
+  const wrap = document.getElementById('progress-wrap');
+
+  let totalAll=0, doneAll=0;
+  const catStats = {};
+  const dayData = [];
+
+  week.days.forEach(day => {
+    const allTasks = [...day.tasks, ...getUserTasks(day.key)];
+    const doneTasks = allTasks.filter(t => getChecked(t.id));
+    totalAll += allTasks.length;
+    doneAll  += doneTasks.length;
+    allTasks.forEach(t => {
+      if (!catStats[t.cat]) catStats[t.cat] = {done:0, total:0};
+      catStats[t.cat].total++;
+      if (getChecked(t.id)) catStats[t.cat].done++;
+    });
+    dayData.push({ day, allTasks, doneTasks });
+  });
+
+  // milestone stats
+  const mJul = MILESTONES["2026-07"];
+  const mDone  = mJul.items.filter(i => getChecked(i.id)).length;
+  const mTotal = mJul.items.length;
+
+  const pct = totalAll ? Math.round(doneAll/totalAll*100) : 0;
+
+  wrap.innerHTML = `
+    <div class="stat-row">
+      <div class="sc"><div class="sc-num">${doneAll}</div><div class="sc-lbl">Pabeigti</div><div class="sc-pct">${pct}%</div></div>
+      <div class="sc"><div class="sc-num">${totalAll-doneAll}</div><div class="sc-lbl">AtlikusÄ«</div><div class="sc-pct">&nbsp;</div></div>
+      <div class="sc"><div class="sc-num">${totalAll}</div><div class="sc-lbl">KopÄ uzdevumi</div><div class="sc-pct">&nbsp;</div></div>
+      <div class="sc"><div class="sc-num">${mDone}/${mTotal}</div><div class="sc-lbl">JÅ«lija milestones</div><div class="sc-pct">${mTotal?Math.round(mDone/mTotal*100):0}%</div></div>
+    </div>
+    <button class="exp-btn" onclick="writeProgress(true)">ð¾ SaglabÄt progress.json kouÄam</button>
+    <div class="cat-break">
+      <h3>Progress pa kategorijÄm</h3>
+      ${Object.entries(catStats).map(([cat,s]) => {
+        const p = s.total ? Math.round(s.done/s.total*100) : 0;
+        return `<div class="cat-bar-row">
+          <span class="cat-bar-lbl">${CAT_CONFIG[cat]?.label.replace(/^[^ ]+ /,'')||cat}</span>
+          <div class="cat-bar-w"><div class="cat-bar-f" style="width:${p}%"></div></div>
+          <span class="cat-bar-n">${p}%</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="history-section">
+      <h3>Dienu sadalÄ«jums</h3>
+      ${dayData.map(({day, allTasks, doneTasks}) => {
+        const p = allTasks.length ? Math.round(doneTasks.length/allTasks.length*100) : 0;
+        return `<div class="prog-day">
+          <h4>${day.name}, ${day.date} <span>${doneTasks.length}/${allTasks.length} Â· ${p}%</span></h4>
+          ${allTasks.map(t => {
+            const done = getChecked(t.id);
+            return `<div class="pt ${done?'pt-ok':'pt-no'}">${done?'â':'â'} ${t.text}</div>`;
+          }).join('')}
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function updateProgressTab() {
+  if (document.getElementById('tab-progress').classList.contains('active')) {
+    renderProgress();
+  }
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   FILE SYSTEM ACCESS API â automÄtiskÄ saglabÄÅ¡ana
+   Darbojas: Chrome, Edge, Cowork WebView
+   PirmajÄ reizÄ: piespieÅ¾ "Savienot mapi" â izvÄlies NedÄÄ¼as plÄni mapi
+   PÄc tam: katrs Ä·eksis automÄtiski ieraksta progress.json
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+
+const IDB_NAME  = 'evita_planer_v1';
+const IDB_STORE = 'fs_handles';
+let dirHandle   = null;
+let lastSaved   = null;
+
+/* â IndexedDB helpers (glabÄ dirHandle starp sesijÄm) â */
+function openIDB() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open(IDB_NAME, 1);
+    r.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+    r.onsuccess = e => res(e.target.result);
+    r.onerror   = e => rej(e);
+  });
+}
+async function idbPut(key, val) {
+  const db = await openIDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).put(val, key);
+    tx.oncomplete = res; tx.onerror = rej;
+  });
+}
+async function idbGet(key) {
+  const db = await openIDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readonly');
+    const r  = tx.objectStore(IDB_STORE).get(key);
+    r.onsuccess = e => res(e.target.result);
+    r.onerror   = rej;
+  });
+}
+
+/* â Sync bar UI â */
+function setSyncStatus(state, msg, time) {
+  const bar  = document.getElementById('sync-bar');
+  const dot  = document.getElementById('sync-dot');
+  const msgEl= document.getElementById('sync-msg');
+  const btn  = document.getElementById('sync-btn');
+  const sBtn = document.getElementById('sync-save-btn');
+  bar.className  = 'sync-bar' + (state==='ok'?' ok': state==='err'?' err':'');
+  dot.className  = 'sync-dot ' + (state==='ok'?'ok': state==='err'?'err':'warn');
+  msgEl.innerHTML= msg + (time ? `<small>${time}</small>` : '');
+  btn.style.display  = (state==='setup') ? '' : 'none';
+  sBtn.style.display = (state==='ok')    ? '' : 'none';
+}
+
+/* â PirmÄ reize: lietotÄjs izvÄlas mapi â */
+async function connectFolder() {
+  if (!window.showDirectoryPicker) {
+    setSyncStatus('err', 'â  Å is pÄrlÅ«ks neatbalsta automÄtisko saglabÄÅ¡anu. Izmanto Chrome vai Edge.');
+    return;
+  }
+  try {
+    const handle = await window.showDirectoryPicker({ mode: 'readwrite', id: 'evita-planer', startIn: 'documents' });
+    dirHandle = handle;
+    await idbPut('dir', handle);
+    setSyncStatus('ok', 'â Mape savienota â progress tiek saglabÄts automÄtiski');
+    await writeProgress(false);
+  } catch (e) {
+    if (e.name !== 'AbortError') setSyncStatus('err', 'â  KÄ¼Å«da: ' + e.message);
+  }
+}
+
+/* â IelÄdÄ saglabÄto mapi pie katras lapas atvÄrÅ¡anas â */
+async function initFolderAccess() {
+  if (!window.showDirectoryPicker) {
+    setSyncStatus('setup', 'ð AutomÄtiskÄ saglabÄÅ¡ana nav pieejama Å¡ajÄ pÄrlÅ«kÄ (vajag Chrome/Edge)');
+    document.getElementById('sync-btn').style.display = 'none';
+    return;
+  }
+  try {
+    const handle = await idbGet('dir');
+    if (!handle) {
+      setSyncStatus('setup', 'ð Savienojiet mapi, lai Claude automÄtiski redzÄtu progresu');
+      document.getElementById('sync-btn').style.display = '';
+      return;
+    }
+    // PÄrbauda atÄ¼auju
+    const perm = await handle.queryPermission({ mode: 'readwrite' });
+    if (perm === 'granted') {
+      dirHandle = handle;
+      setSyncStatus('ok', 'â AutomÄtiskÄ saglabÄÅ¡ana aktÄ«va');
+      await writeProgress(false);
+    } else {
+      // Vajag atÄ¼auju â rÄda pogu (nevar auto-pieprasÄ«t bez user gesture)
+      setSyncStatus('setup', 'ð NepiecieÅ¡ama atÄ¼auja mapei â nospied pogu lai turpinÄtu');
+      document.getElementById('sync-btn').textContent = 'ð AtÄ¼aut piekÄ¼uvi';
+      document.getElementById('sync-btn').onclick = async () => {
+        const p = await handle.requestPermission({ mode: 'readwrite' });
+        if (p === 'granted') {
+          dirHandle = handle;
+          setSyncStatus('ok', 'â AutomÄtiskÄ saglabÄÅ¡ana aktÄ«va');
+          document.getElementById('sync-btn').style.display = 'none';
+          await writeProgress(false);
+        }
+      };
+      document.getElementById('sync-btn').style.display = '';
+    }
+  } catch (e) {
+    setSyncStatus('setup', 'ð Savienojiet mapi, lai Claude automÄtiski redzÄtu progresu');
+    document.getElementById('sync-btn').style.display = '';
+  }
+}
+
+/* â Izveido progress.json saturu â */
+function buildProgressData() {
+  const week = WEEKS[CURRENT_WEEK];
+  const now  = new Date();
+  let totalAll = 0, doneAll = 0;
+  const days = {};
+  week.days.forEach(day => {
+    const allTasks = [...day.tasks, ...getUserTasks(day.key)];
+    const doneTasks = allTasks.filter(t => getChecked(t.id));
+    totalAll += allTasks.length;
+    doneAll  += doneTasks.length;
+    days[day.key] = {
+      name: day.name, date: day.date,
+      done: doneTasks.length, total: allTasks.length,
+      pct: allTasks.length ? Math.round(doneTasks.length/allTasks.length*100) : 0,
+      tasks: allTasks.map(t => ({ id: t.id, text: t.text, done: getChecked(t.id) }))
+    };
+  });
+  return {
+    week: CURRENT_WEEK,
+    label: week.label,
+    generated: now.toISOString(),
+    totalTasks: totalAll,
+    doneTasks: doneAll,
+    pct: totalAll ? Math.round(doneAll/totalAll*100) : 0,
+    days
+  };
+}
+
+/* â Ieraksta progress.json mapÄ â */
+async function writeProgress(manual) {
+  if (!dirHandle) {
+    if (manual) setSyncStatus('err', 'â  Vispirms savienojiet mapi');
+    return;
+  }
+  try {
+    const data = buildProgressData();
+    const fileHandle = await dirHandle.getFileHandle('progress.json', { create: true });
+    const writable   = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(data, null, 2));
+    await writable.close();
+    const t = new Date().toLocaleTimeString('lv', { hour:'2-digit', minute:'2-digit' });
+    setSyncStatus('ok', 'â SaglabÄts', ' Â· ' + t);
+    lastSaved = new Date();
+  } catch(e) {
+    setSyncStatus('err', 'â  KÄ¼Å«da saglabÄjot: ' + e.message);
+  }
+}
+
+/* â AutomÄtiskÄ saglabÄÅ¡ana â */
+async function initSync() {
+  try {
+    const handle = await idbGet('dir');
+    if (!handle) { initFolderAccess(); return; }
+    const perm = await handle.queryPermission({ mode: 'readwrite' });
+    if (perm === 'granted') { dirHandle = handle; await writeProgress(false); }
+    else { initFolderAccess(); }
+  } catch(e) { initFolderAccess(); }
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   IZDEVUMI â DATU STRUKTÅªRA UN FUNKCIJAS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+const EXP_CATS = {
+  'pÄrtika':    { label: 'ð PÄrtika',     color: '#66bb6a' },
+  'mÄja':       { label: 'ð  MÄja',         color: '#42a5f5' },
+  'transports': { label: 'ð Transports',   color: '#ffa726' },
+  'bÄrni':      { label: 'ð¦ BÄrni',        color: '#ab47bc' },
+  'veselÄ«ba':   { label: 'ð VeselÄ«ba',     color: '#ef5350' },
+  'apÄ£Ärbs':    { label: 'ð ApÄ£Ärbs',      color: '#ec407a' },
+  'bizness':    { label: 'ð¯ Bizness',      color: '#26a69a' },
+  'ceÄ¼ojumi':   { label: 'âï¸ CeÄ¼ojumi',    color: '#26c6da' },
+  'sports':     { label: 'ðï¸ Sports',      color: '#d4e157' },
+  'cits':       { label: 'ð§ Cits',         color: '#bdbdbd' },
+};
+
+function getExpenses() { return LS('ev_expenses') || []; }
+function saveExpenses(arr) { LS('ev_expenses', arr); }
+
+let izCurrentYear  = new Date().getFullYear();
+let izCurrentMonth = new Date().getMonth();
+
+function izNavMonth(dir) {
+  izCurrentMonth += dir;
+  if (izCurrentMonth < 0)  { izCurrentMonth = 11; izCurrentYear--; }
+  if (izCurrentMonth > 11) { izCurrentMonth = 0;  izCurrentYear++; }
+  renderIzdevumi();
+}
+
+function addExpenseFromDash() {
+  const amount = parseFloat(document.getElementById('exp-amount').value);
+  const cat    = document.getElementById('exp-cat').value;
+  const note   = document.getElementById('exp-note').value.trim();
+  if (!amount || amount <= 0) { document.getElementById('exp-amount').focus(); return; }
+  const today = new Date().toISOString().slice(0,10);
+  const exps  = getExpenses();
+  exps.unshift({ id: 'e-' + Date.now(), date: today, amount, cat, note });
+  saveExpenses(exps);
+  document.getElementById('exp-amount').value = '';
+  document.getElementById('exp-note').value   = '';
+  renderDashboard();
+  writeProgress(false);
+}
+
+function addExpenseFromIzdevumi() {
+  const amount  = parseFloat(document.getElementById('exp-amount2').value);
+  const cat     = document.getElementById('exp-cat2').value;
+  const note    = document.getElementById('exp-note2').value.trim();
+  const dateVal = document.getElementById('exp-date2').value || new Date().toISOString().slice(0,10);
+  if (!amount || amount <= 0) { document.getElementById('exp-amount2').focus(); return; }
+  const exps = getExpenses();
+  exps.unshift({ id: 'e-' + Date.now(), date: dateVal, amount, cat, note });
+  exps.sort((a,b) => b.date.localeCompare(a.date));
+  saveExpenses(exps);
+  document.getElementById('exp-amount2').value = '';
+  document.getElementById('exp-note2').value   = '';
+  document.getElementById('exp-date2').value   = '';
+  document.getElementById('iz-add-form').style.display = 'none';
+  renderIzdevumi();
+  renderDashboard();
+  writeProgress(false);
+}
+
+function deleteExpense(id) {
+  if (!confirm('DzÄst Å¡o izdevumu?')) return;
+  saveExpenses(getExpenses().filter(e => e.id !== id));
+  renderIzdevumi();
+  renderDashboard();
+  writeProgress(false);
+}
+
+function renderIzdevumi() {
+  const LV_MONTHS = ['JanvÄris','FebruÄris','Marts','AprÄ«lis','Maijs','JÅ«nijs',
+                     'JÅ«lijs','Augusts','Septembris','Oktobris','Novembris','Decembris'];
+  const lbl = document.getElementById('iz-month-lbl');
+  if (lbl) lbl.textContent = LV_MONTHS[izCurrentMonth] + ' ' + izCurrentYear;
+
+  const prefix  = `${izCurrentYear}-${String(izCurrentMonth+1).padStart(2,'0')}`;
+  const today   = new Date().toISOString().slice(0,10);
+  const all     = getExpenses();
+  const month   = all.filter(e => e.date && e.date.startsWith(prefix));
+
+  const total    = month.reduce((s,e) => s + e.amount, 0);
+  const todayAmt = all.filter(e => e.date === today).reduce((s,e) => s + e.amount, 0);
+
+  const tEl = document.getElementById('iz-total');
+  const yEl = document.getElementById('iz-today-total');
+  const cEl = document.getElementById('iz-count');
+  if (tEl) tEl.textContent = total.toFixed(2) + ' â¬';
+  if (yEl) yEl.textContent = todayAmt.toFixed(2) + ' â¬';
+  if (cEl) cEl.textContent = month.length;
+
+  // Pa kategorijÄm
+  const catTotals = {};
+  month.forEach(e => { catTotals[e.cat] = (catTotals[e.cat] || 0) + e.amount; });
+  const maxCat = Math.max(...Object.values(catTotals), 1);
+  const catsEl = document.getElementById('iz-cats');
+  if (catsEl) {
+    const sorted = Object.entries(catTotals).sort((a,b) => b[1]-a[1]);
+    if (!sorted.length) {
+      catsEl.innerHTML = '<div class="iz-empty">Nav izdevumu Å¡ajÄ mÄnesÄ«.</div>';
+    } else {
+      catsEl.innerHTML = sorted.map(([cat, amt]) => {
+        const cfg = EXP_CATS[cat] || { label: cat, color: '#bbb' };
+        const pct = Math.round(amt / maxCat * 100);
+        return `<div class="iz-cat-row">
+          <span class="iz-cat-lbl">${cfg.label}</span>
+          <div class="iz-cat-bar-w"><div class="iz-cat-bar-f" style="width:${pct}%;background:${cfg.color}"></div></div>
+          <span class="iz-cat-eur">${amt.toFixed(2)} â¬</span>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  // DarÄ«jumu saraksts
+  const listEl = document.getElementById('iz-list');
+  if (listEl) {
+    if (!month.length) {
+      listEl.innerHTML = '<div class="iz-empty">Nav darÄ«jumu.</div>';
+    } else {
+      listEl.innerHTML = month.map(e => {
+        const cfg = EXP_CATS[e.cat] || { label: e.cat, color: '#bbb' };
+        const d   = new Date(e.date + 'T12:00').toLocaleDateString('lv-LV', { day:'numeric', month:'short' });
+        return `<div class="iz-tr-row">
+          <span class="iz-tr-date">${d}</span>
+          <span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:${cfg.color}22;color:${cfg.color};flex-shrink:0;">${cfg.label.split(' ')[0]}</span>
+          <span class="iz-tr-desc">${e.note || cfg.label.replace(/^[^\s]+\s/,'')}</span>
+          <span class="iz-tr-eur">${e.amount.toFixed(2)} â¬</span>
+          <button class="iz-tr-del" onclick="deleteExpense('${e.id}')" title="DzÄst">â</button>
+        </div>`;
+      }).join('');
+    }
+  }
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   GARMIN â AUTOMÄTISKA IELÄDE NO garmin_data.json
+   GitHub Actions atjaunina failu katru rÄ«tu
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function getTodayKey() { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
+function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
+
+let garminLastFetch = 0;
+
+async function fetchGarminJson(manual = false) {
+  // Nav vÄrts mÄÄ£inÄt lokÄli (file://) â tikai GitHub Pages
+  if (!location.hostname) return;
+
+  const now = Date.now();
+  // Auto-ielÄde ne bieÅ¾Äk kÄ reizi 30 min; manuÄli â vienmÄr
+  if (!manual && now - garminLastFetch < 30 * 60 * 1000) return;
+
+  const statusEl = document.getElementById('garmin-auto-status');
+  if (statusEl) statusEl.textContent = 'â³ IelÄdÄ Garmin datus...';
+
+  try {
+    const base = location.href.replace(/\/[^/]*(\?.*)?$/, '/');
+    const url  = base + 'garmin_data.json?t=' + now;
+    const r    = await fetch(url, { cache: 'no-store' });
+
+    if (!r.ok) {
+      if (statusEl) statusEl.textContent = 'â  garmin_data.json nav pieejams vÄl';
+      return;
+    }
+
+    const data = await r.json();
+    garminLastFetch = now;
+
+    const today     = getTodayKey();
+    const yesterday = new Date(now - 86400000).toISOString().slice(0, 10);
+    const isRecent  = data.date === today || data.date === yesterday;
+
+    if (!isRecent) {
+      if (statusEl) statusEl.textContent = 'â  Dati no ' + data.date + ' â nav Å¡odienas';
+      return;
+    }
+
+    const gd = getGarminData(today);
+    let changed = false;
+
+    if (data.yesterday_steps > 0) { gd.steps = data.yesterday_steps; changed = true; }
+    if (data.sleep_hours > 0)  { gd.sleepH = data.sleep_hours;  changed = true; }
+    if (data.sleep_score > 0)  { gd.sleepScore = data.sleep_score; changed = true; }
+    if (data.body_battery > 0) { gd.bodyBattery = data.body_battery; changed = true; }
+    if (data.stress_avg  > 0)  {
+      gd.stress      = data.stress_avg;
+      gd.stressLevel = data.stress_level || 'vidÄjs';
+      changed = true;
+    }
+    if (data.weekly_total_km >= 0) {
+      gd.weeklyKm   = data.weekly_total_km;
+      gd.weeklyWalk = data.weekly_walk_km || 0;
+      gd.weeklyBike = data.weekly_bike_km || 0;
+      gd.weekStart  = data.week_start || '';
+      changed = true;
+    }
+
+    if (changed) {
+      setGarminData(today, gd);
+      renderDashboard();
+    }
+
+    const upd = data.updated
+      ? new Date(data.updated).toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' })
+      : data.date;
+    if (statusEl) statusEl.textContent = 'â AutomÄtiski ielÄdÄts Â· ' + upd;
+
+  } catch(e) {
+    if (statusEl) statusEl.textContent = 'â Garmin dati nav pieejami';
+    console.log('Garmin JSON:', e.message);
+  }
+}
+
+function updateGarminBoxes(gd) {
+  const sleep  = document.getElementById('gbox-sleep');
+  const steps  = document.getElementById('gbox-steps');
+  const stress = document.getElementById('gbox-stress');
+  const weekly = document.getElementById('gbox-weekly');
+  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${gd.sleepH}h</b><br><small>miegs${gd.sleepScore ? ' Â· '+gd.sleepScore : ''}</small>` : 'ð´<br><small>nav</small>';
+  if (steps)  steps.innerHTML  = gd.steps   ? `<b>${gd.steps >= 1000 ? (gd.steps/1000).toFixed(1)+'k' : gd.steps}</b><br><small>vakar soÄ¼i</small>` : 'ð£<br><small>nav</small>';
+  if (stress) stress.innerHTML = gd.stress  ? `<b>${gd.stress}</b><br><small>${gd.stressLevel||'stress'}</small>` : 'ð§<br><small>nav</small>';
+  if (weekly) weekly.innerHTML = gd.weeklyKm != null ? `<b>${gd.weeklyKm}km</b><br><small>ð¶${gd.weeklyWalk||0}+ð´${gd.weeklyBike||0}</small>` : 'ð<br><small>nav</small>';
+}
+
+function saveGarminManual() {
+  const h  = parseFloat(document.getElementById('g-sleep-h')?.value) || 0;
+  const st = parseInt(document.getElementById('g-steps')?.value) || 0;
+  const sr = parseInt(document.getElementById('g-stress')?.value) || 0;
+  const dk = getTodayKey();
+  const gd = getGarminData(dk);
+  if (h  > 0) { gd.sleepH = h; }
+  if (st > 0) { gd.steps  = st; }
+  if (sr > 0) { gd.stress = sr; gd.stressLevel = sr < 26 ? 'zems' : sr < 51 ? 'vidÄjs' : sr < 76 ? 'augsts' : 'Ä¼oti augsts'; }
+  setGarminData(dk, gd);
+  renderDashboard();
+}
+
+/* â Google Fit automÄtiskÄ ielÄde â */
+async function fetchFitData() {
+  if (!GDS.token) { alert('Vispirms piesakies Google!'); return; }
+  const btn = document.getElementById('fit-sync-btn');
+  if (btn) { btn.textContent = 'â³'; btn.disabled = true; }
+
+  try {
+    const now   = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const tmrw  = new Date(today.getTime() + 86400000);
+    const yest  = new Date(today.getTime() - 86400000);
+
+    /* SoÄ¼i Å¡odien */
+    const sR = await fetch(
+      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          aggregateBy:[{ dataTypeName:'com.google.step_count.delta' }],
+          bucketByTime:{ durationMillis:86400000 },
+          startTimeMillis: today.getTime(),
+          endTimeMillis:   tmrw.getTime()
+        })
+      }
+    );
+    if (sR.ok) {
+      const sd = await sR.json();
+      const steps = (sd.bucket?.[0]?.dataset?.[0]?.point || [])
+        .reduce((s,p) => s + (p.value?.[0]?.intVal||0), 0);
+      if (steps > 0) document.getElementById('g-steps').value = steps;
+    }
+
+    /* Miegs â vakardienas 12:00 â Å¡odien 12:00 */
+    const slR = await fetch(
+      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          aggregateBy:[{ dataTypeName:'com.google.sleep.segment' }],
+          bucketByTime:{ durationMillis:86400000 },
+          startTimeMillis: yest.getTime() + 43200000,
+          endTimeMillis:   today.getTime() + 43200000
+        })
+      }
+    );
+    if (slR.ok) {
+      const sld = await slR.json();
+      let ms = 0;
+      (sld.bucket || []).forEach(b => {
+        (b.dataset?.[0]?.point || []).forEach(p => {
+          const t = p.value?.[0]?.intVal;
+          if (t !== 1 && t !== 3) { // izÅem "NomodÄ" un "Ärpus gultas"
+            ms += (Number(p.endTimeNanos) - Number(p.startTimeNanos)) / 1e6;
+          }
+        });
+      });
+      const h = Math.round(ms / 3600000 * 10) / 10;
+      if (h > 0) document.getElementById('g-sleep-h').value = h;
+    }
+
+    /* AktÄ«vÄs minÅ«tes */
+    const aR = await fetch(
+      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
+      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          aggregateBy:[{ dataTypeName:'com.google.active_minutes' }],
+          bucketByTime:{ durationMillis:86400000 },
+          startTimeMillis: today.getTime(),
+          endTimeMillis:   tmrw.getTime()
+        })
+      }
+    );
+    if (aR.ok) {
+      const ad = await aR.json();
+      const am = (ad.bucket?.[0]?.dataset?.[0]?.point || [])
+        .reduce((s,p) => s + (p.value?.[0]?.intVal||0), 0);
+      if (am > 0) document.getElementById('g-active').value = am;
+    }
+
+    if (btn) { btn.textContent = 'â IelÄdÄts'; btn.disabled = false; }
+    // AutomÄtiski saglabÄ
+    saveGarminSleep();
+    saveGarminActivity();
+    renderDashboard();
+
+  } catch(e) {
+    if (btn) { btn.textContent = 'â  KÄ¼Å«da'; btn.disabled = false; }
+    console.error('Fit kÄ¼Å«da:', e);
+  }
+}
+
+function saveGarminSleep() {
+  const h = parseFloat(document.getElementById('g-sleep-h').value);
+  const q = parseInt(document.getElementById('g-sleep-q').value) || 0;
+  if (!h || h <= 0) { document.getElementById('g-sleep-h').focus(); return; }
+  const dk = getTodayKey();
+  const d  = getGarminData(dk);
+  d.sleepH = h; d.sleepQ = q;
+  setGarminData(dk, d);
+  renderDashboard();
+}
+
+function saveGarminActivity() {
+  const steps = parseInt(document.getElementById('g-steps').value) || 0;
+  const active= parseInt(document.getElementById('g-active').value) || 0;
+  const name  = document.getElementById('g-activity-name').value.trim();
+  const dk = getTodayKey();
+  const d  = getGarminData(dk);
+  d.steps = steps; d.activeMin = active; d.activityName = name;
+  setGarminData(dk, d);
+  renderDashboard();
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   DIENAS FOKUSS
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+function getFocusItems()      { return LS('focus_' + getTodayKey()) || []; }
+function setFocusItems(arr)   { LS('focus_' + getTodayKey(), arr); }
+
+function buildDefaultFocusItems() {
+  const today = getTodayKey();
+  // Velk TIKAI manuÄli pievienotos uzdevumus no NedÄÄ¼as cilnes (+ Pievienot poga)
+  const userTasks = getUserTasks(today);
+  return userTasks.slice(0, 5).map(t => ({
+    id: 'fu' + t.id,
+    text: t.text,
+    done: getChecked(t.id)
+  }));
+}
+
+function resetDayFocus() {
+  setFocusItems(buildDefaultFocusItems());
+  renderDashboard();
+}
+
+function toggleFocusItem(id) {
+  const items = getFocusItems();
+  const item  = items.find(i => i.id === id);
+  if (item) {
+    item.done = !item.done;
+    setFocusItems(items);
+    // SinhronizÄ ar nedÄÄ¼as skatu un progress cilni
+    if (id.startsWith('fu')) {
+      const origId = id.slice(2);
+      setChecked(origId, item.done);
+      updateDayStats(getTodayKey());
+      updateProgressTab();
+    }
+    writeProgress(false);
+  }
+  renderDashboard();
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   RENDER: DASHBORDS â Anna Cherry precÄ«zs izkÄrtojums
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+
+const WMO_ICON = {0:'âï¸',1:'ð¤',2:'â',3:'âï¸',45:'ð«',48:'ð«',51:'ð¦',53:'ð¦',55:'ð§',61:'ð§',63:'ð§',65:'ð§',71:'ð¨',73:'ð¨',75:'âï¸',80:'ð¦',81:'ð§',82:'â',95:'â',96:'â',99:'â'};
+const WMO_DESC = {0:'Skaidrs',1:'GandrÄ«z skaidrs',2:'DaÄ¼Äji mÄkoÅains',3:'MÄkoÅains',45:'Migla',48:'Ledaina migla',51:'Neliels lietus',53:'MÄrens lietus',55:'Stiprs lietus',61:'Neliels lietus',63:'Lietus',65:'Stiprs lietus',71:'Viegls sniegs',73:'Sniegs',75:'Stiprs sniegs',80:'LietusgÄzes',81:'Stipras lietusgÄzes',82:'Ä»oti stipras lietusgÄzes',95:'PÄrkona negaiss',96:'Negaiss ar krusu',99:'Stiprs negaiss'};
+const LV_DAYS = ['SvÄtdiena','Pirmdiena','Otrdiena','TreÅ¡diena','Ceturtdiena','Piektdiena','Sestdiena'];
+const LV_MONTHS = ['janvÄris','februÄris','marts','aprÄ«lis','maijs','jÅ«nijs','jÅ«lijs','augusts','septembris','oktobris','novembris','decembris'];
+const LV_DS = ['Sv','P','O','T','C','Pk','S'];
+
+// ââ SVG gredzena Ä£enerators (Anna Cherry: lielais cipars pa kreisi, gredzens pa labi) ââ
+function acRing(pct, txt) {
+  const R=21, C=2*Math.PI*R, f=Math.min(Math.max(pct,0),100)/100*C;
+  return `<svg class="ac-mc-ring" viewBox="0 0 50 50">
+    <circle class="ac-rb" cx="25" cy="25" r="${R}"/>
+    <circle class="ac-rf" cx="25" cy="25" r="${R}" stroke-dasharray="${f.toFixed(1)} ${C.toFixed(1)}"/>
+    <text class="ac-rt" x="25" y="25">${txt}</text>
+  </svg>`;
+}
+
+// ââ Metric josla (5 kartes augÅ¡Ä â kÄ Anna Cherry) ââ
+function renderMetricStrip(gd, focusItems) {
+  const el = document.getElementById('ac-metric-strip');
+  if (!el) return;
+  const today = getTodayKey();
+  const exps = getExpenses().filter(e => e.date === today);
+  const expTotal = exps.reduce((s,e) => s + e.amount, 0);
+  const fDone = focusItems.filter(i => i.done).length;
+  const fTotal = focusItems.length;
+
+  const cards = [
+    {
+      lbl:'Miegs Â· Garmin',
+      num: gd.sleepH ? gd.sleepH+'h' : 'â',
+      sub: gd.sleepScore ? 'Skors '+gd.sleepScore+'/100' : (gd.sleepH ? 'vakarnakts' : 'nav datu'),
+      pct: gd.sleepH ? Math.round(gd.sleepH/8*100) : 0,
+      rtxt: gd.sleepScore ? String(gd.sleepScore) : (gd.sleepH ? Math.round(gd.sleepH/8*100)+'%' : ''),
+      empty: !gd.sleepH
+    },
+    {
+      lbl:'NedÄÄ¼as km Â· Garmin',
+      num: gd.weeklyKm != null ? gd.weeklyKm+'km' : 'â',
+      sub: gd.weeklyKm != null ? `ð¶${gd.weeklyWalk||0} + ð´${gd.weeklyBike||0}` : 'nav datu',
+      pct: gd.weeklyKm != null ? Math.min(100, Math.round(gd.weeklyKm/50*100)) : 0,
+      rtxt: gd.weeklyKm != null ? gd.weeklyKm+'km' : '',
+      empty: gd.weeklyKm == null
+    },
+    {
+      lbl:'Stress Â· Garmin',
+      num: gd.stress ? String(gd.stress) : 'â',
+      sub: gd.stressLevel ? gd.stressLevel + ' lÄ«menis' : (gd.stress ? 'vidÄjs' : 'nav datu'),
+      pct: gd.stress ? gd.stress : 0,
+      rtxt: gd.stress ? String(gd.stress) : '',
+      empty: !gd.stress
+    },
+    {
+      lbl:'Fokuss Â· Å odien',
+      num: fDone+'/'+fTotal,
+      sub: fDone===fTotal && fTotal>0 ? 'â visi izpildÄ«ti' : fDone+' pabeigti',
+      pct: fTotal ? Math.round(fDone/fTotal*100) : 0,
+      rtxt: fTotal ? Math.round(fDone/fTotal*100)+'%' : '0%',
+      empty: false
+    },
+    {
+      lbl:'Izdevumi Â· Å odien',
+      num: expTotal.toFixed(2),
+      unit:'â¬',
+      sub: exps.length ? exps.length+' darÄ«jumi' : 'nav izdevumu',
+      pct: null,
+      empty: expTotal===0
+    }
+  ];
+
+  el.innerHTML = cards.map(c => {
+    const ec = c.empty ? ' ac-mc-empty' : '';
+    const ring = c.pct!==null ? acRing(c.pct, c.rtxt||'') : '<div style="width:50px;"></div>';
+    return `<div class="ac-mc${ec}">
+      <div class="ac-mc-left">
+        <div class="ac-mc-lbl">${c.lbl}</div>
+        <div><span class="ac-mc-num">${c.num}</span>${c.unit?`<span class="ac-mc-unit"> ${c.unit}</span>`:''}</div>
+        <div class="ac-mc-sub">${c.sub}</div>
+      </div>
+      ${ring}
+    </div>`;
+  }).join('');
+}
+
+// ââ Header ââ
+function renderAcHeader() {
+  const now = new Date();
+  const dayEl = document.getElementById('ac-hdr-day');
+  const dateEl = document.getElementById('ac-hdr-date');
+  const lblEl = document.getElementById('ac-today-label');
+  if (dayEl) dayEl.textContent = LV_DAYS[now.getDay()];
+  if (dateEl) dateEl.textContent = now.getDate()+'. '+LV_MONTHS[now.getMonth()]+' '+now.getFullYear();
+  if (lblEl) lblEl.textContent = now.toLocaleDateString('lv',{day:'numeric',month:'long'});
+}
+
+// ââ KalendÄrs ââ
+let _acCM = 'today';
+function acCalTab(mode, btn) {
+  _acCM = mode;
+  document.querySelectorAll('.ac-tab').forEach(t => t.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  renderAcCal();
+}
+/* â Google Calendar ielÄde â */
+async function fetchGoogleCalendar() {
+  if (!GDS.token) { alert('Vispirms piesakies Google!'); return; }
+  const btn = document.getElementById('cal-sync-btn');
+  if (btn) { btn.textContent = 'â³'; btn.disabled = true; }
+
+  try {
+    const now   = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const weekEnd    = new Date(todayStart.getTime() + 7 * 86400000);
+
+    const url = 'https://www.googleapis.com/calendar/v3/calendars/primary/events?' +
+      'singleEvents=true&orderBy=startTime&maxResults=50' +
+      '&timeMin=' + encodeURIComponent(todayStart.toISOString()) +
+      '&timeMax=' + encodeURIComponent(weekEnd.toISOString());
+
+    const r = await fetch(url, { headers: { Authorization: 'Bearer ' + GDS.token } });
+    if (!r.ok) throw new Error('Calendar API: ' + r.status);
+    const data = await r.json();
+
+    // GrupÄ pa dienÄm
+    const byDay = {};
+    (data.items || []).forEach(ev => {
+      const start = ev.start?.dateTime || ev.start?.date;
+      if (!start) return;
+      const dk = start.slice(0, 10);
+      if (!byDay[dk]) byDay[dk] = [];
+      const time = ev.start?.dateTime
+        ? new Date(ev.start.dateTime).toLocaleTimeString('lv', { hour:'2-digit', minute:'2-digit' })
+        : '';
+      const endTime = ev.end?.dateTime
+        ? new Date(ev.end.dateTime).toLocaleTimeString('lv', { hour:'2-digit', minute:'2-digit' })
+        : '';
+      byDay[dk].push({
+        time,
+        endTime,
+        text: ev.summary || '(bez nosaukuma)',
+        color: ev.colorId ? '#'+['','7f7f7f','a4bdfc','dbadff','ff887c','ffc1c1','51b749','39d353','2d7dd2','e1e4e8','5da423'][ev.colorId] : null
+      });
+    });
+
+    // SaglabÄ cache
+    localStorage.setItem('gcal_cache', JSON.stringify({ ts: Date.now(), byDay }));
+    if (btn) { btn.textContent = 'â'; btn.disabled = false; }
+    renderAcCal();
+
+  } catch(e) {
+    if (btn) { btn.textContent = 'â '; btn.disabled = false; }
+    console.error('Calendar kÄ¼Å«da:', e);
+  }
+}
+
+function getCalCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem('gcal_cache'));
+    if (c && Date.now() - c.ts < 30 * 60000) return c.byDay; // 30 min cache
+  } catch(e) {}
+  return null;
+}
+
+function renderAcCal() {
+  const el = document.getElementById('ac-cal');
+  if (!el) return;
+  const today = getTodayKey();
+  const gcal  = getCalCache();
+  const week  = WEEKS[CURRENT_WEEK];
+  const day   = week?.days.find(d => d.key === today);
+
+  const evtRow = (e) => {
+    const timeStr = e.time ? `<div class="ac-et">${e.time}${e.endTime?' â '+e.endTime:''}</div>` : '';
+    const dot = e.color ? `<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${e.color};margin-right:4px;flex-shrink:0;"></span>` : '';
+    return `<div class="ac-er">${timeStr}<div><div class="ac-ev">${dot}${e.text}</div></div></div>`;
+  };
+
+  if (_acCM === 'today') {
+    const evts = gcal ? (gcal[today] || []) : (day?.events || []);
+    el.innerHTML = evts.length
+      ? evts.map(evtRow).join('')
+      : '<div class="d-empty">Nav notikumu Å¡odien</div>';
+
+  } else if (_acCM === 'week') {
+    // Ä¢enerÄ 7 dienu sarakstu
+    const days7 = Array.from({length:7}, (_,i) => {
+      const d = new Date(new Date().setHours(0,0,0,0) + i*86400000);
+      const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      return { key, dt: d };
+    });
+    el.innerHTML = days7.map(({key, dt}) => {
+      const isT = key === today;
+      const evts = gcal ? (gcal[key]||[]).slice(0,2) : (week?.days.find(d=>d.key===key)?.events||[]).slice(0,2);
+      return `<div class="ac-er" style="${isT?'background:#faf8f6;border-radius:7px;margin:0 -6px;padding:4px 6px;':''}">
+        <div class="ac-et" style="min-width:46px;${isT?'color:var(--taupe);font-weight:600;':''}">${LV_DS[dt.getDay()]} ${dt.getDate()}.</div>
+        <div>${evts.length ? evts.map(e=>`<div class="ac-ev" style="font-size:11px;">${e.time?e.time+' ':''} ${e.text}</div>`).join('') : '<div class="ac-es" style="color:#ccc;font-size:11px;">BrÄ«vs</div>'}</div>
+      </div>`;
+    }).join('');
+
+  } else {
+    const mk = new Date().getFullYear()+'-'+String(new Date().getMonth()+1).padStart(2,'0');
+    const items = MILESTONES[mk]?.items || [];
+    el.innerHTML = items.length
+      ? items.map(m=>{
+          const done = getChecked(m.id)||m.done;
+          return `<div class="ac-er">
+            <div style="width:8px;height:8px;border-radius:50%;background:${done?'var(--taupe)':'#ddd'};flex-shrink:0;margin-top:5px;"></div>
+            <div class="ac-ev" style="${done?'text-decoration:line-through;color:var(--greige);':''}">${m.text}</div>
+          </div>`;
+        }).join('')
+      : '<div class="d-empty">Nav milestone Å¡im mÄnesim</div>';
+  }
+}
+
+// ââ MÄrÄ·i ââ
+function renderAcGoals() {
+  const el = document.getElementById('ac-goals');
+  if (!el) return;
+  const goals = [
+    {icon:'ð¼', name:'Made2Dream brends', sub:'mÄjaslapa Â· Instagram Â· GetaPro', ids:['m07-1','m07-2','m07-4']},
+    {icon:'ð ', name:'NK Ä«paÅ¡umi', sub:'remonts un pÄrdoÅ¡ana', ids:['m07-3']},
+    {icon:'ð»', name:'DigitÄlie risinÄjumi', sub:'AI Challenge Â· tehnoloÄ£ijas', ids:['m07-5','m07-1']}
+  ];
+  el.innerHTML = goals.map(g => {
+    const done = g.ids.filter(id=>getChecked(id)).length;
+    const total = g.ids.length;
+    const pct = total ? Math.round(done/total*100) : 0;
+    return `<div class="ac-gr" onclick="showTabById('months')">
+      <div class="ac-gtop">
+        <span class="ac-gn">${g.icon} ${g.name} <span style="color:var(--greige);font-size:11px;">â</span></span>
+        <span class="ac-gp">${pct}%</span>
+      </div>
+      <div class="ac-gsub">${g.sub} Â· ${done}/${total} milestone</div>
+      <div class="ac-gbar"><div class="ac-gbf" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+// ââ Fokuss ââ
+function renderAcFocus(items) {
+  const el = document.getElementById('ac-focus');
+  const meta = document.getElementById('ac-focus-meta');
+  if (!el) return;
+  const done = items.filter(i=>i.done).length;
+  if (meta) meta.textContent = done+' no '+items.length+' izpildÄ«ti';
+  function tag(text) {
+    const t = text.toLowerCase();
+    if (t.includes('made2dream')||t.includes('mÄjaslapa')||t.includes('klients')||t.includes('dizain')) return {c:'tag-b',l:'BIZNESS'};
+    if (t.includes('instagram')||t.includes('saturs')||t.includes('post')) return {c:'tag-m',l:'MÄRK'};
+    if (t.includes('pampÄÄ¼')||t.includes('Ä«paÅ¡um')||t.includes('remonts')) return {c:'tag-nk',l:'NK'};
+    if (t.includes(' ai ')||t.includes('challenge')||t.includes('digit')) return {c:'tag-b',l:'AI'};
+    return null;
+  }
+  el.innerHTML = items.length
+    ? items.map(item=>{
+        const tg = tag(item.text);
+        return `<div class="ac-fr">
+          <input type="checkbox" id="${item.id}" ${item.done?'checked':''} onchange="toggleFocusItem('${item.id}')">
+          <label class="ac-fl" for="${item.id}">${item.text}</label>
+          ${tg?`<span class="ac-ftag ${tg.c}">${tg.l}</span>`:''}
+        </div>`;
+      }).join('')
+    : '<div class="d-empty">Nav uzdevumu Å¡odien. Pievienoji tos NedÄÄ¼as cilnÄ (+ Pievienot), tad nospied âº.</div>';
+}
+
+// ââ Izdevumi ââ
+function renderAcExpenses() {
+  const today = getTodayKey();
+  const exps = getExpenses().filter(e=>e.date===today);
+  const total = exps.reduce((s,e)=>s+e.amount,0);
+  const heroEl = document.getElementById('ac-exp-hero');
+  const listEl = document.getElementById('ac-exp-list');
+  if (heroEl) heroEl.textContent = total.toFixed(2)+' â¬';
+  if (listEl) {
+    listEl.innerHTML = exps.length
+      ? exps.slice(0,5).map(e=>{
+          const cfg = EXP_CATS[e.cat]||{label:e.cat};
+          const emoji = cfg.label.split(' ')[0];
+          return `<div class="ac-ir">
+            <div class="ac-idot"></div>
+            <div class="ac-icat">${emoji} ${e.note||cfg.label.split(' ').slice(1).join(' ')}</div>
+            <div class="ac-iamt">${e.amount.toFixed(2)} â¬</div>
+          </div>`;
+        }).join('')
+      : '<div class="d-empty" style="padding:4px 0;">Nav izdevumu Å¡odien</div>';
+  }
+}
+
+// ââ NedÄÄ¼as progress ââ
+function renderAcWeekProg() {
+  const el = document.getElementById('ac-week-prog');
+  const meta = document.getElementById('ac-week-meta');
+  if (!el) return;
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) { el.innerHTML = '<div class="d-empty">Nav nedÄÄ¼as datu</div>'; return; }
+  const today = getTodayKey();
+  let tDone=0, tAll=0;
+  el.innerHTML = week.days.map(d=>{
+    const all = [...(d.tasks||[]),...getUserTasks(d.key)];
+    const done = all.filter(t=>getChecked(t.id)).length;
+    tDone+=done; tAll+=all.length;
+    const pct = all.length ? Math.round(done/all.length*100) : 0;
+    const dt = new Date(d.key);
+    const isT = d.key===today;
+    return `<div class="ac-wr" style="opacity:${d.key>today?'0.45':'1'}">
+      <div class="ac-wrd" style="${isT?'color:var(--taupe);font-weight:700;':''}">${LV_DS[dt.getDay()]}</div>
+      <div class="ac-wrb"><div class="ac-wrbf" style="width:${pct}%"></div></div>
+      <div class="ac-wrp">${all.length?pct+'%':'â'}</div>
+    </div>`;
+  }).join('');
+  if (meta) {
+    const wp = tAll ? Math.round(tDone/tAll*100) : 0;
+    meta.textContent = tDone+'/'+tAll+' Â· '+wp+'%';
+  }
+}
+
+// ââ Laika apstÄkÄ¼i (Open-Meteo, Sigulda) ââ
+async function fetchWeather() {
+  const K='weather_cache2';
+  const cached = JSON.parse(localStorage.getItem(K)||'null');
+  if (cached && Date.now()-cached.ts < 3600000) { renderAcWeather(cached); return; }
+  try {
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=57.15&longitude=24.87&current=temperature_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max&timezone=Europe%2FRiga&forecast_days=4');
+    const j = await r.json();
+    const c = j.current, d = j.daily;
+    const data = {
+      ts:Date.now(), temp:Math.round(c.temperature_2m), code:c.weather_code,
+      wind:Math.round(c.wind_speed_10m),
+      fc:(d.time||[]).slice(0,4).map((t,i)=>({date:t,code:d.weather_code[i],max:Math.round(d.temperature_2m_max[i])}))
+    };
+    localStorage.setItem(K, JSON.stringify(data));
+    renderAcWeather(data);
+  } catch(e) {
+    const el=document.getElementById('ac-weather');
+    if(el) el.innerHTML='<div class="d-empty">Nav savienojuma</div>';
+  }
+}
+function renderAcWeather(d) {
+  const el = document.getElementById('ac-weather');
+  if (!el) return;
+  const icon = WMO_ICON[d.code]||'ð¡';
+  const desc = WMO_DESC[d.code]||'';
+  const fc = (d.fc||[]).map(f=>{
+    const dt=new Date(f.date);
+    return `<div class="ac-fcd"><div class="ac-fcl">${LV_DS[dt.getDay()]}</div><div class="ac-fci">${WMO_ICON[f.code]||'ð¡'}</div><div class="ac-fct">${f.max}Â°</div></div>`;
+  }).join('');
+  el.innerHTML = `
+    <div class="ac-wtop">
+      <div class="ac-wicon">${icon}</div>
+      <div>
+        <div class="ac-wtemp">${d.temp}Â°</div>
+        <div class="ac-wdesc">${desc}</div>
+        <div class="ac-whl">${d.wind?d.wind+' km/h':''}</div>
+      </div>
+    </div>
+    ${fc?`<div class="ac-fc">${fc}</div>`:''}
+  `;
+}
+
+// ââ GalvenÄ renderÄÅ¡ana ââ
+function calcPct(msIds) {
+  const done = msIds.filter(id=>getChecked(id)).length;
+  return {done, total:msIds.length, pct:msIds.length?Math.round(done/msIds.length*100):0};
+}
+
+function renderDashboard() {
+  const today = getTodayKey();
+  const gd = getGarminData(today);
+
+  // VienmÄr sapludina keÅ¡oto fokusa sarakstu ar jaunÄkajiem lietotÄja uzdevumiem.
+  // TÄ jaunpievienoti uzdevumi (arÄ« no mobilÄ) uzreiz parÄdÄs dashboardÄ.
+  const cached    = getFocusItems();
+  const userTasks = getUserTasks(today);
+  let items;
+  if (!cached.length) {
+    items = buildDefaultFocusItems();
+    setFocusItems(items);
+  } else {
+    const cachedIds = new Set(cached.map(i => i.id));
+    const newItems  = userTasks
+      .filter(t => !cachedIds.has('fu' + t.id))
+      .map(t => ({ id: 'fu' + t.id, text: t.text, done: getChecked(t.id) }));
+    items = [...cached, ...newItems]; // bez slice â visi uzdevumi redzami
+    if (newItems.length) setFocusItems(items);
+  }
+
+  renderAcHeader();
+  renderMetricStrip(gd, items);
+  renderAcCal();
+  renderAcFocus(items);
+  renderAcExpenses();
+  renderAcGoals();
+  renderAcWeekProg();
+  fetchWeather();
+
+  // Garmin datu attÄloÅ¡ana
+  updateGarminBoxes(gd);
+  const gsh = document.getElementById('g-sleep-h');
+  const gst = document.getElementById('g-steps');
+  const gsr = document.getElementById('g-stress');
+  if (gsh && gd.sleepH) gsh.value = gd.sleepH;
+  if (gst && gd.steps)  gst.value = gd.steps;
+  if (gsr && gd.stress) gsr.value = gd.stress;
+}
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   GOOGLE DRIVE SYNC â GDS MODULIS
+   GlabÄ VISUS plÄnotÄja datus Google Drive failÄ
+   evita_planner_2026.json â pieejams no jebkuras ierÄ«ces
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+const GDS = {
+  CLIENT_ID:  '457566382983-0tsi1v5b6300nca77udoviiuv8jgaklb.apps.googleusercontent.com',   // â aizpildÄ«si pÄc instrukcijÄm
+  SCOPE:      'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/calendar.readonly',
+  SCOPE_FIT:  'https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.sleep.read',
+  SCOPE_CAL:  'https://www.googleapis.com/auth/calendar.readonly',
+  FILE_NAME:  'evita_planner_2026.json',
+  SKIP_KEYS:  ['weather_cache2'],         // Å¡os neglabÄ Drive
+  token:      null,
+  fileId:     null,
+  syncTimer:  null,
+  ready:      false,
+
+  /* InicializÄ: mÄÄ£ina atjaunot esoÅ¡o token no localStorage */
+  init() {
+    const saved = localStorage.getItem('_gds_token');
+    if (saved) {
+      try {
+        const t = JSON.parse(saved);
+        if (t.expires_at > Date.now() + 60000) {
+          GDS.token = t.access_token;
+          GDS.ready = true;
+          GDS.setStatus('â³ IelÄdÄ datus...', 'loading');
+          GDS.loadOrCreate().then(() => {
+            GDS.setStatus('âï¸ Google Drive â sinhronizÄts', 'ok');
+          }).catch(e => {
+            GDS.setStatus('â  NeizdevÄs ielÄdÄt: ' + e.message, 'err');
+          });
+          return;
+        }
+      } catch(e) {}
+    }
+    GDS.setStatus('âï¸ Google Drive â nav savienots', 'idle');
+  },
+
+  /* PierakstÄ«Å¡anÄs â parÄdÄs Google logina loga */
+  login() {
+    if (!window.google) {
+      GDS.setStatus('â  Google skripts vÄl ielÄdÄjas â mÄÄ£ini vÄlreiz', 'err');
+      return;
+    }
+    const client = google.accounts.oauth2.initTokenClient({
+      client_id:  GDS.CLIENT_ID,
+      scope:      GDS.SCOPE,
+      callback:   (resp) => {
+        if (resp.error) { GDS.setStatus('â  PierakstÄ«Å¡anÄs kÄ¼Å«da: ' + resp.error, 'err'); return; }
+        GDS.token = resp.access_token;
+        GDS.ready = true;
+        // SaglabÄ token ar derÄ«guma laiku (1h)
+        localStorage.setItem('_gds_token', JSON.stringify({
+          access_token: resp.access_token,
+          expires_at: Date.now() + (resp.expires_in || 3600) * 1000
+        }));
+        GDS.setStatus('â³ Savienojas ar Google Drive...', 'loading');
+        GDS.loadOrCreate().then(() => {
+          GDS.setStatus('âï¸ Google Drive â sinhronizÄts â', 'ok');
+          // Auto-ielÄdÄ kalendÄru pÄc pieslÄgÅ¡anÄs
+          fetchGoogleCalendar();
+        }).catch(e => {
+          GDS.setStatus('â  Drive kÄ¼Å«da: ' + e.message, 'err');
+        });
+      }
+    });
+    client.requestAccessToken({ prompt: 'select_account' });
+  },
+
+  /* MeklÄ esoÅ¡o failu vai izveido jaunu */
+  async loadOrCreate() {
+    // MeklÄ failu pÄc nosaukuma
+    const q = encodeURIComponent(`name='${GDS.FILE_NAME}' and trashed=false`);
+    const r = await fetch(
+      `https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name,modifiedTime)`,
+      { headers: { Authorization: 'Bearer ' + GDS.token } }
+    );
+    if (!r.ok) throw new Error('Drive meklÄÅ¡ana neizdevÄs: ' + r.status);
+    const data = await r.json();
+    if (data.files && data.files.length > 0) {
+      GDS.fileId = data.files[0].id;
+      // VienmÄr lejupielÄdÄ no Drive un sapludina.
+      // download() pats izlemj: ja Drive ir jaunÄks â pÄrÅem; ja lokÄlie jaunÄki â augÅ¡upielÄdÄ.
+      await GDS.download();
+    } else {
+      // Fails Drive nav â izveido jaunu no lokÄliem datiem
+      await GDS.create();
+    }
+  },
+
+  /* LejupielÄdÄ datus no Drive un sapludina ar lokÄliem datiem.
+     Tiek izsaukts TIKAI pirmajÄ ielÄdÄ jaunÄ sesijÄ (sessionStorage kontrolÄ). */
+  async download() {
+    const r = await fetch(
+      `https://www.googleapis.com/drive/v3/files/${GDS.fileId}?alt=media`,
+      { headers: { Authorization: 'Bearer ' + GDS.token } }
+    );
+    if (!r.ok) throw new Error('LejupielÄde neizdevÄs: ' + r.status);
+    const data = await r.json();
+    const driveTs = data._saved_at || 0;
+    const localTs = parseInt(localStorage.getItem('_gds_local_ts') || '0');
+
+    if (localTs === 0) {
+      // ââ Jauna ierÄ«ce / tÄ«rs localStorage ââââââââââââââââââââââââââââââââââ
+      // Aizpilda tikai tukÅ¡Äs lokÄlÄs vietas ar Drive datiem.
+      // Ja lokÄli kaut kas IR â paliek neskarti.
+      Object.keys(data).forEach(k => {
+        if (k === '_saved_at') return;
+        if (localStorage.getItem(k) === null) {
+          localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
+        }
+      });
+      localStorage.setItem('_gds_local_ts', String(Date.now()));
+      await GDS.save(); // AugÅ¡upielÄdÄ sapludinÄtos datus
+    } else if (driveTs > localTs) {
+      // ââ Drive ir jaunÄks nekÄ Å¡Ä« ierÄ«ce âââââââââââââââââââââââââââââââââââ
+      // (Cita ierÄ«ce saglabÄja vÄlÄk) â pÄrÅem Drive datus.
+      Object.keys(data).forEach(k => {
+        if (k === '_saved_at') return;
+        localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
+      });
+      localStorage.setItem('_gds_local_ts', String(driveTs));
+      // PÄrzÄ«mÄ UI ar jaunajiem datiem
+      renderDashboard();
+      renderWeek();
+    } else {
+      // ââ LokÄlie dati ir tikpat jauni vai jaunÄki ââââââââââââââââââââââââââ
+      // TomÄr pÄrbauda eu_* (uzdevumi) â ja Drive ir jauni uzdevumi, sapludina.
+      // Tas risina situÄciju: uzdevums pievienots mobilajÄ, bet datora ts ir jaunÄks.
+      let mergedTasks = false;
+      Object.keys(data).forEach(k => {
+        if (!k.startsWith('eu_')) return;
+        try {
+          const localRaw = localStorage.getItem(k);
+          const localArr = localRaw ? JSON.parse(localRaw) : [];
+          const driveVal = data[k];
+          const driveArr = typeof driveVal === 'string' ? JSON.parse(driveVal) : (driveVal || []);
+          if (!Array.isArray(driveArr) || !driveArr.length) return;
+          const localIds = new Set(localArr.map(t => t.id));
+          const newTasks = driveArr.filter(t => !localIds.has(t.id));
+          if (newTasks.length) {
+            localStorage.setItem(k, JSON.stringify([...localArr, ...newTasks]));
+            mergedTasks = true;
+          }
+        } catch(e) {}
+      });
+      if (mergedTasks) { renderDashboard(); renderWeek(); }
+      await GDS.save();
+    }
+  },
+
+  /* Izveido jaunu failu Drive */
+  async create() {
+    const content = GDS.collectData();
+    const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+    const meta = { name: GDS.FILE_NAME, mimeType: 'application/json' };
+    const form = new FormData();
+    form.append('metadata', new Blob([JSON.stringify(meta)], { type: 'application/json' }));
+    form.append('file', blob);
+    const r = await fetch(
+      'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',
+      { method: 'POST', headers: { Authorization: 'Bearer ' + GDS.token }, body: form }
+    );
+    if (!r.ok) throw new Error('Izveide neizdevÄs: ' + r.status);
+    const d = await r.json();
+    GDS.fileId = d.id;
+  },
+
+  /* SavÄc VISUS plÄnotÄja datus no localStorage */
+  collectData() {
+    const data = { _saved_at: Date.now() };
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k || GDS.SKIP_KEYS.some(s => k.startsWith(s)) || k === '_gds_token' || k === '_gds_local_ts') continue;
+      try { data[k] = JSON.parse(localStorage.getItem(k)); }
+      catch(e) { data[k] = localStorage.getItem(k); }
+    }
+    return data;
+  },
+
+  /* AtliktÄ saglabÄÅ¡ana â izsauc 2.5s pÄc pÄdÄjÄs izmaiÅas */
+  scheduleSave() {
+    if (!GDS.ready || !GDS.fileId) return;
+    clearTimeout(GDS.syncTimer);
+    GDS.syncTimer = setTimeout(() => GDS.save(), 2500);
+  },
+
+  /* SaglabÄ datus Drive failÄ (PATCH) */
+  async save() {
+    if (!GDS.ready || !GDS.fileId || !GDS.token) return;
+    try {
+      GDS.setStatus('â³ SaglabÄ...', 'loading');
+      const content = GDS.collectData();
+      const ts = Date.now();
+      content._saved_at = ts;
+      const r = await fetch(
+        `https://www.googleapis.com/upload/drive/v3/files/${GDS.fileId}?uploadType=media`,
+        {
+          method: 'PATCH',
+          headers: { Authorization: 'Bearer ' + GDS.token, 'Content-Type': 'application/json' },
+          body: JSON.stringify(content)
+        }
+      );
+      if (!r.ok) {
+        if (r.status === 401) {
+          GDS.ready = false;
+          GDS.setStatus('ð Sesija beigusies â pierakstÄ«ties atkal', 'idle');
+          document.getElementById('drive-btn').textContent = 'PieslÄgties Google';
+          return;
+        }
+        throw new Error('SaglabÄÅ¡ana neizdevÄs: ' + r.status);
+      }
+      localStorage.setItem('_gds_local_ts', String(ts));
+      const t = new Date().toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' });
+      GDS.setStatus('âï¸ SaglabÄts ' + t, 'ok');
+    } catch(e) {
+      GDS.setStatus('â  ' + e.message, 'err');
+    }
+  },
+
+  /* Atjaunina Drive joslas UI */
+  setStatus(msg, state) {
+    const el = document.getElementById('drive-status');
+    const btn = document.getElementById('drive-btn');
+    if (el) el.textContent = msg;
+    if (btn) {
+      if (state === 'ok') {
+        btn.textContent = 'â Drive';
+        btn.className = 'ok';
+      } else if (state === 'loading') {
+        btn.textContent = 'â³';
+        btn.className = '';
+      } else {
+        btn.textContent = 'PieslÄgties Google';
+        btn.className = '';
+      }
+    }
+  }
+};
+
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   INIT
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Iestata Å¡odienas datumu izdevumu formÄ
+  const todayVal = new Date().toISOString().slice(0,10);
+  const d2 = document.getElementById('exp-date2');
+  if (d2) d2.value = todayVal;
+
+  renderDashboard();
+  renderWeek();
+  GDS.init();
+  fetchGarminJson(); // AutomÄtiski ielÄdÄ Garmin datus no garmin_data.json
+  initFolderAccess();
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    const days = ['SvÄtdiena','Pirmdiena','Otrdiena','TreÅ¡diena','Ceturtdiena','Piektdiena','Sestdiena'];
+    const months = ['janvÄris','februÄris','marts','aprÄ«lis','maijs','jÅ«nijs','jÅ«lijs','augusts','septembris','oktobris','novembris','decembris'];
+    const el = document.getElementById('hdr-clock');
+    if (el) el.innerHTML = days[now.getDay()] + ', ' + now.getDate() + '. ' + months[now.getMonth()] + ' ' + now.getFullYear() + '<br>' + now.toLocaleTimeString('lv',{hour:'2-digit',minute:'2-digit'});
+  }
+  updateClock();
+  setInterval(updateClock, 60000);
+
+  // Periodiski sinhronizÄ ar Drive (katras 3 minÅ«tes) â
+  // tÄ mobilÄ pievienotie uzdevumi parÄdÄs uz datora bez lapas atkÄrtotas ielÄdes.
+  setInterval(() => {
+    if (GDS.ready && GDS.fileId) GDS.download().catch(() => {});
+  }, 3 * 60 * 1000);
+});
+</script></body></html><!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evita · 2026 · Plāns</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
