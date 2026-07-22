@@ -2411,7 +2411,7 @@ function renderIzdevumi() {
    GARMIN — AUTOMĀTISKA IELĀDE NO garmin_data.json
    GitHub Actions atjaunina failu katru rītu
 ══════════════════════════════════════════════════════════ */
-function getTodayKey() { return new Date().toISOString().slice(0,10); }
+function getTodayKey() { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
 function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
 
@@ -2851,7 +2851,8 @@ function renderAcCal() {
     // Ģenerē 7 dienu sarakstu
     const days7 = Array.from({length:7}, (_,i) => {
       const d = new Date(new Date().setHours(0,0,0,0) + i*86400000);
-      return { key: d.toISOString().slice(0,10), dt: d };
+      const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      return { key, dt: d };
     });
     el.innerHTML = days7.map(({key, dt}) => {
       const isT = key === today;
