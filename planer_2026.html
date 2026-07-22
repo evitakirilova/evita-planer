@@ -1469,7 +1469,9 @@ const WEEKS = {
       {
         key: "2026-07-22", name: "Trešdiena", date: "22. jūlijs", status: "future", badge: "kids",
         events: [
+          { time: "10:30", text: "Henr angļu valoda (līdz 11:30)" },
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "16:00", text: "Henr treniņš (līdz 17:00)" },
           { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
         ],
         tasks: []
@@ -2644,7 +2646,18 @@ function resetDayFocus() {
 function toggleFocusItem(id) {
   const items = getFocusItems();
   const item  = items.find(i => i.id === id);
-  if (item) { item.done = !item.done; setFocusItems(items); }
+  if (item) {
+    item.done = !item.done;
+    setFocusItems(items);
+    // Sinhronizē ar nedēļas skatu un progress cilni
+    if (id.startsWith('fu')) {
+      const origId = id.slice(2);
+      setChecked(origId, item.done);
+      updateDayStats(getTodayKey());
+      updateProgressTab();
+    }
+    writeProgress(false);
+  }
   renderDashboard();
 }
 
