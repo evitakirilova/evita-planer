@@ -1,16 +1,11 @@
 {
   "date": "2026-07-22",
-  "updated": "2026-07-22T06:11:34.098Z",
-  "yesterday_steps": 8479,
+  "updated": "2026-07-22T10:54:01.872969Z",
+  "steps": null,
   "steps_goal": 10000,
-  "sleep_hours": 7.0,
-  "sleep_score": 81,
-  "stress_avg": 21,
-  "stress_level": "zems",
-  "body_battery": 96,
-  "weekly_walk_km": 2.04,
-  "weekly_bike_km": 0,
-  "weekly_total_km": 2.04,
-  "week_start": "2026-07-20",
-  "error": null
+  "sleep_hours": null,
+  "sleep_score": null,
+  "stress_avg": null,
+  "stress_level": null,
+  "error": "Login failed: All login strategies exhausted: Portal login failed (non-JSON): HTTP 403"
 }
