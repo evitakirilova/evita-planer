@@ -1,5 +1,20 @@
 {
   "date": "2026-07-23",
+  "updated": "2026-07-23T07:47:06.992Z",
+  "yesterday_steps": 12487,
+  "steps_goal": 10000,
+  "sleep_hours": 7.0,
+  "sleep_score": 81,
+  "stress_avg": 18,
+  "stress_level": "zems",
+  "body_battery": 59,
+  "weekly_walk_km": 13.46,
+  "weekly_bike_km": 0,
+  "weekly_total_km": 13.46,
+  "week_start": "2026-07-17",
+  "error": null
+}{
+  "date": "2026-07-23",
   "updated": "2026-07-23T07:36:28.541Z",
   "yesterday_steps": 6609,
   "steps_goal": 10000,
