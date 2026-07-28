@@ -2443,29 +2443,24 @@ function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
 let garminLastFetch = 0;
 
 async function fetchGarminJson(manual = false) {
-  // Nav vērts mēģināt lokāli (file://) — tikai GitHub Pages
-  if (!location.hostname) return;
+  // Garmin dati nolasās no Google Drive (evita_planner_2026.json sadaļa .garmin)
+  if (!GDS || !GDS.ready || !GDS.data) return;
 
   const now = Date.now();
-  // Auto-ielāde ne biežāk kā reizi 30 min; manuāli — vienmēr
   if (!manual && now - garminLastFetch < 30 * 60 * 1000) return;
 
   const statusEl = document.getElementById('garmin-auto-status');
   if (statusEl) statusEl.textContent = '⏳ Ielādē Garmin datus...';
 
   try {
-    const base = location.href.replace(/\/[^/]*(\?.*)?$/, '/');
-    const url  = base + 'garmin_data.json?t=' + now;
-    const r    = await fetch(url, { cache: 'no-store' });
-
-    if (!r.ok) {
-      if (statusEl) statusEl.textContent = '⚠ garmin_data.json nav pieejams vēl';
+    // Nolasa no Google Drive datul
+    const data = GDS.data.garmin;
+    if (!data) {
+      if (statusEl) statusEl.textContent = '⚠ Garmin dati nav vēl pieejami';
       return;
     }
 
-    const data = await r.json();
     garminLastFetch = now;
-
     const today     = getTodayKey();
     const yesterday = new Date(now - 86400000).toISOString().slice(0, 10);
     const isRecent  = data.date === today || data.date === yesterday;
@@ -2503,7 +2498,7 @@ async function fetchGarminJson(manual = false) {
     const upd = data.updated
       ? new Date(data.updated).toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' })
       : data.date;
-    if (statusEl) statusEl.textContent = '✓ Automātiski ielādēts · ' + upd;
+    if (statusEl) statusEl.textContent = '✓ No Google Drive · ' + upd;
 
   } catch(e) {
     if (statusEl) statusEl.textContent = '— Garmin dati nav pieejami';
