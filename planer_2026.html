@@ -1551,6 +1551,8 @@ const WEEKS = {
           { time: "09:20", text: "Henrijs angļu valoda (līdz 10:20)" },
           { time: "10:30", text: "Hugo angļu valoda (līdz 11:30)" },
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "16:00", text: "Henrijam treniņš (līdz 17:00)" },
+          { time: "18:00", text: "Hugo treniņš (līdz 20:00)" },
           { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
         ],
         tasks: [],
@@ -2433,8 +2435,8 @@ function renderIzdevumi() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   GARMIN — AUTOMĀTISKA IELĀDE NO garmin_data.json
-   GitHub Actions atjaunina failu katru rītu
+   GARMIN — AUTOMĀTISKA IELĀDE NO garmin_data.json (GitHub, tieši)
+   Claude (Cowork + Chrome) katru rītu atjaunina failu no Garmin Connect
 ══════════════════════════════════════════════════════════ */
 function getTodayKey() { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
@@ -2443,9 +2445,7 @@ function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
 let garminLastFetch = 0;
 
 async function fetchGarminJson(manual = false) {
-  // Garmin dati nolasās no Google Drive (evita_planner_2026.json sadaļa .garmin)
-  if (!GDS || !GDS.ready || !GDS.data) return;
-
+  // Garmin dati nolasās tieši no GitHub (evitakirilova/evita-planer/garmin_data.json)
   const now = Date.now();
   if (!manual && now - garminLastFetch < 30 * 60 * 1000) return;
 
@@ -2453,8 +2453,9 @@ async function fetchGarminJson(manual = false) {
   if (statusEl) statusEl.textContent = '⏳ Ielādē Garmin datus...';
 
   try {
-    // Nolasa no Google Drive datul
-    const data = GDS.data.garmin;
+    const resp = await fetch('https://raw.githubusercontent.com/evitakirilova/evita-planer/main/garmin_data.json?t=' + now);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
     if (!data) {
       if (statusEl) statusEl.textContent = '⚠ Garmin dati nav vēl pieejami';
       return;
@@ -2498,7 +2499,7 @@ async function fetchGarminJson(manual = false) {
     const upd = data.updated
       ? new Date(data.updated).toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' })
       : data.date;
-    if (statusEl) statusEl.textContent = '✓ No Google Drive · ' + upd;
+    if (statusEl) statusEl.textContent = '✓ Garmin · ' + upd;
 
   } catch(e) {
     if (statusEl) statusEl.textContent = '— Garmin dati nav pieejami';
