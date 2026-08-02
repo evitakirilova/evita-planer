@@ -1518,7 +1518,7 @@ const WEEKS = {
     ]
   },
   "2026-W31": {
-    label: "27.–31. jūlijs 2026",
+    label: "27. jūlijs – 2. augusts 2026",
     priorities: [
       { text: "Mākoņu ielas fotosesija (ja datums apstiprināts)", ms: "m07-1" },
       { text: "Mēneša izvērtējums + augusta plānošana", ms: "m07-5" },
@@ -1567,13 +1567,30 @@ const WEEKS = {
         coach: null
       },
       {
-        key: "2026-07-31", name: "Piektdiena", date: "31. jūlijs", status: "future", badge: "free",
+        key: "2026-07-31", name: "Piektdiena", date: "31. jūlijs", status: "past", badge: "free",
         events: [
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
           { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
         ],
         tasks: [],
         coach: "Jūlija pēdējā diena. Izvērtē: kas no milestones ir izdarīts? Kas pārceļas uz augustu?"
+      },
+      {
+        key: "2026-08-01", name: "Sestdiena", date: "1. augusts", status: "today", badge: "weekend",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: [],
+        coach: "Augusta pirmā diena. Vasaras nedēļas nogale — nulle stratēģiskā darba, tikai ātras atbildes."
+      },
+      {
+        key: "2026-08-02", name: "Svētdiena", date: "2. augusts", status: "future", badge: "weekend",
+        events: [
+          { time: "09:30", text: "Henrijam vācu valoda (līdz 10:30)" },
+          { time: "10:15", text: "Hugo vācu valoda (līdz 11:15)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
       }
     ]
   }
