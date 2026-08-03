@@ -1220,11 +1220,10 @@ const MILESTONES = {
   },
   "2026-08": {
     label: "Augusts", status: "future",
-    theme: "Mājaslapa · pārcelšanās · AI Challenge",
+    theme: "Mājaslapa · Instagram · klientu piesaiste",
     items: [
-      { id: "m08-1", text: "Made2Dream mājaslapa publicēta (bildes, teksti, GetaPro, Instagram)", goal: "b" },
-      { id: "m08-6", text: "M10 pārcelšanās pabeigta — telpas atbrīvotas (līdz 07.08.)", goal: "p" },
-      { id: "m08-7", text: "AI Challenge noslēgts (13.08.)", goal: "b" }
+      { id: "m08-1", text: "Made2Dream mājaslapa publicēta (bildes, teksti, GetaPro)", goal: "b" },
+      { id: "m08-8", text: "Instagram aktivizēts un darbojas klientu piesaistei", goal: "m" }
     ]
   },
   "2026-09": {
@@ -3116,9 +3115,8 @@ function renderAcGoals() {
   const el = document.getElementById('ac-goals');
   if (!el) return;
   const goals = [
-    {icon:'💼', name:'Mājaslapa publicēta', sub:'bildes · teksti · GetaPro · Instagram', ids:['m08-1']},
-    {icon:'📦', name:'M10 pārcelšanās', sub:'telpas atbrīvotas līdz 07.08.', ids:['m08-6']},
-    {icon:'🤖', name:'AI Challenge', sub:'katru dienu 11:00-18:00 līdz 13.08.', ids:['m08-7']}
+    {icon:'💼', name:'Mājaslapa publicēta', sub:'bildes · teksti · GetaPro', ids:['m08-1']},
+    {icon:'📸', name:'Instagram aktivizēts', sub:'klientu piesaiste', ids:['m08-8']}
   ];
   el.innerHTML = goals.map(g => {
     const done = g.ids.filter(id=>getChecked(id)).length;
