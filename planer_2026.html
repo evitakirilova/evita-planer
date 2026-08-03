@@ -472,6 +472,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
   <button class="tb" onclick="showTab('goals')">🎯 Gada mērķi</button>
   <button class="tb" onclick="showTab('months')">📅 Mēneša milestones</button>
   <button class="tb" onclick="showTab('week')">📋 Nedēļas plāns</button>
+  <button class="tb" onclick="showTab('mealplan')">🍽️ Ēdienkarte</button>
   <button class="tb" onclick="showTab('ideas')">💡 Idejas</button>
   <button class="tb" onclick="showTab('izdevumi')">💸 Izdevumi</button>
   <button class="tb" onclick="showTab('progress')">📊 Progress</button>
@@ -538,6 +539,21 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         <div id="ac-focus"></div>
         <div style="margin-top:10px;">
           <button class="d-link" onclick="resetDayFocus()">↺ Atjaunot uzdevumus</button>
+        </div>
+      </div>
+
+      <div class="ac-card">
+        <div class="ac-ch">
+          <span class="ac-ct">🍽️ Šodienas ēdienkarte</span>
+          <button class="ac-ca" onclick="showTabById('mealplan')">Visi →</button>
+        </div>
+        <div id="ac-meals"></div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
+          <div class="d-mini-row">
+            <select class="d-mini-inp" id="meal-cat-dash" style="flex:0 0 120px;"></select>
+            <input class="d-mini-inp" id="meal-txt-dash" placeholder="Pievienot ēdienu...">
+            <button class="d-btn" onclick="addMealFromDash()">+</button>
+          </div>
         </div>
       </div>
 
@@ -976,6 +992,17 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     <p>Claude atjaunina katru svētdienu · Tu ķeksē uzdevumus dienas laikā · Progress tiek saglabāts</p>
   </div>
   <div id="week-wrap"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB · ĒDIENKARTE
+══════════════════════════════════════════════════════════ -->
+<div id="tab-mealplan" class="tab">
+  <div class="sh">
+    <h2>🍽️ Ēdienkarte</h2>
+    <p>Nedēļas ēdienkarte pa dienām — Brokastis, Pusdienas, Uzkodas, Vakariņas. Šodienas ēdienkarte parādās arī Dashbordā.</p>
+  </div>
+  <div id="mealplan-wrap"></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -1593,10 +1620,82 @@ const WEEKS = {
         tasks: []
       }
     ]
+  },
+  "2026-W32": {
+    label: "3.–9. augusts 2026",
+    priorities: [
+      { text: "Portfolio mājaslapa pilnībā publicēta", ms: "m08-1" },
+      { text: "2+ jauni interjera dizaina klienti ar līgumu", ms: "m08-3" },
+      { text: "AI challenge noslēdzas (13.08.)", ms: "m07-5" }
+    ],
+    accountability: [
+      "🤖 AI Challenge turpinās katru dienu 11:00–18:00 līdz 13.08."
+    ],
+    days: [
+      {
+        key: "2026-08-03", name: "Pirmdiena", date: "3. augusts", status: "today", badge: "free",
+        events: [
+          { time: "09:00", text: "Rakstīt Uldim par ski master (līdz 10:00)" },
+          { time: "09:30", text: "Henr angļu valoda (līdz 10:30)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "11:00", text: "Matračus tīrīt (līdz 12:00)" },
+          { time: "12:00", text: "Hugo Depo stadionā - spēle (līdz 14:30)" },
+          { time: "19:00", text: "Hannai VFS (līdz 20:00)" }
+        ],
+        tasks: [],
+        coach: "Jaunas nedēļas un jauna mēneša sākums. Fokuss uz prioritātēm."
+      },
+      {
+        key: "2026-08-04", name: "Otrdiena", date: "4. augusts", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "11:00", text: "Puišiem Lana (līdz 13:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-05", name: "Trešdiena", date: "5. augusts", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-06", name: "Ceturtdiena", date: "6. augusts", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-07", name: "Piektdiena", date: "7. augusts", status: "future", badge: "free",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-08", name: "Sestdiena", date: "8. augusts", status: "future", badge: "weekend",
+        events: [
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-09", name: "Svētdiena", date: "9. augusts", status: "future", badge: "weekend",
+        events: [
+          { time: "00:00", text: "🏠 Stay at Domi Lini (līdz 16.08.)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+        ],
+        tasks: []
+      }
+    ]
   }
 };
 
-const CURRENT_WEEK = "2026-W31";
+const CURRENT_WEEK = "2026-W32";
 
 /* ═══════════════════════════════════════════════════════
    GOAL TAG CONFIG
@@ -1769,6 +1868,7 @@ function showTab(id) {
   if (id === 'dashboard') renderDashboard();
   if (id === 'months')    renderMonths();
   if (id === 'week')      renderWeek();
+  if (id === 'mealplan')  renderMealPlan();
   if (id === 'ideas')     renderIdeas();
   if (id === 'izdevumi')  renderIzdevumi();
   if (id === 'progress')  renderProgress();
@@ -1783,6 +1883,7 @@ function showTabById(id) {
   if (id === 'dashboard') renderDashboard();
   if (id === 'months')    renderMonths();
   if (id === 'week')      renderWeek();
+  if (id === 'mealplan')  renderMealPlan();
   if (id === 'ideas')     renderIdeas();
   if (id === 'izdevumi')  renderIzdevumi();
   if (id === 'progress')  renderProgress();
@@ -2071,6 +2172,96 @@ function addTask(dayKey) {
   setUserTasks(dayKey, tasks);
   document.getElementById('at-'+dayKey).value = '';
   renderWeek();
+}
+
+/* ═══════════════════════════════════════════════════════
+   ĒDIENKARTE — DATU STRUKTŪRA UN FUNKCIJAS
+══════════════════════════════════════════════════════════ */
+const MEAL_CATS = {
+  brokastis: { label: '🌅 Brokastis', color: '#66bb6a' },
+  pusdienas: { label: '🍽️ Pusdienas', color: '#ffa726' },
+  uzkodas:   { label: '🍎 Uzkodas',   color: '#ab47bc' },
+  vakarinas: { label: '🌙 Vakariņas', color: '#42a5f5' }
+};
+
+function escHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function getMealPlan() { return LS('ev_meals') || {}; }
+function saveMealPlan(obj) { LS('ev_meals', obj); }
+
+function getMealsForDay(dayKey) {
+  const all = getMealPlan();
+  return all[dayKey] || [];
+}
+
+function addMealUI(dayKey) {
+  const catEl = document.getElementById('meal-cat-' + dayKey);
+  const txtEl = document.getElementById('meal-txt-' + dayKey);
+  const txt = txtEl.value.trim();
+  if (!txt) return;
+  const all = getMealPlan();
+  if (!all[dayKey]) all[dayKey] = [];
+  all[dayKey].push({ id: 'meal-' + Date.now() + '-' + Math.random().toString(36).slice(2,6), cat: catEl.value, text: txt });
+  saveMealPlan(all);
+  txtEl.value = '';
+  renderMealPlan();
+  if (dayKey === getTodayKey()) renderAcMeals();
+}
+
+function removeMealUI(dayKey, id) {
+  const all = getMealPlan();
+  if (!all[dayKey]) return;
+  all[dayKey] = all[dayKey].filter(m => m.id !== id);
+  saveMealPlan(all);
+  renderMealPlan();
+  if (dayKey === getTodayKey()) renderAcMeals();
+}
+
+function mealCatOptions() {
+  return Object.entries(MEAL_CATS).map(([k,c]) => `<option value="${k}">${c.label}</option>`).join('');
+}
+
+function renderMealPlan() {
+  const week = WEEKS[CURRENT_WEEK];
+  const wrap = document.getElementById('mealplan-wrap');
+  if (!week || !wrap) return;
+  const today = getTodayKey();
+
+  wrap.innerHTML = week.days.map(day => {
+    const items = getMealsForDay(day.key);
+    const isToday = day.key === today;
+    const listHtml = items.length
+      ? items.map(m => {
+          const cfg = MEAL_CATS[m.cat] || { label: m.cat, color: '#bbb' };
+          return `<div class="iz-tr-row">
+            <span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:${cfg.color}22;color:${cfg.color};flex-shrink:0;">${cfg.label}</span>
+            <span class="iz-tr-desc">${escHtml(m.text)}</span>
+            <button class="iz-tr-del" onclick="removeMealUI('${day.key}','${m.id}')" title="Dzēst">✕</button>
+          </div>`;
+        }).join('')
+      : '<div class="iz-empty">Nav pievienotu ēdienu.</div>';
+
+    return `
+      <div class="day-card">
+        <div class="dh${isToday?' today':''}" style="cursor:default;">
+          <div class="dl">
+            <span class="dname">${day.name}</span>
+            <span class="ddate">${day.date}</span>
+            ${isToday?'<span class="dbadge b-today">ŠODIEN</span>':''}
+          </div>
+        </div>
+        <div style="padding:0 16px 14px;">
+          ${listHtml}
+          <div class="d-mini-row" style="margin-top:10px;">
+            <select class="d-mini-inp" id="meal-cat-${day.key}" style="flex:0 0 140px;">${mealCatOptions()}</select>
+            <input class="d-mini-inp" id="meal-txt-${day.key}" placeholder="Pievienot ēdienu..." onkeydown="if(event.key==='Enter')addMealUI('${day.key}')">
+            <button class="d-btn" onclick="addMealUI('${day.key}')">+</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -2967,6 +3158,40 @@ function renderAcFocus(items) {
     : '<div class="d-empty">Nav uzdevumu šodien. Pievienoji tos Nedēļas cilnē (+ Pievienot), tad nospied ↺.</div>';
 }
 
+// ── Šodienas ēdienkarte ──
+function renderAcMeals() {
+  const el = document.getElementById('ac-meals');
+  if (!el) return;
+  const today = getTodayKey();
+  const items = getMealsForDay(today);
+  el.innerHTML = items.length
+    ? items.map(m => {
+        const cfg = MEAL_CATS[m.cat] || { label: m.cat, color: '#bbb' };
+        return `<div class="ac-ir">
+          <div class="ac-idot" style="background:${cfg.color};"></div>
+          <div class="ac-icat">${escHtml(m.text)}</div>
+          <span style="font-size:9px;font-weight:700;color:${cfg.color};flex-shrink:0;">${cfg.label}</span>
+        </div>`;
+      }).join('')
+    : '<div class="d-empty" style="padding:4px 0;">Nav pievienotu ēdienu šodien</div>';
+  const catEl = document.getElementById('meal-cat-dash');
+  if (catEl && !catEl.dataset.filled) { catEl.innerHTML = mealCatOptions(); catEl.dataset.filled = '1'; }
+}
+
+function addMealFromDash() {
+  const catEl = document.getElementById('meal-cat-dash');
+  const txtEl = document.getElementById('meal-txt-dash');
+  const txt = txtEl.value.trim();
+  if (!txt) return;
+  const today = getTodayKey();
+  const all = getMealPlan();
+  if (!all[today]) all[today] = [];
+  all[today].push({ id: 'meal-' + Date.now() + '-' + Math.random().toString(36).slice(2,6), cat: catEl.value, text: txt });
+  saveMealPlan(all);
+  txtEl.value = '';
+  renderAcMeals();
+}
+
 // ── Izdevumi ──
 function renderAcExpenses() {
   const today = getTodayKey();
@@ -3092,6 +3317,7 @@ function renderDashboard() {
   renderMetricStrip(gd, items);
   renderAcCal();
   renderAcFocus(items);
+  renderAcMeals();
   renderAcExpenses();
   renderAcGoals();
   renderAcWeekProg();
