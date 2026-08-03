@@ -1225,7 +1225,9 @@ const MILESTONES = {
       { id: "m08-1", text: "Portfolio mājaslapa pilnībā publicēta", goal: "b" },
       { id: "m08-2", text: "Instagram 3000+ sekotāji", goal: "m" },
       { id: "m08-3", text: "2+ jauni interjera dizaina klienti ar līgumu", goal: "b" },
-      { id: "m08-5", text: "3+ video sociālajiem tīkliem publicēti", goal: "m" }
+      { id: "m08-5", text: "3+ video sociālajiem tīkliem publicēti", goal: "m" },
+      { id: "m08-6", text: "M10 pārcelšanās pabeigta — telpas atbrīvotas (līdz 07.08.)", goal: "p" },
+      { id: "m08-7", text: "AI Challenge noslēgts (13.08.)", goal: "b" }
     ]
   },
   "2026-09": {
@@ -1659,7 +1661,7 @@ const WEEKS = {
           { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
         ],
         tasks: [
-          { id: "t-20260805-virtuve", text: "Virtuves izskārtošana (Televīzijas iela)", cat: "MU" }
+          { id: "t-20260805-virtuve", text: "Virtuves sakārtošana (Televīzijas iela)", cat: "MU" }
         ]
       },
       {
@@ -1668,7 +1670,7 @@ const WEEKS = {
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
         ],
         tasks: [
-          { id: "t-20260806-viesistaba", text: "Viesistabas izskārtošana (Televīzijas iela)", cat: "MU" }
+          { id: "t-20260806-viesistaba", text: "Viesistabas sakārtošana (Televīzijas iela)", cat: "MU" }
         ]
       },
       {
@@ -1677,7 +1679,9 @@ const WEEKS = {
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
           { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
         ],
-        tasks: []
+        tasks: [
+          { id: "t-20260807-m10", text: "M10 — telpas pilnībā atbrīvotas", cat: "MU" }
+        ]
       },
       {
         key: "2026-08-08", name: "Sestdiena", date: "8. augusts", status: "future", badge: "weekend",
@@ -3115,9 +3119,9 @@ function renderAcGoals() {
   const el = document.getElementById('ac-goals');
   if (!el) return;
   const goals = [
-    {icon:'💼', name:'Made2Dream brends', sub:'mājaslapa · Instagram · GetaPro', ids:['m07-1','m07-2','m07-4']},
-    {icon:'🏠', name:'NK īpašumi', sub:'remonts un pārdošana', ids:['m07-3']},
-    {icon:'💻', name:'Digitālie risinājumi', sub:'AI Challenge · tehnoloģijas', ids:['m07-5','m07-1']}
+    {icon:'💼', name:'Mājaslapa publicēta', sub:'bildes · teksti · GetaPro · Instagram', ids:['m08-1']},
+    {icon:'📦', name:'M10 pārcelšanās', sub:'telpas atbrīvotas līdz 07.08.', ids:['m08-6']},
+    {icon:'🤖', name:'AI Challenge', sub:'katru dienu 11:00-18:00 līdz 13.08.', ids:['m08-7']}
   ];
   el.innerHTML = goals.map(g => {
     const done = g.ids.filter(id=>getChecked(id)).length;
