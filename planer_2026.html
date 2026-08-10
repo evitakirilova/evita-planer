@@ -520,8 +520,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 
       <div class="ac-card" id="ac-card-goals">
         <div class="ac-ch">
-          <span class="ac-ct">Mērķi</span>
-          <span class="ac-cm">Q3 · 2026</span>
+          <span class="ac-ct">Nedēļas mērķi</span>
+          <span class="ac-cm" id="ac-goals-meta"></span>
         </div>
         <div id="ac-goals"></div>
       </div>
@@ -1654,7 +1654,11 @@ const WEEKS = {
       {
         key: "2026-08-05", name: "Trešdiena", date: "5. augusts", status: "future", badge: "free",
         events: [
+          { time: "09:45", text: "Henr angļu valoda (līdz 10:45)" },
+          { time: "10:00", text: "Hugo treniņš (līdz 11:30)" },
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "13:10", text: "Hugo angļu valoda (līdz 14:10)" },
+          { time: "16:00", text: "Pakaļ gultai būs 16.00 (līdz 17:00)" },
           { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
         ],
         tasks: [
@@ -1664,7 +1668,10 @@ const WEEKS = {
       {
         key: "2026-08-06", name: "Ceturtdiena", date: "6. augusts", status: "future", badge: "free",
         events: [
-          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+          { time: "09:00", text: "Lana Evita (līdz 10:00)" },
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "11:00", text: "Ski master puišiem (līdz 12:00)" },
+          { time: "17:00", text: "Claude Saturam - vebinārs (\"Stāsta Spēks\") (līdz 17:45)" }
         ],
         tasks: [
           { id: "t-20260806-viesistaba", text: "Viesistabas sakārtošana (Televīzijas iela)", cat: "MU" }
@@ -1683,23 +1690,94 @@ const WEEKS = {
       {
         key: "2026-08-08", name: "Sestdiena", date: "8. augusts", status: "future", badge: "weekend",
         events: [
-          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
+          { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" },
+          { time: "12:00", text: "Hugo spēle (līdz 14:30)" }
         ],
         tasks: []
       },
       {
         key: "2026-08-09", name: "Svētdiena", date: "9. augusts", status: "future", badge: "weekend",
         events: [
-          { time: "00:00", text: "🏠 Stay at Domi Lini (līdz 16.08.)" },
+          { time: "00:00", text: "🏠 Stay at Domi Lini (līdz 15.08.)" },
+          { time: "09:30", text: "Henr vācu valoda (līdz 10:30)" },
+          { time: "10:15", text: "Hu vācu valoda (līdz 11:15)" },
           { time: "11:00", text: "🤖 AI Challenge (līdz 18:00)" }
         ],
+        tasks: []
+      }
+    ]
+  },
+  "2026-W33": {
+    label: "10.–16. augusts 2026",
+    priorities: [
+      { text: "Pilnībā pabeigt mājaslapu" },
+      { text: "Reģistrēties GetaPro" },
+      { text: "Pilnībā noskatīties visas AI Challenge lekcijas" }
+    ],
+    accountability: [],
+    days: [
+      {
+        key: "2026-08-10", name: "Pirmdiena", date: "10. augusts", status: "today", badge: "free",
+        events: [
+          { time: "11:00", text: "AI Challenge (līdz 18:00)" },
+          { time: "15:30", text: "Treniņš Snow Arena (līdz 18:30)" },
+          { time: "19:00", text: "Hannai VFS (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-11", name: "Otrdiena", date: "11. augusts", status: "future", badge: "free",
+        events: [
+          { time: "10:00", text: "Treniņš I Snow Arena (līdz 12:00)" },
+          { time: "11:00", text: "AI Challenge (līdz 18:00)" },
+          { time: "14:00", text: "Treniņš II Snow Arena (līdz 16:30)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-12", name: "Trešdiena", date: "12. augusts", status: "future", badge: "free",
+        events: [
+          { time: "10:00", text: "Treniņš I Snow Arena (līdz 12:00)" },
+          { time: "11:00", text: "AI Challenge (līdz 18:00)" },
+          { time: "14:00", text: "Treniņš II Snow Arena (līdz 16:30)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-13", name: "Ceturtdiena", date: "13. augusts", status: "future", badge: "free",
+        events: [
+          { time: "07:00", text: "Miskaste nolikt pie sētas (līdz 08:00)" },
+          { time: "10:00", text: "Treniņš I Snow Arena (līdz 12:00)" },
+          { time: "11:00", text: "AI Challenge (līdz 18:00)" },
+          { time: "14:00", text: "Treniņš II Snow Arena (līdz 16:30)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-14", name: "Piektdiena", date: "14. augusts", status: "future", badge: "free",
+        events: [
+          { time: "10:00", text: "Treniņš I Snow Arena (līdz 11:30)" },
+          { time: "12:00", text: "Treniņš II Snow Arena (līdz 14:30)" },
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-15", name: "Sestdiena", date: "15. augusts", status: "future", badge: "weekend",
+        events: [],
+        tasks: []
+      },
+      {
+        key: "2026-08-16", name: "Svētdiena", date: "16. augusts", status: "future", badge: "weekend",
+        events: [],
         tasks: []
       }
     ]
   }
 };
 
-const CURRENT_WEEK = "2026-W32";
+const CURRENT_WEEK = "2026-W33";
 
 /* ═══════════════════════════════════════════════════════
    GOAL TAG CONFIG
@@ -1871,7 +1949,7 @@ function showTab(id) {
   event.target.classList.add('active');
   if (id === 'dashboard') renderDashboard();
   if (id === 'months')    renderMonths();
-  if (id === 'week')      renderWeek();
+  if (id === 'week')      { renderWeek(); if (GDS.token) fetchGoogleCalendar().then(renderWeek); }
   if (id === 'mealplan')  renderMealPlan();
   if (id === 'ideas')     renderIdeas();
   if (id === 'izdevumi')  renderIzdevumi();
@@ -1886,7 +1964,7 @@ function showTabById(id) {
   btns.forEach(b => { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
   if (id === 'dashboard') renderDashboard();
   if (id === 'months')    renderMonths();
-  if (id === 'week')      renderWeek();
+  if (id === 'week')      { renderWeek(); if (GDS.token) fetchGoogleCalendar().then(renderWeek); }
   if (id === 'mealplan')  renderMealPlan();
   if (id === 'ideas')     renderIdeas();
   if (id === 'izdevumi')  renderIzdevumi();
@@ -2019,9 +2097,13 @@ function renderWeek() {
         }).join('')}
       </div>`).join('');
 
-    const evHtml = day.events.length ? `
-      <div class="slbl">📆 Kalendārs</div>
-      ${day.events.map((e,i)=>{ const evId='ev_'+day.key+'_'+i; const evDone=getChecked(evId); return `<div class="cev ${evDone?'cev-done':''}"><input type="checkbox" id="${evId}" ${evDone?'checked':''} onchange="onEvent('${evId}')"><span class="ctime">${e.time}</span><span>${e.text}</span></div>`; }).join('')}
+    const gcal = getCalCache();
+    const liveEvents = gcal && gcal[day.key] ? gcal[day.key] : null;
+    const eventsToShow = (liveEvents && liveEvents.length) ? liveEvents : day.events;
+    const calLabel = '📆 Kalendārs' + ((liveEvents && liveEvents.length) ? ' <span style="font-weight:400;color:var(--greige);font-size:10px;">(sinhronizēts)</span>' : '');
+    const evHtml = eventsToShow.length ? `
+      <div class="slbl">${calLabel}</div>
+      ${eventsToShow.map((e,i)=>{ const evId='ev_'+day.key+'_'+i; const evDone=getChecked(evId); return `<div class="cev ${evDone?'cev-done':''}"><input type="checkbox" id="${evId}" ${evDone?'checked':''} onchange="onEvent('${evId}')"><span class="ctime">${e.time}</span><span>${e.text}</span></div>`; }).join('')}
       <div class="slbl">📋 Uzdevumi</div>` : `<div class="slbl">📋 Uzdevumi</div>`;
 
     const coachHtml = '';
@@ -2860,11 +2942,20 @@ function saveGarminActivity() {
 function getFocusItems()      { return LS('focus_' + getTodayKey()) || []; }
 function setFocusItems(arr)   { LS('focus_' + getTodayKey(), arr); }
 
+/* Nedēļas plānā ierakstītie uzdevumi konkrētai dienai (id sākas ar "t-") */
+function getPlanTasks(dayKey) {
+  return WEEKS[CURRENT_WEEK]?.days.find(d => d.key === dayKey)?.tasks || [];
+}
+
+/* VISI dienas uzdevumi — plāna uzdevumi + manuāli pievienotie.
+   Tā pati loģika, ko lieto buildProgressData() progress.json ģenerēšanai. */
+function getAllDayTasks(dayKey) {
+  return [...getPlanTasks(dayKey), ...getUserTasks(dayKey)];
+}
+
 function buildDefaultFocusItems() {
   const today = getTodayKey();
-  // Velk TIKAI manuāli pievienotos uzdevumus no Nedēļas cilnes (+ Pievienot poga)
-  const userTasks = getUserTasks(today);
-  return userTasks.slice(0, 5).map(t => ({
+  return getAllDayTasks(today).map(t => ({
     id: 'fu' + t.id,
     text: t.text,
     done: getChecked(t.id)
@@ -3111,28 +3202,33 @@ function renderAcCal() {
   }
 }
 
-// ── Mērķi ──
+// ── Mērķi (nedēļas prioritātes) ──
 function renderAcGoals() {
   const el = document.getElementById('ac-goals');
   if (!el) return;
-  const goals = [
-    {icon:'💼', name:'Mājaslapa publicēta', sub:'bildes · teksti · GetaPro', ids:['m08-1']},
-    {icon:'📸', name:'Instagram aktivizēts', sub:'klientu piesaiste', ids:['m08-8']},
-    {icon:'🤖', name:'AI Challenge', sub:'noslēdzas 13.08.', ids:['m08-7']}
-  ];
-  el.innerHTML = goals.map(g => {
-    const done = g.ids.filter(id=>getChecked(id)).length;
-    const total = g.ids.length;
-    const pct = total ? Math.round(done/total*100) : 0;
-    return `<div class="ac-gr" onclick="showTabById('months')">
-      <div class="ac-gtop">
-        <span class="ac-gn">${g.icon} ${g.name} <span style="color:var(--greige);font-size:11px;">→</span></span>
-        <span class="ac-gp">${pct}%</span>
-      </div>
-      <div class="ac-gsub">${g.sub} · ${done}/${total} milestone</div>
-      <div class="ac-gbar"><div class="ac-gbf" style="width:${pct}%"></div></div>
+  const meta = document.getElementById('ac-goals-meta');
+  const week = WEEKS[CURRENT_WEEK];
+  if (meta) meta.textContent = week ? week.label : '';
+  if (!week || !week.priorities || !week.priorities.length) {
+    el.innerHTML = '<div class="d-empty">Nav noteiktu nedēļas mērķu</div>';
+    return;
+  }
+  el.innerHTML = week.priorities.map((p, i) => {
+    const id = 'wprio_' + CURRENT_WEEK + '_' + i;
+    const done = getChecked(id);
+    return `<div class="ac-gr">
+      <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;">
+        <input type="checkbox" id="${id}" ${done ? 'checked' : ''} onchange="onWeekPriority('${id}')" style="margin-top:2px;flex-shrink:0;">
+        <span class="ac-gn" style="${done ? 'text-decoration:line-through;color:var(--greige);' : ''}">${p.text}</span>
+      </label>
     </div>`;
-  }).join('');
+  }).join('') + `<div style="margin-top:8px;"><button class="d-link" onclick="showTabById('week')">Uz nedēļas plānu →</button></div>`;
+}
+
+function onWeekPriority(id) {
+  const val = document.getElementById(id).checked;
+  setChecked(id, val);
+  writeProgress(false);
 }
 
 // ── Fokuss ──
@@ -3300,17 +3396,17 @@ function renderDashboard() {
   const today = getTodayKey();
   const gd = getGarminData(today);
 
-  // Vienmēr sapludina kešoto fokusa sarakstu ar jaunākajiem lietotāja uzdevumiem.
-  // Tā jaunpievienoti uzdevumi (arī no mobilā) uzreiz parādās dashboardā.
-  const cached    = getFocusItems();
-  const userTasks = getUserTasks(today);
+  // Vienmēr sapludina kešoto fokusa sarakstu ar VISIEM dienas uzdevumiem —
+  // gan nedēļas plānā ierakstītajiem, gan manuāli pievienotajiem (arī no mobilā).
+  const cached   = getFocusItems();
+  const dayTasks = getAllDayTasks(today);
   let items;
   if (!cached.length) {
     items = buildDefaultFocusItems();
     setFocusItems(items);
   } else {
     const cachedIds = new Set(cached.map(i => i.id));
-    const newItems  = userTasks
+    const newItems  = dayTasks
       .filter(t => !cachedIds.has('fu' + t.id))
       .map(t => ({ id: 'fu' + t.id, text: t.text, done: getChecked(t.id) }));
     items = [...cached, ...newItems]; // bez slice — visi uzdevumi redzami
