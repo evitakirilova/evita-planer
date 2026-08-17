@@ -1774,10 +1774,69 @@ const WEEKS = {
         tasks: []
       }
     ]
+  },
+  "2026-W34": {
+    label: "17.–23. augusts 2026",
+    priorities: [],
+    accountability: [],
+    days: [
+      {
+        key: "2026-08-17", name: "Pirmdiena", date: "17. augusts", status: "today", badge: "free",
+        events: [
+          { time: "10:00", text: "Apsveikt Ļenu dz. d. un vd. rīt (līdz 11:00)" },
+          { time: "13:10", text: "Henrijam angļu valoda (līdz 14:10)" },
+          { time: "19:00", text: "Hannai VFS (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-18", name: "Otrdiena", date: "18. augusts", status: "future", badge: "free",
+        events: [
+          { time: "09:00", text: "Lana (līdz 12:00)" },
+          { time: "19:00", text: "Hugo engl (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-19", name: "Trešdiena", date: "19. augusts", status: "future", badge: "free",
+        events: [
+          { time: "10:30", text: "Henrijam angļu valoda (līdz 11:30)" },
+          { time: "17:00", text: "Diānai dzimšanas diena, Rīga Plaza (līdz 21:00)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-20", name: "Ceturtdiena", date: "20. augusts", status: "future", badge: "free",
+        events: [
+          { time: "09:00", text: "Lana (līdz 10:00)" },
+          { time: "11:00", text: "Ski master (līdz 12:00)" },
+          { time: "17:00", text: "2. info sesija SHECAN AI (līdz 19:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-21", name: "Piektdiena", date: "21. augusts", status: "future", badge: "free",
+        events: [
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
+        tasks: []
+      },
+      {
+        key: "2026-08-22", name: "Sestdiena", date: "22. augusts", status: "future", badge: "weekend",
+        events: [],
+        tasks: []
+      },
+      {
+        key: "2026-08-23", name: "Svētdiena", date: "23. augusts", status: "future", badge: "weekend",
+        events: [],
+        tasks: []
+      }
+    ]
   }
 };
 
-const CURRENT_WEEK = "2026-W33";
+const CURRENT_WEEK = "2026-W34";
 
 /* ═══════════════════════════════════════════════════════
    GOAL TAG CONFIG
@@ -2197,13 +2256,28 @@ function renderWeek() {
           ).join('')
         : `<div style="font-size:12px;color:var(--greige);padding:4px 0">Nav ierakstītu uzdevumu</div>`;
 
+      // Nedēļas fokuss / prioritātes — atsevišķa sadaļa arhīvā
+      const wPriorities = wdata.priorities || [];
+      const focusHtml = wPriorities.length
+        ? wPriorities.map((p, i) => {
+            const pid = 'wprio_' + wkey + '_' + i;
+            const pdone = localStorage.getItem('ec_' + pid) === 'true';
+            return `<div style="display:flex;align-items:flex-start;gap:8px;padding:3px 0;font-size:12px;${pdone ? 'opacity:0.55' : ''}">
+              <span style="color:${pdone ? 'var(--sage)' : 'var(--greige)'};flex-shrink:0;margin-top:1px;font-size:11px">${pdone ? '✓' : '○'}</span>
+              <span style="${pdone ? 'text-decoration:line-through' : ''}">${p.text}</span>
+            </div>`;
+          }).join('')
+        : `<div style="font-size:12px;color:var(--greige);padding:4px 0">Nav noteiktu nedēļas fokusa punktu</div>`;
+
       aw.innerHTML = `
         <div class="archive-week-hdr" onclick="this.nextElementSibling.classList.toggle('open')">
           <div><span class="archive-week-label">${wdata.label}</span>${statsLabel}</div>
           <span style="color:var(--greige);font-size:11px">▼</span>
         </div>
         <div class="archive-week-body open" id="${awId}">
-          <div class="slbl" style="margin-top:0">Uzdevumi</div>
+          <div class="slbl" style="margin-top:0">Nedēļas fokuss</div>
+          ${focusHtml}
+          <div class="slbl" style="margin-top:10px">Uzdevumi</div>
           ${tasksHtml}
         </div>`;
       archBody.appendChild(aw);
