@@ -1118,9 +1118,12 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
   <div class="iz-section">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
       <h3 style="margin:0;">Visi darījumi</h3>
-      <select class="iz-fsel" id="iz-filter-cat" onchange="renderIzdevumi()" style="max-width:180px;">
-        <option value="">Visas kategorijas</option>
-      </select>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span id="iz-filter-total" style="font-size:12px;font-weight:700;color:var(--slate);display:none;"></span>
+        <select class="iz-fsel" id="iz-filter-cat" onchange="renderIzdevumi()" style="max-width:180px;">
+          <option value="">Visas kategorijas</option>
+        </select>
+      </div>
     </div>
     <div id="iz-list"><div class="iz-empty">Nav darījumu.</div></div>
   </div>
@@ -2797,6 +2800,20 @@ function renderIzdevumi() {
 
   // Darījumu saraksts (ievēro kategorijas filtru)
   const filtered = filterCat ? month.filter(e => e.cat === filterCat) : month;
+
+  // Filtrētās kategorijas kopsumma
+  const filterTotalEl = document.getElementById('iz-filter-total');
+  if (filterTotalEl) {
+    if (filterCat) {
+      const catCfg = EXP_CATS[filterCat] || { label: filterCat };
+      const filterSum = filtered.reduce((s, e) => s + e.amount, 0);
+      filterTotalEl.textContent = catCfg.label + ': ' + filterSum.toFixed(2) + ' €';
+      filterTotalEl.style.display = '';
+    } else {
+      filterTotalEl.style.display = 'none';
+    }
+  }
+
   const listEl = document.getElementById('iz-list');
   if (listEl) {
     if (!filtered.length) {
