@@ -1,0 +1,47 @@
+name: Garmin dati
+
+# Palaizas katru rītu 05:00 UTC = 08:00 Latvijā (vasarā), pirms Evitas darba loga.
+# Var palaist arī ar roku: Actions -> Garmin dati -> Run workflow.
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atjaunina:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Paņem repozitoriju
+        uses: actions/checkout@v4
+
+      - name: Uzstāda Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Uzstāda bibliotēkas
+        run: |
+          python -m pip install --upgrade pip
+          pip install garminconnect garth
+
+      - name: Ielādē Garmin datus
+        env:
+          GARMIN_TOKENS: ${{ secrets.GARMIN_TOKENS }}
+          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+        run: python fetch_garmin.py
+
+      - name: Publicē, ja dati mainījušies
+        run: |
+          if git diff --quiet -- garmin_data.json; then
+            echo "Dati nav mainījušies — nekas nav jāpublicē."
+            exit 0
+          fi
+          git config user.name "Garmin bots"
+          git config user.email "actions@github.com"
+          git add garmin_data.json
+          git commit -m "Garmin dati $(date -u +%Y-%m-%d)"
+          git push
