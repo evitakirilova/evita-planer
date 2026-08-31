@@ -318,10 +318,25 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 .ac-hdr-day{font-size:16px;font-weight:700;color:var(--slate);}
 .ac-hdr-date{font-size:11px;color:var(--greige);margin-top:3px;}
 .ac-hdr-loc{font-size:10px;color:var(--taupe);margin-top:1px;letter-spacing:.3px;}
+/* Divi mini-lodzini galvenes labaja puse: Fokuss + Izdevumi */
+.ac-hdr-rw{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.ac-hdr-metrics{display:flex;gap:10px;}
+.ac-hm{background:var(--bg);border:1px solid rgba(112,99,84,.14);border-radius:12px;padding:9px 13px;min-width:98px;text-align:left;}
+.ac-hm-lbl{font-size:8px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--taupe);margin-bottom:4px;white-space:nowrap;}
+.ac-hm-num{font-size:21px;font-weight:300;color:var(--slate);line-height:1;letter-spacing:-0.3px;}
+.ac-hm-unit{font-size:12px;color:var(--slate);}
+.ac-hm-sub{font-size:9px;color:var(--greige);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ac-hm-empty .ac-hm-num{color:#ccc8c3;}
+@media(max-width:860px){
+  .ac-hdr{flex-direction:column;align-items:stretch;gap:14px;}
+  .ac-hdr-rw{flex-direction:column;align-items:stretch;gap:12px;}
+  .ac-hdr-metrics{gap:8px;}
+  .ac-hm{flex:1;min-width:0;}
+  .ac-hdr-right{text-align:left;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;}
+  .ac-hdr-date,.ac-hdr-loc{margin-top:0;}
+  .ac-hdr-name{font-size:25px;}
+}
 /* Metric josla (5 kartes — kā Anna Cherry augšā) */
-.ac-metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
-@media(max-width:1100px){.ac-metric-strip{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:680px){.ac-metric-strip{grid-template-columns:repeat(2,1fr);}}
 .ac-mc{background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
 .ac-mc-left{flex:1;min-width:0;}
 .ac-mc-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -342,8 +357,16 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
   #ac-card-cal{order:1;}
   #ac-card-focus{order:2;}
   #ac-card-goals{order:3;}
+  #ac-card-exp{order:4;}
+  #ac-card-meals{order:5;}
+  #ac-card-weekprog{order:6;}
 }
 .ac-col{display:flex;flex-direction:column;gap:14px;}
+/* Apakseja josla: 3 Garmin lodzini + Laiks + Garmin karte */
+.ac-garmin-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+@media(max-width:680px){.ac-garmin-strip{grid-template-columns:1fr;}}
+.ac-bottom{display:grid;grid-template-columns:1fr 1.6fr;gap:14px;margin-top:14px;align-items:start;}
+@media(max-width:860px){.ac-bottom{grid-template-columns:1fr;}}
 /* Karte */
 .ac-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
 .ac-ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(112,99,84,.1);}
@@ -489,17 +512,18 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
       <div class="ac-hdr-sub">Dzīves plānotājs</div>
       <div class="ac-hdr-name">Evita <em>— dzīves fokuss</em></div>
     </div>
-    <div class="ac-hdr-right">
-      <div class="ac-hdr-day" id="ac-hdr-day">—</div>
-      <div class="ac-hdr-date" id="ac-hdr-date">—</div>
-      <div class="ac-hdr-loc">Sigulda, Latvija</div>
+    <div class="ac-hdr-rw">
+      <!-- Fokuss + Izdevumi mini-lodzini (pirms dienas un datuma) -->
+      <div class="ac-hdr-metrics" id="ac-hdr-metrics"></div>
+      <div class="ac-hdr-right">
+        <div class="ac-hdr-day" id="ac-hdr-day">—</div>
+        <div class="ac-hdr-date" id="ac-hdr-date">—</div>
+        <div class="ac-hdr-loc">Sigulda, Latvija</div>
+      </div>
     </div>
   </div>
 
-  <!-- Metric josla: 5 kartes (Garmin + Fokuss + Izdevumi) -->
-  <div class="ac-metric-strip" id="ac-metric-strip"></div>
-
-  <!-- 3 kolonnas: Kalendārs+Mērķi | Fokuss+Izdevumi | Progress+Laiks -->
+  <!-- 3 kolonnas: Kalendārs+Mērķi | Fokuss+Izdevumi | Ēdienkarte+Progress -->
   <div class="ac-grid">
 
     <!-- 1. kolonna: Kalendārs + Mērķi -->
@@ -542,22 +566,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         </div>
       </div>
 
-      <div class="ac-card">
-        <div class="ac-ch">
-          <span class="ac-ct">🍽️ Šodienas ēdienkarte</span>
-          <button class="ac-ca" onclick="showTabById('mealplan')">Visi →</button>
-        </div>
-        <div id="ac-meals"></div>
-        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
-          <div class="d-mini-row">
-            <select class="d-mini-inp" id="meal-cat-dash" style="flex:0 0 120px;"></select>
-            <input class="d-mini-inp" id="meal-txt-dash" placeholder="Pievienot ēdienu...">
-            <button class="d-btn" onclick="addMealFromDash()">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="ac-card">
+      <div class="ac-card" id="ac-card-exp">
         <div class="ac-ch">
           <span class="ac-ct">Izdevumi</span>
           <button class="ac-ca" onclick="showTabById('izdevumi')">Visi →</button>
@@ -589,10 +598,25 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 
     </div>
 
-    <!-- 3. kolonna: Nedēļas progress + Laika apstākļi + Garmin -->
+    <!-- 3. kolonna: Ēdienkarte + Nedēļas progress -->
     <div class="ac-col">
 
-      <div class="ac-card">
+      <div class="ac-card" id="ac-card-meals">
+        <div class="ac-ch">
+          <span class="ac-ct">🍽️ Šodienas ēdienkarte</span>
+          <button class="ac-ca" onclick="showTabById('mealplan')">Visi →</button>
+        </div>
+        <div id="ac-meals"></div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
+          <div class="d-mini-row">
+            <select class="d-mini-inp" id="meal-cat-dash" style="flex:0 0 120px;"></select>
+            <input class="d-mini-inp" id="meal-txt-dash" placeholder="Pievienot ēdienu...">
+            <button class="d-btn" onclick="addMealFromDash()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ac-card" id="ac-card-weekprog">
         <div class="ac-ch">
           <span class="ac-ct">Nedēļas progress</span>
           <span class="ac-cm" id="ac-week-meta"></span>
@@ -600,7 +624,15 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         <div id="ac-week-prog"></div>
       </div>
 
-      <div class="ac-card">
+    </div>
+  </div>
+
+  <!-- ── APAKŠA: Garmin lodziņi + Laika apstākļi + Garmin karte ── -->
+  <div class="ac-garmin-strip" id="ac-garmin-strip"></div>
+
+  <div class="ac-bottom">
+
+      <div class="ac-card" id="ac-card-weather">
         <div class="ac-ch">
           <span class="ac-ct">Laika apstākļi</span>
           <span class="ac-cm">Sigulda</span>
@@ -608,7 +640,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         <div id="ac-weather"><div class="d-empty">Ielādē...</div></div>
       </div>
 
-      <div class="ac-card">
+      <div class="ac-card" id="ac-card-garmin">
         <div class="ac-ch">
           <span class="ac-ct">⌚ Garmin</span>
           <button class="ac-ca" onclick="fetchGarminJson(true)" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Atjaunināt</button>
@@ -630,7 +662,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         </div>
       </div>
 
-    </div>
   </div>
 
 </div>
@@ -1906,17 +1937,30 @@ const WEEKS = {
     days: [
       {
         key: "2026-08-31", name: "Pirmdiena", date: "31. augusts", status: "today", badge: "free",
-        events: [],
+        events: [
+          { time: "09:45", text: "Henr engl (līdz 10:45)" },
+          { time: "11:00", text: "Hugo engl (līdz 12:00)" },
+          { time: "12:30", text: "Frizieris puišiem (līdz 13:30)" },
+          { time: "18:15", text: "Henr futbols (līdz 19:30)" },
+          { time: "19:00", text: "Hannai VFS (līdz 20:00)" }
+        ],
         tasks: []
       },
       {
         key: "2026-09-01", name: "Otrdiena", date: "1. septembris", status: "future", badge: "free",
-        events: [],
+        events: [
+          { time: "10:00", text: "Henrijam 1. septembris (līdz 11:00)" },
+          { time: "10:00", text: "Hugo 1. septembris (līdz 11:00)" },
+          { time: "18:00", text: "She Can AI (līdz 20:00)" }
+        ],
         tasks: []
       },
       {
         key: "2026-09-02", name: "Trešdiena", date: "2. septembris", status: "future", badge: "free",
-        events: [],
+        events: [
+          { time: "18:15", text: "Henr futbols (līdz 19:30)" },
+          { time: "19:00", text: "Hannai skrituļi (līdz 20:00)" }
+        ],
         tasks: []
       },
       {
@@ -1926,7 +1970,10 @@ const WEEKS = {
       },
       {
         key: "2026-09-04", name: "Piektdiena", date: "4. septembris", status: "future", badge: "free",
-        events: [],
+        events: [
+          { time: "18:15", text: "Henr futbols (līdz 19:30)" },
+          { time: "19:00", text: "Hannai riteņi (līdz 20:00)" }
+        ],
         tasks: []
       },
       {
@@ -1936,7 +1983,10 @@ const WEEKS = {
       },
       {
         key: "2026-09-06", name: "Svētdiena", date: "6. septembris", status: "future", badge: "weekend",
-        events: [],
+        events: [
+          { time: "16:00", text: "Henr baseins (līdz 17:00)" },
+          { time: "18:00", text: "Hugo baseins (līdz 19:00)" }
+        ],
         tasks: []
       }
     ]
@@ -3211,17 +3261,19 @@ function acRing(pct, txt) {
   </svg>`;
 }
 
-// ── Metric josla (5 kartes augšā — kā Anna Cherry) ──
+// ── Metric lodziņi: 3 Garmin apakšā + Fokuss/Izdevumi galvenē ──
 function renderMetricStrip(gd, focusItems) {
-  const el = document.getElementById('ac-metric-strip');
-  if (!el) return;
+  const gEl = document.getElementById('ac-garmin-strip');
+  const hEl = document.getElementById('ac-hdr-metrics');
+  if (!gEl && !hEl) return;
   const today = getTodayKey();
   const exps = getExpenses().filter(e => e.date === today);
   const expTotal = exps.reduce((s,e) => s + e.amount, 0);
   const fDone = focusItems.filter(i => i.done).length;
   const fTotal = focusItems.length;
 
-  const cards = [
+  // Trīs Garmin lodziņi — lapas apakšā
+  const garminCards = [
     {
       lbl:'Miegs · Garmin',
       num: gd.sleepH ? gd.sleepH+'h' : '—',
@@ -3245,13 +3297,15 @@ function renderMetricStrip(gd, focusItems) {
       pct: gd.stress ? gd.stress : 0,
       rtxt: gd.stress ? String(gd.stress) : '',
       empty: !gd.stress
-    },
+    }
+  ];
+
+  // Divi lodziņi galvenē — pirms dienas un datuma
+  const hdrCards = [
     {
       lbl:'Fokuss · Šodien',
       num: fDone+'/'+fTotal,
       sub: fDone===fTotal && fTotal>0 ? '✓ visi izpildīti' : fDone+' pabeigti',
-      pct: fTotal ? Math.round(fDone/fTotal*100) : 0,
-      rtxt: fTotal ? Math.round(fDone/fTotal*100)+'%' : '0%',
       empty: false
     },
     {
@@ -3259,23 +3313,35 @@ function renderMetricStrip(gd, focusItems) {
       num: expTotal.toFixed(2),
       unit:'€',
       sub: exps.length ? exps.length+' darījumi' : 'nav izdevumu',
-      pct: null,
       empty: expTotal===0
     }
   ];
 
-  el.innerHTML = cards.map(c => {
-    const ec = c.empty ? ' ac-mc-empty' : '';
-    const ring = c.pct!==null ? acRing(c.pct, c.rtxt||'') : '<div style="width:50px;"></div>';
-    return `<div class="ac-mc${ec}">
-      <div class="ac-mc-left">
-        <div class="ac-mc-lbl">${c.lbl}</div>
-        <div><span class="ac-mc-num">${c.num}</span>${c.unit?`<span class="ac-mc-unit"> ${c.unit}</span>`:''}</div>
-        <div class="ac-mc-sub">${c.sub}</div>
-      </div>
-      ${ring}
-    </div>`;
-  }).join('');
+  if (gEl) {
+    gEl.innerHTML = garminCards.map(c => {
+      const ec = c.empty ? ' ac-mc-empty' : '';
+      const ring = c.pct!==null ? acRing(c.pct, c.rtxt||'') : '<div style="width:50px;"></div>';
+      return `<div class="ac-mc${ec}">
+        <div class="ac-mc-left">
+          <div class="ac-mc-lbl">${c.lbl}</div>
+          <div><span class="ac-mc-num">${c.num}</span>${c.unit?`<span class="ac-mc-unit"> ${c.unit}</span>`:''}</div>
+          <div class="ac-mc-sub">${c.sub}</div>
+        </div>
+        ${ring}
+      </div>`;
+    }).join('');
+  }
+
+  if (hEl) {
+    hEl.innerHTML = hdrCards.map(c => {
+      const ec = c.empty ? ' ac-hm-empty' : '';
+      return `<div class="ac-hm${ec}">
+        <div class="ac-hm-lbl">${c.lbl}</div>
+        <div><span class="ac-hm-num">${c.num}</span>${c.unit?`<span class="ac-hm-unit"> ${c.unit}</span>`:''}</div>
+        <div class="ac-hm-sub">${c.sub}</div>
+      </div>`;
+    }).join('');
+  }
 }
 
 // ── Header ──
