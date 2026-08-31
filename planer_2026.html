@@ -523,10 +523,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     </div>
   </div>
 
-  <!-- 3 kolonnas: Kalendārs+Mērķi | Fokuss+Izdevumi | Ēdienkarte+Progress -->
+  <!-- 3 kolonnas: Kalendārs+Dienas fokuss | Nedēļas mērķi+Izdevumi | Ēdienkarte+Progress -->
   <div class="ac-grid">
 
-    <!-- 1. kolonna: Kalendārs + Mērķi -->
+    <!-- 1. kolonna: Kalendārs + Dienas fokuss -->
     <div class="ac-col">
 
       <div class="ac-card" id="ac-card-cal">
@@ -542,19 +542,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         <div id="ac-cal"></div>
       </div>
 
-      <div class="ac-card" id="ac-card-goals">
-        <div class="ac-ch">
-          <span class="ac-ct">Nedēļas mērķi</span>
-          <span class="ac-cm" id="ac-goals-meta"></span>
-        </div>
-        <div id="ac-goals"></div>
-      </div>
-
-    </div>
-
-    <!-- 2. kolonna: Dienas fokuss + Izdevumi -->
-    <div class="ac-col">
-
       <div class="ac-card" id="ac-card-focus">
         <div class="ac-ch">
           <span class="ac-ct">Dienas fokuss</span>
@@ -564,6 +551,19 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         <div style="margin-top:10px;">
           <button class="d-link" onclick="resetDayFocus()">↺ Atjaunot uzdevumus</button>
         </div>
+      </div>
+
+    </div>
+
+    <!-- 2. kolonna: Nedēļas mērķi + Izdevumi -->
+    <div class="ac-col">
+
+      <div class="ac-card" id="ac-card-goals">
+        <div class="ac-ch">
+          <span class="ac-ct">Nedēļas mērķi</span>
+          <span class="ac-cm" id="ac-goals-meta"></span>
+        </div>
+        <div id="ac-goals"></div>
       </div>
 
       <div class="ac-card" id="ac-card-exp">
