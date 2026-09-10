@@ -2049,6 +2049,7 @@ const WEEKS = {
       {
         key: "2026-09-10", name: "Ceturtdiena", date: "10. septembris", status: "future", badge: "free",
         events: [
+          { time: "07:00", text: "Izvest miskasti (līdz 08:00)" },
           { time: "08:10", text: "Hu skola (līdz 15:15)" },
           { time: "08:10", text: "Henr skola (līdz 12:30)" }
         ],
@@ -3831,7 +3832,10 @@ const GDS = {
           });
           return;
         }
-      } catch(e) {}
+        localStorage.removeItem('_gds_token');
+      } catch(e) {
+        localStorage.removeItem('_gds_token');
+      }
     }
     GDS.setStatus('☁️ Google Drive — nav savienots', 'idle');
   },
@@ -3845,6 +3849,10 @@ const GDS = {
     const client = google.accounts.oauth2.initTokenClient({
       client_id:  GDS.CLIENT_ID,
       scope:      GDS.SCOPE,
+      error_callback: (err) => {
+        const type = err && err.type ? err.type : 'unknown';
+        GDS.setStatus('⚠ Google logs neatvērās: ' + type + ' — atver lapu parastā pārlūkā un mēģini vēlreiz', 'err');
+      },
       callback:   (resp) => {
         if (resp.error) { GDS.setStatus('⚠ Pierakstīšanās kļūda: ' + resp.error, 'err'); return; }
         GDS.token = resp.access_token;
@@ -3872,10 +3880,13 @@ const GDS = {
     // Meklē failu pēc nosaukuma
     const q = encodeURIComponent(`name='${GDS.FILE_NAME}' and trashed=false`);
     const r = await fetch(
-      `https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name,modifiedTime)`,
+      `https://www.googleapis.com/drive/v3/files?q=${q}&spaces=drive&orderBy=modifiedTime desc&fields=files(id,name,modifiedTime)`,
       { headers: { Authorization: 'Bearer ' + GDS.token } }
     );
-    if (!r.ok) throw new Error('Drive meklēšana neizdevās: ' + r.status);
+    if (!r.ok) {
+      if (r.status === 401) GDS.clearAuth();
+      throw new Error('Drive meklēšana neizdevās: ' + r.status);
+    }
     const data = await r.json();
     if (data.files && data.files.length > 0) {
       GDS.fileId = data.files[0].id;
@@ -4004,6 +4015,7 @@ const GDS = {
       if (!r.ok) {
         if (r.status === 401) {
           GDS.ready = false;
+          localStorage.removeItem('_gds_token');
           GDS.setStatus('🔑 Sesija beigusies — pierakstīties atkal', 'idle');
           document.getElementById('drive-btn').textContent = 'Pieslēgties Google';
           return;
@@ -4016,6 +4028,13 @@ const GDS = {
     } catch(e) {
       GDS.setStatus('⚠ ' + e.message, 'err');
     }
+  },
+
+  clearAuth() {
+    GDS.token = null;
+    GDS.ready = false;
+    localStorage.removeItem('_gds_token');
+    GDS.setStatus('🔑 Google sesija beigusies — pieslēdzies vēlreiz', 'idle');
   },
 
   /* Atjaunina Drive joslas UI */
