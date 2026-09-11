@@ -3150,12 +3150,18 @@ async function fetchGarminJson(manual = false) {
   }
 }
 
+function formatSleepDuration(hours) {
+  const totalMinutes = Math.round(Number(hours) * 60);
+  if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) return '';
+  return `${Math.floor(totalMinutes / 60)} h ${totalMinutes % 60} min`;
+}
+
 function updateGarminBoxes(gd) {
   const sleep  = document.getElementById('gbox-sleep');
   const steps  = document.getElementById('gbox-steps');
   const stress = document.getElementById('gbox-stress');
   const weekly = document.getElementById('gbox-weekly');
-  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${gd.sleepH}h</b><br><small>miegs${gd.sleepScore ? ' · '+gd.sleepScore : ''}</small>` : '😴<br><small>nav</small>';
+  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${formatSleepDuration(gd.sleepH)}</b><br><small>miegs${gd.sleepScore ? ' · '+gd.sleepScore : ''}</small>` : '😴<br><small>nav</small>';
   if (steps)  steps.innerHTML  = gd.steps   ? `<b>${gd.steps >= 1000 ? (gd.steps/1000).toFixed(1)+'k' : gd.steps}</b><br><small>vakar soļi</small>` : '👣<br><small>nav</small>';
   if (stress) stress.innerHTML = gd.stress  ? `<b>${gd.stress}</b><br><small>${gd.stressLevel||'stress'}</small>` : '🧘<br><small>nav</small>';
   if (weekly) weekly.innerHTML = gd.weeklyKm != null ? `<b>${gd.weeklyKm}km</b><br><small>🚶${gd.weeklyWalk||0}+🚴${gd.weeklyBike||0}</small>` : '🏃<br><small>nav</small>';
@@ -3369,7 +3375,7 @@ function renderMetricStrip(gd, focusItems) {
   const garminCards = [
     {
       lbl:'Miegs · Garmin',
-      num: gd.sleepH ? gd.sleepH+'h' : '—',
+      num: gd.sleepH ? formatSleepDuration(gd.sleepH) : '—',
       sub: gd.sleepScore ? 'Skors '+gd.sleepScore+'/100' : (gd.sleepH ? 'vakarnakts' : 'nav datu'),
       pct: gd.sleepH ? Math.round(gd.sleepH/8*100) : 0,
       rtxt: gd.sleepScore ? String(gd.sleepScore) : (gd.sleepH ? Math.round(gd.sleepH/8*100)+'%' : ''),
