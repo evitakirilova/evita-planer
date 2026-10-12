@@ -310,8 +310,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 .d-mini-inp:focus{border-color:var(--taupe);}
 .d-mini-row{display:flex;gap:7px;}
 .d-mini-row .d-mini-inp{width:auto;flex:1;}
-.garmin-stat-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:7px 6px;text-align:center;font-size:11px;color:var(--slate);line-height:1.4;}
-.garmin-stat-box b{font-size:14px;color:var(--taupe);display:block;}
 /* Header */
 .ac-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;padding:20px 24px;background:#fff;border-radius:16px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
 .ac-hdr-sub{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;}
@@ -339,18 +337,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
   .ac-hdr-date,.ac-hdr-loc{margin-top:0;}
   .ac-hdr-name{font-size:25px;}
 }
-/* Metric josla (5 kartes — kā Anna Cherry augšā) */
-.ac-mc{background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
-.ac-mc-left{flex:1;min-width:0;}
-.ac-mc-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.ac-mc-num{font-size:30px;font-weight:300;color:var(--slate);line-height:1;letter-spacing:-0.5px;}
-.ac-mc-unit{font-size:13px;color:var(--slate);}
-.ac-mc-sub{font-size:10px;color:var(--greige);margin-top:4px;}
-.ac-mc-ring{width:50px;height:50px;flex-shrink:0;margin-left:10px;}
-.ac-rb{fill:none;stroke:#e0dbd5;stroke-width:3.5;}
-.ac-rf{fill:none;stroke:var(--taupe);stroke-width:3.5;stroke-linecap:round;transform-origin:25px 25px;transform:rotate(-90deg);transition:stroke-dasharray .7s ease;}
-.ac-rt{font-size:8.5px;font-weight:700;fill:var(--slate);text-anchor:middle;dominant-baseline:middle;}
-.ac-mc-empty .ac-mc-num{color:#ccc8c3;}
 /* 3-kolonnu galvenais režģis */
 .ac-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:start;}
 @media(max-width:960px){.ac-grid{grid-template-columns:1fr 1fr;}}
@@ -361,15 +347,11 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
   #ac-card-focus{order:2;}
   #ac-card-goals{order:3;}
   #ac-card-exp{order:4;}
-  #ac-card-meals{order:5;}
+  #ac-card-getapro{order:5;}
   #ac-card-weekprog{order:6;}
 }
 .ac-col{display:flex;flex-direction:column;gap:14px;}
-/* Apakseja josla: 3 Garmin lodzini + Laiks + Garmin karte */
-.ac-garmin-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
-@media(max-width:680px){.ac-garmin-strip{grid-template-columns:1fr;}}
-.ac-bottom{display:grid;grid-template-columns:1fr 1.6fr;gap:14px;margin-top:14px;align-items:start;}
-@media(max-width:860px){.ac-bottom{grid-template-columns:1fr;}}
+.ac-bottom{margin-top:14px;}
 /* Karte */
 .ac-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.05);border:1px solid rgba(112,99,84,.1);}
 .ac-ch{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(112,99,84,.1);}
@@ -432,6 +414,27 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 .ac-wrbf{height:100%;background:var(--taupe);border-radius:3px;}
 .ac-wrp{font-size:10px;color:var(--taupe);min-width:30px;text-align:right;font-weight:600;}
 
+/* GetaPro plūsma esošajā dashboarda labajā kolonnā */
+.gp-summary{font-size:11px;color:var(--greige);margin:-2px 0 11px;}
+.gp-stage{border-top:1px solid rgba(112,99,84,.11);padding:9px 0;}
+.gp-stage:first-child{border-top:none;padding-top:0;}
+.gp-stage-head{display:flex;align-items:center;gap:8px;color:var(--slate);font-size:11px;}
+.gp-stage-dot{width:7px;height:7px;border-radius:50%;background:var(--taupe);flex-shrink:0;}
+.gp-dot-followup{background:#c7a87b}.gp-dot-closed{background:var(--sage)}
+.gp-count{margin-left:auto;background:var(--bg);color:var(--taupe);border-radius:10px;padding:1px 7px;font-size:10px;}
+.gp-lead{margin:8px 0 0 15px;padding:9px 10px;border:1px solid rgba(112,99,84,.12);border-radius:8px;background:var(--bg);}
+.gp-lead-name{font-size:12px;font-weight:700;color:var(--slate);}
+.gp-lead-request{font-size:11px;color:var(--slate);margin-top:2px;}
+.gp-lead-offer,.gp-next{font-size:10px;color:var(--greige);margin-top:4px;}
+.gp-next{color:var(--taupe);font-weight:600;}
+.gp-lead-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+.gp-lead-actions a{color:var(--taupe);font-size:10px;text-decoration:underline;}
+.gp-lead-actions select{margin-left:auto;max-width:140px;padding:3px 5px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--slate);font-size:10px;font-family:inherit;}
+.gp-add{margin-top:10px;border-top:1px solid rgba(112,99,84,.11);padding-top:10px;}
+.gp-add summary{cursor:pointer;color:var(--taupe);font-size:11px;font-weight:700;}
+.gp-add form{display:grid;gap:7px;margin-top:11px;}
+.gp-add .d-btn{justify-self:start;}
+
 /* ── IZDEVUMI ──────────────────────────────────────────── */
 .iz-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
 .iz-nav { display: flex; align-items: center; gap: 10px; }
@@ -469,6 +472,153 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 .iz-fsave:hover { background: var(--slate); }
 .iz-fcancel { background: none; border: 1px solid var(--border); color: var(--slate); border-radius: 5px; padding: 8px 14px; font-size: 13px; cursor: pointer; font-family: inherit; }
 .iz-empty { font-size: 13px; color: var(--greige); font-style: italic; padding: 8px 0; }
+/* Taste audit: denser rhythm and content-led empty states for Evita's existing planner. */
+#tab-dashboard{padding-top:15px}
+#tab-dashboard .ac-hdr{align-items:center;min-height:76px;margin-bottom:12px;padding:13px 18px;border-radius:12px;box-shadow:0 1px 3px rgba(44,42,39,.04)}
+#tab-dashboard .ac-hdr-sub{font-size:9px;letter-spacing:1.8px;margin-bottom:2px}
+#tab-dashboard .ac-hdr-name{font-size:25px}
+#tab-dashboard .ac-hdr-right{padding-left:18px;border-left:1px solid var(--border)}
+#tab-dashboard .ac-hdr-day{font-size:13px}
+#tab-dashboard .ac-hdr-date{font-size:11px;color:var(--slate)}
+#tab-dashboard .ac-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.24fr);gap:12px}
+#tab-dashboard .ac-col{gap:12px;min-width:0}
+#tab-dashboard .ac-card{padding:14px 16px;border-radius:11px;box-shadow:0 1px 3px rgba(44,42,39,.045)}
+#tab-dashboard .ac-ch{margin-bottom:9px;padding-bottom:9px;flex-wrap:nowrap}
+#tab-dashboard .ac-ct{background:var(--brand-green);color:var(--on-accent);padding:6px 12px;border-radius:8px;font-size:13px;letter-spacing:.5px}
+#tab-dashboard #ac-card-getapro{padding-top:14px}
+#tab-dashboard .ac-ca{white-space:nowrap}
+#tab-dashboard .ac-tabs{margin-bottom:8px}
+#tab-dashboard .ac-er{padding:6px 0}
+#tab-dashboard .ac-gr{padding:8px 0}
+#tab-dashboard .ac-gn{line-height:1.35}
+#tab-dashboard .ac-fr{padding:7px 0}
+#tab-dashboard .ac-ih{font-size:31px;margin-bottom:5px;letter-spacing:-1px}
+#tab-dashboard #ac-card-exp .d-empty{display:none}
+#tab-dashboard #ac-card-exp .d-mini-row{margin-bottom:5px}
+#tab-dashboard #ac-card-exp .d-mini-inp{padding:6px 8px}
+#tab-dashboard #ac-card-exp .d-btn{padding:6px 11px}
+#tab-dashboard #ac-card-focus .d-empty{font-style:normal;color:var(--slate);font-size:12px;line-height:1.45}
+#tab-dashboard #ac-card-focus .d-link{font-size:10px}
+
+/* One compact funnel instead of four empty status sections. */
+.gp-summary{font-size:11px;color:var(--slate);margin:0 0 11px}
+.gp-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:0 0 13px}
+.gp-flow-step{min-width:0;padding:9px 5px 8px;text-align:center;background:#f4f3f1;border:1px solid var(--border);border-radius:7px}
+.gp-flow-step:first-child{background:#ecf0ec;border-color:#dce4dd}
+.gp-flow-count{display:block;font-size:18px;font-weight:700;line-height:1;color:var(--slate)}
+.gp-flow-step:first-child .gp-flow-count{color:var(--brand-green)}
+.gp-flow-label{display:block;margin-top:4px;font-size:9px;line-height:1.2;color:var(--slate)}
+.gp-empty{padding:10px 0 8px;font-size:11px;color:var(--slate);line-height:1.4}
+.gp-stage{padding:8px 0;border-top:1px solid var(--border)}
+.gp-stage-head{font-size:11px;color:var(--slate);font-weight:700}
+.gp-stage .gp-stage-dot,.gp-stage .gp-count{display:none}
+.gp-lead{margin:7px 0 0;padding:9px 10px;border:1px solid var(--border);border-radius:7px;background:#faf9f7}
+.gp-lead-name{font-size:12px}
+.gp-add{margin-top:7px;padding-top:8px}
+.gp-add summary{font-size:11px}
+
+/* Seven real dates remain visible, but missing data no longer creates seven dead bars. */
+.ac-week-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.ac-week-day{padding:8px 3px;text-align:center;background:#f4f3f1;border:1px solid var(--border);border-radius:7px;min-width:0}
+.ac-week-day.is-today{background:#ecf0ec;border-color:#dce4dd}
+.ac-week-label{font-size:9px;color:var(--slate);font-weight:700}
+.ac-week-daynum{display:block;font-size:13px;line-height:1.1;color:var(--slate);margin-top:3px}
+.ac-week-state{display:block;font-size:9px;color:var(--taupe);margin-top:5px;white-space:nowrap}
+.ac-week-empty{font-size:10px;color:var(--sage);margin-top:9px}
+
+/* Weather is a supporting utility, not a full-width empty panel. */
+#tab-dashboard #ac-card-weather .ac-wtop{margin-bottom:6px;gap:9px}
+#tab-dashboard #ac-card-weather .ac-wicon{font-size:25px}
+#tab-dashboard #ac-card-weather .ac-wtemp{font-size:27px}
+#tab-dashboard #ac-card-weather .ac-wdesc{font-size:11px}
+#tab-dashboard #ac-card-weather .ac-whl{font-size:10px}
+#tab-dashboard #ac-card-weather .ac-fc{padding-top:7px;margin-top:5px}
+#tab-dashboard #ac-card-weather .ac-fci{font-size:14px;margin:1px 0}
+
+@media(max-width:1080px){#tab-dashboard .ac-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#tab-dashboard .ac-col:last-child{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr 1fr;align-items:start}}
+@media(max-width:540px){#tab-dashboard .ac-hdr{align-items:flex-start}#tab-dashboard .ac-hdr-right{border-left:0;padding-left:0}#tab-dashboard .gp-flow-label{font-size:8px}}
+
+/* Evita's clarified hierarchy: planning and business receive equal columns. */
+#tab-dashboard .taste-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+#tab-dashboard .taste-stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+#tab-dashboard .ac-hdr-metrics{gap:0}
+#tab-dashboard .ac-hm{padding:8px 13px;min-width:110px}
+#tab-dashboard .ac-hm-exp{display:flex;flex-direction:column;align-items:flex-start;min-width:132px;font-family:inherit;cursor:pointer}
+#tab-dashboard .ac-hm-exp .ac-hm-lbl{display:block}
+#tab-dashboard .ac-hm-exp:hover,#tab-dashboard .ac-hm-exp:focus-visible{border-color:var(--taupe);outline:none}
+#tab-dashboard .ac-hm-num{font-size:19px}
+#tab-dashboard #ac-card-weather .ac-ch{margin-bottom:6px}
+#tab-dashboard #ac-card-weather .ac-wtop{margin-bottom:0}
+#tab-dashboard #ac-card-weather .ac-fc{max-width:350px}
+#tab-dashboard #ac-card-weekprog .ac-ch{margin-bottom:10px}
+#tab-dashboard .ac-week-days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+#tab-dashboard .ac-week-day{text-align:left;min-height:96px;padding:9px 10px;background:#f8f7f5}
+#tab-dashboard .ac-week-day.is-today{background:#edf1ec}
+#tab-dashboard .ac-week-top{display:flex;align-items:baseline;justify-content:space-between;gap:4px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+#tab-dashboard .ac-week-label{font-size:10px;line-height:1.2;color:var(--slate)}
+#tab-dashboard .ac-week-daynum{display:inline;font-size:12px;margin:0;color:var(--taupe);font-weight:700}
+#tab-dashboard .ac-week-state{font-size:10px;color:var(--sage);margin-top:8px}
+#tab-dashboard .ac-week-tasks{display:flex;flex-direction:column;gap:5px;margin-top:7px}
+#tab-dashboard .ac-week-task{display:flex;align-items:flex-start;gap:5px;font-size:10px;line-height:1.25;color:var(--slate);cursor:pointer}
+#tab-dashboard .ac-week-task input{accent-color:var(--brand-green);margin-top:1px;width:12px;height:12px;flex-shrink:0}
+#tab-dashboard .ac-week-task input:checked+span{text-decoration:line-through;color:var(--sage)}
+#tab-dashboard .ac-week-open{margin-top:9px;text-align:right}
+@media(max-width:850px){#tab-dashboard .taste-grid{grid-template-columns:1fr}#tab-dashboard .ac-week-days{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:540px){#tab-dashboard .ac-week-days{grid-template-columns:repeat(2,minmax(0,1fr))}#tab-dashboard .ac-hdr-rw{flex-direction:row;align-items:center}#tab-dashboard .ac-hdr-right{padding-left:0}}
+
+/* Three connected week-goal cards occupy the existing Nedēļas mērķi panel. */
+#tab-dashboard .focus-mini-list{display:grid;gap:7px}
+#tab-dashboard .focus-mini{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,170px);gap:4px 12px;padding:10px 11px;border:1px solid var(--border);border-radius:9px;background:#faf9f7;min-width:0}
+#tab-dashboard .focus-mini.is-done{border-color:#bccdbd;background:#f1f5f0}
+#tab-dashboard .focus-mini-head{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;color:var(--slate);font-size:12px;line-height:1.32}
+#tab-dashboard .focus-mini-head strong{font-weight:600}
+#tab-dashboard .focus-mini-index{display:flex;align-items:center;justify-content:center;width:20px;height:20px;min-width:20px;border-radius:6px;background:var(--brand-green);color:var(--on-accent);font-size:10px;font-weight:700}
+#tab-dashboard .focus-mini-work{min-width:0;padding-left:28px}
+#tab-dashboard .focus-mini-status{display:flex;justify-content:space-between;gap:6px;color:var(--taupe);font-size:10px;font-weight:600}
+#tab-dashboard .focus-mini-bar{height:4px;margin:5px 0 6px;border-radius:3px;background:#e8e4df;overflow:hidden}
+#tab-dashboard .focus-mini-bar span{display:block;height:100%;background:var(--brand-green)}
+#tab-dashboard .focus-mini-tasklist{display:flex;flex-direction:column;gap:2px;color:var(--slate);font-size:10px;line-height:1.25}
+#tab-dashboard .focus-mini-tasklist span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tab-dashboard .focus-mini-tasklist .is-done{text-decoration:line-through;color:var(--sage)}
+#tab-dashboard .focus-mini-add{border:0;background:none;padding:0;color:var(--taupe);font:inherit;font-size:10px;text-decoration:underline;cursor:pointer}
+#tab-dashboard .focus-mini-links{display:flex;flex-direction:column;min-width:0;gap:3px}
+#tab-dashboard .focus-mini-links label{color:var(--slate);font-size:9px;font-weight:600}
+#tab-dashboard .focus-mini-links select{width:100%;min-width:0;padding:5px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--slate);font:inherit;font-size:10px}
+#tab-dashboard .focus-mini-hint{font-size:9px;color:var(--greige)}
+#tab-dashboard .focus-mini .focus-track-path{margin-top:1px;font-size:9px}
+#tab-dashboard .focus-mini-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;color:var(--greige);font-size:10px}
+#tab-dashboard .ac-cal-demo-note{margin:2px 0 8px;color:var(--greige);font-size:10px}
+#tab-dashboard .ac-demo-dot{display:inline-block;width:7px;height:7px;margin:0 6px 1px 0;border-radius:50%;background:var(--brand-green)}
+#tab-dashboard .ac-demo-dot.alt{background:var(--taupe)}
+@media(max-width:540px){#tab-dashboard .focus-mini{grid-template-columns:1fr}#tab-dashboard .focus-mini-head{grid-column:1}#tab-dashboard .focus-mini-work{padding-left:28px}#tab-dashboard .focus-mini-links{padding-left:28px}}
+
+/* A compact progress bridge from day tasks to week focus, annual goal, and life vision. */
+#tab-dashboard .ac-weather-mini{display:flex;align-items:center;justify-content:center;gap:3px;min-width:70px;padding:6px 8px;border:1px solid var(--border);border-radius:10px;background:#f7f6f4;color:var(--slate);font-size:12px;line-height:1.1;white-space:nowrap}
+#tab-dashboard .ac-weather-mini .weather-icon{font-size:19px}
+#tab-dashboard .ac-weather-mini .weather-temp{font-size:14px;font-weight:600}
+#tab-dashboard #ac-focus-tracker{margin-top:0}
+#tab-dashboard .taste-stack > .ac-card{order:0}
+#tab-dashboard .focus-track-grid{display:grid;grid-template-columns:1fr;gap:7px}
+#tab-dashboard .focus-track-item{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,185px);column-gap:12px;padding:10px;border:1px solid var(--border);border-radius:9px;background:#faf9f7;min-width:0}
+#tab-dashboard .focus-track-head{grid-column:1;grid-row:1;display:flex;align-items:flex-start;gap:8px;font-size:11px;line-height:1.3;color:var(--slate)}
+#tab-dashboard .focus-track-index{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:6px;background:var(--brand-green);color:var(--on-accent);font-size:11px;font-weight:700}
+#tab-dashboard .focus-track-score{grid-column:1;grid-row:2;display:flex;align-items:baseline;gap:7px;margin:5px 0 4px;color:var(--slate)}
+#tab-dashboard .focus-track-score strong{font-size:21px;line-height:1;font-weight:500;color:var(--brand-green)}
+#tab-dashboard .focus-track-score span{font-size:10px}
+#tab-dashboard .focus-track-bar{grid-column:1;grid-row:3;height:4px;background:#e8e4df;border-radius:3px;overflow:hidden;margin-bottom:2px}
+#tab-dashboard .focus-track-bar span{display:block;height:100%;background:var(--brand-green)}
+#tab-dashboard .focus-track-link-label{grid-column:2;grid-row:1;align-self:end;display:block;margin-bottom:4px;font-size:10px;color:var(--slate)}
+#tab-dashboard .focus-track-item select{grid-column:2;grid-row:2;width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--slate);font-family:inherit;font-size:10px}
+#tab-dashboard .focus-track-path{grid-column:2;grid-row:3;display:flex;align-items:center;gap:5px;margin-top:5px;flex-wrap:wrap;font-size:10px;color:var(--greige)}
+#tab-dashboard .focus-track-path button{border:0;background:none;padding:0;color:var(--taupe);text-decoration:underline;cursor:pointer;font:inherit;font-weight:600}
+#tab-dashboard .focus-track-hint{grid-column:2;grid-row:3;font-size:10px;color:var(--sage);margin-top:5px;line-height:1.3}
+#tab-dashboard .focus-track-unassigned{padding-top:9px;font-size:11px;color:var(--taupe)}
+.task-focus-select{display:block;max-width:100%;width:100%;margin:5px 0 0 23px;padding:5px 6px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--slate);font:inherit;font-size:10px}
+.add-focus{width:100%;margin-top:7px;padding:7px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--slate);font:inherit;font-size:11px}
+#tab-dashboard .ac-week-focus-tag{display:block;color:var(--taupe);font-size:9px;margin-top:2px}
+@media(max-width:940px){#tab-dashboard .focus-track-item{grid-template-columns:minmax(0,1fr) minmax(0,160px)}}
+@media(max-width:540px){#tab-dashboard .ac-weather-mini{min-width:58px;padding:5px}#tab-dashboard .ac-hdr-rw{flex-wrap:wrap}#tab-dashboard .focus-track-item{grid-template-columns:1fr}#tab-dashboard .focus-track-head,#tab-dashboard .focus-track-score,#tab-dashboard .focus-track-bar,#tab-dashboard .focus-track-link-label,#tab-dashboard .focus-track-item select,#tab-dashboard .focus-track-path,#tab-dashboard .focus-track-hint{grid-column:1;grid-row:auto}}
+
 </style>
 </head>
 <body>
@@ -498,7 +648,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
   <button class="tb" onclick="showTab('goals')">🎯 Gada mērķi</button>
   <button class="tb" onclick="showTab('months')">📅 Mēneša milestones</button>
   <button class="tb" onclick="showTab('week')">📋 Nedēļas plāns</button>
-  <button class="tb" onclick="showTab('mealplan')">🍽️ Ēdienkarte</button>
   <button class="tb" onclick="showTab('ideas')">💡 Idejas</button>
   <button class="tb" onclick="showTab('izdevumi')">💸 Izdevumi</button>
   <button class="tb" onclick="showTab('progress')">📊 Progress</button>
@@ -517,7 +666,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     </div>
     <div class="ac-hdr-rw">
       <!-- Fokuss + Izdevumi mini-lodzini (pirms dienas un datuma) -->
-      <div class="ac-hdr-metrics" id="ac-hdr-metrics"></div>
+      <div class="ac-hdr-metrics" id="ac-hdr-metrics"></div><div class="ac-weather-mini" id="ac-weather" title="Laikapstākļi Siguldā">…</div>
       <div class="ac-hdr-right">
         <div class="ac-hdr-day" id="ac-hdr-day">—</div>
         <div class="ac-hdr-date" id="ac-hdr-date">—</div>
@@ -526,12 +675,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     </div>
   </div>
 
-  <!-- 3 kolonnas: Kalendārs+Dienas fokuss | Nedēļas mērķi+Izdevumi | Ēdienkarte+Progress -->
-  <div class="ac-grid">
-
-    <!-- 1. kolonna: Kalendārs + Dienas fokuss -->
-    <div class="ac-col">
-
+  <div class="taste-grid">
+    <div class="taste-stack taste-planner">
       <div class="ac-card" id="ac-card-cal">
         <div class="ac-ch">
           <span class="ac-ct">Kalendārs</span>
@@ -544,23 +689,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         </div>
         <div id="ac-cal"></div>
       </div>
-
-      <div class="ac-card" id="ac-card-focus">
-        <div class="ac-ch">
-          <span class="ac-ct">Dienas fokuss</span>
-          <span class="ac-cm" id="ac-focus-meta">0 no 5 izpildīti</span>
-        </div>
-        <div id="ac-focus"></div>
-        <div style="margin-top:10px;">
-          <button class="d-link" onclick="resetDayFocus()">↺ Atjaunot uzdevumus</button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 2. kolonna: Nedēļas mērķi + Izdevumi -->
-    <div class="ac-col">
-
       <div class="ac-card" id="ac-card-goals">
         <div class="ac-ch">
           <span class="ac-ct">Nedēļas mērķi</span>
@@ -568,105 +696,49 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
         </div>
         <div id="ac-goals"></div>
       </div>
-
-      <div class="ac-card" id="ac-card-exp">
-        <div class="ac-ch">
-          <span class="ac-ct">Izdevumi</span>
-          <button class="ac-ca" onclick="showTabById('izdevumi')">Visi →</button>
-        </div>
-        <div class="ac-ih" id="ac-exp-hero">0.00 €</div>
-        <div id="ac-exp-list"></div>
-        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
-          <div class="d-mini-row" style="margin-bottom:6px;">
-            <input class="d-mini-inp" id="exp-amount" type="number" placeholder="€ summa" step="0.01">
-            <select class="d-mini-inp" id="exp-cat" style="padding:6px 4px;">
-              <option value="pārtika">🍕 Pārtika</option>
-              <option value="māja">🏠 Māja</option>
-              <option value="transports">🚗 Transports</option>
-              <option value="bērni">👦 Bērni</option>
-              <option value="veselība">💊 Veselība</option>
-              <option value="apģērbs">👗 Apģērbs</option>
-              <option value="bizness">🎯 Bizness</option>
-              <option value="ceļojumi">✈️ Ceļojumi</option>
-              <option value="sports">🏋️ Sports</option>
-              <option value="cits">🔧 Cits</option>
-            </select>
-          </div>
-          <div class="d-mini-row">
-            <input class="d-mini-inp" id="exp-note" placeholder="Piezīme">
-            <button class="d-btn" onclick="addExpenseFromDash()">+</button>
-          </div>
-        </div>
-      </div>
-
     </div>
-
-    <!-- 3. kolonna: Ēdienkarte + Nedēļas progress -->
-    <div class="ac-col">
-
-      <div class="ac-card" id="ac-card-meals">
+    <div class="taste-stack taste-business">
+      <div class="ac-card" id="ac-card-getapro">
         <div class="ac-ch">
-          <span class="ac-ct">🍽️ Šodienas ēdienkarte</span>
-          <button class="ac-ca" onclick="showTabById('mealplan')">Visi →</button>
+          <span class="ac-ct">GetaPro pieprasījumi</span>
+          <a class="ac-ca" href="https://getapro.lv/" target="_blank" rel="noopener noreferrer">Atvērt GetaPro ↗</a>
         </div>
-        <div id="ac-meals"></div>
-        <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f1ef;">
-          <div class="d-mini-row">
-            <select class="d-mini-inp" id="meal-cat-dash" style="flex:0 0 120px;"></select>
-            <input class="d-mini-inp" id="meal-txt-dash" placeholder="Pievienot ēdienu...">
-            <button class="d-btn" onclick="addMealFromDash()">+</button>
-          </div>
-        </div>
+        <div id="gp-summary" class="gp-summary"></div>
+        <div id="gp-pipeline"></div>
+        <details class="gp-add">
+          <summary>+ Pievienot pieprasījumu</summary>
+          <form id="gp-form" onsubmit="addGetaProLead(event)">
+            <input class="d-mini-inp" name="client" placeholder="Klients / pieprasījuma nosaukums" required maxlength="120">
+            <input class="d-mini-inp" name="request" placeholder="Ko klients vēlas?" required maxlength="180">
+            <div class="d-mini-row">
+              <input class="d-mini-inp" name="offer" placeholder="Tavs pakalpojums" maxlength="120">
+              <input class="d-mini-inp" name="price" placeholder="Cena €" type="number" min="0" step="0.01">
+            </div>
+            <input class="d-mini-inp" name="sourceUrl" placeholder="GetaPro sarakstes saite (https://...)" type="url">
+            <input class="d-mini-inp" name="proposalUrl" placeholder="Nosūtītā piedāvājuma saite (ja ir)" type="url">
+            <div class="d-mini-row">
+              <select class="d-mini-inp" name="status">
+                <option value="new">Jauns</option>
+                <option value="sent">Piedāvājums nosūtīts</option>
+                <option value="followup">Follow-up</option>
+                <option value="closed">Noslēgts</option>
+              </select>
+              <input class="d-mini-inp" name="nextDate" type="date" title="Nākamās darbības datums">
+            </div>
+            <input class="d-mini-inp" name="nextAction" placeholder="Nākamais solis" maxlength="160">
+            <button class="d-btn" type="submit">Saglabāt pieprasījumu</button>
+          </form>
+        </details>
       </div>
-
       <div class="ac-card" id="ac-card-weekprog">
         <div class="ac-ch">
-          <span class="ac-ct">Nedēļas progress</span>
+          <span class="ac-ct">Nedēļas darbi</span>
           <span class="ac-cm" id="ac-week-meta"></span>
         </div>
-        <div id="ac-week-prog"></div>
+        <div id="ac-week-prog"></div><div class="ac-week-open"><button class="d-link" onclick="showTabById('week')">Atvērt nedēļas plānu →</button></div>
       </div>
-
     </div>
   </div>
-
-  <!-- ── APAKŠA: Garmin lodziņi + Laika apstākļi + Garmin karte ── -->
-  <div class="ac-garmin-strip" id="ac-garmin-strip"></div>
-
-  <div class="ac-bottom">
-
-      <div class="ac-card" id="ac-card-weather">
-        <div class="ac-ch">
-          <span class="ac-ct">Laika apstākļi</span>
-          <span class="ac-cm">Sigulda</span>
-        </div>
-        <div id="ac-weather"><div class="d-empty">Ielādē...</div></div>
-      </div>
-
-      <div class="ac-card" id="ac-card-garmin">
-        <div class="ac-ch">
-          <span class="ac-ct">⌚ Garmin</span>
-          <button class="ac-ca" onclick="fetchGarminJson(true)" style="background:var(--taupe);color:#fff;border:none;border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">↻ Atjaunināt</button>
-        </div>
-        <div id="garmin-auto-status" style="font-size:10px;color:var(--sage);margin-bottom:8px;">⏳ Meklē Garmin datus...</div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">😴 Miegs · 👣 Soļi · 🧘 Stress · 🏃 Nedēļa</div>
-        <div id="garmin-auto-display" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
-          <div class="garmin-stat-box" id="gbox-sleep">—</div>
-          <div class="garmin-stat-box" id="gbox-steps">—</div>
-          <div class="garmin-stat-box" id="gbox-stress">—</div>
-          <div class="garmin-stat-box" id="gbox-weekly">—</div>
-        </div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--greige);margin-bottom:5px;">✏️ Manuāla korekcija</div>
-        <div class="d-mini-row" style="margin-bottom:5px;">
-          <input class="d-mini-inp" id="g-sleep-h" type="number" min="0" max="12" step="0.5" placeholder="Miegs (h)">
-          <input class="d-mini-inp" id="g-steps" type="number" placeholder="Soļi">
-          <input class="d-mini-inp" id="g-stress" type="number" min="0" max="100" placeholder="Stress/100">
-          <button class="d-btn" onclick="saveGarminManual()">✓</button>
-        </div>
-      </div>
-
-  </div>
-
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -1022,17 +1094,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     <p>Claude atjaunina katru svētdienu · Tu ķeksē uzdevumus dienas laikā · Progress tiek saglabāts</p>
   </div>
   <div id="week-wrap"></div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     TAB · ĒDIENKARTE
-══════════════════════════════════════════════════════════ -->
-<div id="tab-mealplan" class="tab">
-  <div class="sh">
-    <h2>🍽️ Ēdienkarte</h2>
-    <p>Nedēļas ēdienkarte pa dienām — Brokastis, Pusdienas, Uzkodas, Vakariņas. Šodienas ēdienkarte parādās arī Dashbordā.</p>
-  </div>
-  <div id="mealplan-wrap"></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -2196,12 +2257,98 @@ const WEEKS = {
       { key: "2026-10-10", name: "Sestdiena", date: "10. oktobris", status: "future", badge: "weekend", events: [], tasks: [] },
       { key: "2026-10-11", name: "Svētdiena", date: "11. oktobris", status: "future", badge: "weekend", events: [], tasks: [] }
     ]
-  }
+  },
+  "2026-W42": {
+  "label": "12.–18. oktobris 2026",
+  "priorities": [
+    {
+      "text": "Izveidot manu Knowledge OS pēc Nate Herk pieejas un sasaistīt ar Obsidian"
+    },
+    {
+      "text": "Izveidot IG saglabāto ierakstu bibliotēku ar visiem materiāliem un piesaistīt to Knowledge OS"
+    },
+    {
+      "text": "She Can AI — 3. modulis"
+    },
+    {
+      "text": "GetaPro piedāvājumi"
+    },
+    {
+      "text": "Mana AI aģentūra — nosaukums un mājaslapa"
+    }
+  ],
+  "accountability": [],
+  "days": [
+    {
+      "key": "2026-10-12",
+      "name": "Pirmdiena",
+      "date": "12. oktobris",
+      "status": "today",
+      "badge": "free",
+      "events": [],
+      "tasks": []
+    },
+    {
+      "key": "2026-10-13",
+      "name": "Otrdiena",
+      "date": "13. oktobris",
+      "status": "future",
+      "badge": "free",
+      "events": [],
+      "tasks": []
+    },
+    {
+      "key": "2026-10-14",
+      "name": "Trešdiena",
+      "date": "14. oktobris",
+      "status": "future",
+      "badge": "free",
+      "events": [],
+      "tasks": []
+    },
+    {
+      "key": "2026-10-15",
+      "name": "Ceturtdiena",
+      "date": "15. oktobris",
+      "status": "future",
+      "badge": "free",
+      "events": [],
+      "tasks": []
+    },
+    {
+      "key": "2026-10-16",
+      "name": "Piektdiena",
+      "date": "16. oktobris",
+      "status": "future",
+      "badge": "free",
+      "events": [],
+      "tasks": []
+    },
+    {
+      "key": "2026-10-17",
+      "name": "Sestdiena",
+      "date": "17. oktobris",
+      "status": "future",
+      "badge": "weekend",
+      "events": [],
+      "tasks": []
+    },
+    {
+      "key": "2026-10-18",
+      "name": "Svētdiena",
+      "date": "18. oktobris",
+      "status": "future",
+      "badge": "weekend",
+      "events": [],
+      "tasks": []
+    }
+  ]
+}
 };
 /* ═══════════════════════════════════════════════════════
    GOAL TAG CONFIG
 ══════════════════════════════════════════════════════════ */
-const CURRENT_WEEK = "2026-W41";
+const CURRENT_WEEK = "2026-W42";
 
 const CAT_CONFIG = {
   B:  { label: "💼 Bizness",              cls: "tgl-B" },
@@ -2230,6 +2377,126 @@ function getChecked(id)       { return LS('ec_' + id) === true; }
 function setChecked(id, val)  { LS('ec_' + id, val); }
 function getUserTasks(dayKey) { return LS('eu_' + dayKey) || []; }
 function setUserTasks(dayKey, tasks) { LS('eu_' + dayKey, tasks); }
+
+/* Week-task-to-focus progress, with user-chosen links to the existing annual and life-goal domains. */
+const FOCUS_DOMAINS = [
+  'Vide man apkārt',
+  'Profesionālā izaugsme un bizness',
+  'Finanses un materiālais nodrošinājums',
+  'Attiecības ar vīru',
+  'Attiecības ar bērniem',
+  'Emocionālā labsajūta',
+  'Brīvais laiks un atpūta',
+  'Veselība un ārējais izskats'
+];
+function getTaskFocusIndex(task) {
+  const stored = LS('wf_' + task.id);
+  const index = Number.isInteger(stored) ? stored : task.focusIndex;
+  const limit = WEEKS[CURRENT_WEEK]?.priorities?.length || 0;
+  return Number.isInteger(index) && index >= 0 && index < limit ? index : null;
+}
+function focusPickerHtml(task) {
+  const week = WEEKS[CURRENT_WEEK];
+  const selected = getTaskFocusIndex(task);
+  return `<select class="task-focus-select" data-task-id="${escHtml(task.id)}" aria-label="Nedēļas fokuss uzdevumam ${escHtml(task.text)}" onchange="assignTaskFocus(this)">
+    <option value="" ${selected === null ? 'selected' : ''}>Piesaisti nedēļas fokusam</option>
+    ${week.priorities.map((p, i) => `<option value="${i}" ${selected === i ? 'selected' : ''}>${i + 1}. ${escHtml(p.text)}</option>`).join('')}
+  </select>`;
+}
+function assignTaskFocus(select) {
+  const id = select.dataset.taskId;
+  if (!id) return;
+  LS('wf_' + id, select.value === '' ? -1 : Number(select.value));
+  renderAcWeekProg();
+  renderFocusTracker();
+}
+function getGoalDomainIndex(focusIndex) {
+  const value = LS('wgoal_' + CURRENT_WEEK + '_' + focusIndex);
+  return Number.isInteger(value) && value >= 1 && value <= FOCUS_DOMAINS.length ? value : null;
+}
+function assignGoalDomain(select) {
+  const focusIndex = Number(select.dataset.focusIndex);
+  if (!Number.isInteger(focusIndex)) return;
+  LS('wgoal_' + CURRENT_WEEK + '_' + focusIndex, select.value === '' ? -1 : Number(select.value));
+  renderFocusTracker();
+}
+function openGoalDomain(tab, domainIndex) {
+  if (!['goals', 'vision'].includes(tab)) return;
+  const list = document.querySelectorAll(tab === 'goals' ? '#tab-goals .gc' : '#tab-vision .vc');
+  const target = list[domainIndex - 1];
+  if (!target) return;
+  showTabById(tab);
+  requestAnimationFrame(() => target.scrollIntoView({behavior:'smooth', block:'start'}));
+}
+function renderFocusTracker() {
+  return renderCompactGoals();
+  const el = document.getElementById('ac-focus-tracker');
+  if (!el) return;
+  const week = WEEKS[CURRENT_WEEK];
+  if (!week) return;
+  const tasks = week.days.flatMap(d => [...(d.tasks || []), ...getUserTasks(d.key)]);
+  const assigned = tasks.filter(t => getTaskFocusIndex(t) !== null);
+  const doneTotal = assigned.filter(t => getChecked(t.id)).length;
+  const unassigned = tasks.length - assigned.length;
+  el.innerHTML = `<div class="ac-ch"><span class="ac-ct">Nedēļas fokusa progress</span><span class="ac-cm">${doneTotal}/${assigned.length} piesaistītie darbi pabeigti</span></div>
+    <div class="focus-track-grid">${week.priorities.map((goal, i) => {
+      const own = assigned.filter(t => getTaskFocusIndex(t) === i);
+      const done = own.filter(t => getChecked(t.id)).length;
+      const pct = own.length ? Math.round(done / own.length * 100) : 0;
+      const domain = getGoalDomainIndex(i);
+      return `<div class="focus-track-item">
+        <div class="focus-track-head"><span class="focus-track-index">${i + 1}</span><strong>${escHtml(goal.text)}</strong></div>
+        <div class="focus-track-score"><strong>${done}/${own.length}</strong><span>${own.length ? 'darbi pabeigti' : 'Nav piesaistītu darbu'}</span></div>
+        <div class="focus-track-bar" aria-label="${pct}% pabeigti"><span style="width:${pct}%"></span></div>
+        <label class="focus-track-link-label" for="focus-domain-${i}">Saite uz gada mērķi</label>
+        <select id="focus-domain-${i}" data-focus-index="${i}" onchange="assignGoalDomain(this)">
+          <option value="" ${domain === null ? 'selected' : ''}>Izvēlies jomu</option>
+          ${FOCUS_DOMAINS.map((name, n) => `<option value="${n + 1}" ${domain === n + 1 ? 'selected' : ''}>${n + 1}. ${escHtml(name)}</option>`).join('')}
+        </select>
+        ${domain === null ? '<div class="focus-track-hint">Pēc izvēles parādīsies arī saite uz dzīves vīziju.</div>' : `<div class="focus-track-path"><button onclick="openGoalDomain('goals',${domain})">Gada mērķis ↗</button><span>→</span><button onclick="openGoalDomain('vision',${domain})">Dzīves vīzija ↗</button></div>`}
+      </div>`;
+    }).join('')}</div>
+    ${unassigned ? `<div class="focus-track-unassigned">${unassigned} ${unassigned === 1 ? 'darbam' : 'darbiem'} vēl nav izvēlēts nedēļas fokuss. Piesaisti to Nedēļas plānā.</div>` : ''}`;
+}
+
+function renderCompactGoals() {
+  const el = document.getElementById('ac-goals');
+  const week = WEEKS[CURRENT_WEEK];
+  if (!el || !week) return;
+  const meta = document.getElementById('ac-goals-meta');
+  if (meta) meta.textContent = week.label;
+  const tasks = week.days.flatMap(d => [...(d.tasks || []), ...getUserTasks(d.key)]);
+  let linked = 0;
+  const cards = week.priorities.map((goal, i) => {
+    const own = tasks.filter(t => getTaskFocusIndex(t) === i);
+    linked += own.length;
+    const done = own.filter(t => getChecked(t.id)).length;
+    const pct = own.length ? Math.round(done / own.length * 100) : 0;
+    const achieved = own.length > 0 && done === own.length;
+    const priorityId = 'wprio_' + CURRENT_WEEK + '_' + i;
+    if (own.length && getChecked(priorityId) !== achieved) setChecked(priorityId, achieved);
+    const domain = getGoalDomainIndex(i);
+    const options = FOCUS_DOMAINS.map((name, n) => '<option value="' + (n + 1) + '"' + (domain === n + 1 ? ' selected' : '') + '>' + (n + 1) + '. ' + escHtml(name) + '</option>').join('');
+    const taskNames = own.length
+      ? '<div class="focus-mini-tasklist">' + own.slice(0, 3).map(t => '<span class="' + (getChecked(t.id) ? 'is-done' : '') + '">' + (getChecked(t.id) ? '✓' : '○') + ' ' + escHtml(t.text) + '</span>').join('') + (own.length > 3 ? '<span>+' + (own.length - 3) + ' vēl</span>' : '') + '</div>'
+      : '<button class="focus-mini-add" onclick="showTabById(&quot;week&quot;)">Pievienot nedēļas plānā →</button>';
+    const path = domain === null
+      ? '<span class="focus-mini-hint">Gada mērķis → dzīves vīzija</span>'
+      : '<div class="focus-track-path"><button onclick="openGoalDomain(&quot;goals&quot;,' + domain + ')">Gada mērķis ↗</button><span>→</span><button onclick="openGoalDomain(&quot;vision&quot;,' + domain + ')">Dzīves vīzija ↗</button></div>';
+    return '<section class="focus-mini' + (achieved ? ' is-done' : '') + '" aria-label="Nedēļas mērķis ' + (i + 1) + '">' +
+      '<div class="focus-mini-head"><span class="focus-mini-index">' + (achieved ? '✓' : i + 1) + '</span><strong>' + escHtml(goal.text) + '</strong></div>' +
+      '<div class="focus-mini-work"><div class="focus-mini-status"><span>' + (own.length ? done + '/' + own.length + ' darbi' : 'Vēl nav piesaistītu darbu') + '</span><span>' + (own.length ? pct + '%' : '') + '</span></div>' +
+      '<div class="focus-mini-bar" aria-label="' + pct + '% pabeigti"><span style="width:' + pct + '%"></span></div>' + taskNames + '</div>' +
+      '<div class="focus-mini-links"><label for="focus-domain-' + i + '">Gada mērķa joma</label>' +
+      '<select id="focus-domain-' + i + '" data-focus-index="' + i + '" onchange="assignGoalDomain(this)"><option value=""' + (domain === null ? ' selected' : '') + '>Izvēlies jomu</option>' + options + '</select>' +
+      path + '</div></section>';
+  }).join('');
+  const unlinked = tasks.length - linked;
+  el.innerHTML = '<div class="focus-mini-list">' + cards + '</div><div class="focus-mini-footer"><span>' +
+    (unlinked ? unlinked + (unlinked === 1 ? ' darbam' : ' darbiem') + ' vēl nav fokusa.' : 'Mērķis izpildās automātiski pēc visiem darbiem.') +
+    '</span><button class="d-link" onclick="showTabById(&quot;week&quot;)">Uz nedēļas plānu →</button></div>';
+}
+
 
 /* ═══════════════════════════════════════════════════════
    IDEJAS / NOTES
@@ -2371,7 +2638,6 @@ function showTab(id) {
   if (id === 'dashboard') renderDashboard();
   if (id === 'months')    renderMonths();
   if (id === 'week')      { renderWeek(); if (GDS.token) fetchGoogleCalendar().then(renderWeek); }
-  if (id === 'mealplan')  renderMealPlan();
   if (id === 'ideas')     renderIdeas();
   if (id === 'izdevumi')  renderIzdevumi();
   if (id === 'progress')  renderProgress();
@@ -2386,7 +2652,6 @@ function showTabById(id) {
   if (id === 'dashboard') renderDashboard();
   if (id === 'months')    renderMonths();
   if (id === 'week')      { renderWeek(); if (GDS.token) fetchGoogleCalendar().then(renderWeek); }
-  if (id === 'mealplan')  renderMealPlan();
   if (id === 'ideas')     renderIdeas();
   if (id === 'izdevumi')  renderIzdevumi();
   if (id === 'progress')  renderProgress();
@@ -2467,7 +2732,6 @@ function syncFocusDoneToChecked() {
 function renderWeek() {
   const week = WEEKS[CURRENT_WEEK];
   if (!week) return;
-  syncFocusDoneToChecked();
   const wrap = document.getElementById('week-wrap');
   wrap.innerHTML = '';
 
@@ -2514,6 +2778,7 @@ function renderWeek() {
           return `<div class="ti">
             <input type="checkbox" id="${t.id}" ${getChecked(t.id)?'checked':''} onchange="onTask('${t.id}','${day.key}')">
             <label for="${t.id}">${t.text}${tagHtml}</label>
+            ${focusPickerHtml(t)}
           </div>`;
         }).join('')}
       </div>`).join('');
@@ -2561,6 +2826,10 @@ function renderWeek() {
             <option value="F">Finanses</option>
             <option value="SV">Sports / Veselība</option>
             <option value="ID">Ideālā dzīve</option>
+          </select>
+          <select class="add-focus" id="focus-${day.key}" aria-label="Nedēļas fokuss šim uzdevumam">
+            <option value="">Izvēlies nedēļas fokusu</option>
+            ${week.priorities.map((p,i)=>`<option value="${i}">${i+1}. ${escHtml(p.text)}</option>`).join('')}
           </select>
           <button class="add-ok" onclick="addTask('${day.key}')">Pievienot</button>
           <button class="add-cl" onclick="toggleAddForm('af-${day.key}',null)">Atcelt</button>
@@ -2660,6 +2929,7 @@ function onTask(id, dayKey) {
   setChecked(id, val);
   updateDayStats(dayKey);
   updateProgressTab();
+  renderDashboard();
   writeProgress(false); // automātiski saglabā
 }
 
@@ -2685,105 +2955,99 @@ function toggleAddForm(id, btn) {
 }
 
 function addTask(dayKey) {
-  const txt = document.getElementById('at-'+dayKey).value.trim();
+  const txt = document.getElementById('at-' + dayKey).value.trim();
+  const focusSelect = document.getElementById('focus-' + dayKey);
   if (!txt) return;
-  const cat  = document.getElementById('ac-'+dayKey).value;
+  if (!focusSelect || focusSelect.value === '') { if (focusSelect) focusSelect.focus(); return; }
+  const cat = document.getElementById('ac-' + dayKey).value;
+  const focusIndex = Number(focusSelect.value);
   const tasks = getUserTasks(dayKey);
   const newId = 'u-' + dayKey.replace(/-/g,'') + '-' + Date.now();
-  tasks.push({ id: newId, text: txt, cat, userAdded: true });
+  tasks.push({ id: newId, text: txt, cat, focusIndex, userAdded: true });
   setUserTasks(dayKey, tasks);
-  document.getElementById('at-'+dayKey).value = '';
+  document.getElementById('at-' + dayKey).value = '';
   renderWeek();
+  renderDashboard();
 }
 
-/* ═══════════════════════════════════════════════════════
-   ĒDIENKARTE — DATU STRUKTŪRA UN FUNKCIJAS
-══════════════════════════════════════════════════════════ */
-const MEAL_CATS = {
-  brokastis: { label: '🌅 Brokastis', color: '#66bb6a' },
-  pusdienas: { label: '🍽️ Pusdienas', color: '#ffa726' },
-  uzkodas:   { label: '🍎 Uzkodas',   color: '#ab47bc' },
-  vakarinas: { label: '🌙 Vakariņas', color: '#42a5f5' }
-};
-
+/* GetaPro pieprasījumi. Dati izmanto plānotāja esošo Google Drive sinhronizāciju. */
 function escHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-
-function getMealPlan() { return LS('ev_meals') || {}; }
-function saveMealPlan(obj) { LS('ev_meals', obj); }
-
-function getMealsForDay(dayKey) {
-  const all = getMealPlan();
-  return all[dayKey] || [];
+const GP_STAGES = [
+  { id:'new', label:'Jauns' },
+  { id:'sent', label:'Piedāvājums nosūtīts' },
+  { id:'followup', label:'Follow-up' },
+  { id:'closed', label:'Noslēgts' }
+];
+function getGetaProLeads() { const leads = LS('gp_leads'); return Array.isArray(leads) ? leads : []; }
+function saveGetaProLeads(leads) { LS('gp_leads', leads); renderGetaPro(); }
+function safeGetaProUrl(value) {
+  try { const u = new URL(value); return u.protocol === 'https:' ? u.href : ''; }
+  catch { return ''; }
 }
-
-function addMealUI(dayKey) {
-  const catEl = document.getElementById('meal-cat-' + dayKey);
-  const txtEl = document.getElementById('meal-txt-' + dayKey);
-  const txt = txtEl.value.trim();
-  if (!txt) return;
-  const all = getMealPlan();
-  if (!all[dayKey]) all[dayKey] = [];
-  all[dayKey].push({ id: 'meal-' + Date.now() + '-' + Math.random().toString(36).slice(2,6), cat: catEl.value, text: txt });
-  saveMealPlan(all);
-  txtEl.value = '';
-  renderMealPlan();
-  if (dayKey === getTodayKey()) renderAcMeals();
+function addGetaProLead(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const lead = {
+    id:'gp-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),
+    client:String(data.get('client')||'').trim(),
+    request:String(data.get('request')||'').trim(),
+    offer:String(data.get('offer')||'').trim(),
+    price:String(data.get('price')||'').trim(),
+    sourceUrl:safeGetaProUrl(String(data.get('sourceUrl')||'').trim()),
+    proposalUrl:safeGetaProUrl(String(data.get('proposalUrl')||'').trim()),
+    status:String(data.get('status')||'new'),
+    nextDate:String(data.get('nextDate')||''),
+    nextAction:String(data.get('nextAction')||'').trim(),
+    receivedAt:new Date().toISOString(),
+    sentAt:data.get('status')==='sent' ? new Date().toISOString() : ''
+  };
+  if (!lead.client || !lead.request) return;
+  saveGetaProLeads([lead, ...getGetaProLeads()]);
+  form.reset();
+  form.closest('details').open = false;
 }
-
-function removeMealUI(dayKey, id) {
-  const all = getMealPlan();
-  if (!all[dayKey]) return;
-  all[dayKey] = all[dayKey].filter(m => m.id !== id);
-  saveMealPlan(all);
-  renderMealPlan();
-  if (dayKey === getTodayKey()) renderAcMeals();
+function moveGetaProLead(id, status) {
+  if (!GP_STAGES.some(s=>s.id===status)) return;
+  const leads = getGetaProLeads();
+  const lead = leads.find(l=>l.id===id);
+  if (!lead) return;
+  lead.status = status;
+  if (status==='sent' && !lead.sentAt) lead.sentAt = new Date().toISOString();
+  saveGetaProLeads(leads);
 }
-
-function mealCatOptions() {
-  return Object.entries(MEAL_CATS).map(([k,c]) => `<option value="${k}">${c.label}</option>`).join('');
-}
-
-function renderMealPlan() {
-  const week = WEEKS[CURRENT_WEEK];
-  const wrap = document.getElementById('mealplan-wrap');
-  if (!week || !wrap) return;
-  const today = getTodayKey();
-
-  wrap.innerHTML = week.days.map(day => {
-    const items = getMealsForDay(day.key);
-    const isToday = day.key === today;
-    const listHtml = items.length
-      ? items.map(m => {
-          const cfg = MEAL_CATS[m.cat] || { label: m.cat, color: '#bbb' };
-          return `<div class="iz-tr-row">
-            <span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:${cfg.color}22;color:${cfg.color};flex-shrink:0;">${cfg.label}</span>
-            <span class="iz-tr-desc">${escHtml(m.text)}</span>
-            <button class="iz-tr-del" onclick="removeMealUI('${day.key}','${m.id}')" title="Dzēst">✕</button>
-          </div>`;
-        }).join('')
-      : '<div class="iz-empty">Nav pievienotu ēdienu.</div>';
-
-    return `
-      <div class="day-card">
-        <div class="dh${isToday?' today':''}" style="cursor:default;">
-          <div class="dl">
-            <span class="dname">${day.name}</span>
-            <span class="ddate">${day.date}</span>
-            ${isToday?'<span class="dbadge b-today">ŠODIEN</span>':''}
-          </div>
-        </div>
-        <div style="padding:0 16px 14px;">
-          ${listHtml}
-          <div class="d-mini-row" style="margin-top:10px;">
-            <select class="d-mini-inp" id="meal-cat-${day.key}" style="flex:0 0 140px;">${mealCatOptions()}</select>
-            <input class="d-mini-inp" id="meal-txt-${day.key}" placeholder="Pievienot ēdienu..." onkeydown="if(event.key==='Enter')addMealUI('${day.key}')">
-            <button class="d-btn" onclick="addMealUI('${day.key}')">+</button>
-          </div>
-        </div>
-      </div>`;
+/* Dashboard-specific design treatment. No example leads or fabricated numbers. */
+function renderGetaPro() {
+  const wrap = document.getElementById('gp-pipeline');
+  const summary = document.getElementById('gp-summary');
+  if (!wrap) return;
+  const leads = getGetaProLeads();
+  const open = leads.filter(l => l.status !== 'closed').length;
+  const action = leads.filter(l => l.status === 'new' || (l.status === 'followup' && l.nextDate && l.nextDate <= getTodayKey())).length;
+  if (summary) summary.textContent = leads.length
+    ? `${open} aktīvi, ${action} gaida Tavu darbību`
+    : 'Pieprasījumu pārskats vienā vietā';
+  const flow = `<div class="gp-flow" aria-label="GetaPro pieprasījumu plūsma">${GP_STAGES.map(stage => {
+    const count = leads.filter(l => l.status === stage.id).length;
+    return `<div class="gp-flow-step"><strong class="gp-flow-count">${count}</strong><span class="gp-flow-label">${stage.label}</span></div>`;
+  }).join('')}</div>`;
+  const active = GP_STAGES.flatMap(stage => {
+    const items = leads.filter(l => l.status === stage.id);
+    if (!items.length) return [];
+    return [`<section class="gp-stage"><div class="gp-stage-head">${stage.label}</div>${items.map(l => `<div class="gp-lead">
+      <div class="gp-lead-name">${escHtml(l.client)}</div>
+      <div class="gp-lead-request">${escHtml(l.request)}</div>
+      ${l.offer || l.price ? `<div class="gp-lead-offer">${escHtml(l.offer)}${l.price ? ' · '+escHtml(l.price)+' €' : ''}</div>` : ''}
+      ${l.nextAction || l.nextDate ? `<div class="gp-next">Tālāk: ${escHtml(l.nextAction || 'sazināties')}${l.nextDate ? ' · '+escHtml(l.nextDate) : ''}</div>` : ''}
+      <div class="gp-lead-actions">
+      ${l.sourceUrl ? `<a href="${escHtml(safeGetaProUrl(l.sourceUrl))}" target="_blank" rel="noopener noreferrer">Sarakste ↗</a>` : ''}
+      ${l.proposalUrl ? `<a href="${escHtml(safeGetaProUrl(l.proposalUrl))}" target="_blank" rel="noopener noreferrer">Piedāvājums ↗</a>` : ''}
+      <select aria-label="Mainīt statusu: ${escHtml(l.client)}" onchange="moveGetaProLead('${escHtml(l.id)}',this.value)">${GP_STAGES.map(s => `<option value="${s.id}" ${s.id === l.status ? 'selected' : ''}>${s.label}</option>`).join('')}</select>
+      </div></div>`).join('')}</section>`];
   }).join('');
+  wrap.innerHTML = flow + (active || '<div class="gp-empty">Pieprasījumi vēl nav ielasīti. Kad tādi būs, šeit redzēsi klientu un nākamo soli.</div>');
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -3188,220 +3452,7 @@ function renderIzdevumi() {
   }
 }
 
-/* ═══════════════════════════════════════════════════════
-   GARMIN — AUTOMĀTISKA IELĀDE NO garmin_data.json (GitHub, tieši)
-   Claude (Cowork + Chrome) katru rītu atjaunina failu no Garmin Connect
-══════════════════════════════════════════════════════════ */
 function getTodayKey() { const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-function getGarminData(dateKey) { return LS('gd_' + dateKey) || {}; }
-function setGarminData(dateKey, data) { LS('gd_' + dateKey, data); }
-
-let garminLastFetch = 0;
-
-async function fetchGarminJson(manual = false) {
-  // Garmin dati nolasās tieši no GitHub (evitakirilova/evita-planer/garmin_data.json)
-  const now = Date.now();
-  if (!manual && now - garminLastFetch < 30 * 60 * 1000) return;
-
-  const statusEl = document.getElementById('garmin-auto-status');
-  if (statusEl) statusEl.textContent = '⏳ Ielādē Garmin datus...';
-
-  try {
-    const resp = await fetch('https://raw.githubusercontent.com/evitakirilova/evita-planer/main/garmin_data.json?t=' + now);
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const data = await resp.json();
-    if (!data) {
-      if (statusEl) statusEl.textContent = '⚠ Garmin dati nav vēl pieejami';
-      return;
-    }
-
-    garminLastFetch = now;
-    const today     = getTodayKey();
-    const yesterday = new Date(now - 86400000).toISOString().slice(0, 10);
-    const isRecent  = data.date === today || data.date === yesterday;
-
-    if (!isRecent) {
-      const dienas = Math.round((new Date(today) - new Date(data.date)) / 86400000);
-      if (statusEl) statusEl.textContent = '⚠ Garmin nav atjaunināts ' + dienas + ' dienas (pēdējie dati ' + data.date + ') — jāpalaiž Cowork uzdevums';
-      return;
-    }
-
-    const gd = getGarminData(today);
-    let changed = false;
-
-    if (data.yesterday_steps > 0) { gd.steps = data.yesterday_steps; changed = true; }
-    if (data.sleep_hours > 0)  { gd.sleepH = data.sleep_hours;  changed = true; }
-    if (data.sleep_score > 0)  { gd.sleepScore = data.sleep_score; changed = true; }
-    if (data.body_battery > 0) { gd.bodyBattery = data.body_battery; changed = true; }
-    if (data.stress_avg  > 0)  {
-      gd.stress      = data.stress_avg;
-      gd.stressLevel = data.stress_level || 'vidējs';
-      changed = true;
-    }
-    if (data.weekly_total_km >= 0) {
-      gd.weeklyKm   = data.weekly_total_km;
-      gd.weeklyWalk = data.weekly_walk_km || 0;
-      gd.weeklyBike = data.weekly_bike_km || 0;
-      gd.weekStart  = data.week_start || '';
-      changed = true;
-    }
-
-    if (changed) {
-      setGarminData(today, gd);
-      renderDashboard();
-    }
-
-    const upd = data.updated
-      ? new Date(data.updated).toLocaleTimeString('lv', { hour: '2-digit', minute: '2-digit' })
-      : data.date;
-    if (statusEl) statusEl.textContent = '✓ Garmin · ' + upd;
-
-  } catch(e) {
-    if (statusEl) statusEl.textContent = '— Garmin dati nav pieejami';
-    console.log('Garmin JSON:', e.message);
-  }
-}
-
-function formatSleepDuration(hours) {
-  const totalMinutes = Math.round(Number(hours) * 60);
-  if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) return '';
-  return `${Math.floor(totalMinutes / 60)} h ${totalMinutes % 60} min`;
-}
-
-function updateGarminBoxes(gd) {
-  const sleep  = document.getElementById('gbox-sleep');
-  const steps  = document.getElementById('gbox-steps');
-  const stress = document.getElementById('gbox-stress');
-  const weekly = document.getElementById('gbox-weekly');
-  if (sleep)  sleep.innerHTML  = gd.sleepH  ? `<b>${formatSleepDuration(gd.sleepH)}</b><br><small>miegs${gd.sleepScore ? ' · '+gd.sleepScore : ''}</small>` : '😴<br><small>nav</small>';
-  if (steps)  steps.innerHTML  = gd.steps   ? `<b>${gd.steps >= 1000 ? (gd.steps/1000).toFixed(1)+'k' : gd.steps}</b><br><small>vakar soļi</small>` : '👣<br><small>nav</small>';
-  if (stress) stress.innerHTML = gd.stress  ? `<b>${gd.stress}</b><br><small>${gd.stressLevel||'stress'}</small>` : '🧘<br><small>nav</small>';
-  if (weekly) weekly.innerHTML = gd.weeklyKm != null ? `<b>${gd.weeklyKm}km</b><br><small>🚶${gd.weeklyWalk||0}+🚴${gd.weeklyBike||0}</small>` : '🏃<br><small>nav</small>';
-}
-
-function saveGarminManual() {
-  const h  = parseFloat(document.getElementById('g-sleep-h')?.value) || 0;
-  const st = parseInt(document.getElementById('g-steps')?.value) || 0;
-  const sr = parseInt(document.getElementById('g-stress')?.value) || 0;
-  const dk = getTodayKey();
-  const gd = getGarminData(dk);
-  if (h  > 0) { gd.sleepH = h; }
-  if (st > 0) { gd.steps  = st; }
-  if (sr > 0) { gd.stress = sr; gd.stressLevel = sr < 26 ? 'zems' : sr < 51 ? 'vidējs' : sr < 76 ? 'augsts' : 'ļoti augsts'; }
-  setGarminData(dk, gd);
-  renderDashboard();
-}
-
-/* — Google Fit automātiskā ielāde — */
-async function fetchFitData() {
-  if (!GDS.token) { alert('Vispirms piesakies Google!'); return; }
-  const btn = document.getElementById('fit-sync-btn');
-  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
-
-  try {
-    const now   = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const tmrw  = new Date(today.getTime() + 86400000);
-    const yest  = new Date(today.getTime() - 86400000);
-
-    /* Soļi šodien */
-    const sR = await fetch(
-      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
-      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
-        body: JSON.stringify({
-          aggregateBy:[{ dataTypeName:'com.google.step_count.delta' }],
-          bucketByTime:{ durationMillis:86400000 },
-          startTimeMillis: today.getTime(),
-          endTimeMillis:   tmrw.getTime()
-        })
-      }
-    );
-    if (sR.ok) {
-      const sd = await sR.json();
-      const steps = (sd.bucket?.[0]?.dataset?.[0]?.point || [])
-        .reduce((s,p) => s + (p.value?.[0]?.intVal||0), 0);
-      if (steps > 0) document.getElementById('g-steps').value = steps;
-    }
-
-    /* Miegs — vakardienas 12:00 → šodien 12:00 */
-    const slR = await fetch(
-      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
-      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
-        body: JSON.stringify({
-          aggregateBy:[{ dataTypeName:'com.google.sleep.segment' }],
-          bucketByTime:{ durationMillis:86400000 },
-          startTimeMillis: yest.getTime() + 43200000,
-          endTimeMillis:   today.getTime() + 43200000
-        })
-      }
-    );
-    if (slR.ok) {
-      const sld = await slR.json();
-      let ms = 0;
-      (sld.bucket || []).forEach(b => {
-        (b.dataset?.[0]?.point || []).forEach(p => {
-          const t = p.value?.[0]?.intVal;
-          if (t !== 1 && t !== 3) { // izņem "Nomodā" un "Ārpus gultas"
-            ms += (Number(p.endTimeNanos) - Number(p.startTimeNanos)) / 1e6;
-          }
-        });
-      });
-      const h = Math.round(ms / 3600000 * 10) / 10;
-      if (h > 0) document.getElementById('g-sleep-h').value = h;
-    }
-
-    /* Aktīvās minūtes */
-    const aR = await fetch(
-      'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate',
-      { method:'POST', headers:{ Authorization:'Bearer '+GDS.token, 'Content-Type':'application/json' },
-        body: JSON.stringify({
-          aggregateBy:[{ dataTypeName:'com.google.active_minutes' }],
-          bucketByTime:{ durationMillis:86400000 },
-          startTimeMillis: today.getTime(),
-          endTimeMillis:   tmrw.getTime()
-        })
-      }
-    );
-    if (aR.ok) {
-      const ad = await aR.json();
-      const am = (ad.bucket?.[0]?.dataset?.[0]?.point || [])
-        .reduce((s,p) => s + (p.value?.[0]?.intVal||0), 0);
-      if (am > 0) document.getElementById('g-active').value = am;
-    }
-
-    if (btn) { btn.textContent = '✓ Ielādēts'; btn.disabled = false; }
-    // Automātiski saglabā
-    saveGarminSleep();
-    saveGarminActivity();
-    renderDashboard();
-
-  } catch(e) {
-    if (btn) { btn.textContent = '⚠ Kļūda'; btn.disabled = false; }
-    console.error('Fit kļūda:', e);
-  }
-}
-
-function saveGarminSleep() {
-  const h = parseFloat(document.getElementById('g-sleep-h').value);
-  const q = parseInt(document.getElementById('g-sleep-q').value) || 0;
-  if (!h || h <= 0) { document.getElementById('g-sleep-h').focus(); return; }
-  const dk = getTodayKey();
-  const d  = getGarminData(dk);
-  d.sleepH = h; d.sleepQ = q;
-  setGarminData(dk, d);
-  renderDashboard();
-}
-
-function saveGarminActivity() {
-  const steps = parseInt(document.getElementById('g-steps').value) || 0;
-  const active= parseInt(document.getElementById('g-active').value) || 0;
-  const name  = document.getElementById('g-activity-name').value.trim();
-  const dk = getTodayKey();
-  const d  = getGarminData(dk);
-  d.steps = steps; d.activeMin = active; d.activityName = name;
-  setGarminData(dk, d);
-  renderDashboard();
-}
 
 /* ═══════════════════════════════════════════════════════
    DIENAS FOKUSS
@@ -3462,97 +3513,13 @@ const LV_DAYS = ['Svētdiena','Pirmdiena','Otrdiena','Trešdiena','Ceturtdiena',
 const LV_MONTHS = ['janvāris','februāris','marts','aprīlis','maijs','jūnijs','jūlijs','augusts','septembris','oktobris','novembris','decembris'];
 const LV_DS = ['Sv','P','O','T','C','Pk','S'];
 
-// ── SVG gredzena ģenerators (Anna Cherry: lielais cipars pa kreisi, gredzens pa labi) ──
-function acRing(pct, txt) {
-  const R=21, C=2*Math.PI*R, f=Math.min(Math.max(pct,0),100)/100*C;
-  return `<svg class="ac-mc-ring" viewBox="0 0 50 50">
-    <circle class="ac-rb" cx="25" cy="25" r="${R}"/>
-    <circle class="ac-rf" cx="25" cy="25" r="${R}" stroke-dasharray="${f.toFixed(1)} ${C.toFixed(1)}"/>
-    <text class="ac-rt" x="25" y="25">${txt}</text>
-  </svg>`;
-}
-
-// ── Metric lodziņi: 3 Garmin apakšā + Fokuss/Izdevumi galvenē ──
-function renderMetricStrip(gd, focusItems) {
-  const gEl = document.getElementById('ac-garmin-strip');
+// Galvenes Fokusa un Izdevumu lodziņi.
+function renderMetricStrip() {
   const hEl = document.getElementById('ac-hdr-metrics');
-  if (!gEl && !hEl) return;
-  const today = getTodayKey();
-  const exps = getExpenses().filter(e => e.date === today);
-  const expTotal = exps.reduce((s,e) => s + e.amount, 0);
-  const fDone = focusItems.filter(i => i.done).length;
-  const fTotal = focusItems.length;
-
-  // Trīs Garmin lodziņi — lapas apakšā
-  const garminCards = [
-    {
-      lbl:'Miegs · Garmin',
-      num: gd.sleepH ? formatSleepDuration(gd.sleepH) : '—',
-      sub: gd.sleepScore ? 'Skors '+gd.sleepScore+'/100' : (gd.sleepH ? 'vakarnakts' : 'nav datu'),
-      pct: gd.sleepH ? Math.round(gd.sleepH/8*100) : 0,
-      rtxt: gd.sleepScore ? String(gd.sleepScore) : (gd.sleepH ? Math.round(gd.sleepH/8*100)+'%' : ''),
-      empty: !gd.sleepH
-    },
-    {
-      lbl:'Nedēļas km · Garmin',
-      num: gd.weeklyKm != null ? gd.weeklyKm+'km' : '—',
-      sub: gd.weeklyKm != null ? `🚶${gd.weeklyWalk||0} + 🚴${gd.weeklyBike||0}` : 'nav datu',
-      pct: gd.weeklyKm != null ? Math.min(100, Math.round(gd.weeklyKm/50*100)) : 0,
-      rtxt: gd.weeklyKm != null ? gd.weeklyKm+'km' : '',
-      empty: gd.weeklyKm == null
-    },
-    {
-      lbl:'Stress · Garmin',
-      num: gd.stress ? String(gd.stress) : '—',
-      sub: gd.stressLevel ? gd.stressLevel + ' līmenis' : (gd.stress ? 'vidējs' : 'nav datu'),
-      pct: gd.stress ? gd.stress : 0,
-      rtxt: gd.stress ? String(gd.stress) : '',
-      empty: !gd.stress
-    }
-  ];
-
-  // Divi lodziņi galvenē — pirms dienas un datuma
-  const hdrCards = [
-    {
-      lbl:'Fokuss · Šodien',
-      num: fDone+'/'+fTotal,
-      sub: fDone===fTotal && fTotal>0 ? '✓ visi izpildīti' : fDone+' pabeigti',
-      empty: false
-    },
-    {
-      lbl:'Izdevumi · Šodien',
-      num: expTotal.toFixed(2),
-      unit:'€',
-      sub: exps.length ? exps.length+' darījumi' : 'nav izdevumu',
-      empty: expTotal===0
-    }
-  ];
-
-  if (gEl) {
-    gEl.innerHTML = garminCards.map(c => {
-      const ec = c.empty ? ' ac-mc-empty' : '';
-      const ring = c.pct!==null ? acRing(c.pct, c.rtxt||'') : '<div style="width:50px;"></div>';
-      return `<div class="ac-mc${ec}">
-        <div class="ac-mc-left">
-          <div class="ac-mc-lbl">${c.lbl}</div>
-          <div><span class="ac-mc-num">${c.num}</span>${c.unit?`<span class="ac-mc-unit"> ${c.unit}</span>`:''}</div>
-          <div class="ac-mc-sub">${c.sub}</div>
-        </div>
-        ${ring}
-      </div>`;
-    }).join('');
-  }
-
-  if (hEl) {
-    hEl.innerHTML = hdrCards.map(c => {
-      const ec = c.empty ? ' ac-hm-empty' : '';
-      return `<div class="ac-hm${ec}">
-        <div class="ac-hm-lbl">${c.lbl}</div>
-        <div><span class="ac-hm-num">${c.num}</span>${c.unit?`<span class="ac-hm-unit"> ${c.unit}</span>`:''}</div>
-        <div class="ac-hm-sub">${c.sub}</div>
-      </div>`;
-    }).join('');
-  }
+  if (!hEl) return;
+  const exps = getExpenses().filter(e => e.date === getTodayKey());
+  const total = exps.reduce((sum, expense) => sum + expense.amount, 0);
+  hEl.innerHTML = '<button type="button" class="ac-hm ac-hm-exp" onclick="showTabById(&quot;izdevumi&quot;)" title="Atvērt izdevumus"><span class="ac-hm-lbl">Izdevumi šodien</span><span><span class="ac-hm-num">' + total.toFixed(2) + '</span><span class="ac-hm-unit"> €</span></span></button>';
 }
 
 // ── Header ──
@@ -3581,9 +3548,10 @@ async function fetchGoogleCalendar() {
   if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
 
   try {
-    const now   = new Date();
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const weekEnd    = new Date(todayStart.getTime() + 7 * 86400000);
+    const weekDays = WEEKS[CURRENT_WEEK].days;
+    const todayStart = new Date(weekDays[0].key + 'T00:00:00');
+    const weekEnd = new Date(weekDays[weekDays.length - 1].key + 'T00:00:00');
+    weekEnd.setDate(weekEnd.getDate() + 1);
 
     const url = 'https://www.googleapis.com/calendar/v3/calendars/primary/events?' +
       'singleEvents=true&orderBy=startTime&maxResults=50' +
@@ -3616,7 +3584,7 @@ async function fetchGoogleCalendar() {
     });
 
     // Saglabā cache
-    localStorage.setItem('gcal_cache', JSON.stringify({ ts: Date.now(), byDay }));
+    localStorage.setItem('gcal_cache', JSON.stringify({ ts: Date.now(), week: CURRENT_WEEK, byDay }));
     if (btn) { btn.textContent = '✓'; btn.disabled = false; }
     renderAcCal();
 
@@ -3629,7 +3597,7 @@ async function fetchGoogleCalendar() {
 function getCalCache() {
   try {
     const c = JSON.parse(localStorage.getItem('gcal_cache'));
-    if (c && Date.now() - c.ts < 30 * 60000) return c.byDay; // 30 min cache
+    if (c && c.week === CURRENT_WEEK && Date.now() - c.ts < 30 * 60000) return c.byDay; // 30 min cache
   } catch(e) {}
   return null;
 }
@@ -3686,33 +3654,7 @@ function renderAcCal() {
 }
 
 // ── Mērķi (nedēļas prioritātes) ──
-function renderAcGoals() {
-  const el = document.getElementById('ac-goals');
-  if (!el) return;
-  const meta = document.getElementById('ac-goals-meta');
-  const week = WEEKS[CURRENT_WEEK];
-  if (meta) meta.textContent = week ? week.label : '';
-  if (!week || !week.priorities || !week.priorities.length) {
-    el.innerHTML = '<div class="d-empty">Nav noteiktu nedēļas mērķu</div>';
-    return;
-  }
-  el.innerHTML = week.priorities.map((p, i) => {
-    const id = 'wprio_' + CURRENT_WEEK + '_' + i;
-    const done = getChecked(id);
-    return `<div class="ac-gr">
-      <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;">
-        <input type="checkbox" id="${id}" ${done ? 'checked' : ''} onchange="onWeekPriority('${id}')" style="margin-top:2px;flex-shrink:0;">
-        <span class="ac-gn" style="${done ? 'text-decoration:line-through;color:var(--greige);' : ''}">${p.text}</span>
-      </label>
-    </div>`;
-  }).join('') + `<div style="margin-top:8px;"><button class="d-link" onclick="showTabById('week')">Uz nedēļas plānu →</button></div>`;
-}
-
-function onWeekPriority(id) {
-  const val = document.getElementById(id).checked;
-  setChecked(id, val);
-  writeProgress(false);
-}
+function renderAcGoals() { renderFocusTracker(); }
 
 // ── Fokuss ──
 function renderAcFocus(items) {
@@ -3738,41 +3680,7 @@ function renderAcFocus(items) {
           ${tg?`<span class="ac-ftag ${tg.c}">${tg.l}</span>`:''}
         </div>`;
       }).join('')
-    : '<div class="d-empty">Nav uzdevumu šodien. Pievienoji tos Nedēļas cilnē (+ Pievienot), tad nospied ↺.</div>';
-}
-
-// ── Šodienas ēdienkarte ──
-function renderAcMeals() {
-  const el = document.getElementById('ac-meals');
-  if (!el) return;
-  const today = getTodayKey();
-  const items = getMealsForDay(today);
-  el.innerHTML = items.length
-    ? items.map(m => {
-        const cfg = MEAL_CATS[m.cat] || { label: m.cat, color: '#bbb' };
-        return `<div class="ac-ir">
-          <div class="ac-idot" style="background:${cfg.color};"></div>
-          <div class="ac-icat">${escHtml(m.text)}</div>
-          <span style="font-size:9px;font-weight:700;color:${cfg.color};flex-shrink:0;">${cfg.label}</span>
-        </div>`;
-      }).join('')
-    : '<div class="d-empty" style="padding:4px 0;">Nav pievienotu ēdienu šodien</div>';
-  const catEl = document.getElementById('meal-cat-dash');
-  if (catEl && !catEl.dataset.filled) { catEl.innerHTML = mealCatOptions(); catEl.dataset.filled = '1'; }
-}
-
-function addMealFromDash() {
-  const catEl = document.getElementById('meal-cat-dash');
-  const txtEl = document.getElementById('meal-txt-dash');
-  const txt = txtEl.value.trim();
-  if (!txt) return;
-  const today = getTodayKey();
-  const all = getMealPlan();
-  if (!all[today]) all[today] = [];
-  all[today].push({ id: 'meal-' + Date.now() + '-' + Math.random().toString(36).slice(2,6), cat: catEl.value, text: txt });
-  saveMealPlan(all);
-  txtEl.value = '';
-  renderAcMeals();
+    : '<div class="d-empty">Šodienas darbi vēl nav ieplānoti. Pievieno tos Nedēļas plānā.</div>';
 }
 
 // ── Izdevumi ──
@@ -3806,24 +3714,31 @@ function renderAcWeekProg() {
   const week = WEEKS[CURRENT_WEEK];
   if (!week) { el.innerHTML = '<div class="d-empty">Nav nedēļas datu</div>'; return; }
   const today = getTodayKey();
-  let tDone=0, tAll=0;
-  el.innerHTML = week.days.map(d=>{
-    const all = [...(d.tasks||[]),...getUserTasks(d.key)];
-    const done = all.filter(t=>getChecked(t.id)).length;
-    tDone+=done; tAll+=all.length;
-    const pct = all.length ? Math.round(done/all.length*100) : 0;
-    const dt = new Date(d.key);
-    const isT = d.key===today;
-    return `<div class="ac-wr" style="opacity:${d.key>today?'0.45':'1'}">
-      <div class="ac-wrd" style="${isT?'color:var(--taupe);font-weight:700;':''}">${LV_DS[dt.getDay()]}</div>
-      <div class="ac-wrb"><div class="ac-wrbf" style="width:${pct}%"></div></div>
-      <div class="ac-wrp">${all.length?pct+'%':'—'}</div>
+  let total = 0, doneTotal = 0;
+  const cells = week.days.map(d => {
+    const tasks = [...(d.tasks || []), ...getUserTasks(d.key)];
+    const done = tasks.filter(t => getChecked(t.id)).length;
+    total += tasks.length;
+    doneTotal += done;
+    const dt = new Date(d.key + 'T12:00:00');
+    const state = tasks.length ? `${done}/${tasks.length}` : 'Nav darbu';
+    return `<div class="ac-week-day${d.key === today ? ' is-today' : ''}">
+      <div class="ac-week-top"><span class="ac-week-label">${escHtml(d.name)}</span><span class="ac-week-daynum">${dt.getDate()}.</span></div>
+      ${tasks.length ? `<div class="ac-week-tasks">${tasks.map(t => { const focus = getTaskFocusIndex(t); return `<label class="ac-week-task"><input type="checkbox" data-task-id="${escHtml(t.id)}" ${getChecked(t.id) ? 'checked' : ''} onchange="toggleWeekCubeTask(this)"><span>${escHtml(t.text)}<small class="ac-week-focus-tag">${focus === null ? 'Bez nedēļas fokusa' : 'Fokuss ' + (focus + 1)}</small></span></label>`; }).join('')}</div>` : `<div class="ac-week-state">${state}</div>`}
     </div>`;
   }).join('');
-  if (meta) {
-    const wp = tAll ? Math.round(tDone/tAll*100) : 0;
-    meta.textContent = tDone+'/'+tAll+' · '+wp+'%';
-  }
+  el.innerHTML = `<div class="ac-week-days">${cells}</div>`;
+  if (meta) meta.textContent = `${doneTotal}/${total} izpildīti`;
+}
+
+function toggleWeekCubeTask(input) {
+  const id = input.dataset.taskId;
+  if (!id) return;
+  setChecked(id, input.checked);
+  renderWeek();
+  updateProgressTab();
+  writeProgress(false);
+  renderDashboard();
 }
 
 // ── Laika apstākļi (Open-Meteo, Sigulda) ──
@@ -3850,23 +3765,10 @@ async function fetchWeather() {
 function renderAcWeather(d) {
   const el = document.getElementById('ac-weather');
   if (!el) return;
-  const icon = WMO_ICON[d.code]||'🌡';
-  const desc = WMO_DESC[d.code]||'';
-  const fc = (d.fc||[]).map(f=>{
-    const dt=new Date(f.date);
-    return `<div class="ac-fcd"><div class="ac-fcl">${LV_DS[dt.getDay()]}</div><div class="ac-fci">${WMO_ICON[f.code]||'🌡'}</div><div class="ac-fct">${f.max}°</div></div>`;
-  }).join('');
-  el.innerHTML = `
-    <div class="ac-wtop">
-      <div class="ac-wicon">${icon}</div>
-      <div>
-        <div class="ac-wtemp">${d.temp}°</div>
-        <div class="ac-wdesc">${desc}</div>
-        <div class="ac-whl">${d.wind?d.wind+' km/h':''}</div>
-      </div>
-    </div>
-    ${fc?`<div class="ac-fc">${fc}</div>`:''}
-  `;
+  const icon = WMO_ICON[d.code] || '🌡';
+  const desc = WMO_DESC[d.code] || 'Laikapstākļi';
+  el.innerHTML = '<span class="weather-icon">' + icon + '</span><span class="weather-temp">' + d.temp + '°</span>';
+  el.title = desc + ', ' + d.temp + '°, vējš ' + d.wind + ' km/h';
 }
 
 // ── Galvenā renderēšana ──
@@ -3876,44 +3778,23 @@ function calcPct(msIds) {
 }
 
 function renderDashboard() {
-  const today = getTodayKey();
-  const gd = getGarminData(today);
-
-  // Vienmēr sapludina kešoto fokusa sarakstu ar VISIEM dienas uzdevumiem —
-  // gan nedēļas plānā ierakstītajiem, gan manuāli pievienotajiem (arī no mobilā).
-  const cached   = getFocusItems();
-  const dayTasks = getAllDayTasks(today);
-  let items;
-  if (!cached.length) {
-    items = buildDefaultFocusItems();
-    setFocusItems(items);
-  } else {
-    const cachedIds = new Set(cached.map(i => i.id));
-    const newItems  = dayTasks
-      .filter(t => !cachedIds.has('fu' + t.id))
-      .map(t => ({ id: 'fu' + t.id, text: t.text, done: getChecked(t.id) }));
-    items = [...cached, ...newItems]; // bez slice — visi uzdevumi redzami
-    if (newItems.length) setFocusItems(items);
-  }
-
   renderAcHeader();
-  renderMetricStrip(gd, items);
+  renderMetricStrip();
   renderAcCal();
-  renderAcFocus(items);
-  renderAcMeals();
-  renderAcExpenses();
+  renderPreviewCalendarExample();
   renderAcGoals();
+  renderGetaPro();
   renderAcWeekProg();
   fetchWeather();
+}
 
-  // Garmin datu attēlošana
-  updateGarminBoxes(gd);
-  const gsh = document.getElementById('g-sleep-h');
-  const gst = document.getElementById('g-steps');
-  const gsr = document.getElementById('g-stress');
-  if (gsh && gd.sleepH) gsh.value = gd.sleepH;
-  if (gst && gd.steps)  gst.value = gd.steps;
-  if (gsr && gd.stress) gsr.value = gd.stress;
+function renderPreviewCalendarExample() {
+  if (location.protocol !== 'file:' || _acCM !== 'today' || getCalCache()) return;
+  const el = document.getElementById('ac-cal');
+  if (!el || !el.textContent.includes('Nav notikumu šodien')) return;
+  el.innerHTML = '<div class="ac-cal-demo-note">Izkārtojuma piemērs — ne Tavi kalendāra dati</div>' +
+    '<div class="ac-er"><div class="ac-et">10:00</div><div class="ac-ev"><span class="ac-demo-dot"></span>Klienta zvans</div></div>' +
+    '<div class="ac-er"><div class="ac-et">15:00</div><div class="ac-ev"><span class="ac-demo-dot alt"></span>Darbs pie projekta</div></div>';
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -3924,10 +3805,9 @@ function renderDashboard() {
 const GDS = {
   CLIENT_ID:  '457566382983-0tsi1v5b6300nca77udoviiuv8jgaklb.apps.googleusercontent.com',   // ← aizpildīsi pēc instrukcijām
   SCOPE:      'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/calendar.readonly',
-  SCOPE_FIT:  'https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.sleep.read',
   SCOPE_CAL:  'https://www.googleapis.com/auth/calendar.readonly',
   FILE_NAME:  'evita_planner_2026.json',
-  SKIP_KEYS:  ['weather_cache2'],         // šos neglabā Drive
+  SKIP_KEYS:  ['weather_cache2', 'gd_', 'ev_meals'], // vecos datus nesinhronizē
   token:      null,
   fileId:     null,
   syncTimer:  null,
@@ -3945,6 +3825,7 @@ const GDS = {
           GDS.setStatus('⏳ Ielādē datus...', 'loading');
           GDS.loadOrCreate().then(() => {
             GDS.setStatus('☁️ Google Drive — sinhronizēts', 'ok');
+            fetchGoogleCalendar();
           }).catch(e => {
             GDS.setStatus('⚠ Neizdevās ielādēt: ' + e.message, 'err');
           });
@@ -4034,7 +3915,7 @@ const GDS = {
       // Aizpilda tikai tukšās lokālās vietas ar Drive datiem.
       // Ja lokāli kaut kas IR — paliek neskarti.
       Object.keys(data).forEach(k => {
-        if (k === '_saved_at') return;
+        if (k === '_saved_at' || GDS.SKIP_KEYS.some(s => k.startsWith(s))) return;
         if (localStorage.getItem(k) === null) {
           localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
         }
@@ -4045,7 +3926,7 @@ const GDS = {
       // ── Drive ir jaunāks nekā šī ierīce ───────────────────────────────────
       // (Cita ierīce saglabāja vēlāk) — pārņem Drive datus.
       Object.keys(data).forEach(k => {
-        if (k === '_saved_at') return;
+        if (k === '_saved_at' || GDS.SKIP_KEYS.some(s => k.startsWith(s))) return;
         localStorage.setItem(k, typeof data[k] === 'string' ? data[k] : JSON.stringify(data[k]));
       });
       localStorage.setItem('_gds_local_ts', String(driveTs));
@@ -4186,8 +4067,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderDashboard();
   renderWeek();
-  GDS.init();
-  fetchGarminJson(); // Automātiski ielādē Garmin datus no garmin_data.json
+  if (location.protocol !== 'file:') GDS.init();
   initFolderAccess();
   // Clock
   function updateClock() {
