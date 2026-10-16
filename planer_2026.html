@@ -501,8 +501,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 #tab-dashboard #ac-card-focus .d-link{font-size:10px}
 
 /* One compact funnel instead of four empty status sections. */
-.gp-summary{font-size:11px;color:var(--slate);margin:0 0 11px}
-.gp-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:0 0 13px}
+.gp-summary{display:block;font-size:11px;color:var(--slate);margin:0 0 9px}
+.gp-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:0}
 .gp-flow-step{min-width:0;padding:9px 5px 8px;text-align:center;background:#f4f3f1;border:1px solid var(--border);border-radius:7px}
 .gp-flow-step:first-child{background:#ecf0ec;border-color:#dce4dd}
 .gp-flow-count{display:block;font-size:18px;font-weight:700;line-height:1;color:var(--slate)}
@@ -516,6 +516,16 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
 .gp-lead-name{font-size:12px}
 .gp-add{margin-top:7px;padding-top:8px}
 .gp-add summary{font-size:11px}
+.gp-disclosure > summary{list-style:none;cursor:pointer;outline-offset:4px}
+.gp-disclosure > summary::-webkit-details-marker{display:none}
+.gp-disclosure > summary:focus-visible{outline:2px solid var(--taupe);border-radius:7px}
+.gp-disclosure-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.gp-disclosure-hint{font-size:10px;font-weight:700;color:var(--taupe);white-space:nowrap}
+.gp-disclosure-hint .when-open{display:none}
+.gp-disclosure[open] .gp-disclosure-hint .when-closed{display:none}
+.gp-disclosure[open] .gp-disclosure-hint .when-open{display:inline}
+.gp-disclosure-content{padding-top:12px}
+.gp-source-link{display:inline-block;margin-bottom:7px;color:var(--taupe);font-size:10px;font-weight:700;text-decoration:underline}
 
 /* Seven real dates remain visible, but missing data no longer creates seven dead bars. */
 .ac-week-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
@@ -699,35 +709,43 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); co
     </div>
     <div class="taste-stack taste-business">
       <div class="ac-card" id="ac-card-getapro">
-        <div class="ac-ch">
-          <span class="ac-ct">GetaPro pieprasījumi</span>
-          <a class="ac-ca" href="https://getapro.lv/" target="_blank" rel="noopener noreferrer">Atvērt GetaPro ↗</a>
-        </div>
-        <div id="gp-summary" class="gp-summary"></div>
-        <div id="gp-pipeline"></div>
-        <details class="gp-add">
-          <summary>+ Pievienot pieprasījumu</summary>
-          <form id="gp-form" onsubmit="addGetaProLead(event)">
-            <input class="d-mini-inp" name="client" placeholder="Klients / pieprasījuma nosaukums" required maxlength="120">
-            <input class="d-mini-inp" name="request" placeholder="Ko klients vēlas?" required maxlength="180">
-            <div class="d-mini-row">
-              <input class="d-mini-inp" name="offer" placeholder="Tavs pakalpojums" maxlength="120">
-              <input class="d-mini-inp" name="price" placeholder="Cena €" type="number" min="0" step="0.01">
-            </div>
-            <input class="d-mini-inp" name="sourceUrl" placeholder="GetaPro sarakstes saite (https://...)" type="url">
-            <input class="d-mini-inp" name="proposalUrl" placeholder="Nosūtītā piedāvājuma saite (ja ir)" type="url">
-            <div class="d-mini-row">
-              <select class="d-mini-inp" name="status">
-                <option value="new">Jauns</option>
-                <option value="sent">Piedāvājums nosūtīts</option>
-                <option value="followup">Follow-up</option>
-                <option value="closed">Noslēgts</option>
-              </select>
-              <input class="d-mini-inp" name="nextDate" type="date" title="Nākamās darbības datums">
-            </div>
-            <input class="d-mini-inp" name="nextAction" placeholder="Nākamais solis" maxlength="160">
-            <button class="d-btn" type="submit">Saglabāt pieprasījumu</button>
-          </form>
+        <details class="gp-disclosure" id="gp-disclosure">
+          <summary aria-label="Atvērt vai aizvērt GetaPro piedāvājumus">
+            <span class="gp-disclosure-head">
+              <span class="ac-ct">GetaPro pieprasījumi</span>
+              <span class="gp-disclosure-hint"><span class="when-closed">Apskatīt ↓</span><span class="when-open">Aizvērt ↑</span></span>
+            </span>
+            <span id="gp-summary" class="gp-summary"></span>
+            <span id="gp-flow" class="gp-flow" aria-label="GetaPro pieprasījumu plūsma"></span>
+          </summary>
+          <div class="gp-disclosure-content">
+            <a class="gp-source-link" href="https://getapro.lv/" target="_blank" rel="noopener noreferrer">Atvērt GetaPro ↗</a>
+            <div id="gp-pipeline"></div>
+            <details class="gp-add">
+              <summary>+ Pievienot pieprasījumu</summary>
+              <form id="gp-form" onsubmit="addGetaProLead(event)">
+                <input class="d-mini-inp" name="client" placeholder="Klients / pieprasījuma nosaukums" required maxlength="120">
+                <input class="d-mini-inp" name="request" placeholder="Ko klients vēlas?" required maxlength="180">
+                <div class="d-mini-row">
+                  <input class="d-mini-inp" name="offer" placeholder="Tavs pakalpojums" maxlength="120">
+                  <input class="d-mini-inp" name="price" placeholder="Cena €" type="number" min="0" step="0.01">
+                </div>
+                <input class="d-mini-inp" name="sourceUrl" placeholder="GetaPro sarakstes saite (https://...)" type="url">
+                <input class="d-mini-inp" name="proposalUrl" placeholder="Nosūtītā piedāvājuma saite (ja ir)" type="url">
+                <div class="d-mini-row">
+                  <select class="d-mini-inp" name="status">
+                    <option value="new">Jauns</option>
+                    <option value="sent">Piedāvājums nosūtīts</option>
+                    <option value="followup">Follow-up</option>
+                    <option value="closed">Noslēgts</option>
+                  </select>
+                  <input class="d-mini-inp" name="nextDate" type="date" title="Nākamās darbības datums">
+                </div>
+                <input class="d-mini-inp" name="nextAction" placeholder="Nākamais solis" maxlength="160">
+                <button class="d-btn" type="submit">Saglabāt pieprasījumu</button>
+              </form>
+            </details>
+          </div>
         </details>
       </div>
       <div class="ac-card" id="ac-card-weekprog">
@@ -3022,6 +3040,7 @@ function moveGetaProLead(id, status) {
 function renderGetaPro() {
   const wrap = document.getElementById('gp-pipeline');
   const summary = document.getElementById('gp-summary');
+  const flowWrap = document.getElementById('gp-flow');
   if (!wrap) return;
   const leads = getGetaProLeads();
   const open = leads.filter(l => l.status !== 'closed').length;
@@ -3029,10 +3048,11 @@ function renderGetaPro() {
   if (summary) summary.textContent = leads.length
     ? `${open} aktīvi, ${action} gaida Tavu darbību`
     : 'Pieprasījumu pārskats vienā vietā';
-  const flow = `<div class="gp-flow" aria-label="GetaPro pieprasījumu plūsma">${GP_STAGES.map(stage => {
+  const flow = GP_STAGES.map(stage => {
     const count = leads.filter(l => l.status === stage.id).length;
-    return `<div class="gp-flow-step"><strong class="gp-flow-count">${count}</strong><span class="gp-flow-label">${stage.label}</span></div>`;
-  }).join('')}</div>`;
+    return `<span class="gp-flow-step"><strong class="gp-flow-count">${count}</strong><span class="gp-flow-label">${stage.label}</span></span>`;
+  }).join('');
+  if (flowWrap) flowWrap.innerHTML = flow;
   const active = GP_STAGES.flatMap(stage => {
     const items = leads.filter(l => l.status === stage.id);
     if (!items.length) return [];
@@ -3047,7 +3067,7 @@ function renderGetaPro() {
       <select aria-label="Mainīt statusu: ${escHtml(l.client)}" onchange="moveGetaProLead('${escHtml(l.id)}',this.value)">${GP_STAGES.map(s => `<option value="${s.id}" ${s.id === l.status ? 'selected' : ''}>${s.label}</option>`).join('')}</select>
       </div></div>`).join('')}</section>`];
   }).join('');
-  wrap.innerHTML = flow + (active || '<div class="gp-empty">Pieprasījumi vēl nav ielasīti. Kad tādi būs, šeit redzēsi klientu un nākamo soli.</div>');
+  wrap.innerHTML = active || '<div class="gp-empty">Pieprasījumi vēl nav ielasīti. Kad tādi būs, šeit redzēsi klientu un nākamo soli.</div>';
 }
 
 /* ═══════════════════════════════════════════════════════
