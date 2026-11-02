@@ -3,7 +3,7 @@
   "short_name": "Plānotājs",
   "description": "Privāts plānotājs",
   "start_url": "/evita-planer/planer_2026.html",
-  "scope": "/evita-planer/",
+  "scope": "/evita-planer/planer_2026.html",
   "display": "standalone",
   "background_color": "#f2f2f1",
   "theme_color": "#706354",
@@ -26,5 +26,6 @@
       "sizes": "any",
       "type": "image/svg+xml"
     }
-  ]
+  ],
+  "id": "/evita-planer/planer_2026.html"
 }
