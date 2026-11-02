@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#f4f1eb"/>
+
+  <!-- fork -->
+  <path d="M126 105v92M155 105v92M184 105v92" fill="none" stroke="#24364b" stroke-width="17" stroke-linecap="round"/>
+  <path d="M126 188c0 34 13 58 29 69v148" fill="none" stroke="#24364b" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M184 188c0 34-13 58-29 69" fill="none" stroke="#24364b" stroke-width="17" stroke-linecap="round"/>
+
+  <!-- spoon -->
+  <ellipse cx="386" cy="157" rx="43" ry="58" fill="none" stroke="#24364b" stroke-width="17"/>
+  <path d="M386 215v190" fill="none" stroke="#24364b" stroke-width="17" stroke-linecap="round"/>
+
+  <!-- plate and meal -->
+  <circle cx="256" cy="281" r="111" fill="#fffdfa" stroke="#24364b" stroke-width="15"/>
+  <circle cx="256" cy="281" r="76" fill="none" stroke="#24364b" stroke-width="8"/>
+  <path d="M218 280c13-28 34-42 58-42s45 14 58 42c-13 28-34 42-58 42s-45-14-58-42Z" fill="#4eaa92"/>
+  <path d="M231 177c-8-17-4-31 9-43M274 177c-8-17-4-31 9-43" fill="none" stroke="#24364b" stroke-width="11" stroke-linecap="round"/>
+</svg>
